@@ -1,0 +1,36 @@
+TO DO|
+------
+
+------------------
+Vragen toevoegen:
+-----------------
+[] Bestaande lijst
+
+---------
+Personen:
+---------
+[] Voornaam + Achternaam vragen (Altijd)
+[] Leerling J/N 		(Altijd)
+[] Geboorteplaats 		(Leerling)
+[] Geslacht kiezen 		(Altijd)
+[] Rijksregisternummer		(Leerlingen)
+[] Nationaliteit kiezen 	(Leerling)
+[] Godsdienst kiezen 		(Leerling)
+[] Overleden J/N		(Niet leerling)
+[] Gegevens opslaan in databank
+
+-----------------
+Relaties (gezin):
+-----------------
+[] Persoon 1 kiezen
+[] Functie persoon 1 kiezen
+[] Persoon 2 kiezen
+[] Beschrijving (niet verplicht in te vullen)
+[] ...
+
+----------------
+Vragenformulier:
+----------------
+Persoon kunnen zoeken in databank, eerst met knop[] 
+                                   daarna automatisch][]
+

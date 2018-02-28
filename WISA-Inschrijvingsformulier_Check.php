@@ -22,8 +22,6 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                 else {
                     echo "Sorry, er is een probleem opgestreden bij het uploaden van uw bestand.<br />";
                 }
-                
-                
             }
         }
     }*/
