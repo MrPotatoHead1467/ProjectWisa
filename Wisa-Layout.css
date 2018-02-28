@@ -1,0 +1,456 @@
+/*
+licht geel: #F5F5C2
+geel: #EAD100
+oranje: #EBA300
+rood: #A90040
+blauw: #006BBC
+donker grijs: #373B47
+licht grijs: #5A667B
+lichte kleur: #FAFAFA
+grijs0: #A7ADBB
+grijs1: #7C849A
+grijs2: #585F72
+*/
+
+/*
+arial
+arial black
+arial narrow
+*/
+
+body    {
+        background-color: #FAFAFA;
+        color: #373B47;
+        font-family: arial;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        width: 100%}
+        
+a   {
+    border-bottom: transparent solid 1px;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: 0.5s ease;
+            transition: 0.5s ease;}
+    
+a:hover {
+        border-bottom: navajowhite solid 1px;
+        color: navajowhite;
+        -webkit-transition: 0.5s ease;
+                transition: 0.5s ease;}
+    
+    
+/* Nav.php */
+    
+.nav1   {
+        background-color: #373B47;
+        height: 35px;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;}
+
+.nav1-link  {
+            color: #FAFAFA;
+            display: inline-block;
+            float: left;
+            margin-left: 20px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 10px;
+            text-align: center;}
+            
+#nav1-link2 {
+            float: right;
+            margin-right:  20px;}
+            
+.button_none    {
+                background-color: inherit;
+                border: none;
+                float: right;
+                font-size: inherit;
+                margin: 0;
+                padding: 0;
+                }
+
+.button_none:focus  {
+                    outline: none;}               
+                            
+/* Header.php */
+
+.header1    {
+            background-color: transparent;
+            display: block;
+            font-size: 60%;
+            height: 30vh;
+            position: fixed;
+            text-align: center;
+            top: 4vh;
+            width: 100%;}
+            
+.header2    {
+            background-color: transparent;
+            display: block;
+            font-size: 50%;
+            height: 10vh;
+            position: fixed;
+            text-align: center;
+            top: 5vh;
+            width: 100%;}
+            
+h1  {
+    font-size: 550%;
+    text-align: center;}
+    
+h2  {
+    font-size: 150%;
+    text-align: center;}
+
+.header_hfdtitel    {
+                    color: #5A667B;
+                    font-family: arial black;}
+                    
+.header_tsstitel    {
+                    color: #373B47;
+                    font-family: arial narrow;
+                    /*font-stretch: extra-expanded;*/
+                    margin-top: -2vh;}
+            
+
+/* footer.php */
+
+footer {
+       background-color: #373B47;
+       display: block;
+       height: 35px;
+       overflow:  hidden;
+       position: fixed;
+       bottom: 0;
+       width: 100%;}
+       
+.footer-p   {
+            color: #FAFAFA;
+            border-bottom: transparent solid 1px;
+            margin-top: 10px;
+            text-align: center;}
+            
+/* inloggen.php */
+
+.login_box  {
+            background-color: #5A667B;
+            border-radius: 10px;
+            height: 55vh;
+            margin: 23%;
+            margin-bottom: 13vh;
+            margin-top: 28vh;
+            padding: 2%;
+            padding-bottom: 2vh;
+            padding-bottom: 2vh;
+            position: fixed;
+            text-align: center;
+            width: 50%;}
+            
+.login_box_title    {
+                    color: #FAFAFA;
+                    font-family: arial narrow;
+                    font-size:  2em;
+                    height: 20%;
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                    width: 100%;}
+            
+.login_form {
+            height: 73%;
+            margin: 1% 15% 5% 15%;
+            text-align: center;
+            width: 70%;}
+            
+.login_form-box {
+                margin-bottom: 5%;
+                margin-left: 15%;
+                margin-right: 15%;
+                width: 70%;}
+
+.login_form-lbl {
+                color: #373B47;
+                font-size: 1em;
+                float: left;
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                width: 100%;}
+
+.login_form-in  {
+                color: #373B47;
+                font-size: 1em;
+                background-color: rgba(250,250,250,0.7);
+                border: transparent solid 1px;
+                height: 1.2em;
+                width: 100%;}
+
+.login_form-in:hover    {
+                        border-color: #FAFAFA;
+                        outline: none;
+                        transition: 0.3s}
+                
+.login_form-in:focus    {
+                        background-color: #FAFAFA;
+                        border-color: transparent;
+                        outline: none;
+                        transition: 0.3s}
+
+.login_form-btn {
+                background-color: #373B47;
+                border: transparent solid 1px;
+                border-radius: 10px;
+                color: rgba(250,250,250,0.7);
+                font-size: 1em;
+                height: 1.5em;
+                margin-top: 2.5%;
+                transition: 0.3s;
+                width: 40%;}
+                
+.login_form-btn:hover   {
+                        color: rgba(250,250,250,0.7);
+                        border-color: rgba(250,250,250,0.7);
+                        outline: none;
+                        transition: 0.3s}
+
+.login_form-btn:focus   {
+                        background-color: #FAFAFA;
+                        border-color: transparent;
+                        color: #373B47;
+                        outline: none;
+                        transition: 0.3s}
+                        
+/* help.php */
+
+.page_fullscreen-grey   {
+                        background-color: rgba(241,242,244,0.10);
+                        color: #FAFAFA;
+                        display: block;
+                        height:  100vh;
+                        margin: 0;
+                        padding: 0;
+                        position: fixed;
+                        text-align: center;
+                        top: 0;
+                        width: 100%;}
+                        
+.page_cover     {
+                background-color: #5A667B;
+                border-radius: 10px;
+                display: block; 
+                height: 76vh ;
+                margin: 17%;
+                margin-bottom: 10vh;
+                margin-top: 10vh;
+                padding: 2%;
+                padding-bottom: 2vh;
+                padding-top:  2vh;
+                transition: 0.3s;
+                text-align: center;
+                width: 62%}
+                
+.page_cover-space   {
+                    background-color: inherit;
+                    display: block;
+                    height:  100%;
+                    margin:  0;
+                    padding: 0;
+                    transition: 0.3s;
+                    width: 100%}
+                    
+.page_cover-close   {
+                    background-color: transparent;
+                    border: none;
+                    display: none;
+                    color: #373B47;
+                    float: right;
+                    font-family: arial black;
+                    font-size: 1.5em;
+                    height: 2em;
+                    transition: 0.3s;
+                    width: 2em;}
+
+.page_cover-close:hover     {
+                            color: #FAFAFA;
+                            transition: 0.3s;}
+                            
+.page_cover-close:focus     {
+                            border: #FAFAFA solid 1px;
+                            border-radius: 10px;
+                            color: #FAFAFA;
+                            outline: none;
+                            transition: 0.3s;}
+                    
+.page_cover-titlebox    {
+                        height: 20%;
+                        margin: 0;
+                        margin-left: 20%;
+                        margin-right: 20%;
+                        padding: 0;
+                        transition: 0.3s;
+                        text-align: center;                        
+                        width: 60%;}
+
+.page_cover-title   {
+                    font-family: arial black;
+                    font-size: 2em;
+                    margin: 0;
+                    padding: 0;
+                    transition: 0.3s;
+                    width: 100%;}
+
+.page_cover-title-sub   {
+                        font-family: arial narrow;
+                        font-size: 1em;
+                        margin: 0;
+                        padding: 0;
+                        transition: 0.3s;
+                        width: 100%}
+
+
+.page_cover-info    {
+                    background-color: inherit;
+                    display: block;
+                    height: 80%;
+                    margin: 0;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                    padding: 0;
+                    transition: 0.3s;
+                    text-align: left;
+                    width: 100%;}
+
+
+/* formulier.php */
+
+ .tabs  {
+        background-color: transparent;
+        display:  inline-block;
+        height: 15vh;
+        margin: 15%;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding: 0;
+        position: fixed;
+        text-align: left;
+        top: 30vh;
+        width: 70%;}
+        
+ .tabs_names    {
+                background-color: #7C849A;
+                border: none;
+                border-radius: 10px;
+                color: #FAFAFA;
+                cursor: pointer;
+                float: top;
+                height: 50%;
+                margin: 0;
+                margin-right: -1%;
+                /*overflow: hidden;*/
+                padding: 0;
+                padding-bottom: 1.5%;
+                text-decoration: none;
+                transition: 0.3s;
+                width: 20%;}
+ 
+.tabs_names:hover   {
+                    background-color: #585F72;
+                    border-color: transparent;
+                    transition: 0.3s;}
+ 
+.tabs_names:focus   {
+                    background-color: #585F72;
+                    border-color: transparent;
+                    outline: none;
+                    transition: 0.3s;}
+                    
+.tabs_names.active  {
+                    background-color: #A7ADBB;
+                    border-color: transparent;
+                    transition: 0.3s;}
+ 
+.tabs_info-box  {
+                background-color: #A7ADBB;
+                border: transparent solid 1px;
+                border-radius: 10px;
+                color: #FAFAFA;
+                display:  block;
+                height: 53vh;
+                margin: 15%;
+                margin-bottom: 0;
+                margin-top: 0;
+                padding: 2%;
+                padding-bottom: 2vh;
+                padding-top: 2vh;
+                position: fixed;
+                text-align: left;
+                top: 35vh;
+                width: 66%;}
+                
+ .tabs_info-box-space   {
+                        display: block;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        padding: 0;
+                        margin: 0;
+                        height: 100%;
+                        width: 100%}
+                        
+#mess   {
+        background-color: inherit;
+        display: block;
+        margin-top: 10%;
+        padding: 0;
+        text-align: center;
+        font-style: italic;
+        width: 100%;}
+                
+ 
+ .tabs_info {
+            background-color:  inherit;
+            display:  none;
+            padding: 0;
+            margin: 0;
+            width: 100%;}
+ 
+/* other.php */
+
+.BestaandeLijst {
+                display: none;}
+                            
+.Lijst  {
+        display: none;}
+                                
+.Max_antwoord   {
+                display: none;}
+                
+.Mogelijke_antwoorden   {
+                        display: none;}
+                        
+.Vragen_Toevoegen_Table {
+                        width: 100%;} 
+
+.Vragen_Toevoegen_Td    {
+                        width: 50%;}
+     
+.GepersonaliseerdeLijst {
+                        display: none;}
+
+.Bestemming {
+    padding-top: 0;
+}
+.Nieuwe_vraag {
+    width: 60%;
+}
+.Inschrijvingsformulier_Table{
+    width: 100%;
+}
+.Inschrijvingsformulier_Td {
+    width: 5%;
+}
