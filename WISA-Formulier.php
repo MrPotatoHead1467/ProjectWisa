@@ -10,8 +10,6 @@
 	<title>WISA | Formulier</title>
 </head>
 
-
-
 <body>
 
     <?PHP
@@ -50,14 +48,46 @@
                 }
             elseif  ($_SESSION['soort'] == "3")
                 {
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'nieuweinschrijving'"; echo ')">
-                                Nieuwe inschrijving
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'persoon'"; echo ')">
+                                Persoonsgegevens
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'relaties'"; echo ')">
+                                Relaties
+                            </button>';
+                            
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'contact'"; echo ')">
+                                Contactgegevens
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'loopbaan'"; echo ')">
+                                Loopbanen
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
+                                Inschrijving
                             </button>';
                 }
             else
                 {
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'nieuweinschrijving'"; echo ')">
-                                Nieuwe inschrijving
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'persoon'"; echo ')">
+                                Persoonsgegevens
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'relaties'"; echo ')">
+                                Relaties
+                            </button>';
+                            
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'contact'"; echo ')">
+                                Contactgegevens
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'loopbaan'"; echo ')">
+                                Loopbanen
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
+                                Inschrijving
                             </button>';
                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'nieuwevraag'"; echo ')">
@@ -82,7 +112,31 @@
                 <p>...</p>
             </div>
             
-            <div id="nieuweinschrijving" class="tabs_info">
+            <div id="persoon" class="tabs_info">
+                <?PHP
+                    include "WISA-Persoonsformulier.php";
+                ?>
+            </div>
+            
+            <div id="relaties" class="tabs_info">
+                <?PHP
+                    include "WISA-RelatiesFormulier.php";
+                ?>
+            </div>
+            
+            <div id="contact" class="tabs_info">
+                <?PHP
+                    include "WISA-ContactFormulier.php";
+                ?>
+            </div>
+            
+            <div id="loopbaan" class="tabs_info">
+                <?PHP
+                    include "WISA-LoopbaanFormulier.php";
+                ?>
+            </div>
+            
+            <div id="vragen" class="tabs_info">
                 <?PHP
                     include "WISA-Inschrijvingsformulier.php";
                 ?>
