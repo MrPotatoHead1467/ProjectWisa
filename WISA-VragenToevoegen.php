@@ -125,7 +125,7 @@
         <div id="BestaandeLijst" class="BestaandeLijst">
             <label for="Bestaande_lijst">Kies een bestaande lijst:</label><br />
             <select id="Bestaande_lijst" name="Bestaande_lijst">
-                <option value="...">...</option>
+                <option value="..." id="Geen_Bestaande_Lijst">...</option>
                 <?php
                     $sql = "SELECT * FROM tbl_bestaande_lijsten";
                     $result = $conn->query($sql);
@@ -198,33 +198,34 @@
 <script type="text/javascript">
 <!--
     function bestaandelijst() {
-        document.getElementById('BestaandeLijst').style.display = 'block'
-        document.getElementById('GepersonaliseerdeLijst').style.display = 'none'
-        document.getElementById('Max_aantal_antwoorden').style.display = 'block'
-        document.getElementById('Mogelijke_antwoorden').style.display = 'none'
+        document.getElementById('BestaandeLijst').style.display = 'block';
+        document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
+        document.getElementById('Max_aantal_antwoorden').style.display = 'block';
+        document.getElementById('Mogelijke_antwoorden').style.display = 'none';
     }
     function gepersonaliseerdelijst() {
-        document.getElementById('BestaandeLijst').style.display = 'none'
-        document.getElementById('GepersonaliseerdeLijst').style.display = 'block'
-        document.getElementById('Max_aantal_antwoorden').style.display = 'block'
-        document.getElementById('Mogelijke_antwoorden').style.display = 'block'
-        document.getElementById('Lijst').style.display = 'block'
+        document.getElementById('BestaandeLijst').style.display = 'none';
+        document.getElementById('GepersonaliseerdeLijst').style.display = 'block';
+        document.getElementById('Max_aantal_antwoorden').style.display = 'block';
+        document.getElementById('Mogelijke_antwoorden').style.display = 'block';
+        document.getElementById('Lijst').style.display = 'block';
     }
     function lijst() {
         var soort_antwoord = document.getElementById("Soort_antwoord");
         var selectedValue = soort_antwoord.options[soort_antwoord.selectedIndex].value;
         if (soort_antwoord.value == "fld_antwoord_type_lijst") {
-            document.getElementById('Lijst').style.display = 'block'
+            document.getElementById('Lijst').style.display = 'block';
         }
         else {
-            document.getElementById('Lijst').style.display = 'none'
-            document.getElementById('BestaandeLijst').style.display = 'none'
-            document.getElementById('GepersonaliseerdeLijst').style.display = 'none'
-            document.getElementById('Max_aantal_antwoorden').style.display = 'none'
+            document.getElementById('Lijst').style.display = 'none';
+            document.getElementById('BestaandeLijst').style.display = 'none';
+            document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
+            document.getElementById('Max_aantal_antwoorden').style.display = 'none';
         }
     }
 -->
 </script>
+
 <?php
     if ($_SESSION['Nieuwe_vraag'] != "") {
         echo '<script type="text/javascript">gepersonaliseerdelijst();</script>';

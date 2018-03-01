@@ -30,7 +30,6 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                 else {
                     
                 }
-                
             }
         }
     }

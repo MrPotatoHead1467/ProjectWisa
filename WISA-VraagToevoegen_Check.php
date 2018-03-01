@@ -79,15 +79,16 @@ if (isset($_POST["Vraag_opslaan"])) {
                 }
             }
         }
+        header("Location: WISA-Formulier.php");
     }
     else {
-        
+        header("Location: WISA-Formulier.php");
     }
 }
 
 
 if (isset($_POST["Mogelijk_antwoord_toevoegen"])) {
-    $Mogelijk_antwoord_toevoegen = $_POST['Mogelijk_antwoord'];
+    $Mogelijk_antwoord_toevoegen = mysqli_real_escape_string($conn, $_POST['Mogelijk_antwoord']);
     if ($Mogelijk_antwoord_toevoegen !== ''){
         if (isset($_SESSION['Mogelijke_antwoorden'])) {
              array_push($_SESSION['Mogelijke_antwoorden'],mysqli_real_escape_string($conn, $Mogelijk_antwoord_toevoegen));
@@ -102,6 +103,7 @@ if (isset($_POST["Mogelijk_antwoord_toevoegen"])) {
     $_SESSION['Max_antwoord'] = mysqli_real_escape_string($conn, $_POST['Max_antwoord']);
     header("Location: WISA-Formulier.php");
 }
+
 if (isset($_SESSION['Mogelijke_antwoorden'])){
     foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord_verwijderen){
         if (isset($_POST[$Mogelijk_antwoord_verwijderen])){
