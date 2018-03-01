@@ -10,7 +10,9 @@
 </head>
 
 <body>
-
+<?php
+include "WISA-Connection.php";
+?>
     <p>Loopbaan formulier</p>
 
 </body>

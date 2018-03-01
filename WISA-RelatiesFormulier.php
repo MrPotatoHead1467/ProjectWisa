@@ -10,7 +10,9 @@
 </head>
 
 <body>
-
+<?php
+include "WISA-Connection.php";
+?>
     <p>Relaties formulier</p>
 
 </body>

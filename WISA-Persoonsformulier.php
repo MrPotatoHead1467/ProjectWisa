@@ -22,18 +22,22 @@ include "WISA-Connection.php";
     <label for="Achternaam">Achternaam</label><br />
     <input type="text" id="Achternaam" name="Achternaam" required="True"/><br />
     
-    <label for="Geslacht">Geslacht</label>
+    <label for="Geslacht">Geslacht</label><br />
     <select id="Geslacht" name="Geslacht">
         <option value="Kies">Geslacht</option>
         <option value="M">Man</option>
         <option value="V">Vrouw</option>
     </select>
+    <br />
     
-    <label for="GBDatum">Geboortedatum</label>
-    <input type="date" id="GBDatum" name="GBDatum"/>
+    <label for="GBDatum">Geboortedatum</label><br />
+    <input type="date" id="GBDatum" name="GBDatum"/><br />
     
     <div id="Leerlingen">
         <label for="GB_Plaats">Geboorteplaats</label>
+        <select id="GB_Plaats">
+            <option>Woonplaaten</option>
+        </select>
         
         <label for="Register_nr">Rijksregisternummer</label>
         <input type="text" id="Register_nr" name="Register_nr"/>
