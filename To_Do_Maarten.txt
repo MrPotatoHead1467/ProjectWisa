@@ -6,31 +6,61 @@ Vragen toevoegen:
 -----------------
 [] Bestaande lijst
 
----------
-Personen:
----------
+-------------------
+Personen_Formulier:
+-------------------
 [] Voornaam + Achternaam vragen (Altijd)
 [] Leerling J/N 		(Altijd)
 [] Geboorteplaats 		(Leerling)
 [] Geslacht kiezen 		(Altijd)
+[] Geboortedatum		(Altijd)
 [] Rijksregisternummer		(Leerlingen)
 [] Nationaliteit kiezen 	(Leerling)
 [] Godsdienst kiezen 		(Leerling)
 [] Overleden J/N		(Niet leerling)
 [] Gegevens opslaan in databank
 
------------------
-Relaties (gezin):
------------------
+---------------------------
+Relaties_Formulier (gezin):
+---------------------------
 [] Persoon 1 kiezen
 [] Functie persoon 1 kiezen
 [] Persoon 2 kiezen
 [] Beschrijving (niet verplicht in te vullen)
+[] Relatie toevoegen knop
 [] ...
+
+-------------------
+Adressen_Formulier:
+-------------------
+[] Straatnaam toevoegen
+[] Keuzelijst woonplaats (Belgie)
+[] Invoervak woonplaats (Buitenland)
+[] Bij broer/zus automatisch invullen
+
+-------------------
+Loopbaan_Formulier:
+-------------------
+[] Keuze school
+[] Keuze richting, jaar, graad, ASO/BSO/TSO/KSO
+[] Attest toevoegen
+[] Clausule
+[] Advies klassenraad
+
+--------------------------
+Contactgegevens_Formulier:
+--------------------------
+[] Persoon/Personen
+[] GSM + Knop
+[] E-mail + Knop
+[] Telefoon + Knop
+[] Adres
 
 ----------------
 Vragenformulier:
 ----------------
-Persoon kunnen zoeken in databank, eerst met knop[] 
-                                   daarna automatisch][]
+[] Persoon kunnen zoeken in databank met knop
+[] Persoon kunnen zoeken in databank automatisch
+[] Gepersonaliseerde vragen
+[] Opslaanknop
 
