@@ -101,6 +101,7 @@
             </div>
         </div>    
     </div>
+    
     <!-- code: website op full screen laten afbeelden -->
     <script>
         //function page_fullscreen()
