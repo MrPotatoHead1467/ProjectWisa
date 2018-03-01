@@ -349,6 +349,46 @@ footer {
 
 /* formulier.php */
 
+.tabs_names_box_arrows  {
+                    background-color: transparent;
+                    position:  fixed;
+                    display:  inline-block;
+                    height: 15vh;
+                    margin: 12%;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    padding: 0;
+                    position: fixed;
+                    text-align: center;
+                    top: 30vh;
+                    width: 76%}
+                    
+.tabs_names_arrows  {
+                    background-color: transparent;
+                    border: none;
+                    color: #A7ADBB;
+                    cursor: pointer;
+                    font-size: 200%;
+                    transition: 0.3s;
+                    width: 3%}
+                    
+#tabs_names_arrows_vorige   {
+                            float: left;   
+                            }
+
+#tabs_names_arrows_volgende {
+                            float: right;  
+                            }
+
+.tabs_names_arrows:hover    {
+                            color:  #7C849A;
+                            transition: 0.3s;}
+                            
+.tabs_names_arrows:focus    {
+                            color: #5A667B;
+                            outline: none;
+                            transition: 0.3s;}
+
  .tabs  {
         background-color: transparent;
         display:  inline-block;
@@ -368,10 +408,11 @@ footer {
                 border-radius: 10px;
                 color: #FAFAFA;
                 cursor: pointer;
-                float: top;
+                float: top left;
                 height: 50%;
                 margin: 0;
-                margin-right: -0.5%;
+                margin-right: -1.1%;
+                /*overflow: hidden;*/
                 /*overflow: hidden;*/
                 padding: 0;
                 padding-bottom: 1.5%;
@@ -379,8 +420,8 @@ footer {
                 padding-right: 1%;
                 text-decoration: none;
                 transition: 0.3s;
-                min-width: ;
-                max-width: 25%;}
+                /*min-width: ;*/
+                /*max-*/width: 20.5%;}
  
 .tabs_names:hover   {
                     background-color: #585F72;
@@ -451,7 +492,10 @@ footer {
                     padding: 0;
                     width: 100%}
                     
-.form_newvraag_in
+.form_newvraag_in   {
+                    margin-left: 2%;
+                    width: 60%;
+                    }
  
 /* other.php */
 

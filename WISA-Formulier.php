@@ -26,7 +26,15 @@
         include "WISA-Nav.php";
         include "WISA-Header.php";
     ?>
-     
+    
+    <div class="tabs_names_box_arrows">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_prev()" title="Vorige tabblad">
+            &#8249;
+        </button>
+        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
+            &#8250;
+        </button>
+    </div> 
     <div class="tabs">
         <!-- namen voor tabbladen -->
         <?PHP

@@ -9,25 +9,23 @@
 	<title>TEST | Page</title>
     
     <style>
-        .tabs_names_arrows  {}
-        
-        .tabs {display: none}
+        .tabs {display: block}
         
         #t1  {display: none}
         #t2  {display: none}
         #t3  {display: none}
-        
-        #tabs_names_arrows_vorige   {display:  none;}
-        #tabs_names_arrows_volgende   {display:  none;}
     </style>
 </head>
 
 <body>
-    <!-- vorige -->
-    <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_next()" title="Vorige tabblad">
-        &#8249;
-    </button>
-    
+    <div class="tabs_names_box_arrows">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_prev()" title="Vorige tabblad">
+            &#8249;
+        </button>
+        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
+            &#8250;
+        </button>
+    </div>
         <!-- tabbladen -->
         <div class="tabs" id="t1">
             <button class="tabs_names" onclick="tab_show_info(event, 'nieuweinschrijving')">
@@ -77,11 +75,6 @@
             </button>
         </div>
     
-    <!-- volgende -->
-    <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
-        &#8250;
-    </button>
-    
     <p id="demo"></p>
     <p id="demo2"></p>
     <p id="demo3"></p>    
@@ -108,7 +101,7 @@
     //function tabs_show()
         //{
             
-            if (nummer == 1)
+            //if (nummer == 1)
                 {
                     while (nummertel !== amount)
                         {
