@@ -11,9 +11,9 @@
     <style>
         .tabs_names_arrows  {}
         
-        #1  {display: none}
-        #2  {display: none}
-        #3  {display: none}
+        #t1  {display: none}
+        #t2  {display: none}
+        #t3  {display: none}
         
         #tabs_names_arrows_vorige   {display:  none;}
         #tabs_names_arrows_volgende   {display:  none;}
@@ -87,15 +87,17 @@
 
 
 <script>
-    var amount = document.querySelectorAll('.tabs').length;
-    var vorige = document.getElementById("tabs_names_arrows_vorige");
-    var volgende = document.getElementById("tabs_names_arrows_volgende");
-    var show = 1;
+    var amount = document.querySelectorAll(".tabs").length;
+    var vorige = document.getElementById(".tabs_names_arrows_vorige");
+    var volgende = document.getElementById(".tabs_names_arrows_volgende");
+    var letter = "t"
+    var nummer = 1
+    var show = letter + nummer;
     var id = document.querySelector('.tabs').id;
     
     document.getElementById("demo").innerHTML = amount;
     document.getElementById("demo2").innerHTML = id;
-    document.getElementById("demo3").innerHTML = show;
+    document.getElementById("demo3").innerHTML = "show class tab" + show;
     
     tabs_show();
     
