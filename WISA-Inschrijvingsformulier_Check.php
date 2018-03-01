@@ -12,9 +12,9 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
             for ($i = 0; $i < $Aantal_Bestanden; $i++){
                 $Bestand_Naam = $Vraag_Id."_".$Datum;
                 $Bestand_Locatie = $target_dir . $Bestand_Naam;
-                /** Het bestand wordt geüpload */
+                /** Het bestand wordt geï¿½pload */
                 if (move_uploaded_file($_FILES[$Vraag_Id."_Bestand"]["tmp_name"][$i], $Bestand_Locatie)) {
-                    echo "Het bestand ". basename($Bestand["name"][$i]). " is geüpload.<br />";
+                    echo "Het bestand ". basename($Bestand["name"][$i]). " is geï¿½pload.<br />";
                     $Soort_Bestand = strtolower(pathinfo($Bestand_Locatie,PATHINFO_EXTENSION));
                     
                     $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
@@ -33,6 +33,7 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
         }
     }
     
+    /** $_SESSION['Vragen_Id'] wordt leeg gemaakt */
     if (isset($_SESSION['Vragen_Id'])){
         foreach ($_SESSION['Vragen_Id'] as $Vragen_Id){
             if (($key = array_search($Vragen_Id, $_SESSION['Vragen_Id'])) !== false){
