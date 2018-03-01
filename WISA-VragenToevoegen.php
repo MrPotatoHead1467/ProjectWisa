@@ -121,9 +121,17 @@ include "WISA-Connection.php";
         <!-- Bestaande lijst selecteren -->
         <div id="BestaandeLijst" class="BestaandeLijst">
             <select>
-            <?php
-            echo "<option>Dit is de bestaande lijst</option>"
-            ?>
+                <option>...</option>
+                <?php
+                    $sql = "SELECT * FROM tbl_bestaande_lijsten";
+                    $result = $conn->query($sql);
+                    /** Bestaande lijsten worden uit databank gehaald en in een lijst gezet */
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            echo "<option value='".$row['fld_bestaande_lijst_id']."'>".$row['fld_bestaande_lijst_naam']."</option>";
+                        }
+                    }
+                ?>
             </select>
         </div>
     </td>
