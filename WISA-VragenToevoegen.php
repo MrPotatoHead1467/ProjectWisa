@@ -1,21 +1,20 @@
 <?php
-    if (isset($_SESSION['Nieuwe_vraag'])) {
-        
-    }
-    else {
+if (isset($_SESSION['Nieuwe_vraag'])) 
+    {}
+else 
+    {
         $_SESSION['Nieuwe_vraag'] = "";
     }
-        
-    if (isset($_SESSION['Kernwoord_vraag'])) {
-        
-    }
-    else {
+if (isset($_SESSION['Kernwoord_vraag'])) 
+    {}
+else 
+    {
         $_SESSION['Kernwoord_vraag'] = "";
     }
-    if (isset($_SESSION['Max_antwoord'])) {
-        
-    }
-    else {
+if (isset($_SESSION['Max_antwoord']))
+    {}
+else
+    {
         $_SESSION['Max_antwoord'] = "1";
     }
 ?>

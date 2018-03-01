@@ -7,43 +7,159 @@
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
 
 	<title>TEST | Page</title>
+    
+    <style>
+        .tabs_names_arrows  {}
+        
+        #1  {display: none}
+        #2  {display: none}
+        #3  {display: none}
+        
+        #tabs_names_arrows_vorige   {display:  none;}
+        #tabs_names_arrows_volgende   {display:  none;}
+    </style>
 </head>
 
 <body>
-
-        <!--<button onclick="page_fullscreen()">Full Screen</button> --->
-
-        <!-- LINK: naar handleiding online , EXTRA: andere handleiding voor ADMIN dus andere link & andere geen handleiding bij het inloggen, ZIE STATUS SESSION-->
-        <!--</a><a class="nav1-link" onclick="document.getElementsByClassName('page_fullscreen-grey').style.display = 'block';" title="HELP: handleiding">HELP</a>
--->
-        
-    <div class="page_fullscreen-grey">
-        <div class="page_cover">
-            <div class="page_cover-space">
-                <button class="page_cover-close" onclick="page_cover_close() "title="Handleiding sluiten">X</button>
-                <div class="page_cover-titlebox">
-                    <h3 class="page_cover-title">Handleiding</h3>
-                    <h4 class="page_cover-title-sub">Inschrijvingsformulieren</h4>
-                </div>
-                <div class="page_cover-info">
-                    <p id="mess">Nog niet beschikbaar.</p>
-                    <!--<embed src="WISA_Handleiding-Inschrijvingsformulieren.txt"/>-->
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- vorige -->
+    <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_next()" title="Vorige tabblad">
+        &#8249;
+    </button>
     
-    <script type="text/javascript">
-        function page_fullscreen()
-            {
-                document.getElementsByClassName("page_fullscreen-grey").style.display = "block";
-            }
+        <!-- tabbladen -->
+        <div class="tabs" id="1">
+            <button class="tabs_names" onclick="tab_show_info(event, 'nieuweinschrijving')">
+                Nieuwe inschrijving
+            </button>
+                    
+            <button class="tabs_names" onclick="tab_show_info(event,'nieuwevraag')">
+                Nieuwe vraag
+            </button>
+                    
+            <button class="tabs_names" onclick="tab_show_info(event, 'goedkeuren')">
+                Inschrijvingen goedkeuren
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam1')">
+                Naam1
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam2')">
+                Naam2
+            </button>
+        </div>
+        <div class="tabs" id="2">
+            <button class="tabs_names" onclick="tab_show_info(event, naam3')">
+                Naam3
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam4')">
+                Naam4
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam5')">
+                Naam5
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam6')">
+                Naam6
+            </button>
+            
+            <button class="tabs_names" onclick="tab_show_info(event, naam8')">
+                Naam7
+            </button>
+        </div>
+        <div class="tabs" id="3">
+            <button class="tabs_names" onclick="tab_show_info(event, naam8')">
+                Naam8
+            </button>
+        </div>
+    
+    <!-- volgende -->
+    <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
+        &#8250;
+    </button>
+    
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>    
         
-        function page_cover_close()
-            {
-                document.getElementsByClassName("page_cover-close").style.display = "none"
-            }
-    </script>
+
+
+<script>
+    var amount = document.querySelectorAll('.tabs').length;
+    var vorige = document.getElementById("tabs_names_arrows_vorige");
+    var volgende = document.getElementById("tabs_names_arrows_volgende");
+    var show = 1;
+    var id = document.querySelector('.tabs').id;
+    
+    document.getElementById("demo").innerHTML = amount;
+    document.getElementById("demo2").innerHTML = id;
+    document.getElementById("demo3").innerHTML = show;
+    
+    tabs_show();
+    
+    function tabs_show()
+        {
+            if (show == 1)
+                {
+                    document.getElementById(show).style.display == "block";
+                    if (amount == show)
+                        {
+                            vorige.style.display = "none";
+                            volgende.style.display = "none";
+                        }
+                    else
+                        {
+                            vorige.style.display = "none";
+                            volgende.style.display = "block";
+                        }
+                }
+            else if (show > 1)
+                {
+                    document.getElementById(show).style.display == "block";
+                    if (amount == show)
+                        {
+                            vorige.style.display = "block";
+                            volgende.style.display = "none";
+                        }
+                    else
+                        {
+                            vorige.style.display = "block";
+                            volgende.style.display = "block";
+                        }
+                }
+            else
+                {
+                    show = 1;
+                }
+        }
+        
+    //document.getElementById("").addEventListener("click", displayDate);
+        
+    function tabs_next()
+        {
+            show = (show + 1);
+            tabs_show();
+            //tabs_hide();
+        }
+        
+    function tabs_prev()
+        {
+            show = (show - 1);
+            tabs_show();
+            //tabs_hide();
+        }
+        
+    function tabs_hide()
+        {
+            if (id != show)
+                {
+                    id.style.display = "none";
+                }
+        }
+
+</script>
 
 </body>
 </html>
