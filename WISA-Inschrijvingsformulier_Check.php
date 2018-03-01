@@ -4,7 +4,6 @@ include "WISA-Connection.php";
 
 if(isset($_POST["Inschrijving_Opslaan"])) {
     $Datum = date("Y-m-d_h-i");
-    echo $Datum;
     $target_dir = "Uploads/";
     foreach ($_SESSION['Vragen_Id'] as $Vraag_Id){
         if (isset($_FILES[$Vraag_Id."_Bestand"]) and $_FILES[$Vraag_Id."_Bestand"] != ''){
