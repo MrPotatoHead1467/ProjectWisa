@@ -4,7 +4,6 @@ include "WISA-Connection.php";
 
 if(isset($_POST["Inschrijving_Opslaan"])) {
     $Datum = date("Y-m-d_h-i");
-    echo $Datum;
     $target_dir = "Uploads/";
     foreach ($_SESSION['Vragen_Id'] as $Vraag_Id){
         if (isset($_FILES[$Vraag_Id."_Bestand"]) and $_FILES[$Vraag_Id."_Bestand"] != ''){
@@ -32,16 +31,15 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                 }
             }
         }
-    }*/
+    }
     
     /** $_SESSION['Vragen_Id'] wordt leeg gemaakt */
-    /**
     if (isset($_SESSION['Vragen_Id'])){
         foreach ($_SESSION['Vragen_Id'] as $Vragen_Id){
             if (($key = array_search($Vragen_Id, $_SESSION['Vragen_Id'])) !== false){
                 unset($_SESSION['Vragen_Id'][$key]);
             }
         }
-    }*/
+    }
 }
 ?>
