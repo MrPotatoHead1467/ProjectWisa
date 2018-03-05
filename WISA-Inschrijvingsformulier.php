@@ -38,11 +38,11 @@ if ($result->num_rows > 0){
         }
         elseif ($row['fld_antwoord_type_l_tekst'] == 1){
             if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
+                echo "<td class='Inschrijvingsformulier_Td'><textarea id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'></textarea>";
             
             }
             else {
-                echo "<td class='Inschrijvingsformulier_Td'><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
+                echo "<td class='Inschrijvingsformulier_Td'><textarea id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'></textarea>";
             }
             echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
         }

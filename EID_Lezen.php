@@ -2,7 +2,7 @@
 session_start();
 include "eid.php";
 
-if (isset($_POST['Kaart_Lezen'])){
+if (isset($_POST['EID_Lezen'])){
     $card = new IDCard;
     $_SESSION['EID_Voornaam'] = $card->prename;
     $_SESSION['EID_Achternaam'] = $card->name;

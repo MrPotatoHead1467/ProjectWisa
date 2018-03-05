@@ -14,7 +14,7 @@
 include "WISA-Connection.php";
 ?>
 <form action="EID_Lezen.php" method="post">
-<button type="submit" name="Kaart_Lezen">Kaart lezen</button>
+<button type="submit" name="EID_Lezen">EID lezen</button>
 </form>
 <form action="WISA-Persoonsformulier_Check.php" method="post" enctype="multipart/form-data">
     
@@ -44,15 +44,15 @@ include "WISA-Connection.php";
     </div>
     
     <div>
-        <label for="GBDatum">Geboortedatum</label><br />
-        <input type="date" id="GBDatum" name="GBDatum"/><br />
+        <label for="GB_Datum">Geboortedatum</label><br />
+        <input type="date" id="GB_Datum" name="GB_Datum"/><br />
     </div>
     
     <div id="Leerlingen">
         <div>
             <label for="GB_Plaats">Geboorteplaats</label><br />
-            <select id="GB_Plaats">
-                <option>Geboorteplaatsen</option>
+            <select id="GB_Plaats" name="GB_Plaats">
+                <option value="Werkt">Geboorteplaatsen</option>
             </select>
             <br />
         </div>
@@ -63,13 +63,21 @@ include "WISA-Connection.php";
         </div>
         
         <div>
-            <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr"/>
-            <label for="Geen_Register_nr">Geen rijksregisternummer</label><br />
+            <div>
+                <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr"/>
+                <label for="Geen_Register_nr">Geen rijksregisternummer</label><br />
+            </div>
+            
+            <div>
+                <label for="Bis_nr">BIS-Nummer</label>
+                <input type="text" id="Bis_nr" name="Bis_nr"/>
+            </div>
         </div>
         
         <div>
             <label for="Nationaliteit">Nationaliteit</label><br />
-            <select id="Nationaliteit">
+            <select id="Nationaliteit" name="Nationaliteit">
+                <option value="Kies">Kies een nationaliteit</option>
                 <?php
                     $sql = "SELECT * FROM tbl_nationaliteiten";
                     $result = $conn->query($sql);
@@ -85,7 +93,8 @@ include "WISA-Connection.php";
         
         <div>
             <label for="Godsdienst">Godsdienst</label>
-            <select id="Godsdienst">
+            <select id="Godsdienst" name="Godsdienst">
+                <option value="Kies">Kies een godsdienst</option>
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
                     $result = $conn->query($sql);
