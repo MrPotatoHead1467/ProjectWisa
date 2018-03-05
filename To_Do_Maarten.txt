@@ -2,6 +2,8 @@
 TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO |
 ---------------------------------------------------------------------------------------
 
+Lange tekt -> textarea
+
 ------------------
 Vragen toevoegen:
 -----------------
@@ -10,15 +12,18 @@ Vragen toevoegen:
 -------------------
 Personen_Formulier:
 -------------------
-[] Voornaam + Achternaam 	(Altijd)		1
-[] Leerling J/N 		(Altijd)		1
-[] Geboorteplaats 		(Leerling)		2
-[] Geslacht kiezen 		(Altijd)		1
-[] Geboortedatum		(Altijd)		1
-[] Rijksregisternummer		(Leerlingen)		2		Geen -> BIS
-[] Nationaliteit kiezen 	(Leerling)		2
-[] Godsdienst kiezen 		(Leerling)		2
-[] Overleden J/N		(Niet leerling)		3
+____________________________________________________________________________________________________________________
+|Invullen HTML |Invullen Databank |							 | Opmerkingen		    |
+|[X] 	       |[] 	          | Voornaam + Achternaam 	(Altijd)		1|			    |
+|[X] 	       |[] 	          | Leerling J/N 		(Altijd)		1|			    |
+|[] 	       |[] 	          | Geboorteplaats 		(Leerling)		2|			    |
+|[X] 	       |[] 	          | Geslacht kiezen 		(Altijd)		1|			    |
+|[X] 	       |[] 	          | Geboortedatum		(Altijd)		1|			    |
+|[X] 	       |[] 	          | Rijksregisternummer		(Leerling)		2| Geen -> BIS		    |
+|[] 	       |[] 	          | Nationaliteit kiezen 	(Leerling)		2|			    |
+|[] 	       |[] 	          | Godsdienst kiezen 		(Leerling)		2|			    |
+|[] 	       |[] 	          | Overleden J/N		(Niet leerling)		3|			    |
+|______________|__________________|______________________________________________________|__________________________|
 [] Gegevens opslaan in databank
 
 ---------------------------
@@ -75,3 +80,8 @@ Gepersonaliseerde lijst:
 [X] Knop om alle mogelijke antwoorden te verwijderen?
 [X] Hoe "Of" tussen "Bestaande lijst" en "Gepersonaliseerde lijst"?
 [] Alleen volgende knop -> leerling + ouder na elkaar ingeven?
+
+------------------
+Persoonsformulier:
+------------------
+[X] Input?

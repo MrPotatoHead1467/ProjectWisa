@@ -13,7 +13,6 @@
 <body>
 
     <?PHP
-    
         if (isset($_SESSION['gebruiker']))
             {
                 echo'';
