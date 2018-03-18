@@ -3,7 +3,7 @@ TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | TO DO | 
 ---------------------------------------------------------------------------------------
 
 Lange tekt -> textarea
-
+Geen rijksregisternr + geen bisnr
 ------------------
 Vragen toevoegen:
 -----------------
@@ -14,27 +14,28 @@ Personen_Formulier:
 -------------------
 ____________________________________________________________________________________________________________________
 |Invullen HTML |Invullen Databank |							 | Opmerkingen		    |
-|[X] 	       |[] 	          | Voornaam + Achternaam 	(Altijd)		1|			    |
-|[X] 	       |[] 	          | Leerling J/N 		(Altijd)		1|			    |
+|[X] 	       |[X] 	          | Voornaam + Achternaam 	(Altijd)		1|			    |
+|[X] 	       |[X] 	          | Leerling J/N 		(Altijd)		1|			    |
 |[] 	       |[] 	          | Geboorteplaats 		(Leerling)		2|			    |
-|[X] 	       |[] 	          | Geslacht kiezen 		(Altijd)		1|			    |
-|[X] 	       |[] 	          | Geboortedatum		(Altijd)		1|			    |
-|[X] 	       |[] 	          | Rijksregisternummer		(Leerling)		2| Geen -> BIS		    |
+|[X] 	       |[X] 	          | Geslacht kiezen 		(Altijd)		1|			    |
+|[X] 	       |[X] 	          | Geboortedatum		(Altijd)		1|			    |
+|[X] 	       |[X] 	          | Rijksregisternummer		(Leerling)		2| Geen -> Bis		    |
 |[] 	       |[] 	          | Nationaliteit kiezen 	(Leerling)		2|			    |
 |[] 	       |[] 	          | Godsdienst kiezen 		(Leerling)		2|			    |
-|[] 	       |[] 	          | Overleden J/N		(Niet leerling)		3|			    |
+|[X] 	       |[X] 	          | Overleden J/N		(Niet leerling)		3|			    |
 |______________|__________________|______________________________________________________|__________________________|
 [] Gegevens opslaan in databank
+[] Pasfoto alleen bij leerling
 
 ---------------------------
 Relaties_Formulier (gezin):
 ---------------------------
-[] Persoon 1 kiezen
-[] Functie persoon 1 kiezen
-[] Persoon 2 kiezen
-[] Beschrijving (niet verplicht in te vullen)
-[] Relatie toevoegen knop
-[] ...
+[X] Persoon 1 kiezen
+[X] Relatie kiezen
+[X] Persoon 2 kiezen
+[X] Beschrijving (niet verplicht in te vullen)
+[X] Relatie toevoegen knop
+[] Volgende knop
 
 -------------------
 Adressen_Formulier:
@@ -56,7 +57,7 @@ Loopbaan_Formulier:
 --------------------------
 Contactgegevens_Formulier:
 --------------------------
-[] Persoon/Personen
+[X] Persoon
 [] GSM + Knop
 [] E-mail + Knop
 [] Telefoon + Knop
@@ -70,9 +71,9 @@ Vragenformulier:
 [] Gepersonaliseerde vragen
 [] Opslaanknop
 
------------------------------------------------------------------------------------------
-Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen |
------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen | Vragen |
+-----------------------------------------------------------------------------------------------------------------------------
 
 ------------------------
 Gepersonaliseerde lijst:
@@ -85,3 +86,8 @@ Gepersonaliseerde lijst:
 Persoonsformulier:
 ------------------
 [X] Input?
+
+------------------
+Relatiesformulier:
+------------------
+[] Hoe divs bij filters?

@@ -12,14 +12,40 @@
 <body>
 <?php
 include "WISA-Connection.php";
+if (isset($_SESSION['EID_Voornaam'])){
+    
+}
+else {
+    $_SESSION['EID_Voornaam'] = '';
+}
+if (isset($_SESSION['EID_Achternaam'])){
+    
+}
+else {
+    $_SESSION['EID_Achternaam'] = '';
+}
+if (isset($_SESSION['EID_Rijksregisternr'])){
+    
+}
+else {
+    $_SESSION['EID_Rijksregisternr'] = '';
+}
 ?>
 <form action="EID_Lezen.php" method="post">
 <button type="submit" name="EID_Lezen">EID lezen</button>
 </form>
 <form action="WISA-Persoonsformulier_Check.php" method="post" enctype="multipart/form-data">
+    <div>
+        <input type="file" id="Bestand_persoon" name="Bestand_persoon[]" multiple />
+    </div>
     
     <div>
-        <input type="checkbox" name="Leerling" id="Leerling" checked="True"/>
+        <label for="Foto_persoon">Pasfoto</label><br />
+        <input type="file" id="Foto_persoon" name="Foto_persoon"/>
+    </div>
+    
+    <div>
+        <input type="checkbox" name="Leerling" id="Leerling" checked="True" onclick="display_leerling()"/>
         <label for="Leerling">Leerling</label><br />
     </div>
     
@@ -77,11 +103,10 @@ include "WISA-Connection.php";
         <div>
             <label for="Nationaliteit">Nationaliteit</label><br />
             <select id="Nationaliteit" name="Nationaliteit">
-                <option value="Kies">Kies een nationaliteit</option>
+                <option value="0">Kies een nationaliteit</option>
                 <?php
                     $sql = "SELECT * FROM tbl_nationaliteiten";
                     $result = $conn->query($sql);
-                    /** Bestemmingen worden uit de databank gehaald en met checkbox getoond */
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                             echo "<option value='".$row['fld_nation_id']."'>".$row['fld_nation_nation']."</option>";
@@ -94,11 +119,10 @@ include "WISA-Connection.php";
         <div>
             <label for="Godsdienst">Godsdienst</label>
             <select id="Godsdienst" name="Godsdienst">
-                <option value="Kies">Kies een godsdienst</option>
+                <option value="0">Kies een godsdienst</option>
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
                     $result = $conn->query($sql);
-                    /** Bestemmingen worden uit de databank gehaald en met checkbox getoond */
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                             echo "<option value='".$row['fld_godsdienst_id']."'>".$row['fld_godsdienst_naam']."</option>";
@@ -109,7 +133,7 @@ include "WISA-Connection.php";
         </div>
     </div>
     
-    <div id="Niet_Leerling">
+    <div id="Niet_Leerling" class="Niet_Leerling">
         <label for="Overleden">Overleden</label>
         <input type="checkbox" id="Overleden" name="Overleden"/>
     </div>
@@ -119,6 +143,22 @@ include "WISA-Connection.php";
         <button id="Volgende" name="Volgende">Volgende</button>
     </div>
 </form>
+
+<script type="text/javascript">
+<!--
+	function display_leerling() {
+	   if (document.getElementById('Leerling').checked) {
+        document.getElementById('Leerlingen').style.display = 'block';
+        document.getElementById('Niet_Leerling').style.display = 'none';
+	   }
+       else {
+        document.getElementById('Leerlingen').style.display = 'none';
+        document.getElementById('Niet_Leerling').style.display = 'block';
+       }
+       
+	}
+-->
+</script>
 
 </body>
 </html>
