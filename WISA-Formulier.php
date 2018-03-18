@@ -16,7 +16,17 @@
     
         if (isset($_SESSION['gebruiker']))
             {
-                echo'';
+                // code voor het openen van een formulier  echo "<script type='text/javascript'>tab_show_info(event, 'SESSION-DING')</script>";
+                if (isset($_SESSION['Formulier']) and $_SESSION['Formulier'] !== '')
+                    {
+                        echo "<script type='text/javascript'>document.getElementById('".$_SESSION['Formulier']."').style.display = 'block'';";
+                            echo "";
+                        echo "</script>";
+                    }
+                else
+                    {
+                        echo "";
+                    }
             }
         else
             {
@@ -25,6 +35,8 @@
         
         include "WISA-Nav.php";
         include "WISA-Header.php";
+        
+        
     ?>
     
     <div class="tabs_names_box_arrows">
@@ -182,7 +194,18 @@
     <script>           
         function tab_show_info(evt, form)
             {
+                //<%Session["Formulier"] = form;%>;
                 var i, tab_info, tab_links;
+                var inhoud = form
+                //var session_value='<%=Session["Formulier"]%>';
+                //alert(session_value); 
+                
+                //'<%Session["Formulier"] = "' + form + '"; %>';
+                //alert('<%=Session["Formulier"] %>');
+                
+                //sessionStorage.setItem("Formulier", inhoud);
+                
+                
                 tab_info = document.getElementsByClassName("tabs_info");
                 for (i = 0; i < tab_info.length; i++)
                     {

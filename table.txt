@@ -1,0 +1,40 @@
+<table class="Vragen_Toevoegen_Table">
+      <tr class="form_newvraag_lbl_space">
+        <!-- Gepersonaliseerde lijst -->
+        <td class="Vragen_Toevoegen_Td">
+            <div id="GepersonaliseerdeLijst" class="GepersonaliseerdeLijst">
+                <!-- Mogelijk antwoord toevoegen -->
+                <label class="form_newvraag_lbl" for="Mogelijk_antwoord">Geef een mogelijk antwoord in:</label><br />
+                <!-- Tekstvak en knop om mogelijke antwoorden toe te voegen -->
+                <div class="form_newvraag_box_in2">
+                    <input class="form_newvraag_in" type="text" id="Mogelijk_antwoord" name="Mogelijk_antwoord"/>
+                    <button class='form_newvraag_pls' type="submit" id="Mogelijk_antwoord_toevoegen" name="Mogelijk_antwoord_toevoegen">+</button>
+                </div>
+            </div>
+        </td>
+        <td class="Vragen_Toevoegen_Td">
+            <div id="Mogelijke_antwoorden" class="Mogelijke_antwoorden">
+                <!-- Mogelijke antwoorden tonen met verwijden en aanpas knop -->
+                <label class="form_newvraag_lbl" id="form_newvraag_lbl3">Mogelijke antwoorden:</label>
+                <?php
+                    $i = 0;
+                    #$x = -1;
+                    if (isset($_SESSION['Mogelijke_antwoorden'])){
+                        foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord){
+                            echo "<div class='form_newvraag_box_in2'>";
+                                /** Mogelijk antwoord tonen in tekstvak */
+                                echo "<input class='form_newvraag_in' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/>";
+                                /** Aanpasknop 
+                                echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
+                                /** Verwijderknop */
+                                echo "<button class='form_newvraag_mn' type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."'>X</button><br />";
+                            echo '</div>';
+                            ++$i;
+                            #--$x;
+                        }
+                    }
+                ?>
+            </div>
+        </td>
+          </tr>
+    </table>

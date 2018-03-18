@@ -42,6 +42,7 @@ if (isset($_POST['login_form-inloggen']))
                                     $_SESSION['wachtwoord'] = $row['fld_gebruiker_wachtwoord'];
                                     $_SESSION['soort'] = $row['fld_gebruiker_soort_id_fk'];
                                     $_SESSION['schoolID'] = $row['fld_school_id_fk'];
+                                    $_SESSION['Formulier'] = "";
                            
                                     header("Location: WISA-Formulier.php?login=success");
                                     #exit();

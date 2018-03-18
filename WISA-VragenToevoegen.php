@@ -26,7 +26,7 @@ else
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
 
-	<title>Vragen toevoegen</title>
+	<title>WISA | Vragen toevoegen</title>
 
 </head>
 
@@ -35,30 +35,27 @@ else
         include "WISA-Connection.php";
     ?>
     <!-- Formulier om vragen toe te voegen -->
-    <form action="WISA-VraagToevoegen_Check.php" method="post" style="display: inline;">
-    <table class="Vragen_Toevoegen_Table">
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Nieuwe vraag toevoegen -->
-            <label for="Nieuwe_vraag">Nieuwe vraag:</label><br />
-            <input id="Nieuwe_vraag" type="text" name="Nieuwe_vraag" <?php echo "value='".$_SESSION['Nieuwe_vraag']."'"?> required="True" class="Nieuwe_vraag"/>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Kernwoord toevoegen -->
-            <label for="Kernwoord_vraag">Kernwoord vraag:</label><br />
-            <input id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Soort antwoord selecteren, na toevoeging mogelijk antwoord 'Lijst' optie 1 anders 'Lijst' is laaste,
-             indien 'Lijst' geselecteerd -> knoppen 'bestaande lijst' en 'gepersonaliseerde lijst' zichtbaar -->
-            <label for="Soort_antwoord">Soort antwoord:</label><br />
-            <select id="Soort_antwoord" onchange="lijst()" name="Soort_antwoord">
+    <form action="WISA-VraagToevoegen_Check.php" method="post">
+    
+        <!-- Nieuwe vraag toevoegen -->
+        <div class="form_box_1">
+            <label class="form_newvraag_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
+            <textarea autofocus="autofocus" class="form_newvraag_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
+        </div>
+        
+        <!-- Kernwoord toevoegen -->
+        <div class="form_box_1">
+            <label class="form_newvraag_lbl" for="Kernwoord_vraag">Kernwoord vraag:</label><br />
+            <div class="form_newvraag_box_in ">
+                <input class="form_newvraag_in" id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
+            </div>
+        </div>
+        
+        <!-- Soort antwoord selecteren, na toevoeging mogelijk antwoord 'Lijst' optie 1 anders 'Lijst' is laaste,
+             indien 'Lijst' geselecteerd -> knoppen 'bestaande lijst' en 'gepersonaliseerde lijst' zichtbaar -->        
+        <div class="form_box_1">
+            <label class="form_newvraag_lbl" for="Soort_antwoord">Soort antwoord:</label><br />
+            <select class="form_newvraag_slt" id="Soort_antwoord" onchange="lijst()" name="Soort_antwoord">
                 <?php if ($_SESSION['Nieuwe_vraag'] != ''){
                     echo '<option value="fld_antwoord_type_lijst">Lijst</option>';}?>
                 <option value="fld_antwoord_type_k_tekst">Korte tekst</option>
@@ -70,60 +67,61 @@ else
                 <?php if ($_SESSION['Nieuwe_vraag'] == ''){
                     echo '<option value="fld_antwoord_type_lijst">Lijst</option>';}?>
             </select>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Knoppen 'Bestaande lijst' en 'Gepersonaliseerde lijst' -->
+        </div>
+        
+        <!-- Knoppen 'Bestaande lijst' en 'Gepersonaliseerde lijst' -->
+        <div class="form_box_1">
             <div id="Lijst" class="Lijst">
-                <button type="button" onclick="bestaandelijst()" id="Lijst_Button" name="Lijst_Button">Bestaande lijst</button>
-                <label class="Of">of</label>
-                <button type="button" onclick="gepersonaliseerdelijst()" id="Lijst_Button" name="Button_Lijst">Gepersonaliseerde lijst</button>
+                <button class="form_newvraag_btn1" id="Lijst_Button" name="Lijst_Button" onclick="bestaandelijst()" type="button">Bestaande lijst</button>
+                <label class="form_newvraag_of"> of </label>
+                <button class="form_newvraag_btn1" id="Lijst_Button" name="Button_Lijst" onclick="gepersonaliseerdelijst()" type="button" >Gepersonaliseerde lijst</button>
             </div>
-        </td>
-      </tr>
-    
-      <tr>
+        </div>
+        
         <!-- Gepersonaliseerde lijst -->
-        <td class="Vragen_Toevoegen_Td">
+        <div class="form_box_1">
             <div id="GepersonaliseerdeLijst" class="GepersonaliseerdeLijst">
                 <!-- Mogelijk antwoord toevoegen -->
-                <label for="Mogelijk_antwoord">Geef een mogelijk antwoord in:</label><br />
+                <label class="form_newvraag_lbl" for="Mogelijk_antwoord">Geef een mogelijk antwoord in:</label><br />
                 <!-- Tekstvak en knop om mogelijke antwoorden toe te voegen -->
-                <input type="text" id="Mogelijk_antwoord" name="Mogelijk_antwoord"/>
-                <button type="submit" id="Mogelijk_antwoord_toevoegen" name="Mogelijk_antwoord_toevoegen">+</button>
+                <div class="form_newvraag_box_in">
+                    <button class='form_newvraag_pls' type="submit" id="Mogelijk_antwoord_toevoegen" name="Mogelijk_antwoord_toevoegen">+</button>
+                    <input class="form_newvraag_in" type="text" id="Mogelijk_antwoord" name="Mogelijk_antwoord"/>
+                </div>
             </div>
-        </td>
-        <td class="Vragen_Toevoegen_Td">
+            
+            
             <div id="Mogelijke_antwoorden" class="Mogelijke_antwoorden">
                 <!-- Mogelijke antwoorden tonen met verwijden en aanpas knop -->
                 <?php
                     $i = 0;
                     #$x = -1;
-                    if (isset($_SESSION['Mogelijke_antwoorden'])){
-                        foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord){
-                            /** Mogelijk antwoord tonen in tekstvak */
-                            echo "<input type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/>";
-                            /** Aanpasknop 
-                            echo "<button type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
-                            /** Verwijderknop */
-                            echo "<button type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."'>X</button><br />";
-                            ++$i;
-                            #--$x;
+                    if (isset($_SESSION['Mogelijke_antwoorden']))
+                        {
+                            foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord)
+                                {
+                                    echo "<div class='form_newvraag_box_in'>";
+                                        /** Verwijderknop */
+                                        echo "<button class='form_newvraag_mn' type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."'>x</button>";
+                                        /** Mogelijk antwoord tonen in tekstvak */
+                                        echo "<input class='form_newvraag_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/><br />";
+                                    echo '</div>';
+                                    /** Aanpasknop 
+                                    echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
+                                    ++$i;
+                                    #--$x;
+                                }   
                         }
-                    }
                 ?>
             </div>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Bestaande lijst selecteren -->
+        </div>
+        
+        
+        <!-- Bestaande lijst selecteren -->
+        <div class="form_box_1">
             <div id="BestaandeLijst" class="BestaandeLijst">
-                <label for="Bestaande_lijst">Kies een bestaande lijst:</label><br />
-                <select id="Bestaande_lijst" name="Bestaande_lijst">
+                <label class="form_newvraag_lbl" for="Bestaande_lijst">Kies een bestaande lijst:</label><br />
+                <select class="form_newvraag_slt" id="Bestaande_lijst" name="Bestaande_lijst">
                     <option value="..." id="Geen_Bestaande_Lijst">...</option>
                     <?php
                         $sql = "SELECT * FROM tbl_bestaande_lijsten";
@@ -137,61 +135,52 @@ else
                     ?>
                 </select>
             </div>
-        </td>
-      </tr>
+        </div>
       
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
+      
+      
+        <div class="form_box_1">
             <!-- Maximaal aantal antwoorden -->
             <div id="Max_aantal_antwoorden" class="Max_antwoord">
-                <label for="Max_antwoord">Maximaal aantal antwoorden:</label><br />
-                <input type="text" id="Max_antwoord" name="Max_antwoord" <?php echo "value='".$_SESSION['Max_antwoord']."'"?> /><br />
+                <label class="form_newvraag_lbl" for="Max_antwoord">Maximaal aantal antwoorden:</label><br />
+                <div class="form_newvraag_box_in ">
+                    <input class="form_newvraag_in" type="text" id="Max_antwoord" name="Max_antwoord" <?php echo "value='".$_SESSION['Max_antwoord']."'"?> /><br />
+                </div>
             </div>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Bestemmingen -->
-            <label for="Bestemming" class="Vragen_Toevoegen_Label">Bestemming antwoord:</label>
-            <div id="Bestemming">
+        </div>
+        
+        <!-- Bestemmingen -->
+        <div class="form_box_1">
+            <label class="form_newvraag_lbl" for="Bestemming" class="Vragen_Toevoegen_Label">Bestemming antwoord:</label>
+            <div class="form_newvraag_lstb" id="Bestemming">
                 <?php
                     $sql = "SELECT * FROM tbl_bestemmingen";
                     $result = $conn->query($sql);
                     /** Bestemmingen worden uit de databank gehaald en met checkbox getoond */
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()){
-                            echo "<input type='checkbox' id='".$row['fld_bestemming_id']."' name='Bestemming[]' value='".$row['fld_bestemming_id']."'/>";
-                            echo "<label for='".$row['fld_bestemming_id']."'>".$row['fld_bestemming_naam']."</label><br />";
+                    if ($result->num_rows > 0) 
+                        {
+                            while($row = $result->fetch_assoc())
+                                {
+                                        echo "<input type='checkbox' id='".$row['fld_bestemming_id']."' name='Bestemming[]' value='".$row['fld_bestemming_id']."'/>";
+                                        echo "<label class='form_newvraag_lbl' for='".$row['fld_bestemming_id']."'> ".$row['fld_bestemming_naam']."</label><br />";
+                                }
                         }
-                    }
                 ?>
             </div>
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Verplicht J/N -->
+        </div>
+        
+        <!-- Verplicht J/N -->
+        <div class="form_box_1">
             <input type="checkbox" name="Verplicht" id="Verplicht"/>
-            <label for="Verplicht">Antwoord verplicht</label>
-        </td>
-      </tr>
+            <label class="form_newvraag_lbl" for="Verplicht">Antwoord verplicht</label>
+        </div>
       
-      <tr>
-        <td class="Vragen_Toevoegen_Td">
-            <!-- Knop om de vraag op te slaan -->
-           <button type="submit" name="Vraag_opslaan" id="Vraag_opslaan">Vraag opslaan</button> 
-        </td>
-      </tr>
       
-      <tr>
-        <td>
-            <!-- Knop om te annuleren, alle -->
-            <button type="submit" name="Vraag_annuleren" id="Vraag_annuleren">Annuleren</button>
-        </td>
-      </tr>
-    </table>
+        <div class="form_box_1">
+            <!-- Knop om de vraag op te slaan -->                                                                           <!-- Knop om te annuleren, alle -->
+           <button class="form_newvraag_btn" type="submit" name="Vraag_opslaan" id="Vraag_opslaan">Vraag opslaan</button>   <button class="form_newvraag_ccl" type="submit" name="Vraag_annuleren" id="Vraag_annuleren">Annuleren</button>
+        </div>
+    
     </form>
     
     <script type="text/javascript">
@@ -221,6 +210,7 @@ else
                 document.getElementById('BestaandeLijst').style.display = 'none';
                 document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
                 document.getElementById('Max_aantal_antwoorden').style.display = 'none';
+                document.getElementById('Mogelijke_antwoorden').style.display = 'none';
             }
         }
     -->
