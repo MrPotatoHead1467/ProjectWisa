@@ -22,7 +22,7 @@ ________________________________________________________________________________
 |[X] 	       |[] 	          | Rijksregisternummer		(Leerling)		2| Geen -> BIS		    |
 |[] 	       |[] 	          | Nationaliteit kiezen 	(Leerling)		2|			    |
 |[] 	       |[] 	          | Godsdienst kiezen 		(Leerling)		2|			    |
-|[] 	       |[] 	          | Overleden J/N		(Niet leerling)		3|			    |
+|[X] 	       |[] 	          | Overleden J/N		(Niet leerling)		3|			    |
 |______________|__________________|______________________________________________________|__________________________|
 [] Gegevens opslaan in databank
 
