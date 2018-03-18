@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="author" content="KSLeuven" />
+
+    <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
+
+	<title>TEST | Textarea</title>
+    <style type="text/css">
+<!--
+.Test{
+    resize:vertical; /* Both -> height en width mogen aangepast worden
+                     Horizontal -> enkel width mag aangepast worden
+                     Vertical -> enkel height mag aangepast worden*/
+    overflow-x: hidden;
+     /* Indien deze lijn verwijderd wordt staat aanpas knop (reachtsonder) er niet */
+    height: 50px;
+    overflow-y: scroll;
+    width: 100px;}
+
+.Test_Text {
+    width: inherit; /* Zorgt ervoor dat de height van het textvak even groot blijft als die van 'test' */
+    height: inherit; /* Zorgt ervoor dat de width van het textvak even groot blijft als die van 'test' */
+            }
+-->
+</style>
+</head>
+
+<body>
+
+<input type="text"/>
+
+<textarea class="input"></textarea>
+<div class="Test">
+<textarea class="Test_Text" type="text">
+</textarea>    
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+<p>...</p>
+
+</div>
+
+
+</body>
+</html>
