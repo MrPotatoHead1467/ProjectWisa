@@ -17,23 +17,23 @@ if (isset($_POST['Persoon_Opslaan'])){
     $GB_Datum = mysqli_real_escape_string($conn, $_POST['GB_Datum']);
     
     $Geslacht = mysqli_real_escape_string($conn, $_POST['Geslacht']);
-    if ($Geslacht == "..."){
-        header("Location: WISA-Formulier.php?errorGe");
+    if ($Geslacht == "Kies"){
+        header("Location: WISA-Formulier.php?errorGeslacht");
     }
     
     $Godsdienst = mysqli_real_escape_string($conn, $_POST['Godsdienst']);
     if ($Godsdienst == 0 and $Leerling == 1){
-        header("Location: WISA-Formulier.php?errorGo");
+        header("Location: WISA-Formulier.php?errorGodsdienst");
     }
     
     $Nation = mysqli_real_escape_string($conn, $_POST['Nationaliteit']);
     if ($Nation == 0 and $Leerling == 1){
-        header("Location: WISA-Formulier.php?errorNa");
+        header("Location: WISA-Formulier.php?errorNationaliteit");
     }
     
     $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats']);
     if ($GB_Plaats == 0 and $Leerling == 1){
-        header("Location: WISA-Formulier.php?errorGb");
+        header("Location: WISA-Formulier.php?errorGeboorteplaats");
     }
     
     if (mysqli_real_escape_string($conn, $_POST['Register_nr']) != ''){

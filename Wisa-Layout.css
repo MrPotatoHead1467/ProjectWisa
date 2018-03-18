@@ -793,3 +793,10 @@ footer {
                                 
 .Inschrijvingsformulier_Td  {
                             width: 5%;}
+
+.Niet_Leerling {
+    display: none;
+}
+.Woonplaats_niet_be {
+    display: none;
+}
