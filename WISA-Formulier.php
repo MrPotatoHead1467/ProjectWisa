@@ -13,7 +13,6 @@
 <body>
 
     <?PHP
-    
         if (isset($_SESSION['gebruiker']))
             {
                 // code voor het openen van een formulier  echo "<script type='text/javascript'>tab_show_info(event, 'SESSION-DING')</script>";
