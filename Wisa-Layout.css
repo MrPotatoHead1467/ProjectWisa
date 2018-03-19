@@ -41,25 +41,18 @@ a:hover {
         -webkit-transition: 0.5s ease;
                 transition: 0.5s ease;}
 
-input[type=text]    {
-                    background-color: #CBCCD4;
-                    border: transparent solid 1px;
-                    color: #373B47;
-                    font-size: 1em;
-                    height: 1.2em;
-                    transition: 0.3s;
-                    width: 100%;}
-
-input[type=text]:hover, input[type=checkbox]:hover  {
-                                                    border-color: #FAFAFA;
-                                                    outline: none;
-                                                    transition: 0.3s}
-                
-input[type=text]:focus, input[type=checkbox]:focus  {
-                                                    background-color: #FAFAFA;
-                                                    border-color: transparent;
-                                                    outline: none;
-                                                    transition: 0.3s}
+input[type=text], input[type=date]  {
+                                    background-color: #CBCCD4;
+                                    border: transparent solid 1px;
+                                    color: #373B47;
+                                    font-size: 1em;
+                                    height: 1.2em;
+                                    transition: 0.3s;
+                                    width: 100%;}
+                                    
+input[type=date]    {
+                    text-align: center;
+                    width: auto;}
                         
 input[type=checkbox]    {
                         background-color: #CBCCD4;
@@ -70,7 +63,17 @@ input[type=checkbox]    {
                         transition: 0.3s;
                         width: 1em;}
                         
-                        
+input[type=text]:hover, input[type=date]:hover, input[type=checkbox]:hover  {
+                                                                            border-color: #FAFAFA;
+                                                                            outline: none;
+                                                                            transition: 0.3s}
+                
+input[type=text]:focus, input[type=date]:focus, input[type=checkbox]:focus  {
+                                                                            background-color: #FAFAFA;
+                                                                            border-color: transparent;
+                                                                            outline: none;
+                                                                            transition: 0.3s}
+                   
 textarea    {
             background-color: #CBCCD4;
             border: transparent solid 1px;
