@@ -28,7 +28,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
 
-	<title>WISA | Vragen toevoegen</title>
+	<title>WISA | Beheer vragen</title>
 
 </head>
 
@@ -42,14 +42,14 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <!-- Nieuwe vraag toevoegen -->
         <div class="form_box_1">
             <label class="form_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
-            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
+            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag"on placeholder="Maximum 512 karakters." required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
         </div>
         
         <!-- Kernwoord toevoegen -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Kernwoord_vraag">Kernwoord vraag:</label><br />
+            <label class="form_lbl" for="Kernwoord_vraag" title="Dankzij het kernwoord zult u gemakkelijker vragen kunnen opzoeken.">Kernwoord vraag:</label><br />
             <div class="form_box_in ">
-                <input class="form_in" id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
+                <input class="form_in" id="Kernwoord_vraag" name="Kernwoord_vraag" placeholder="Zoekwoord voor vraag." title="Dankzij het kernwoord zult u gemakkelijker vragen kunnen opzoeken."  type="text"<?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
             </div>
         </div>
         
