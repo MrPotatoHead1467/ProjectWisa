@@ -40,23 +40,23 @@ $_SESSION['Formulier'] = "nieuwevraag"
     
         <!-- Nieuwe vraag toevoegen -->
         <div class="form_box_1">
-            <label class="form_newvraag_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
-            <textarea autofocus="autofocus" class="form_newvraag_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
+            <label class="form_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
+            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
         </div>
         
         <!-- Kernwoord toevoegen -->
         <div class="form_box_1">
-            <label class="form_newvraag_lbl" for="Kernwoord_vraag">Kernwoord vraag:</label><br />
-            <div class="form_newvraag_box_in ">
-                <input class="form_newvraag_in" id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
+            <label class="form_lbl" for="Kernwoord_vraag">Kernwoord vraag:</label><br />
+            <div class="form_box_in ">
+                <input class="form_in" id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
             </div>
         </div>
         
         <!-- Soort antwoord selecteren, na toevoeging mogelijk antwoord 'Lijst' optie 1 anders 'Lijst' is laaste,
              indien 'Lijst' geselecteerd -> knoppen 'bestaande lijst' en 'gepersonaliseerde lijst' zichtbaar -->        
         <div class="form_box_1">
-            <label class="form_newvraag_lbl" for="Soort_antwoord">Soort antwoord:</label><br />
-            <select class="form_newvraag_slt" id="Soort_antwoord" onchange="lijst()" name="Soort_antwoord">
+            <label class="form_lbl" for="Soort_antwoord">Soort antwoord:</label><br />
+            <select class="form_slt" id="Soort_antwoord" onchange="lijst()" name="Soort_antwoord">
                 <?php if ($_SESSION['Nieuwe_vraag'] != ''){
                     echo '<option value="fld_antwoord_type_lijst">Lijst</option>';}?>
                 <option value="fld_antwoord_type_k_tekst">Korte tekst</option>
@@ -73,9 +73,9 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <!-- Knoppen 'Bestaande lijst' en 'Gepersonaliseerde lijst' -->
         <div class="form_box_1">
             <div id="Lijst" class="Lijst">
-                <button class="form_newvraag_btn1" id="Lijst_Button" name="Lijst_Button" onclick="bestaandelijst()" type="button">Bestaande lijst</button>
+                <button class="form_btn1" id="Lijst_Button" name="Lijst_Button" onclick="bestaandelijst()" type="button">Bestaande lijst</button>
                 <label class="form_newvraag_of"> of </label>
-                <button class="form_newvraag_btn1" id="Lijst_Button" name="Button_Lijst" onclick="gepersonaliseerdelijst()" type="button" >Gepersonaliseerde lijst</button>
+                <button class="form_btn1" id="Lijst_Button" name="Button_Lijst" onclick="gepersonaliseerdelijst()" type="button" >Gepersonaliseerde lijst</button>
             </div>
         </div>
         
@@ -83,11 +83,11 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <div class="form_box_1">
             <div id="GepersonaliseerdeLijst" class="GepersonaliseerdeLijst">
                 <!-- Mogelijk antwoord toevoegen -->
-                <label class="form_newvraag_lbl" for="Mogelijk_antwoord">Geef een mogelijk antwoord in:</label><br />
+                <label class="form_lbl" for="Mogelijk_antwoord">Geef een mogelijk antwoord in:</label><br />
                 <!-- Tekstvak en knop om mogelijke antwoorden toe te voegen -->
-                <div class="form_newvraag_box_in">
-                    <button class='form_newvraag_pls' type="submit" id="Mogelijk_antwoord_toevoegen" name="Mogelijk_antwoord_toevoegen">+</button>
-                    <input class="form_newvraag_in" type="text" id="Mogelijk_antwoord" name="Mogelijk_antwoord"/>
+                <div class="form_box_in">
+                    <button class='form_pls' type="submit" id="Mogelijk_antwoord_toevoegen" name="Mogelijk_antwoord_toevoegen">+</button>
+                    <input class="form_in" type="text" id="Mogelijk_antwoord" name="Mogelijk_antwoord"/>
                 </div>
             </div>
             
@@ -99,11 +99,11 @@ $_SESSION['Formulier'] = "nieuwevraag"
                         {
                             foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord)
                                 {
-                                    echo "<div class='form_newvraag_box_in'>";
+                                    echo "<div class='form_box_in'>";
                                         /** Verwijderknop */
-                                        echo "<button class='form_newvraag_mn' type='submit' id='".$Mogelijk_antwoord."' name='".$Mogelijk_antwoord."'>x</button>";
+                                        echo "<button class='form_mn' type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."'>x</button>";
                                         /** Mogelijk antwoord tonen in tekstvak */
-                                        echo "<input class='form_newvraag_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/><br />";
+                                        echo "<input class='form_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/><br />";
                                     echo '</div>';
                                     /** Aanpasknop 
                                     echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
@@ -117,8 +117,8 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <!-- Bestaande lijst selecteren -->
         <div class="form_box_1">
             <div id="BestaandeLijst" class="BestaandeLijst">
-                <label class="form_newvraag_lbl" for="Bestaande_lijst">Kies een bestaande lijst:</label><br />
-                <select class="form_newvraag_slt" id="Bestaande_lijst" name="Bestaande_lijst">
+                <label class="form_lbl" for="Bestaande_lijst">Kies een bestaande lijst:</label><br />
+                <select class="form_slt" id="Bestaande_lijst" name="Bestaande_lijst">
                     <option value="..." id="Geen_Bestaande_Lijst">...</option>
                     <?php
                         $sql = "SELECT * FROM tbl_bestaande_lijsten";
@@ -139,16 +139,16 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <div class="form_box_1">
             <!-- Maximaal aantal antwoorden -->
             <div id="Max_aantal_antwoorden" class="Max_antwoord">
-                <label class="form_newvraag_lbl" for="Max_antwoord">Maximaal aantal antwoorden:</label><br />
-                <div class="form_newvraag_box_in ">
-                    <input class="form_newvraag_in" type="text" id="Max_antwoord" name="Max_antwoord" <?php echo "value='".$_SESSION['Max_antwoord']."'"?> /><br />
+                <label class="form_lbl" for="Max_antwoord">Maximaal aantal antwoorden:</label><br />
+                <div class="form_box_in ">
+                    <input class="form_in" type="text" id="Max_antwoord" name="Max_antwoord" <?php echo "value='".$_SESSION['Max_antwoord']."'"?> /><br />
                 </div>
             </div>
         </div>
         
         <!-- Bestemmingen -->
         <div class="form_box_1">
-            <label class="form_newvraag_lbl" for="Bestemming" class="Vragen_Toevoegen_Label">Bestemming antwoord:</label>
+            <label class="form_lbl" for="Bestemming" class="Vragen_Toevoegen_Label">Bestemming antwoord:</label>
             <div class="form_newvraag_lstb" id="Bestemming">
                 <?php
                     $sql = "SELECT * FROM tbl_bestemmingen";
@@ -159,7 +159,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
                             while($row = $result->fetch_assoc())
                                 {
                                         echo "<input type='checkbox' id='".$row['fld_bestemming_id']."' name='Bestemming[]' value='".$row['fld_bestemming_id']."'/>";
-                                        echo "<label class='form_newvraag_lbl' for='".$row['fld_bestemming_id']."'> ".$row['fld_bestemming_naam']."</label><br />";
+                                        echo "<label class='form_lbl' for='".$row['fld_bestemming_id']."'> ".$row['fld_bestemming_naam']."</label><br />";
                                 }
                         }
                 ?>
@@ -168,14 +168,16 @@ $_SESSION['Formulier'] = "nieuwevraag"
         
         <!-- Verplicht J/N -->
         <div class="form_box_1">
-            <input type="checkbox" name="Verplicht" id="Verplicht"/>
-            <label class="form_newvraag_lbl" for="Verplicht">Antwoord verplicht</label>
+            <input name="Verplicht" id="Verplicht" type="checkbox" />
+            <label class="form_lbl" for="Verplicht">Antwoord verplicht</label>
         </div>
       
       
         <div class="form_box_1">
-            <!-- Knop om de vraag op te slaan -->                                                                           <!-- Knop om te annuleren, alle -->
-           <button class="form_newvraag_btn" type="submit" name="Vraag_opslaan" id="Vraag_opslaan">Vraag opslaan</button>   <button class="form_newvraag_ccl" type="submit" name="Vraag_annuleren" id="Vraag_annuleren">Annuleren</button>
+            <!-- Knop om de vraag op te slaan -->                                                                           
+            <button class="form_btn" type="submit" name="Vraag_opslaan" id="Vraag_opslaan">Vraag opslaan</button>
+            <!-- Knop om te annuleren, alle -->
+            <button class="form_ccl" type="submit" name="Vraag_annuleren" id="Vraag_annuleren">Annuleren</button>
         </div>
     
     </form>
