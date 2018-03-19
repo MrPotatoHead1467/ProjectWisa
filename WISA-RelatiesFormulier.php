@@ -111,6 +111,45 @@ include "WISA-Connection.php";
     </div>
     
     <div>
+            <?php
+                if (isset($_SESSION['Personen_Relaties']))
+                    {
+                    $i = 0;
+                    foreach($_SESSION['Personen_Relaties'] as $x => $value) 
+                        {
+                        $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$x."'";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()){
+                                $x = $row['fld_persoon_naam'];
+                            }
+                        }
+                        
+                        $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$value."'";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()){
+                                $x_value = $row['fld_soort_naam'];
+                            }
+                        }
+                        
+                        $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id=".$_SESSION['Leerling'];
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()){
+                                $Leerling = $row['fld_persoon_naam'];
+                            }
+                        }
+                        echo $x.", ".$x_value." van ".$Leerling;
+                        echo "<button type='submit' id='".$i."' name='".$i."'>x</button>";
+                        ++$i;
+                        echo "<br>";
+                        }
+                    }
+            ?>
+        </div>
+    
+    <div>
         <!-- Relatie opslaan knop -->
         <button type="submit" id="Relatie_opslaan" name="Relatie_opslaan">Relatie opslaan</button>
         <!-- Volgende knop -->
