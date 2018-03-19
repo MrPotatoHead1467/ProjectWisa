@@ -9,25 +9,25 @@
 	<title>TEST | Page</title>
     
     <style>
-        .tabs_names_arrows  {}
+        .tabs {display: block}
         
-        #1  {display: none}
-        #2  {display: none}
-        #3  {display: none}
-        
-        #tabs_names_arrows_vorige   {display:  none;}
-        #tabs_names_arrows_volgende   {display:  none;}
+        #t1  {display: none}
+        #t2  {display: none}
+        #t3  {display: none}
     </style>
 </head>
 
 <body>
-    <!-- vorige -->
-    <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_next()" title="Vorige tabblad">
-        &#8249;
-    </button>
-    
+    <div class="tabs_names_box_arrows">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_prev()" title="Vorige tabblad">
+            &#8249;
+        </button>
+        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
+            &#8250;
+        </button>
+    </div>
         <!-- tabbladen -->
-        <div class="tabs" id="1">
+        <div class="tabs" id="t1">
             <button class="tabs_names" onclick="tab_show_info(event, 'nieuweinschrijving')">
                 Nieuwe inschrijving
             </button>
@@ -40,7 +40,7 @@
                 Inschrijvingen goedkeuren
             </button>
             
-            <button class="tabs_names" onclick="tab_show_info(event, naam1')">
+            <button class="tabs_names" onclick="tab_show_info(event, 'naam1')">
                 Naam1
             </button>
             
@@ -48,7 +48,7 @@
                 Naam2
             </button>
         </div>
-        <div class="tabs" id="2">
+        <div class="tabs" id="t2">
             <button class="tabs_names" onclick="tab_show_info(event, naam3')">
                 Naam3
             </button>
@@ -69,16 +69,11 @@
                 Naam7
             </button>
         </div>
-        <div class="tabs" id="3">
+        <div class="tabs" id="t3">
             <button class="tabs_names" onclick="tab_show_info(event, naam8')">
                 Naam8
             </button>
         </div>
-    
-    <!-- volgende -->
-    <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
-        &#8250;
-    </button>
     
     <p id="demo"></p>
     <p id="demo2"></p>
@@ -87,38 +82,50 @@
 
 
 <script>
-    var amount = document.querySelectorAll('.tabs').length;
-    var vorige = document.getElementById("tabs_names_arrows_vorige");
-    var volgende = document.getElementById("tabs_names_arrows_volgende");
-    var show = 1;
-    var id = document.querySelector('.tabs').id;
+    var amount = document.querySelectorAll(".tabs").length;
+    //var classtabs = document.getElementsByClassName(".tabs");
+    var vorige = document.getElementById(".tabs_names_arrows_vorige");
+    var volgende = document.getElementById(".tabs_names_arrows_volgende");
+    var letter = "t";
+    var nummer = 1;
+    var nummertel = 1;
+    var show = letter + nummer.toString();
+    //var id = document.querySelector('.tabs').id;
     
     document.getElementById("demo").innerHTML = amount;
-    document.getElementById("demo2").innerHTML = id;
-    document.getElementById("demo3").innerHTML = show;
+    //document.getElementById("demo2").innerHTML = id;
+    document.getElementById("demo3").innerHTML = "show class tab " + show;
     
-    tabs_show();
+    //tabs_show();
     
-    function tabs_show()
-        {
-            if (show == 1)
+    //function tabs_show()
+        //{
+            
+            //if (nummer == 1)
                 {
+                    while (nummertel !== amount)
+                        {
+                            nummertel++;
+                            show = (letter + nummertel.toString());
+                            document.getElementById(show).style.display == "none";
+                            document.getElementById("demo2").innerHTML = document.getElementById(show).style.display == "none";
+                            
+                        }
                     document.getElementById(show).style.display == "block";
-                    if (amount == show)
+                    if (amount == nummer)
                         {
                             vorige.style.display = "none";
                             volgende.style.display = "none";
                         }
-                    else
+                    else if (amount > nummer)
                         {
                             vorige.style.display = "none";
                             volgende.style.display = "block";
                         }
                 }
-            else if (show > 1)
+            else if (nummer > 1)
                 {
-                    document.getElementById(show).style.display == "block";
-                    if (amount == show)
+                    if (amount == nummer)
                         {
                             vorige.style.display = "block";
                             volgende.style.display = "none";
@@ -131,34 +138,46 @@
                 }
             else
                 {
-                    show = 1;
+                    nummer = 1;
                 }
-        }
-        
+        //}
+    
     //document.getElementById("").addEventListener("click", displayDate);
         
     function tabs_next()
         {
-            show = (show + 1);
-            tabs_show();
-            //tabs_hide();
+            nummer = (nummer + 1);
+            show = letter + nummer;
+            //classtabs.style.display = "none";
+            //tabs_show();
         }
         
     function tabs_prev()
         {
-            show = (show - 1);
-            tabs_show();
-            //tabs_hide();
+           nummer = (nummer - 1);
+           show = letter + nummer;
+           //classtabs.style.display = "none";
+           //tabs_show();
         }
-        
-    function tabs_hide()
-        {
-            if (id != show)
-                {
-                    id.style.display = "none";
-                }
-        }
-
+    
+    function tab_show_info(evt, form)
+            {
+                var i, tab_info, tab_links;
+                tab_info = document.getElementsByClassName("tabs_info");
+                for (i = 0; i < tab_info.length; i++)
+                    {
+                        tab_info[i].style.display = "none";
+                    }
+                tab_links = document.getElementsByClassName("tabs_names");
+                for (i = 0; i < tab_links.length; i++)
+                    {
+                        tab_links[i].className = tab_links[i].className.replace("active", "");
+                    }
+                document.getElementById(form).style.display = "block";
+                evt.currentTarget.className += " active";
+                
+            }
+    
 </script>
 
 </body>

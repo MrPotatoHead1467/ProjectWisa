@@ -79,7 +79,7 @@ textarea    {
             font-size: 1em;
             min-height: 1.2em;
             overflow-x: hidden;
-            overflow-y: scroll;
+            overflow-y: hidden;
             resize:vertical;
             transition: 0.3s;
             width: 100%;}
@@ -524,6 +524,7 @@ footer {
                 color: #FAFAFA;
                 cursor: pointer;
                 float: top left;
+                font-size: 0.8em;
                 height: 50%;
                 margin: 0;
                 margin-right: -1.1%;
@@ -535,8 +536,7 @@ footer {
                 padding-right: 1%;
                 text-decoration: none;
                 transition: 0.3s;
-                /*min-width: ;*/
-                /*max-*/width: 20.5%;}
+                width: 20.5%;}
  
 .tabs_names:hover   {
                     background-color: #585F72;
@@ -598,13 +598,16 @@ footer {
             margin: 0;
             width: 100%;}
             
-/* vraagtoevoegen.php */
+/* algemene layout formulieren.php */
                     
 .form_box_1 {
             margin: 0;
             margin-bottom: 2vh;
             padding: 0;
-            width: 100%}
+            width: 100%} 
+           
+/* vraagtoevoegen.php */
+
             
 .form_newvraag_lbl  {
                     color: #5A667B;
@@ -784,21 +787,6 @@ footer {
                     
                     
 /* other.php */
-               
-/*.Vragen_Toevoegen_Table {
-                        margin: 0;
-                        margin-top: 10vh;
-                        padding: 0;
-                        width: 100%;} */
-
-/*.Vragen_Toevoegen_Td  {
-                        display: block;
-                        float: left;
-                        margin: 0;
-                        overflow: hidden;
-                        padding: 0;
-                        vertical-align: top;
-                        width: 50%;}*/
                 
 .Inschrijvingsformulier_Table   {
                                 width: 100%;}

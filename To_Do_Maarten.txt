@@ -22,7 +22,11 @@ ________________________________________________________________________________
 |[X] 	       |[X] 	          | Rijksregisternummer		(Leerling)		2| Geen -> Bis		    |
 |[] 	       |[] 	          | Nationaliteit kiezen 	(Leerling)		2|			    |
 |[] 	       |[] 	          | Godsdienst kiezen 		(Leerling)		2|			    |
+<<<<<<< HEAD
+|[X] 	       |[] 	          | Overleden J/N		(Niet leerling)		3|			    |
+=======
 |[X] 	       |[X] 	          | Overleden J/N		(Niet leerling)		3|			    |
+>>>>>>> Maarten
 |______________|__________________|______________________________________________________|__________________________|
 [] Gegevens opslaan in databank
 [] Pasfoto alleen bij leerling
