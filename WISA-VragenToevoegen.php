@@ -95,8 +95,6 @@ $_SESSION['Formulier'] = "nieuwevraag"
             <div id="Mogelijke_antwoorden" class="Mogelijke_antwoorden">
                 <!-- Mogelijke antwoorden tonen met verwijden en aanpas knop -->
                 <?php
-                    $i = 0;
-                    #$x = -1;
                     if (isset($_SESSION['Mogelijke_antwoorden']))
                         {
                             foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord)
@@ -109,8 +107,6 @@ $_SESSION['Formulier'] = "nieuwevraag"
                                     echo '</div>';
                                     /** Aanpasknop 
                                     echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
-                                    ++$i;
-                                    #--$x;
                                 }   
                         }
                 ?>

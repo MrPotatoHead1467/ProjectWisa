@@ -15,6 +15,7 @@
          als 'ingelogd': class="header2" (kleiner) -->
     
     <header <?PHP 
+                include "WISA-Connection.php";
                 if (isset($_SESSION['gebruiker']))
                     {
                         echo 'class="header2"';
@@ -41,7 +42,17 @@
                         }
                     elseif  ($_SESSION['soort'] == "3")
                         {
-                            echo '  <h2 class="header_tsstitel">GEBRUIKER SCHOOL</h2>';
+                            echo '  <h2 class="header_tsstitel">GEBRUIKER SCHOOL'; 
+                            if (isset($_SESSION['Leerling']) and $_SESSION['Leerling'] != '')
+                                {
+                                $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id=".$_SESSION['Leerling'];
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()){
+                                        echo " | ".$row['fld_persoon_naam']."</h2>";
+                                    }
+                                }
+                            }
                         }
                     else
                         {
