@@ -144,6 +144,7 @@ include "WISA-Connection.php";
             ?>
         </div>
     </div>
+    
     <div>
         <button type="submit" id="Contact_Opslaan" name="Contact_Opslaan">Opslaan</button>
     </div>
