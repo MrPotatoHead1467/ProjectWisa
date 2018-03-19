@@ -604,43 +604,156 @@ footer {
             margin: 0;
             margin-bottom: 2vh;
             padding: 0;
-            width: 100%} 
-           
-/* vraagtoevoegen.php */
+            width: 100%}
+            
+.form_eidi   {}           
 
+.form_bsdi   {}
+
+.form_pici   {}
             
-.form_newvraag_lbl  {
-                    color: #5A667B;
-                    font-size: 1em;
-                    margin: 0;
-                    padding: 0;
-                    width: 100%}
+.form_lbl  {
+            color: #5A667B;
+            font-size: 1em;
+            margin: 0;
+            padding: 0;
+            width: 100%}            
+
+.form_in1  {
+            margin-left: 2%;
+            margin-top: 1vh;
+            width: 78.5%;}
                     
-.form_newvraag_in1  {
-                    margin-left: 2%;
-                    margin-top: 1vh;
-                    width: 78.5%;}
-                    
-.form_newvraag_box_in   {
-                        margin: 0;
-                        margin-left: 2%;
-                        margin-top: 1vh; 
-                        padding: 0;
-                        vertical-align: central;
-                        width: 55%}
+.form_box_in   {
+                margin: 0;
+                margin-left: 2%;
+                margin-top: 1vh; 
+                padding: 0;
+                vertical-align: central;
+                width: 55%}
             
-.form_newvraag_in   {  
-                    width: 100%;}
+.form_in   {  
+            width: 100%;}
                     
-.form_newvraag_in2  {
-                    margin-top: -1.2em;
-                    width: 100%;}
+.form_in2  {
+            margin-top: -1.2em;
+            width: 100%;}
+               
+.form_slt  {
+            margin-left: 2%;
+            margin-top: 1vh; 
+            width: 31.5%;}                
                     
-.form_newvraag_slt  {
-                    margin-left: 2%;
-                    margin-top: 1vh; 
-                    width: 55%;}
+.form_btn1 {
+            background-color: #7C849A;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #CBCCD4;
+            cursor:  pointer;
+            font-size: 1em;
+            height: 1.5em;
+            padding-left: 1%;
+            padding-right: 1%;
+            transition: 0.3s;
+            /*width: auto*/}
+            
+.form_btn:hover, .form_btn1:hover, .form_pls:hover  {
+                                                    border-color: #FAFAFA;
+                                                    color: #FAFAFA;
+                                                    outline: none;
+                                                    transition: 0.3s}
+                
+.form_btn:focus, .form_btn.active, .form_btn1:focus, .form_btn1.active, .form_pls:focus {
+                                                                                        background-color: #FAFAFA;
+                                                                                        border-color: transparent;
+                                                                                        color: #5A667B;
+                                                                                        outline: none;
+                                                                                        transition: 0.3s}  
+                                                                                                  
+.form_pls   {
+            background-color: #7C849A;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #CBCCD4;
+            float: right;
+            font-size: 1em;
+            height: 1.5em;
+            margin: 0;
+            margin-right: -14%;
+            overflow: hidden;
+            padding:0;
+            transition: 0.3s;
+            text-align: center;
+            width: 10%}
+
+.form_mn    {
+            background-color: transparent;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #7C849A;
+            float: right;
+            font-size: 1em;
+            height: 1.5em;
+            margin: 0;
+            margin-right: -14%;
+            margin-top: -0.4vh;
+            overflow: hidden;
+            padding:0;
+            transition: 0.3s;
+            text-align: center;
+            vertical-align: central;
+            width: 10%;}
+                            
+.form_box_chk   {
+                margin: 0;
+                padding: 0;}
+                                                
+.form_box_chk:hover, #form_lbl_v    {
+                                    color: #FAFAFA;
+                                    margin: 0;
+                                    padding: 0;}
+
+
+.form_btn   {
+            background-color: #7C849A;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #CBCCD4;
+            cursor:  pointer;
+            font-size: 1em;
+            height: 1.5em;
+            padding-left: 1%;
+            padding-right: 1%;
+            transition: 0.3s;
+            /*width: auto*/
+            margin-top: 1vh;
+            /*width: 30%*/} 
+            
+.form_ccl   {
+            background-color: transparent;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #7C849A;
+            font-size: 1em;
+            height: 1.5em;
+            padding-left: 1%;
+            padding-right: 1%;
+            transition: 0.3s;
+            /*width: auto*/
+            margin-top: 1vh;
+            /*width: 30%*/}
                     
+.form_ccl:hover, .form_mn:hover {
+                                border-color: #7C849A;}
+
+.form_ccl:focus, .form_mn:focus {
+                                border-color: #FAFAFA;
+                                color: #FAFAFA;
+                                outline: none;
+                                transition: 0.3s}            
+                                                       
+/* vraagtoevoegen.php */
+           
 .Lijst  {
         display: none;
         /*margin-bottom: -2.5vh;*/
@@ -648,33 +761,7 @@ footer {
         margin-top: -1vh;
         text-align: center;
         width: 55%}
-                    
-.form_newvraag_btn1 {
-                    background-color: #7C849A;
-                    border: transparent solid 1px;
-                    border-radius: 10px;
-                    color: #CBCCD4;
-                    cursor:  pointer;
-                    font-size: 1em;
-                    height: 1.5em;
-                    padding-left: 1%;
-                    padding-right: 1%;
-                    transition: 0.3s;
-                    /*width: auto*/}
-                    
-.form_newvraag_btn:hover, .form_newvraag_btn1:hover, .form_newvraag_pls:hover   {
-                                                                                border-color: #FAFAFA;
-                                                                                color: #FAFAFA;
-                                                                                outline: none;
-                                                                                transition: 0.3s}
-                
-.form_newvraag_btn:focus, .form_newvraag_btn.active, .form_newvraag_btn1:focus, .form_newvraag_btn1.active, .form_newvraag_pls:focus    {
-                                                                                                                                        background-color: #FAFAFA;
-                                                                                                                                        border-color: transparent;
-                                                                                                                                        color: #5A667B;
-                                                                                                                                        outline: none;
-                                                                                                                                        transition: 0.3s}
-
+        
 .form_newvraag_of   {
                     color: #5A667B;
                     font-size: 1em;
@@ -687,21 +774,7 @@ footer {
 .GepersonaliseerdeLijst {
                         display: none;}
                     
-.form_newvraag_pls  {
-                    background-color: #7C849A;
-                    border: transparent solid 1px;
-                    border-radius: 10px;
-                    color: #CBCCD4;
-                    float: right;
-                    font-size: 1em;
-                    height: 1.5em;
-                    margin: 0;
-                    margin-right: -14%;
-                    overflow: hidden;
-                    padding:0;
-                    transition: 0.3s;
-                    text-align: center;
-                    width: 10%}
+
                     
 .Mogelijke_antwoorden   {
                         display: none; 
@@ -709,23 +782,7 @@ footer {
                         margin-top: 3vh;
                         padding: 0;}
 
-.form_newvraag_mn   {
-                    background-color: transparent;
-                    border: transparent solid 1px;
-                    border-radius: 10px;
-                    color: #7C849A;
-                    float: right;
-                    font-size: 1em;
-                    height: 1.5em;
-                    margin: 0;
-                    margin-right: -14%;
-                    margin-top: -0.4vh;
-                    overflow: hidden;
-                    padding:0;
-                    transition: 0.3s;
-                    text-align: center;
-                    vertical-align: central;
-                    width: 10%;}
+
                     
 .Max_antwoord   {
                 display: none;}
@@ -736,54 +793,9 @@ footer {
                     
 
                     
-.form_newvraag_box_chk  {
-                        margin: 0;
-                        padding: 0;}
-                                                
-.form_newvraag_box_chk:hover, #form_newvraag_lbl_v  {
-                                                    color: #FAFAFA;
-                                                    margin: 0;
-                                                    padding: 0;}
 
-
-.form_newvraag_btn  {
-                    background-color: #7C849A;
-                    border: transparent solid 1px;
-                    border-radius: 10px;
-                    color: #CBCCD4;
-                    cursor:  pointer;
-                    font-size: 1em;
-                    height: 1.5em;
-                    padding-left: 1%;
-                    padding-right: 1%;
-                    transition: 0.3s;
-                    /*width: auto*/
-                    margin-top: 1vh;
-                    /*width: 30%*/}
                     
-.form_newvraag_ccl  {
-                    background-color: transparent;
-                    border: transparent solid 1px;
-                    border-radius: 10px;
-                    color: #7C849A;
-                    font-size: 1em;
-                    height: 1.5em;
-                    padding-left: 1%;
-                    padding-right: 1%;
-                    transition: 0.3s;
-                    /*width: auto*/
-                    margin-top: 1vh;
-                    /*width: 30%*/}
-                    
-.form_newvraag_ccl:hover, .form_newvraag_mn:hover   {
-                                                    border-color: #7C849A;
-                                                    }
 
-.form_newvraag_ccl:focus, .form_newvraag_mn:focus   {
-                                                    border-color: #FAFAFA;
-                                                    color: #FAFAFA;
-                                                    outline: none;
-                                                    transition: 0.3s}
                     
                     
 /* other.php */
