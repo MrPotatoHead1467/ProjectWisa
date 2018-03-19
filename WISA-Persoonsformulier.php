@@ -48,6 +48,9 @@ else
 </div>
 
 <form action="WISA-Persoonsformulier_Check.php" method="post" enctype="multipart/form-data">
+    <div>
+        <input type="file" id="Bestand_persoon" name="Bestand_persoon[]" multiple />
+    </div>
     
     <!-- bestanden toevoegen -->
     <div id="form_box_1">

@@ -17,6 +17,7 @@ else
     {
         $_SESSION['Max_antwoord'] = "1";
     }
+$_SESSION['Formulier'] = "nieuwevraag"
 ?>
 <!DOCTYPE HTML>
 <html>
