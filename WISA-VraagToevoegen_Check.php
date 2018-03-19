@@ -102,7 +102,6 @@ if (isset($_POST["Mogelijk_antwoord_toevoegen"])) {
     $_SESSION['Kernwoord_vraag'] = mysqli_real_escape_string($conn, $_POST['Kernwoord_vraag']);
     $_SESSION['Max_antwoord'] = mysqli_real_escape_string($conn, $_POST['Max_antwoord']);
     header("Location: WISA-Formulier.php");
-;;
 }
 
 if (isset($_SESSION['Mogelijke_antwoorden'])){

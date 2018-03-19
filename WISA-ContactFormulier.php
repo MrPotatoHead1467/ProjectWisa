@@ -23,7 +23,7 @@ include "WISA-Connection.php";
     
     <div>
         <!-- Persoon -->
-        <label for="Persoon">Persoon</label>
+        <label for="Persoon">Persoon</label><br />
         <select id="Persoon" name="Persoon">
             <option value="Kies">Kies persoon</option>
             <?php
@@ -38,7 +38,7 @@ include "WISA-Connection.php";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['fld_persoon_id']."'>".$row['fld_persoon_naam']."</option>";
+                        echo "<option value='".$row['fld_persoon_id']."'>".$row['fld_persoon_naam']." | ".$row['fld_persoon_gb_datum']."</option>";
                     }
                 }
             ?>
@@ -46,24 +46,24 @@ include "WISA-Connection.php";
     </div>
     
     <div>
-        <label for="Straat">Straat</label>
+        <label for="Straat">Straat</label><br />
         <input type="text" id="Straat" name="Straat"/>
     </div>
     
     <div>
-        <label for="Huisnummer">Huisnummer</label>
+        <label for="Huisnummer">Huisnummer</label><br />
         <input type="text" id="Huisnummer" name="Huisnummer"/>
     </div>
     
     <div>
-        <label>Woonplaats</label>
+        <label>Woonplaats</label><br />
         <select id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
             <option value="Kies">Kies woonplaats</option>
             <option value="Niet_BE">Woonplaats niet in Belgie</option>
         </select>
         
         <div class="Woonplaats_niet_be" id="Woonplaats_niet_be">
-            <label for="Woonplaats_niet_be_txt">Geef woonplaats in</label>
+            <label for="Woonplaats_niet_be_txt">Geef woonplaats in</label><br />
             <input type="text" name="Woonplaats_niet_be_txt"/>
         </div>
         
@@ -71,25 +71,81 @@ include "WISA-Connection.php";
     
     <div>
         <!-- Invoervak voor GSM nummer met opslaan knop -->
-        <label for="GSM">GSM</label>
-        <input type="text" id="GSM" name="GSM"/>
-        <button type="submit" id="GSM_Opslaan" name="GSM_Opslaan">Opslaan</button>
-    </div>
-        
-    <div>
-        <label for="Telefoon">Telefoon</label>
-        <input type="text" id="Telefoon" name="Telefoon"/>
-        <button></button>
-    </div>
-
-    <div>
-        <label for="Email">Email</label>
-        <input type="text" id="Email" name="Email"/>
-        <button></button>
+        <div>
+            <label for="GSM">GSM</label><br />
+            <input type="text" id="GSM" name="GSM"/>
+            <button type="submit" id="GSM_Opslaan" name="GSM_Opslaan">Opslaan</button>
+        </div>
+                 
+        <div id="Mogelijke_GSM" class="Mogelijke_GSM">
+            <?php
+                if (isset($_SESSION['Mogelijke_GSM_nrs']))
+                    {
+                        foreach ($_SESSION['Mogelijke_GSM_nrs'] as $Mogelijk_GSM_nr)
+                            {
+                                echo "<div>";
+                                    /** Verwijderknop */
+                                    echo "<button type='submit' id='".$Mogelijk_GSM_nr."' name='".$Mogelijk_GSM_nr."'>x</button>";
+                                    /** Mogelijk gsm nummer tonen in tekstvak */
+                                    echo "<label id='Mogelijke_GSM_nrs' name='Mogelijke_GSM_nrs[]'>".$Mogelijk_GSM_nr."</label><br />";
+                                echo '</div>';
+                            }   
+                    }
+            ?>
+        </div>
     </div>
     
     <div>
-        <button type="submit" id="Opslaan" name="Opslaan">Opslaan</button>
+        <div>
+            <label for="Telefoon">Telefoon</label><br />
+            <input type="text" id="Telefoon" name="Telefoon"/>
+            <button type="submit" id="Telefoon_Opslaan" name="Telefoon_Opslaan">Opslaan</button>
+        </div>
+        
+        <div id="Mogelijke_Tel" class="Mogelijke_Tel">
+            <?php
+                if (isset($_SESSION['Mogelijke_Tel_nrs']))
+                    {
+                        foreach ($_SESSION['Mogelijke_Tel_nrs'] as $Mogelijk_Tel_nr)
+                            {
+                                echo "<div>";
+                                    /** Verwijderknop */
+                                    echo "<button type='submit' id='".$Mogelijk_Tel_nr."' name='".$Mogelijk_Tel_nr."'>x</button>";
+                                    /** Mogelijk telefoon nummer tonen in tekstvak */
+                                    echo "<label id='Mogelijke_Tel_nrs' name='Mogelijke_Tel_nrs[]'>".$Mogelijk_Tel_nr."</label><br />";
+                                echo '</div>';
+                            }   
+                    }
+            ?>
+        </div>
+    </div>
+    
+    <div>
+        <div>
+            <label for="Email">Email</label><br />
+            <input type="text" id="Email" name="Email"/>
+            <button type="submit" id="Email_Opslaan" name="Email_Opslaan">Opslaan</button>
+        </div>
+        
+        <div id="Mogelijke_Email" class="Mogelijke_Email">
+            <?php
+                if (isset($_SESSION['Mogelijke_Emailadressen']))
+                    {
+                        foreach ($_SESSION['Mogelijke_Emailadressen'] as $Mogelijk_Emailadres)
+                            {
+                                echo "<div>";
+                                    /** Verwijderknop */
+                                    echo "<button type='submit' id='".$Mogelijk_Emailadres."' name='".$Mogelijk_Emailadres."'>x</button>";
+                                    /** Mogelijk emailadres tonen in tekstvak */
+                                    echo "<label id='Mogelijke_Emailadressen' name='Mogelijke_Emailadressen[]'>".$Mogelijk_Emailadres."</label><br />";
+                                echo '</div>';
+                            }   
+                    }
+            ?>
+        </div>
+    </div>
+    <div>
+        <button type="submit" id="Contact_Opslaan" name="Contact_Opslaan">Opslaan</button>
     </div>
 </form>
 
@@ -104,7 +160,7 @@ include "WISA-Connection.php";
             else {
                 document.getElementById('Woonplaats_niet_be').style.display = 'none';
             }
-        }
+    }
 -->
 </script>
 

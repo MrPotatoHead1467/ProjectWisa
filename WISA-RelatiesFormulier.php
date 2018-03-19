@@ -24,7 +24,7 @@ include "WISA-Connection.php";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "<p id='Persoon_1'>".$row['fld_persoon_naam']."</p>";
+                        echo "<p id='Persoon_1'>".$row['fld_persoon_naam']."|".$row['fld_persoon_gb_datum']."</p>";
                     }
                 }
             }
@@ -47,7 +47,7 @@ include "WISA-Connection.php";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['fld_persoon_id']."'>".$row['fld_persoon_naam']."</option>";
+                        echo "<option value='".$row['fld_persoon_id']."'>".$row['fld_persoon_naam']."|".$row['fld_persoon_gb_datum']."</option>";
                     }
                 }
                 echo "</select>";

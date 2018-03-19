@@ -95,22 +95,18 @@ $_SESSION['Formulier'] = "nieuwevraag"
             <div id="Mogelijke_antwoorden" class="Mogelijke_antwoorden">
                 <!-- Mogelijke antwoorden tonen met verwijden en aanpas knop -->
                 <?php
-                    $i = 0;
-                    #$x = -1;
                     if (isset($_SESSION['Mogelijke_antwoorden']))
                         {
                             foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord)
                                 {
                                     echo "<div class='form_newvraag_box_in'>";
                                         /** Verwijderknop */
-                                        echo "<button class='form_newvraag_mn' type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."'>x</button>";
+                                        echo "<button class='form_newvraag_mn' type='submit' id='".$Mogelijk_antwoord."' name='".$Mogelijk_antwoord."'>x</button>";
                                         /** Mogelijk antwoord tonen in tekstvak */
                                         echo "<input class='form_newvraag_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' value='".$Mogelijk_antwoord."'/><br />";
                                     echo '</div>';
                                     /** Aanpasknop 
                                     echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/
-                                    ++$i;
-                                    #--$x;
                                 }   
                         }
                 ?>
