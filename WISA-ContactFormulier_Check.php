@@ -4,6 +4,12 @@ include "WISA-Connection.php";
 
 if (isset($_POST['Contact_Opslaan'])){
     $Persoon = mysqli_real_escape_string($conn, $_POST['Persoon']);
+    $Straat = mysqli_real_escape_string($conn, $_POST['Straat']);
+    $Huisnr = mysqli_real_escape_string($conn, $_POST['Huisnummer']);
+    $Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_Lijst']);
+    if ($Woonplaats == 'Niet_BE'){
+        $Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_txt']);
+    }
 }
 
 if (isset($_POST['Zoekvak_Zoeken'])){

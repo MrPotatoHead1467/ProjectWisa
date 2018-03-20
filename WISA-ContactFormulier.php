@@ -64,7 +64,7 @@ include "WISA-Connection.php";
         
         <div class="Woonplaats_niet_be" id="Woonplaats_niet_be">
             <label for="Woonplaats_niet_be_txt">Geef woonplaats in</label><br />
-            <input type="text" name="Woonplaats_niet_be_txt"/>
+            <input type="text" id="Woonplaats_niet_be_txt" name="Woonplaats_niet_be_txt"/>
         </div>
         
     </div>
