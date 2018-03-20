@@ -58,8 +58,8 @@
                 }
             elseif  ($_SESSION['soort'] == "2")
                 {
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'nieuwevraag'"; echo ')">
-                                Nieuwe vraag
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
+                                Beheer vragen
                             </button>';
                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
@@ -110,8 +110,8 @@
                                 Inschrijving
                             </button>';
                             
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'nieuwevraag'"; echo ')">
-                                Nieuwe vraag
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
+                                Beheer vragen
                             </button>';
                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
@@ -162,9 +162,9 @@
                 ?>
             </div>
                     
-            <div id="nieuwevraag" class="tabs_info">
+            <div id="beheervragen" class="tabs_info">
                 <?PHP
-                    include "WISA-VragenToevoegen.php";
+                    include "WISA-BeheerVragen.php";
                 ?>
             </div>   
             
