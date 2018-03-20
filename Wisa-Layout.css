@@ -73,6 +73,13 @@ input[type=text]:focus, input[type=date]:focus, input[type=checkbox]:focus  {
                                                                             border-color: transparent;
                                                                             outline: none;
                                                                             transition: 0.3s}
+                                                                            
+::placeholder   {
+                font-size: 0.9em}
+
+:focus::placeholder    {
+                        color: transparent;
+                        transition: 0.3s}
                    
 textarea    {
             background-color: #CBCCD4;

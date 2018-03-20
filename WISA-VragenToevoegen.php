@@ -17,6 +17,7 @@ else
     {
         $_SESSION['Max_antwoord'] = "1";
     }
+    
 $_SESSION['Formulier'] = "nieuwevraag"
 ?>
 <!DOCTYPE HTML>
@@ -27,7 +28,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
 
-	<title>WISA | Vragen toevoegen</title>
+	<title>WISA | Beheer vragen</title>
 
 </head>
 
@@ -41,14 +42,14 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <!-- Nieuwe vraag toevoegen -->
         <div class="form_box_1">
             <label class="form_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
-            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
+            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag"on placeholder="Maximum 512 karakters." required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
         </div>
         
         <!-- Kernwoord toevoegen -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Kernwoord_vraag">Kernwoord vraag:</label><br />
+            <label class="form_lbl" for="Kernwoord_vraag" title="Dankzij het kernwoord zult u gemakkelijker vragen kunnen opzoeken.">Kernwoord vraag:</label><br />
             <div class="form_box_in ">
-                <input class="form_in" id="Kernwoord_vraag" type="text" name="Kernwoord_vraag" <?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
+                <input class="form_in" id="Kernwoord_vraag" name="Kernwoord_vraag" placeholder="Zoekwoord voor vraag." title="Dankzij het kernwoord zult u gemakkelijker vragen kunnen opzoeken."  type="text"<?php echo "value='".$_SESSION['Kernwoord_vraag']."'"?>/>
             </div>
         </div>
         
@@ -174,7 +175,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
       
       
         <div class="form_box_1">
-            <!-- Knop om de vraag op te slaan -->                                                                           
+            <!-- Knop om de vraag op te slaan -->
             <button class="form_btn" type="submit" name="Vraag_opslaan" id="Vraag_opslaan">Vraag opslaan</button>
             <!-- Knop om te annuleren, alle -->
             <button class="form_ccl" type="submit" name="Vraag_annuleren" id="Vraag_annuleren">Annuleren</button>
@@ -184,41 +185,47 @@ $_SESSION['Formulier'] = "nieuwevraag"
     
     <script type="text/javascript">
     <!--
-        function bestaandelijst() {
-            document.getElementById('BestaandeLijst').style.display = 'block';
-            document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
-            document.getElementById('Max_aantal_antwoorden').style.display = 'block';
-            document.getElementById('Mogelijke_antwoorden').style.display = 'none';
-        }
-        function gepersonaliseerdelijst() {
-            document.getElementById('BestaandeLijst').style.display = 'none';
-            document.getElementById('GepersonaliseerdeLijst').style.display = 'block';
-            document.getElementById('Max_aantal_antwoorden').style.display = 'block';
-            document.getElementById('Mogelijke_antwoorden').style.display = 'block';
-            document.getElementById('Lijst').style.display = 'block';
-            document.getElementById('Bestaande_lijst').selectedIndex = 'Geen_Bestaande_Lijst';
-        }
-        function lijst() {
-            var soort_antwoord = document.getElementById("Soort_antwoord");
-            var selectedValue = soort_antwoord.options[soort_antwoord.selectedIndex].value;
-            if (soort_antwoord.value == "fld_antwoord_type_lijst") {
-                document.getElementById('Lijst').style.display = 'block';
-            }
-            else {
-                document.getElementById('Lijst').style.display = 'none';
-                document.getElementById('BestaandeLijst').style.display = 'none';
+        function bestaandelijst() 
+            {
+                document.getElementById('BestaandeLijst').style.display = 'block';
                 document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
-                document.getElementById('Max_aantal_antwoorden').style.display = 'none';
+                document.getElementById('Max_aantal_antwoorden').style.display = 'block';
                 document.getElementById('Mogelijke_antwoorden').style.display = 'none';
             }
-        }
+        function gepersonaliseerdelijst()
+            {
+                document.getElementById('BestaandeLijst').style.display = 'none';
+                document.getElementById('GepersonaliseerdeLijst').style.display = 'block';
+                document.getElementById('Max_aantal_antwoorden').style.display = 'block';
+                document.getElementById('Mogelijke_antwoorden').style.display = 'block';
+                document.getElementById('Lijst').style.display = 'block';
+                document.getElementById('Bestaande_lijst').selectedIndex = 'Geen_Bestaande_Lijst';
+            }
+        function lijst()
+            {
+                var soort_antwoord = document.getElementById("Soort_antwoord");
+                var selectedValue = soort_antwoord.options[soort_antwoord.selectedIndex].value;
+                if (soort_antwoord.value == "fld_antwoord_type_lijst")
+                    {
+                        document.getElementById('Lijst').style.display = 'block';
+                    }
+                else 
+                    {
+                        document.getElementById('Lijst').style.display = 'none';
+                        document.getElementById('BestaandeLijst').style.display = 'none';
+                        document.getElementById('GepersonaliseerdeLijst').style.display = 'none';
+                        document.getElementById('Max_aantal_antwoorden').style.display = 'none';
+                        document.getElementById('Mogelijke_antwoorden').style.display = 'none';
+                    }
+            }   
     -->
     </script>
     
     <?php
-        if ($_SESSION['Nieuwe_vraag'] != "") {
-            echo '<script type="text/javascript">gepersonaliseerdelijst();</script>';
-        }
+        if ($_SESSION['Nieuwe_vraag'] != "")
+            {
+                echo '<script type="text/javascript">gepersonaliseerdelijst();</script>';
+            }
     ?>
 </body>
 </html>

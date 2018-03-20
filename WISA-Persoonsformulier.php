@@ -43,28 +43,29 @@ else
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
         <!-- Icon nodig ID -->
-        <button class="form_eidi" type="submit" name="EID_Lezen">EID lezen</button>
+        <button class="form_eidi" type="submit" name="EID_Lezen" title="Identiteitskaart inlezen.">EID lezen</button>
     </form>
 </div>
 
 <form action="WISA-Persoonsformulier_Check.php" method="post" enctype="multipart/form-data">
   
     <!-- bestanden toevoegen -->
-    <div id="form_box_1">
+    <div class="form_box_1">
         <!-- icon nodig bestanden -->
-        <input class="form_bsdi" id="Bestand_persoon" name="Bestand_persoon[]" multiple  type="file"/>
+        <input class="form_bsdi" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file" title="Document selecteren."/>
+    </div>
+    
+    
+    <!-- lln?? -->
+    <div class="form_box_1">
+        <input name="Leerling" id="Leerling" checked="True" onclick="display_leerling()" title="Aanvinken indien u een leerling bent." type="checkbox"/>
+        <label class="form_lbl" for="Leerling" title="Aanvinken indien u een leerling bent.">Leerling</label><br />
     </div>
     
     <!-- pasfoto lln -->
     <div class="form_box_1">
-        <label class="form_lbl" for="Foto_persoon">Pasfoto</label><br />
-        <input class="form_pici" type="file" id="Foto_persoon" name="Foto_persoon"/>
-    </div>
-    
-    <!-- lln?? -->
-    <div class="form_box_1">
-        <input type="checkbox" name="Leerling" id="Leerling" checked="True" onclick="display_leerling()"/>
-        <label class="form_lbl" for="Leerling">Leerling</label><br />
+        <label class="form_lbl" for="Foto_persoon" title="Pasfoto van de leerling selecteren.">Pasfoto</label><br />
+        <input class="form_pici" type="file" id="Foto_persoon" name="Foto_persoon" title="Pasfoto van de leerling selecteren."/>
     </div>
     
     <!-- voornaam -->
@@ -88,12 +89,13 @@ else
         <label class="form_lbl" for="Geslacht">Geslacht</label><br />
         <select class="form_slt" id="Geslacht" name="Geslacht">
             <option value="...">...</option>
-            <option value="M">Manelijkn</option>
+            <option value="M">Mannelijk</option>
             <option value="V">Vrouwelijk</option>
         </select>
         <br />
     </div>
     
+    <!-- geboorte datum -->
     <div class="form_box_1">
         <label class="form_lbl" for="GB_Datum">Geboortedatum</label><br />
         <div class="form_box_in">  
@@ -132,37 +134,37 @@ else
         
         <!-- rijksregisternummer?? -->
         <div class="form_box_1">
-            <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr"/>
-            <label class="form_lbl" for="Geen_Register_nr">Geen rijksregisternummer</label><br />
+            <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken."/>
+            <label class="form_lbl" for="Geen_Register_nr" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken.">Geen rijksregisternummer</label><br />
         </div>
         
         <!-- rijksregisternummer -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Register_nr">Rijksregisternummer</label><br />
+            <label class="form_lbl" for="Register_nr" title="Vb: 99041254023">Rijksregisternummer</label><br />
             <div class="form_box_in ">
-                <input class="form_in" id="Register_nr" name="Register_nr" type="text" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
+                <input class="form_in" id="Register_nr" name="Register_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
             </div>
         </div>
         
         <!-- bis-nummer -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Bis_nr">BIS-Nummer</label>
+            <label class="form_lbl" for="Bis_nr" title="Vb: 99041254023">BIS-Nummer</label>
             <div class="form_box_in ">
-                <input class="form_in" id="Bis_nr" name="Bis_nr" type="text"/>
+                <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text"/>
             </div>
         </div>
         
         <!-- godsdiensten -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Godsdienst">Godsdienst</label><br/>
-            <select class="form_slt" id="Godsdienst" name="Godsdienst">
+            <label class="form_lbl" for="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">Godsdienst</label><br/>
+            <select class="form_slt" id="Godsdienst" name="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">
                 <option value="0">...</option>
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
-                            echo "<option value='".$row['fld_godsdienst_id']."'>".$row['fld_godsdienst_naam']."</option>";
+                            echo "<option title='De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.' value='".$row['fld_godsdienst_id']."'>".$row['fld_godsdienst_naam']."</option>";
                         }
                     }
                 ?>
@@ -173,17 +175,17 @@ else
     <!-- overleden ?? -->
     <div id="Niet_Leerling" class="Niet_Leerling">
         <div class="form_box_1">
-            <input type="checkbox" id="Overleden" name="Overleden"/>
-            <label class="form_lbl" for="Overleden">Overleden</label>
+            <input type="checkbox" id="Overleden" name="Overleden" title="Aanvinken indien de persoon overleden is."/>
+            <label class="form_lbl" for="Overleden" title="Aanvinken indien de persoon overleden is.">Overleden</label>
         </div>
     </div>
     
     <!-- persoon opslaan knop -->
     <div class="form_box_1">
         <!-- Knop om de vraag op te slaan -->  
-        <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan">Persoon opslaan</button>
+        <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon.">Persoon opslaan</button>
         <!-- Knop om te annuleren, alle -->
-        <button class="form_ccl"  id="Volgende" name="Volgende">Volgende</button>
+        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: relaties.">Volgende</button>
     </div>
 </form>
 
