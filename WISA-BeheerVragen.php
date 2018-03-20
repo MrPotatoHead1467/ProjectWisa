@@ -37,7 +37,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
         include "WISA-Connection.php";
     ?>
     <!-- Formulier om vragen toe te voegen -->
-    <form action="WISA-VraagToevoegen_Check.php" method="post">
+    <form action="WISA-BeheerVragen_Check.php" method="post">
     
         <!-- Nieuwe vraag toevoegen -->
         <div class="form_box_1">

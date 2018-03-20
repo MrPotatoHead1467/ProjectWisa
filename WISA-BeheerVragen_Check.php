@@ -121,7 +121,7 @@ foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord_verwijderen){
     if (isset($_POST[$x])){
         $Mogelijk_antwoord_wijzigen = array($i => mysqli_real_escape_string($conn, $_POST['Mogelijke_antwoorden['.$i.']']));
         $_SESSION['Mogelijke_antwoorden'] = array_replace($_SESSION['Mogelijke_antwoorden'], $Mogelijk_antwoord_wijzigen);
-        header ("Location: WISA-VragenToevoegen.php");
+        header ("Location: WISA-BeheerVragen.php");
     }
     --$x;
     ++$i;
