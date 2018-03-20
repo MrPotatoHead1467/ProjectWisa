@@ -42,7 +42,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <!-- Nieuwe vraag toevoegen -->
         <div class="form_box_1">
             <label class="form_lbl" for="Nieuwe_vraag">Nieuwe vraag:</label><br />
-            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag"on placeholder="Maximum 512 karakters." required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
+            <textarea autofocus="autofocus" class="form_in1" id="Nieuwe_vraag" name="Nieuwe_vraag" placeholder="Maximum 512 karakters." required="True" class="Nieuwe_vraag"><?php echo $_SESSION['Nieuwe_vraag']?></textarea>
         </div>
         
         <!-- Kernwoord toevoegen -->

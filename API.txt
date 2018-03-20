@@ -1,6 +1,9 @@
-<?php
+Voor u zou dat in PHP, voor een export naar xml, iets kunnen worden in de aard van:
+
 $auth=array('Username'=>'API',
+
               'Password'=>'API',
+
               'Database'=>'Miniemen');
 
 $client = new SoapClient("WisaAPIService.wsdl",array('location'=>'http://10.0.5.1:8080/SOAP/'));
@@ -12,5 +15,3 @@ $params = array( array('Werkdatum'=>'wdatum',
 $res=$client->GetXMLData($auth,'GEMEENTE',$params,5,'');
 
 $xml_SMART=simplexml_load_string($res);
-echo $xml_SMART;
-?>

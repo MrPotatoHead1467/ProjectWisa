@@ -10,6 +10,17 @@ if (isset($_POST['Contact_Opslaan'])){
     if ($Woonplaats == 'Niet_BE'){
         $Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_txt']);
     }
+    $Bus = mysqli_real_escape_string($conn, $_POST['Bus']);
+    if ($Bus == ''){
+        $Bus = NULL;
+        $fld_Bus = NULL;
+    }
+    else {
+        $Bus = ", '".$Bus."'";
+        $fld_Bus = ", fld_adres_bus_nr";
+    }
+    $sqlAdres = "INSERT INTO tbl_adressen(fld_adres_straatnaam, fld_adres_huis_nr".$fld_Bus.", fld_adres_postcode_id_fk, fld_adres_gemeente_id_fk, fld_adres_land_id_fk)
+                   VALUES ('".$Straat."', '".$Huisnrs."'".$Bus.", '"; /** Moet nog af gemaakt worden? */
 }
 
 if (isset($_POST['Zoekvak_Zoeken'])){

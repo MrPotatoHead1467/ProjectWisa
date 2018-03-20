@@ -25,7 +25,7 @@ include "WISA-Connection.php";
         <!-- Persoon -->
         <label for="Persoon">Persoon</label><br />
         <select id="Persoon" name="Persoon">
-            <option value="Kies">Kies persoon</option>
+            <option value="Kies">...</option>
             <?php
                 /** Als er iets in het zoekvak is ingevuld, worden alleen de overige namen getoond. Als er niets is ingevuld,
                     worden alle namen getoond */
@@ -56,17 +56,30 @@ include "WISA-Connection.php";
     </div>
     
     <div>
-        <label>Woonplaats</label><br />
-        <select id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
-            <option value="Kies">Kies woonplaats</option>
-            <option value="Niet_BE">Woonplaats niet in Belgie</option>
-        </select>
+        <label for="Bus">Bus</label><br />
+        <input type="text" id="Bus" name="Bus"/>
+    </div>
+    
+    <div>
+        <div>
+            <label>Woonplaats</label><br />
+            <select id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
+                <option value="Kies">...</option>
+                <option value="Niet_BE">Woonplaats niet in Belgie</option>
+            </select>
+        </div>
         
         <div class="Woonplaats_niet_be" id="Woonplaats_niet_be">
             <label for="Woonplaats_niet_be_txt">Geef woonplaats in</label><br />
             <input type="text" id="Woonplaats_niet_be_txt" name="Woonplaats_niet_be_txt"/>
         </div>
-        
+    </div>
+    
+    <div>
+        <label for="Land">Land</label>
+        <select id="Land" name="Land">
+            <option value="Kies">...</option>
+        </select>
     </div>
     
     <div>

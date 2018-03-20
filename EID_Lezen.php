@@ -12,6 +12,7 @@ if (isset($_POST['EID_Lezen'])){
     $_SESSION['EID_Voornaam'] = $card->prename;
     $_SESSION['EID_Achternaam'] = $card->name;
     $_SESSION['EID_Rijksregisternr'] = $card->serial;
+    $GB_Datum = $result = substr($_SESSION['EID_Rijksregisternr'], 0, 6);
     echo $_SESSION['EID_Achternaam'];
 
 }
