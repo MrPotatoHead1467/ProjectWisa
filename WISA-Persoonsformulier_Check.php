@@ -3,6 +3,7 @@ session_start();
 include "WISA-Connection.php";
 
 if (isset($_POST['Persoon_Opslaan'])){
+    $Datum = date("Y-m-d_h-i");
     /** Als de checkbox 'Leerling' aangevinkt is, is het een leerling (1) anders niet (0) */
     if (isset($_POST['Leerling'])){
         $Leerling = 1;
@@ -14,8 +15,7 @@ if (isset($_POST['Persoon_Opslaan'])){
     $Voornaam = mysqli_real_escape_string($conn, $_POST['Voornaam']);
     $Achternaam = mysqli_real_escape_string($conn, $_POST['Achternaam']);
     $Naam = $Voornaam." ".$Achternaam;
-    $GB_Datum = mysqli_real_escape_string($conn, $_POST['GB_Datum']);
-    
+    $GB_Datum = mysqli_real_escape_string($conn, $_POST['GB_Datum']);    
     $Geslacht = mysqli_real_escape_string($conn, $_POST['Geslacht']);
     if ($Geslacht == "Kies"){
         header("Location: WISA-Formulier.php?errorGeslacht");
@@ -65,7 +65,6 @@ if (isset($_POST['Persoon_Opslaan'])){
         if ($Leerling == 1){
             $_SESSION['Leerling'] = $Persoon_Id;
         }
-        $Datum = date("Y-m-d_h-i");
         $target_dir = "Uploads/";
         if (isset($_FILES["Bestand_persoon"]) and $_FILES["Bestand_persoon"] != ''){
             $Bestand = $_FILES["Bestand_persoon"];
