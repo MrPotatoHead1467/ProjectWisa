@@ -110,7 +110,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
                                         /** Verwijderknop */
                                         echo "<button class='form_mn' type='submit' id='".$Mogelijk_antwoord." 'name='".$Mogelijk_antwoord."' title='Druk op de knop om het mogelijke antwoord te verwijderen.'>x</button>";
                                         /** Mogelijk antwoord tonen in tekstvak */
-                                        echo "<input class='form_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' title='Het mogelijke antwoord is: ".$Mogelijk_antwoord.".' value='".$Mogelijk_antwoord."'/><br />";
+                                        echo "<label class='form_in2' type='text' id='Mogelijke_antwoorden' name='Mogelijke_antwoorden[]' title='Het mogelijke antwoord is: ".$Mogelijk_antwoord.".'>".$Mogelijk_antwoord."</label><br />";
                                     echo '</div>';
                                     /** Aanpasknop 
                                     echo "<button  type='submit' id='".$x."' name='".$x."'>Wijziging opslaan</button>";*/

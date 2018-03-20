@@ -83,13 +83,28 @@ include "WISA-Connection.php";
     </div>
     
     <div>
+        <label for="Besch_Woonplaats">Beschrijving woonplaats</label>
+        <textarea id="Besch_Woonplaats" name="Besch_Woonplaats"></textarea>
+    </div>
+    
+    <div>
         <!-- Invoervak voor GSM nummer met opslaan knop -->
         <div>
-            <label for="GSM">GSM</label><br />
-            <input type="text" id="GSM" name="GSM"/>
-            <button type="submit" id="GSM_Opslaan" name="GSM_Opslaan">Opslaan</button>
+            <div>
+                <label for="GSM">GSM</label><br />
+                <input type="text" id="GSM" name="GSM"/>
+            </div>
+            
+            <div>
+                <label for="Besch_GSM">Beschrijving GSM</label>
+                <textarea id="Besch_GSM" name="Besch_GSM"></textarea>
+            </div>
+            
+            <div>
+                <button type="submit" id="GSM_Opslaan" name="GSM_Opslaan">Opslaan</button>
+            </div>
         </div>
-                 
+
         <div id="Mogelijke_GSM" class="Mogelijke_GSM">
             <?php
                 if (isset($_SESSION['Mogelijke_GSM_nrs']))
@@ -110,9 +125,19 @@ include "WISA-Connection.php";
     
     <div>
         <div>
-            <label for="Telefoon">Telefoon</label><br />
-            <input type="text" id="Telefoon" name="Telefoon"/>
-            <button type="submit" id="Telefoon_Opslaan" name="Telefoon_Opslaan">Opslaan</button>
+            <div>
+                <label for="Telefoon">Telefoon</label><br />
+                <input type="text" id="Telefoon" name="Telefoon"/>
+            </div>
+            
+            <div>
+                <label for="Besch_Tel">Beschrijving telefoon</label>
+                <textarea id="Besch_Tel" name="Besch_Tel"></textarea>
+            </div>
+            
+            <div>
+                <button type="submit" id="Telefoon_Opslaan" name="Telefoon_Opslaan">Opslaan</button>
+            </div>
         </div>
         
         <div id="Mogelijke_Tel" class="Mogelijke_Tel">
@@ -135,9 +160,19 @@ include "WISA-Connection.php";
     
     <div>
         <div>
-            <label for="Email">Email</label><br />
-            <input type="text" id="Email" name="Email"/>
-            <button type="submit" id="Email_Opslaan" name="Email_Opslaan">Opslaan</button>
+            <div>
+                <label for="Email">Email</label><br />
+                <input type="text" id="Email" name="Email"/>
+            </div>
+            
+            <div>
+                <label for="Besch_GSM">Beschrijving GSM</label>
+                <textarea id="Besch_GSM" name="Besch_GSM"></textarea>
+            </div>
+            
+            <div>
+                <button type="submit" id="Email_Opslaan" name="Email_Opslaan">Opslaan</button>
+            </div>
         </div>
         
         <div id="Mogelijke_Email" class="Mogelijke_Email">
