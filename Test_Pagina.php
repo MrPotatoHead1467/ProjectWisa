@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
 }
 */
 
-$res=$client->GetXMLData($auth,'BI_NAT','',5,'');
+$res=$client->GetXMLData($auth,'BI_RICHT','',5,'');
 $xml_SMART=simplexml_load_string($res);
 $json = json_encode($xml_SMART);
 $array = json_decode($json,TRUE);
@@ -20,6 +20,7 @@ foreach ($array as $array2){
     foreach ($array2 as $array3){
         foreach ($array3 as $School){
             echo $School;
+            echo "<br />";
             /**
             if ($i == 0){
                 $School_instelling_id = $School;

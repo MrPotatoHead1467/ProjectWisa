@@ -1,5 +1,6 @@
 <?php
 include "WISA-Connection.php";
+include "XML_Connection.php";
 /**
 $sql = "SELECT * FROM tbl_landen";
 $result = $conn->query($sql);
@@ -10,8 +11,6 @@ if ($result->num_rows > 0) {
     }
 }
 */
-$auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
-$client = new SoapClient('http://10.0.5.1:8080/SOAP/WisaAPIService.wsdl');
 $res=$client->GetXMLData($auth,'BI_NAT','',5,'');
 $xml_SMART=simplexml_load_string($res);
 $json = json_encode($xml_SMART);
