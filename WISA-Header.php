@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
