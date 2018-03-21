@@ -14,6 +14,14 @@
 include "WISA-Connection.php";
 ?>
 <form action="WISA-ContactFormulier_Check.php" method="post">
+    <!-- bestanden toevoegen -->
+    <!--
+    <div class="form_box_1">
+        <input class="form_bsd" id="Bestand_contact" name="Bestand_contact[]" multiple type="file"/>
+        <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
+    </div>
+    -->
+    
     <div>
         <!-- Zoekvak persoon -->
         <label for="Zoekvak">Zoeken</label><br />
@@ -212,6 +220,11 @@ include "WISA-Connection.php";
 
 <script type="text/javascript">
 <!--
+        function KlikKnop(knop)
+        {
+            document.getElementById(knop).click();
+        }
+
 	function woonplaats_niet_be() {
             var woonplaats = document.getElementById("Woonplaats_Lijst");
             var selectedValue = woonplaats.options[woonplaats.selectedIndex].value;

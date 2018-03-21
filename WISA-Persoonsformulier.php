@@ -50,12 +50,11 @@ else
         $_SESSION['EID_GB_Datum'] = '';
     }
 ?>
-
+<!-- EID inlezen -->
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
-        <!-- Icon nodig ID -->
-        <button class="form_eid" id="EID_Lezen" name="EID_Lezen" title="Identiteitskaart inlezen." type="submit">EID lezen</button>
-        <label class="form_eidi" onclick="KlikKnop('EID_Lezen')"></label>
+        <button class="form_eid" id="EID_Lezen" name="EID_Lezen" type="submit">EID lezen</button>
+        <label class="form_eidi" onclick="KlikKnop('EID_Lezen')" title="Identiteitskaart inlezen."></label>
     </form>
 </div>
 
@@ -63,9 +62,8 @@ else
   
     <!-- bestanden toevoegen -->
     <div class="form_box_1">
-        <!-- icon nodig bestanden -->
-        <input class="form_bsd" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file" title="Document selecteren."/>
-        <label class="form_bsdi" onclick="KlikKnop('Bestand_persoon')"></label>
+        <input class="form_bsd" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file"/>
+        <label class="form_bsdi" onclick="KlikKnop('Bestand_persoon')" title="Document selecteren."></label>
     </div>
     
     
@@ -78,8 +76,8 @@ else
     <!-- pasfoto lln -->
     <div class="form_box_1" id="Div_Pasfoto">
         <label class="form_lbl" for="Foto_persoon" title="Pasfoto van de leerling selecteren.">Pasfoto</label><br />
-        <input class="form_pic" type="file" id="Foto_persoon" name="Foto_persoon" title="Pasfoto van de leerling selecteren."/>
-        <label class="form_pici" onclick="KlikKnop('Foto_persoon')"></label>
+        <input class="form_picp" type="file" id="Foto_persoon" name="Foto_persoon"/>
+        <label class="form_picpi" onclick="KlikKnop('Foto_persoon')" title="Pasfoto van de leerling selecteren."></label>
     </div>
     
     <!-- voornaam -->
