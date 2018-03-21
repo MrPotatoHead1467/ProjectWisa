@@ -39,7 +39,17 @@ else
     {
         $_SESSION['EID_Rijksregisternr'] = '';
     }
+
+if (isset($_SESSION['EID_GB_Datum']))
+    {
+        
+    }
+else 
+    {
+        $_SESSION['EID_GB_Datum'] = '';
+    }
 ?>
+
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
         <!-- Icon nodig ID -->
@@ -99,7 +109,7 @@ else
     <div class="form_box_1">
         <label class="form_lbl" for="GB_Datum">Geboortedatum</label><br />
         <div class="form_box_in">  
-            <input class="form_in" type="date" id="GB_Datum" name="GB_Datum" max="<?php echo $Datum; ?>"/><br />
+            <input class="form_in" type="date" id="GB_Datum" name="GB_Datum" max="<?php echo $Datum; ?>" <?php echo "value='".$_SESSION['EID_GB_Datum']."'"; ?>/><br />
         </div>
     </div>
     

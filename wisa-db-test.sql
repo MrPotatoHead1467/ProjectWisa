@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tbl_docs` (
   KEY `fld_doc_id` (`fld_doc_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs: ~13 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_docs: ~11 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_docs` DISABLE KEYS */;
 INSERT INTO `tbl_docs` (`fld_doc_id`, `fld_doc_naam`, `fld_doc_soort`, `fld_doc_plaats`, `fld_doc_datum`) VALUES
 	(1, 'Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', 'png2018-02', 'Uploads/Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', '2018-02-28 04:11:00'),
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `tbl_docs_links` (
   KEY `fld_doc_link_id` (`fld_doc_link_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs_links: ~3 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_docs_links: ~2 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_docs_links` DISABLE KEYS */;
 INSERT INTO `tbl_docs_links` (`fld_doc_link_id`, `fld_doc_id_fk`, `fld_loopbaan_id_fk`, `fld_persoon_id_fk`, `fld_school_id_fk`, `fld_klas_id_fk`, `fld_vraag_id_fk`) VALUES
 	(1, 11, 0, 4, 0, 0, 0),
@@ -326,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personen` (
   PRIMARY KEY (`fld_persoon_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen: ~14 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_personen: ~12 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen` DISABLE KEYS */;
 INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_persoon_achternaam`, `fld_persoon_naam`, `fld_persoon_gb_datum`, `fld_persoon_geslacht`, `fld_godsdienst_id_fk`, `fld_persoon_nation_id_fk`, `fld_persoon_gb_plaats`, `fld_persoon_register_nr`, `fld_persoon_bis_nr`, `fld_persoon_leerling`, `fld_persoon_overleden`) VALUES
 	(1, 'Maarten', 'Van Beneden', 'Maarten Van Beneden', '2017-03-29', 'M', 4, 1, 'Werkt', '00091913434', NULL, 1, 0),
@@ -385,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_linken` (
   KEY `fld_master_id_fk` (`fld_master_id_fk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen_linken: ~13 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_personen_linken: ~14 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen_linken` DISABLE KEYS */;
 INSERT INTO `tbl_personen_linken` (`fld_persoon_link_id`, `fld_master_id_fk`, `fld_child_id_fk`, `fld_soort_id_fk`, `fld_persoon_link_beschrijving`) VALUES
 	(5, 7, 9, 1, 'Dit is een test'),
@@ -477,18 +477,19 @@ CREATE TABLE IF NOT EXISTS `tbl_vragen` (
   `fld_bestaande_lijst_id_fk` int(11) DEFAULT NULL,
   `fld_antwoord_aantal` int(3) NOT NULL DEFAULT '1',
   `fld_vraag_antwoord_verplicht` tinyint(1) NOT NULL DEFAULT '0',
+  `fld_vraag_zichtbaar` tinyint(1) NOT NULL,
   PRIMARY KEY (`fld_vraag_id`),
   KEY `fld_vraag_id` (`fld_vraag_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- Dumpen data van tabel wisa-db-test.tbl_vragen: ~5 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_vragen` DISABLE KEYS */;
-INSERT INTO `tbl_vragen` (`fld_vraag_id`, `fld_vraag_vraag`, `fld_vraag_kernwoord`, `fld_antwoord_type_k_tekst`, `fld_antwoord_type_l_tekst`, `fld_antwoord_type_num`, `fld_antwoord_type_datum`, `fld_antwoord_type_j/n`, `fld_antwoord_type_foto`, `fld_antwoord_type_lijst`, `fld_bestaande_lijst_id_fk`, `fld_antwoord_aantal`, `fld_vraag_antwoord_verplicht`) VALUES
-	(35, 'Voornaam', 'Voornaam', 1, 0, 0, 0, 0, 0, 0, NULL, 1, 1),
-	(37, 'Achternaam', 'Achternaam', 1, 0, 0, 0, 0, 0, 0, NULL, 1, 1),
-	(38, 'Geboortedatum', 'Geboortedatum', 0, 0, 0, 1, 0, 0, 0, NULL, 1, 0),
-	(42, 'Hoe kom je naar school?', 'Vervoer', 0, 0, 0, 0, 0, 0, 1, NULL, 1, 1),
-	(43, 'Welke sport doe je graag?', 'Sport', 0, 0, 0, 0, 0, 0, 1, NULL, 1, 1);
+INSERT INTO `tbl_vragen` (`fld_vraag_id`, `fld_vraag_vraag`, `fld_vraag_kernwoord`, `fld_antwoord_type_k_tekst`, `fld_antwoord_type_l_tekst`, `fld_antwoord_type_num`, `fld_antwoord_type_datum`, `fld_antwoord_type_j/n`, `fld_antwoord_type_foto`, `fld_antwoord_type_lijst`, `fld_bestaande_lijst_id_fk`, `fld_antwoord_aantal`, `fld_vraag_antwoord_verplicht`, `fld_vraag_zichtbaar`) VALUES
+	(35, 'Voornaam', 'Voornaam', 1, 0, 0, 0, 0, 0, 0, NULL, 1, 1, 0),
+	(37, 'Achternaam', 'Achternaam', 1, 0, 0, 0, 0, 0, 0, NULL, 1, 1, 0),
+	(38, 'Geboortedatum', 'Geboortedatum', 0, 0, 0, 1, 0, 0, 0, NULL, 1, 0, 0),
+	(42, 'Hoe kom je naar school?', 'Vervoer', 0, 0, 0, 0, 0, 0, 1, NULL, 1, 1, 0),
+	(43, 'Welke sport doe je graag?', 'Sport', 0, 0, 0, 0, 0, 0, 1, NULL, 1, 1, 0);
 /*!40000 ALTER TABLE `tbl_vragen` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_vragen_bestemmingen wordt geschreven
