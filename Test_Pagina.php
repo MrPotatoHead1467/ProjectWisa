@@ -41,5 +41,5 @@ foreach ($array as $array2){
         */
     }
 }
-
+echo "test";
 ?>
