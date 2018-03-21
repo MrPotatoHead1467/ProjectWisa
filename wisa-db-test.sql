@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nationaliteiten` (
   KEY `fld_nation_id` (`fld_nation_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_nationaliteiten: ~0 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_nationaliteiten: ~1 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_nationaliteiten` DISABLE KEYS */;
 INSERT INTO `tbl_nationaliteiten` (`fld_nation_id`, `fld_nation_nation`) VALUES
 	(1, 'Belgisch');
@@ -440,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   KEY `fld_school_id` (`fld_school_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen: ~0 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_scholen: ~1 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_scholen` DISABLE KEYS */;
 INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`) VALUES
 	(1, 'Miniemeninstituut');
