@@ -1,17 +1,9 @@
-Voor u zou dat in PHP, voor een export naar xml, iets kunnen worden in de aard van:
+Landen --> BI_LAND
+Nationaliteiten --> BI_NAT
+Scholen --> BI_SCHOOL
+Godsdiensten --> BI_GODS
+Richtingen --> BI_RICHT
 
-$auth=array('Username'=>'API',
+API: remote.wisa.be:60580
 
-              'Password'=>'API',
-
-              'Database'=>'Miniemen');
-
-$client = new SoapClient("WisaAPIService.wsdl",array('location'=>'http://10.0.5.1:8080/SOAP/'));
-
-$params = array( array('Werkdatum'=>'wdatum',
-
-                       'Value'=> $wdatum));           
-
-$res=$client->GetXMLData($auth,'GEMEENTE',$params,5,'');
-
-$xml_SMART=simplexml_load_string($res);
+Webinschrijvingen: remote.wisa.be:60581

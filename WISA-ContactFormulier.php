@@ -66,6 +66,15 @@ include "WISA-Connection.php";
             <select id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
                 <option value="Kies">...</option>
                 <option value="Niet_BE">Woonplaats niet in Belgie</option>
+                <?php
+                    $sql = "SELECT * FROM tbl_postcodes";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            echo "<option value='".$row['fld_postcode_id']."'>".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."</option>";
+                        }
+                    }
+                ?>
             </select>
         </div>
         
@@ -194,7 +203,10 @@ include "WISA-Connection.php";
     </div>
     
     <div>
+        <!-- Contact opslaan knop -->
         <button type="submit" id="Contact_Opslaan" name="Contact_Opslaan">Opslaan</button>
+        <!-- Volgende knop -->
+        <button type="submit" id="Volgende" name="Volgende">Volgende</button>
     </div>
 </form>
 
