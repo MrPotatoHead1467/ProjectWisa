@@ -1,46 +1,43 @@
-<?php
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+<?php 
 include "WISA-Connection.php";
-include "XML_Connection.php";
-/**
-$sql = "SELECT * FROM tbl_landen";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()){
-        echo $row['fld_land_naam'];
-        echo "<br />";
-    }
+if (isset($_POST['submit'])){
+    $test = mysqli_real_escape_string($conn, $_POST['demo']);
+    echo "id=".$test;
 }
-*/
-
-$res=$client->GetXMLData($auth,'BI_RICHT','',5,'');
-$xml_SMART=simplexml_load_string($res);
-$json = json_encode($xml_SMART);
-$array = json_decode($json,TRUE);
-foreach ($array as $array2){
-    foreach ($array2 as $array3){
-        foreach ($array3 as $School){
-            echo $School;
-            echo "<br />";
-            /**
-            if ($i == 0){
-                $School_instelling_id = $School;
-            }
-            elseif ($i == 1){
-                $School_naam = $School;
-            }
-            elseif ($i == 2){
-                $School_postcode = $School;
-            }
-            elseif ($i == 3){
-                $School_gemeente = $School;
-            }
-            ++$i;
-            */
-        }
-        /**
-        echo "Instellingsnummer: ".$School_instelling_id."<br />School: ".$School_naam."<br />Postcode: ".$School_postcode."<br />Gemeente: ".$School_gemeente."<br /><br />";
-        */
-    }
-}
-echo "test";
 ?>
+<input id="Test" list="users" name="users"/>
+  <datalist id="users">
+    <?php
+    $sql = "SELECT * FROM tbl_personen";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()){
+            echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." ( ".$row['fld_persoon_gb_datum']." )'>";
+        }
+    }
+    ?>
+    <option value="Test14689">
+  </datalist>
+<form action="Test_Pagina.php" method="post">
+    <input id="demo" name="demo" type="hidden"/>
+    <button type="Submit" id="submit" name="submit">Test</button>
+</form>
+
+<script type="text/javascript">
+<!--
+    $(function() {
+      $('#Test').on('input',function() {
+        var opt = $('option[value="'+$(this).val()+'"]');
+        document.getElementById("demo").value = opt.attr('id');
+      });
+    });
+-->
+</script>
+
+</body>
+</html>
