@@ -6,7 +6,8 @@
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
 	<title>WISA | Persoonsformulier</title>
 </head>
 
@@ -76,8 +77,10 @@ else
     <!-- pasfoto lln -->
     <div class="form_box_1" id="Div_Pasfoto">
         <label class="form_lbl" for="Foto_persoon" title="Pasfoto van de leerling selecteren.">Pasfoto</label><br />
-        <input class="form_picp" type="file" id="Foto_persoon" name="Foto_persoon"/>
-        <label class="form_picpi" onclick="KlikKnop('Foto_persoon')" title="Pasfoto van de leerling selecteren."></label>
+        <div class="form_box_in">
+            <input class="form_picp" type="file" id="Foto_persoon" name="Foto_persoon"/>
+            <label class="form_picpi" onclick="KlikKnop('Foto_persoon')" title="Pasfoto van de leerling selecteren."></label>
+        </div>
     </div>
     
     <!-- voornaam -->
@@ -119,29 +122,40 @@ else
         
         <!-- geboorteplaats -->
         <div class="form_box_1">
-            <label class="form_lbl" for="GB_Plaats">Geboorteplaats</label><br />
-            <select class="form_slt" id="GB_Plaats" name="GB_Plaats">
-                <option value="Werkt">...</option>
+            <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
+            <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."/>
+            <datalist class="form_slt" id="GB_Plaats_List">
                 <!-- lijst geboorteplaatsen nog toevoegen -->
-            </select>
+                <?php
+                    $sql = "SELECT * FROM tbl_postcodes";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            echo "<option id='".$row['fld_postcode_id']."' value='".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."'>";
+                        }
+                    }
+                ?>
+            </datalist>
+            <input id="GB_Plaats" name="GB_Plaats" type="hidden"/>
             <br />
         </div>
         
         <!-- nationaliteiten -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Nationaliteit">Nationaliteit</label><br />
-            <select class="form_slt" id="Nationaliteit" name="Nationaliteit">
-                <option value="0">...</option>
+            <label class="form_lbl" for="Nationaliteit_in">Nationaliteit</label><br />
+            <input id="Nationaliteit_in" list="Nationaliteit_List" name="Nationaliteit_in" placeholder="..."/>
+            <datalist class="form_slt" id="Nationaliteit_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_nationaliteiten";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
-                            echo "<option value='".$row['fld_nation_id']."'>".$row['fld_nation_nation']."</option>";
+                            echo "<option id='".$row['fld_nation_id']."' value='".$row['fld_nation_nation']."'>";
                         }
                     }
                 ?>
-            </select>
+            </datalist>
+            <input id="Nationaliteit" name="Nationaliteit" type="hidden"/>
         </div>
         
         <!-- rijksregisternummer?? -->
@@ -169,18 +183,19 @@ else
         <!-- godsdiensten -->
         <div class="form_box_1">
             <label class="form_lbl" for="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">Godsdienst</label><br/>
-            <select class="form_slt" id="Godsdienst" name="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">
-                <option value="0">...</option>
+            <input id="Godsdienst_in" list="Godsdienst_List" name="Godsdienst_in" placeholder="..." title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven."/>
+            <datalist class="form_slt" id="Godsdienst_List" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
-                            echo "<option title='De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.' value='".$row['fld_godsdienst_id']."'>".$row['fld_godsdienst_naam']."</option>";
+                            echo "<option id='".$row['fld_godsdienst_id']."' title='De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.' value='".$row['fld_godsdienst_naam']."'>";
                         }
                     }
                 ?>
-            </select>
+            </datalist>
+            <input id="Godsdienst" name="Godsdienst" type="hidden"/>
         </div>
     </div>
     
@@ -234,6 +249,24 @@ else
         document.getElementById('Div_Bis_nr').style.display = 'none';
        }
 	}
+    $(function() {
+      $('#Nationaliteit_in').on('input',function() {
+        var opt = $('option[value="'+$(this).val()+'"]');
+        document.getElementById("Nationaliteit").value = opt.attr('id');
+      });
+    });
+    $(function() {
+      $('#GB_Plaats_in').on('input',function() {
+        var opt = $('option[value="'+$(this).val()+'"]');
+        document.getElementById("GB_Plaats").value = opt.attr('id');
+      });
+    });
+    $(function() {
+      $('#Godsdienst_in').on('input',function() {
+        var opt = $('option[value="'+$(this).val()+'"]');
+        document.getElementById("Godsdienst").value = opt.attr('id');
+      });
+    });
 -->
 </script>
 

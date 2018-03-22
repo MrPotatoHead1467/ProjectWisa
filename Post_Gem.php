@@ -1,7 +1,7 @@
 <?php
 include "WISA-Connection.php";
-$auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
-$client = new SoapClient('http://10.0.5.1:8080/SOAP/WisaAPIService.wsdl');
+include "XML_Connection.php";
+
 $res=$client->GetXMLData($auth,'BI_GEMEENT','',5,'');
 $xml_SMART=simplexml_load_string($res);
 $json = json_encode($xml_SMART);
