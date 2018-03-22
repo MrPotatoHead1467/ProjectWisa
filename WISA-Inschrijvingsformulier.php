@@ -14,104 +14,199 @@
 <?php
 include "WISA-Connection.php";
 ?>
-<div>
-<form action="WISA-Inschrijvingsformulier_Check.php" method="post" enctype="multipart/form-data">
-<table class="Inschrijvingsformulier_Table">
-<?php
-$sqlVragen = "SELECT * FROM tbl_vragen";
-$result = $conn->query($sqlVragen);
-$_SESSION['Vragen_Id'] = array();
 
-if ($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        echo "<tr>";
-        echo "<td class='Inschrijvingsformulier_Td' ><label for='".$row['fld_vraag_id']."'>".$row['fld_vraag_vraag']." </label></td>";
-        if ($row['fld_antwoord_type_k_tekst'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
-            
+    <form action="WISA-Inschrijvingsformulier_Check.php" method="post" enctype="multipart/form-data">
+    
+        <?php
+        $sqlVragen = "SELECT * FROM tbl_vragen";
+        $result = $conn->query($sqlVragen);
+        $_SESSION['Vragen_Id'] = array();
+        
+        if ($result->num_rows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                    {
+                        echo "<div class='form_box_1'>";
+                            if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                {
+                                    echo "<label class='form_lbl' for='".$row['fld_vraag_id']."' title='Verplicht in te vullen vraag.'>".$row['fld_vraag_vraag']." *</label><br/>";
+                                }
+                            elseif ($row['fld_vraag_antwoord_verplicht'] == "0")
+                                {
+                                    echo "<label class='form_lbl' for='".$row['fld_vraag_id']."' title='Vraag mag onbeantwoord blijven.'>".$row['fld_vraag_vraag']."</label><br/>";
+                                }
+                            
+                            // korte tekst vraag
+                            if ($row['fld_antwoord_type_k_tekst'] == 1)
+                                {
+                                    // extra bestand voor korte tekst    
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]'  type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // input korte tekst
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' maxlength='255' name='".$row['fld_vraag_id']."' required='True' type='text'/>";
+                                        
+                                            }
+                                        else 
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' maxlength='255' name='".$row['fld_vraag_id']."' type='text'/>";
+                                            }
+                                    echo "</div>";
+                                }
+                            // lange tekst vraag
+                            elseif ($row['fld_antwoord_type_l_tekst'] == 1)
+                                {
+                                    // extra bestand voor lange tekst
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // input lange tekst
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<textarea  class='form_in1' id='".$row['fld_vraag_id']."' maxlength='511' name='".$row['fld_vraag_id']."' required='True'></textarea>";
+                                            }
+                                        else 
+                                            {
+                                                echo "<textarea  class='form_in1' id='".$row['fld_vraag_id']."' maxlength='511' name='".$row['fld_vraag_id']."'></textarea>";
+                                            }
+                                    echo "</div>";
+                                    }
+                            // num vraag
+                            elseif ($row['fld_antwoord_type_num'] == 1)
+                                {
+                                    // extra bestand voor num
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // input num
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True' type='text'/>";
+                                        
+                                            }
+                                        else 
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='text'/>";
+                                            }
+                                    echo "</div>";
+                                    }
+                            // datum vraag
+                            elseif ($row['fld_antwoord_type_datum'] == 1)
+                                {
+                                    //extra bestand voor datum
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // invoervak datum
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True' type='date'/>";
+                                            }
+                                        else 
+                                            {
+                                                echo "<input class='form_in' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='date'/>";
+                                            }
+                                    echo "</div>";
+                                }
+                            // j/n vraag
+                            elseif ($row['fld_antwoord_type_j/n'] == 1)
+                                {
+                                    // extra bestand voor j/n
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // invoervak voor j/n
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True' type='checkbox'/>";
+                                            }
+                                        else 
+                                            {
+                                                echo "<input id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='checkbox'/>";
+                                            }
+                                    echo "</div>";
+                                    }
+                            // foto vraag
+                            elseif ($row['fld_antwoord_type_foto'] == 1)
+                                {
+                                    // knop foto
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input class='form_picp' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='file' required='True'/>";
+                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
+                                            }
+                                        else 
+                                            {
+                                                echo "<input class='form_picp' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='file'/>";
+                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
+                                            }
+                                    echo "</div>";
+                                }
+                            /**
+                            // doc vraag 
+                            elseif ($row['fld_antwoord_type_doc'] == 1)
+                                {
+                                    // knop doc
+                                    echo "<div class='form_box_in'>";
+                                        if ($row['fld_vraag_antwoord_verplicht'] == "1")
+                                            {
+                                                echo "<input class='form_bsd' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True' type='file'/>";
+                                                echo "<label class='form_bsdi1' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren.'></label>";
+                                            }
+                                        else 
+                                            {
+                                                echo "<input class='form_bsd' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='file'/>";
+                                                echo "<label class='form_bsdi1' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren.'></label>";
+                                            }
+                                    echo "</div>";
+                                }  
+                            * 
+                             */ 
+                            // lijst vraag
+                            elseif ($row['fld_antwoord_type_lijst'] == 1)
+                                {   
+                                    // extra bestand voor lijst
+                                    echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
+                                    echo "<label class='form_bsdi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    // lijst
+                                    $sqlLijst = "SELECT * FROM tbl_antwoorden_lijst WHERE fld_vraag_id_fk = ".$row['fld_vraag_id'];
+                                    $resultLijst = $conn->query($sqlLijst);
+                                    if ($resultLijst->num_rows > 0)
+                                        {
+                                            echo "<select class='form_slt'>";
+                                            while ($rowLijst = $resultLijst->fetch_assoc())
+                                                {
+                                                    echo "<option>".$rowLijst['fld_lijst_item']."</option>";
+                                                }
+                                            echo "</select>";
+                                            
+                                        }
+                                    
+                                }
+                            else 
+                                {
+                                    echo "Er is iets verkeerd gegaan...";
+                                }
+                        echo "</div>";
+                        array_push($_SESSION['Vragen_Id'],mysqli_real_escape_string($conn, $row['fld_vraag_id']));
+                    }
             }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td' ><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_l_tekst'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><textarea id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'></textarea>";
-            
-            }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td'><textarea id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'></textarea>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_num'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
-            
-            }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td'><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_datum'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><input type='date' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
-            }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td'><input type='date' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_j/n'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td'><input type='checkbox' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
-            }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td'><input type='checkbox' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_foto'] == 1){
-            if ($row['fld_vraag_antwoord_verplicht'] == "1"){
-                echo "<td class='Inschrijvingsformulier_Td' ><input type='file' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True'/>";
-            }
-            else {
-                echo "<td class='Inschrijvingsformulier_Td'><input type='file' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-            }
-            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-        }
-        elseif ($row['fld_antwoord_type_lijst'] == 1){
-            $sqlLijst = "SELECT * FROM tbl_antwoorden_lijst WHERE fld_vraag_id_fk = ".$row['fld_vraag_id'];
-            $resultLijst = $conn->query($sqlLijst);
-            if ($resultLijst->num_rows > 0){
-                echo "<td class='Inschrijvingsformulier_Td'>";
-                echo "<select>";
-                while ($rowLijst = $resultLijst->fetch_assoc()){
-                    echo "<option>".$rowLijst['fld_lijst_item']."</option>";
-                }
-                echo "</select>";
-                echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand[]' multiple/></td>";
-            }
-        }
-        else {
-            "Er is iets verkeerd gegaan";
-            }
-        echo "</tr>";
-        array_push($_SESSION['Vragen_Id'],mysqli_real_escape_string($conn, $row['fld_vraag_id']));
-    }
-}
-?>
-    <tr>
-        <td class='Inschrijvingsformulier_Td' >
+        ?>
+        <div>
             <button type="submit" name="Inschrijving_Opslaan">Opslaan</button>
-        </td>
-    </tr>
-</table>
-</form>
-</div>
+        </div>
+    </form>
+    
+    <script type="text/javascript">
+    
+        function KlikKnop(knop)
+            {
+                document.getElementById(knop).click();
+            }
+    </script>
     
 
 </body>

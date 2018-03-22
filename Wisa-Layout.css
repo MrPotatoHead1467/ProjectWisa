@@ -638,6 +638,7 @@ footer {
             display: block;
             float: right;
             height: 2.4em;
+            margin-right: 2%;
             outline: none;
             transition: 0.3s;
             width: 4em}
@@ -673,7 +674,6 @@ footer {
             float: right;
             height: 2.4em;
             outline: none;
-            /*text-align: right;*/
             transition: 0.3s;
             width: 4em}
             
@@ -686,19 +686,19 @@ footer {
             border-radius: 0px;
             cursor:  pointer;
             display: block;
+            /*float: right;*/
             height: 2.4em;
             outline: none;
-            /*text-align: right;*/
             transition: 0.3s;
             width: 4em}
                     
-.form_bsdi:hover {
-                background-image:  url("WISA_Print_IconFile-Hover.png");
-                transition: 0.3s;}
-                    
-.form_bsdi:focus, .form_bsdi:active {
-                                    background-image:  url("WISA_Print_IconFile-Focus.png");
+.form_bsdi:hover, .form_bsdi1:hover {
+                                    background-image:  url("WISA_Print_IconFile-Hover.png");
                                     transition: 0.3s;}
+                    
+.form_bsdi:focus, .form_bsdi1:focus, .form_bsdi:active, .form_bsdi1:active  {
+                                                                            background-image:  url("WISA_Print_IconFile-Focus.png");
+                                                                            transition: 0.3s;}
 
 .form_picp   {
             width: 0.1px;

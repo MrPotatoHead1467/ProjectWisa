@@ -139,7 +139,7 @@ if (!isset($_SESSION['Is_Leerling']))
     <div class="form_box_1">
         <label class="form_lbl" for="Voornaam">Voornaam</label><br />
         <div class="form_box_in">
-            <input class="form_in" id="Voornaam" name="Voornaam" type="text"<?php echo "value='".$_SESSION['EID_Voornaam']."'" ?> required="True"/><br />
+            <input class="form_in" id="Voornaam" name="Voornaam" maxlength="255" type="text"<?php echo "value='".$_SESSION['EID_Voornaam']."'" ?> required="True"/><br />
         </div>
     </div>
     
@@ -147,7 +147,7 @@ if (!isset($_SESSION['Is_Leerling']))
     <div class="form_box_1">
         <label class="form_lbl" for="Achternaam">Achternaam</label><br />
         <div class="form_box_in">    
-            <input class="form_in" id="Achternaam" name="Achternaam" type="text" <?php echo "value='".$_SESSION['EID_Achternaam']."'" ?> required="True"/><br />
+            <input class="form_in" id="Achternaam" name="Achternaam" maxlength="255" type="text" <?php echo "value='".$_SESSION['EID_Achternaam']."'" ?> required="True"/><br />
         </div>
     </div>
     
@@ -159,7 +159,7 @@ if (!isset($_SESSION['Is_Leerling']))
             <option value="M">Mannelijk</option>
             <option value="V">Vrouwelijk</option>
         </select>
-        <br />
+        <br/>
     </div>
     
     <!-- geboorte datum -->
@@ -297,10 +297,10 @@ if (!isset($_SESSION['Is_Leerling']))
     
     <!-- persoon opslaan knop -->
     <div class="form_box_1">
-        <!-- Knop om de vraag op te slaan -->  
+        <!-- Knop om de Persoon op te slaan -->  
         <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon.">Persoon opslaan</button>
-        <!-- Knop om te annuleren, alle -->
-        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: relaties.">Volgende</button>
+        <!-- Volgende formulier -->
+        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: Relaties.">Volgende</button>
     </div>
 </form>
 
