@@ -44,9 +44,8 @@ if (isset($_POST["GSM_Opslaan"])) {
 
 if (isset($_SESSION['Mogelijke_GSM_nrs'])){
     foreach ($_SESSION['Mogelijke_GSM_nrs'] as $Mogelijk_GSM_verwijderen){
-        $Mogelijk_GSM_verwijderen = str_replace('.', '_', $Mogelijk_GSM_verwijderen);
-        if (isset($_POST[$Mogelijk_GSM_verwijderen])){
-            $Mogelijk_GSM_verwijderen = str_replace('_', '.', $Mogelijk_GSM_verwijderen);
+        $Mogelijk_GSM_verwijderen_no_dot = str_replace('.', '_', $Mogelijk_GSM_verwijderen);
+        if (isset($_POST[$Mogelijk_GSM_verwijderen_no_dot])){
             if (($key = array_search($Mogelijk_GSM_verwijderen, $_SESSION['Mogelijke_GSM_nrs'])) !== false){
                 unset($_SESSION['Mogelijke_GSM_nrs'][$key]);
                 header ("Location: WISA-Formulier.php");

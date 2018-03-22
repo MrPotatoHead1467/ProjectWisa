@@ -15,42 +15,94 @@
 <?php
 include "WISA-Connection.php";
 $Datum = date("Y-m-d");
-if (isset($_SESSION['EID_Voornaam']))
+if (!isset($_SESSION['Bestaande_Persoon']))
     {
-        
+        $_SESSION['Bestaande_Persoon'] = 0;
     }
-else
+    
+if (!isset($_SESSION['EID_Voornaam']))
     {
         $_SESSION['EID_Voornaam'] = '';
     }
-    
-if (isset($_SESSION['EID_Achternaam']))
-    {
-        
-    }
-else 
+
+if (!isset($_SESSION['EID_Achternaam']))
     {
         $_SESSION['EID_Achternaam'] = '';
     }
     
-if (isset($_SESSION['EID_Rijksregisternr']))
+if (!isset($_SESSION['Geslacht']))
     {
-        
+        $_SESSION['Geslacht'] = '';
     }
-else 
-    {
-        $_SESSION['EID_Rijksregisternr'] = '';
-    }
-
-if (isset($_SESSION['EID_GB_Datum']))
-    {
-        
-    }
-else 
+    
+if (!isset($_SESSION['EID_GB_Datum']))
     {
         $_SESSION['EID_GB_Datum'] = '';
     }
+
+if (!isset($_SESSION['GB_Plaats']))
+    {
+        $_SESSION['GB_Plaats'] = '';
+    }
+    
+if (!isset($_SESSION['EID_Rijksregisternr']))
+    {
+        $_SESSION['EID_Rijksregisternr'] = '';
+    }
+    
+if (!isset($_SESSION['Geen_Rijksregisternr']))
+    {
+        $_SESSION['Geen_Rijksregisternr'] = '';
+    }
+    
+if (!isset($_SESSION['Nationaliteit']))
+    {
+        $_SESSION['Nationaliteit'] = '';
+    }
+    
+if (!isset($_SESSION['Bisnr']))
+    {
+        $_SESSION['Bisnr'] = '';
+    }
+    
+if (!isset($_SESSION['Godsdienst']))
+    {
+        $_SESSION['Godsdienst'] = '';
+    }
+
+if (!isset($_SESSION['Overleden']))
+    {
+        $_SESSION['Overleden'] = '';
+    }
+if (!isset($_SESSION['Is_Leerling']))
+    {
+        $_SESSION['Is_Leerling'] = '1';
+    }
 ?>
+
+
+<div>
+    <form action="WISA-Persoonsformulier_Check.php" method="post">
+        <div class="form_box_1">
+            <label class="form_lbl" for="Persoon_Zoeken_in">Persoon zoeken</label><br />
+            <button id="Persoon_Zoeken_btn" name="Persoon_Zoeken_btn" type="submit">Gegevens invullen</button>
+            <input id="Persoon_Zoeken_in" list="Persoon_Zoeken_List" name="Persoon_Zoeken_in" placeholder="..."/>
+            <datalist class="form_slt" id="Persoon_Zoeken_List" >
+                <?php
+                    $sql = "SELECT * FROM tbl_personen";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].")'>";
+                        }
+                    }
+                ?>
+            </datalist>
+            <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
+        </div>
+    </form>
+</div>
+
 <!-- EID inlezen -->
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
@@ -103,7 +155,7 @@ else
     <div class="form_box_1">
         <label class="form_lbl" for="Geslacht">Geslacht</label><br />
         <select class="form_slt" id="Geslacht" name="Geslacht">
-            <option value="...">...</option>
+            <option value="Kies">...</option>
             <option value="M">Mannelijk</option>
             <option value="V">Vrouwelijk</option>
         </select>
@@ -123,7 +175,19 @@ else
         <!-- geboorteplaats -->
         <div class="form_box_1">
             <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
-            <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."/>
+            <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."
+            <?php 
+            if ($_SESSION['GB_Plaats'] != '') {
+                $sql = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$_SESSION['GB_Plaats']."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                        echo "value='".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."'";
+                    }
+                }
+            } 
+            ?>
+            />
             <datalist class="form_slt" id="GB_Plaats_List">
                 <!-- lijst geboorteplaatsen nog toevoegen -->
                 <?php
@@ -136,14 +200,26 @@ else
                     }
                 ?>
             </datalist>
-            <input id="GB_Plaats" name="GB_Plaats" type="hidden"/>
+            <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo "value='".$_SESSION['GB_Plaats']."'"; ?>/>
             <br />
         </div>
         
         <!-- nationaliteiten -->
         <div class="form_box_1">
             <label class="form_lbl" for="Nationaliteit_in">Nationaliteit</label><br />
-            <input id="Nationaliteit_in" list="Nationaliteit_List" name="Nationaliteit_in" placeholder="..."/>
+            <input id="Nationaliteit_in" list="Nationaliteit_List" name="Nationaliteit_in" placeholder="..." 
+            <?php 
+            if ($_SESSION['Nationaliteit'] != '') {
+                $sql = "SELECT * FROM tbl_nationaliteiten WHERE fld_nation_id='".$_SESSION['Nationaliteit']."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                        echo "value='".$row['fld_nation_nation']."'";
+                    }
+                }
+            } 
+            ?>
+            />
             <datalist class="form_slt" id="Nationaliteit_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_nationaliteiten";
@@ -155,7 +231,7 @@ else
                     }
                 ?>
             </datalist>
-            <input id="Nationaliteit" name="Nationaliteit" type="hidden"/>
+            <input id="Nationaliteit" name="Nationaliteit" type="hidden" <?php echo "value='".$_SESSION['Nationaliteit']."'"; ?>/>
         </div>
         
         <!-- rijksregisternummer?? -->
@@ -176,14 +252,26 @@ else
         <div class="form_box_1" id="Div_Bis_nr">
             <label class="form_lbl" for="Bis_nr" title="Vb: 99041254023">BIS-Nummer</label>
             <div class="form_box_in ">
-                <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}"/>
+                <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['Bisnr']."'" ?> />
             </div>
         </div>
         
         <!-- godsdiensten -->
         <div class="form_box_1">
             <label class="form_lbl" for="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">Godsdienst</label><br/>
-            <input id="Godsdienst_in" list="Godsdienst_List" name="Godsdienst_in" placeholder="..." title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven."/>
+            <input id="Godsdienst_in" list="Godsdienst_List" name="Godsdienst_in" placeholder="..." title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven."
+            <?php 
+            if ($_SESSION['Godsdienst'] != '') {
+                $sql = "SELECT * FROM tbl_godsdiensten WHERE fld_godsdienst_id='".$_SESSION['Godsdienst']."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                        echo "value='".$row['fld_godsdienst_naam']."'";
+                    }
+                }
+            } 
+            ?>
+            />
             <datalist class="form_slt" id="Godsdienst_List" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
@@ -231,12 +319,12 @@ else
                     document.getElementById('Niet_Leerling').style.display = 'none';
                     document.getElementById('Div_Pasfoto').style.display = 'block';
                 }
-               else 
-                    {
-                        document.getElementById('Leerlingen').style.display = 'none';
-                        document.getElementById('Niet_Leerling').style.display = 'block';
-                        document.getElementById('Div_Pasfoto').style.display = 'none';
-                    }
+            else 
+                {
+                    document.getElementById('Leerlingen').style.display = 'none';
+                    document.getElementById('Niet_Leerling').style.display = 'block';
+                    document.getElementById('Div_Pasfoto').style.display = 'none';
+                }
 	   }
        
     function display_bis() {
@@ -249,6 +337,28 @@ else
         document.getElementById('Div_Bis_nr').style.display = 'none';
        }
 	}
+    function leerling() {
+        document.getElementById("Leerling").checked = true;
+        display_leerling();
+    }
+    function niet_leerling() {
+        document.getElementById("Leerling").checked = false;
+        display_leerling();
+    }
+    
+    function geslacht(x) {
+        document.getElementById('Geslacht').value = x;
+    }
+    
+    function geen_rijksregisternr(){
+        document.getElementById("Geen_Register_nr").checked = true;
+        display_bis();
+    }
+    
+    function overleden(){
+        document.getElementById("Overleden").checked = true;
+    }
+    
     $(function() {
       $('#Nationaliteit_in').on('input',function() {
         var opt = $('option[value="'+$(this).val()+'"]');
@@ -267,8 +377,37 @@ else
         document.getElementById("Godsdienst").value = opt.attr('id');
       });
     });
+    $(function() {
+      $('#Persoon_Zoeken_in').on('input',function() {
+        var opt = $('option[value="'+$(this).val()+'"]');
+        document.getElementById("Persoon_Zoeken").value = opt.attr('id');
+      });
+    });
 -->
 </script>
+
+<?php 
+if ($_SESSION['Geslacht'] == 'M' || $_SESSION['Geslacht'] == 'V'){
+    echo '<script type="text/javascript">geslacht("'.$_SESSION["Geslacht"].'");</script>';
+}
+
+if ($_SESSION['Geen_Rijksregisternr'] == 1){
+    echo '<script type="text/javascript">geen_rijksregisternr();</script>';
+}
+
+if ($_SESSION['Is_Leerling'] == 1){
+    echo '<script type="text/javascript">leerling();</script>';
+}
+
+elseif ($_SESSION['Is_Leerling'] == 0){
+    echo '<script type="text/javascript">niet_leerling();</script>';
+}
+
+if ($_SESSION['Overleden'] == 1){
+    echo '<script type="text/javascript">overleden();</script>';
+}
+
+?>
 
 </body>
 </html>
