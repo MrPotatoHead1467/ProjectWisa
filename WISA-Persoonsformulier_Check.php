@@ -22,17 +22,17 @@ if (isset($_POST['Persoon_Opslaan'])){
     }
     
     $Godsdienst = mysqli_real_escape_string($conn, $_POST['Godsdienst']);
-    if ($Godsdienst == 0 and $Leerling == 1){
+    if ($Godsdienst == '' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorGodsdienst");
     }
     
     $Nation = mysqli_real_escape_string($conn, $_POST['Nationaliteit']);
-    if ($Nation == 0 and $Leerling == 1){
+    if ($Nation == '' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorNationaliteit");
     }
     
     $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats']);
-    if ($GB_Plaats == 0 and $Leerling == 1){
+    if ($GB_Plaats == '' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorGeboorteplaats");
     }
     
@@ -59,7 +59,7 @@ if (isset($_POST['Persoon_Opslaan'])){
     $sqlPersoon = "INSERT INTO tbl_personen(fld_persoon_voornaam, fld_persoon_achternaam, fld_persoon_naam, fld_persoon_gb_datum, fld_persoon_geslacht, fld_godsdienst_id_fk,
                    fld_persoon_nation_id_fk, fld_persoon_gb_plaats".$Register_Bis.", fld_persoon_leerling, fld_persoon_overleden) VALUES 
                    ('".$Voornaam."', '".$Achternaam."', '".$Naam."', '".$GB_Datum."', '".$Geslacht."', '".$Godsdienst."', '".$Nation."', '".$GB_Plaats."'".$ID_Nummer.", '".$Leerling."', '".$Overleden."')";
-    
+
     if (mysqli_query($conn, $sqlPersoon)){
         $Persoon_Id = mysqli_insert_id($conn);
         if ($Leerling == 1){
@@ -73,7 +73,6 @@ if (isset($_POST['Persoon_Opslaan'])){
                 $Soort_Bestand = strtolower(pathinfo($Bestand["name"][$i],PATHINFO_EXTENSION));
                 $Bestand_Naam = $Persoon_Id."_".$Datum."_".$i.".".$Soort_Bestand;
                 $Bestand_Locatie = $target_dir . $Bestand_Naam;
-                /** Het bestand wordt ge�pload */
                 if (move_uploaded_file($_FILES["Bestand_persoon"]["tmp_name"][$i], $Bestand_Locatie)) {              
                     $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
                     if (mysqli_query($conn, $sqlBestanden)){
@@ -98,7 +97,6 @@ if (isset($_POST['Persoon_Opslaan'])){
             $Soort_Bestand = strtolower(pathinfo($Bestand["name"],PATHINFO_EXTENSION));
             $Bestand_Naam = $Persoon_Id."_".$Datum."_Foto.".$Soort_Bestand;
             $Bestand_Locatie = $target_dir . $Bestand_Naam;
-            /** Het bestand wordt geüpload */
             if (move_uploaded_file($_FILES["Foto_persoon"]["tmp_name"], $Bestand_Locatie)) {              
                 $sqlFoto = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
                 if (mysqli_query($conn, $sqlFoto)){
