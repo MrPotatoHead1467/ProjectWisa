@@ -1,3 +1,5 @@
+
+
 /*
 licht geel: #F5F5C2
 geel: #EAD100
@@ -616,12 +618,117 @@ footer {
             margin-bottom: 2vh;
             padding: 0;
             width: 100%}
+
+.form_eid   {
+            width: 0.1px;
+        	height: 0.1px;
+        	opacity: 0;
+        	overflow: hidden;
+        	position: absolute;
+        	z-index: -1;}
+
+.form_eidi  {
+            background-image: url("WISA_Print_IconEID-Normal.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            float: right;
+            height: 2.4em;
+            outline: none;
+            transition: 0.3s;
+            width: 4em}
             
-.form_eidi   {}           
+.form_eidi:hover {
+                background-image:  url("WISA_Print_IconEID-Hover.png");
+                transition: 0.3s;}
+                
+.form_eidi:focus, .form_eidi:active {
+                                    background-image:  url("WISA_Print_IconEID-Focus.png");
+                                    transition: 0.3s;}
 
-.form_bsdi   {}
+.form_bsd  {
+            width: 0.1px;
+        	height: 0.1px;
+        	opacity: 0;
+        	overflow: hidden;
+        	position: absolute;
+        	z-index: -1;}
 
-.form_pici   {}
+.form_bsd + .form_bsdi  {
+                        display: inline-block;}
+
+.form_bsdi  {
+            background-image:  url("WISA_Print_IconFile-Normal.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            float: right;
+            height: 2.4em;
+            outline: none;
+            /*text-align: right;*/
+            transition: 0.3s;
+            width: 4em}
+            
+.form_bsdi1 {
+            background-image:  url("WISA_Print_IconFile-Normal.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            height: 2.4em;
+            outline: none;
+            /*text-align: right;*/
+            transition: 0.3s;
+            width: 4em}
+                    
+.form_bsdi:hover {
+                background-image:  url("WISA_Print_IconFile-Hover.png");
+                transition: 0.3s;}
+                    
+.form_bsdi:focus, .form_bsdi:active {
+                                    background-image:  url("WISA_Print_IconFile-Focus.png");
+                                    transition: 0.3s;}
+
+.form_picp   {
+            width: 0.1px;
+        	height: 0.1px;
+        	opacity: 0;
+        	overflow: hidden;
+        	position: absolute;
+        	z-index: -1;}
+
+.form_picpi  {
+            background-image: url("WISA_Print_IconPic-Normal.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            height: 2.4em;
+            outline: none;
+            transition: 0.3s;
+            width: 4em}
+            
+.form_picpi:hover {
+                background-image:  url("WISA_Print_IconPic-Hover.png");
+                transition: 0.3s;}
+                
+.form_picpi:focus, .form_picpi:active {
+                                    background-image:  url("WISA_Print_IconPic-Focus.png");
+                                    transition: 0.3s;}
             
 .form_lbl  {
             color: #5A667B;

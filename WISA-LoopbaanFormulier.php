@@ -15,6 +15,14 @@ include "WISA-Connection.php";
 ?>
 
 <form action="WISA-LoopbaanFormulier_Check.php" method="post">
+    <!-- bestanden toevoegen -->
+    <!--
+    <div class="form_box_1">
+        <input class="form_bsd" id="Bestand_loopbaan" name="Bestand_loopbaan[]" multiple type="file"/>
+        <label class="form_bsdi" onclick="KlikKnop('Bestand_loopbaan')" title="Document selecteren."></label>
+    </div>
+    -->
+    
     <div>
         <label for="Schooljaar">Schooljaar</label>
         <select id="Schooljaar" onchange="display_school()">
@@ -62,8 +70,9 @@ include "WISA-Connection.php";
                 </select>
             </div>
             
-            <div id="Attest_Doc_Div">
-                <input id="Attest_Doc" name="Attest_Doc" type="file"/>
+            <div class="form_box_1" id="Attest_Doc_Div">
+                <input class="form_bsd" id="Attest_Doc" name="Attest_Doc" type="file"/>
+                <label class="form_bsdi1" onclick="KlikKnop('Attest_Doc')" title="Document selecteren."></label>
             </div>
             
             <div id="Clausule_Div">
@@ -90,6 +99,11 @@ include "WISA-Connection.php";
 
 <script type="text/javascript">
 <!--
+        function KlikKnop(knop)
+        {
+            document.getElementById(knop).click();
+        }
+    
 	function display_school(){
         var Schooljaar = document.getElementById("Schooljaar");
         var currentdate = new Date(); 

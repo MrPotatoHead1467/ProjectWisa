@@ -15,6 +15,15 @@ include "WISA-Connection.php";
 ?>
 
 <form action="WISA-RelatiesFormulier_Check.php" method="post">
+    
+    <!-- bestanden toevoegen -->
+    <!--
+    <div class="form_box_1">
+        <input class="form_bsd" id="Bestand_relatie" name="Bestand_relatie[]" multiple type="file"/>
+        <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
+    </div>
+    -->
+
     <div>
         <?php 
             /** Als er een leerling is meegenomen uit persoonsformulier wordt zijn naam automatisch getoond */
@@ -156,6 +165,14 @@ include "WISA-Connection.php";
         <button type="submit" id="Volgende" name="Volgende">Volgende</button>
     </div>
 </form>
+
+    <script>
+        function KlikKnop(knop)
+        {
+            document.getElementById(knop).click();
+        }
+    
+    </script>
 
 </body>
 </html>

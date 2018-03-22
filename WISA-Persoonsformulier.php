@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
@@ -49,11 +50,11 @@ else
         $_SESSION['EID_GB_Datum'] = '';
     }
 ?>
-
+<!-- EID inlezen -->
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
-        <!-- Icon nodig ID -->
-        <button class="form_eidi" type="submit" name="EID_Lezen" title="Identiteitskaart inlezen.">EID lezen</button>
+        <button class="form_eid" id="EID_Lezen" name="EID_Lezen" type="submit">EID lezen</button>
+        <label class="form_eidi" onclick="KlikKnop('EID_Lezen')" title="Identiteitskaart inlezen."></label>
     </form>
 </div>
 
@@ -61,8 +62,8 @@ else
   
     <!-- bestanden toevoegen -->
     <div class="form_box_1">
-        <!-- icon nodig bestanden -->
-        <input class="form_bsdi" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file" title="Document selecteren."/>
+        <input class="form_bsd" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file"/>
+        <label class="form_bsdi" onclick="KlikKnop('Bestand_persoon')" title="Document selecteren."></label>
     </div>
     
     
@@ -75,7 +76,8 @@ else
     <!-- pasfoto lln -->
     <div class="form_box_1" id="Div_Pasfoto">
         <label class="form_lbl" for="Foto_persoon" title="Pasfoto van de leerling selecteren.">Pasfoto</label><br />
-        <input class="form_pici" type="file" id="Foto_persoon" name="Foto_persoon" title="Pasfoto van de leerling selecteren."/>
+        <input class="form_picp" type="file" id="Foto_persoon" name="Foto_persoon"/>
+        <label class="form_picpi" onclick="KlikKnop('Foto_persoon')" title="Pasfoto van de leerling selecteren."></label>
     </div>
     
     <!-- voornaam -->
@@ -201,18 +203,27 @@ else
 
 <script type="text/javascript">
 <!--
-	function display_leerling() {
-	   if (document.getElementById('Leerling').checked) {
-        document.getElementById('Leerlingen').style.display = 'block';
-        document.getElementById('Niet_Leerling').style.display = 'none';
-        document.getElementById('Div_Pasfoto').style.display = 'block';
+    function KlikKnop(knop)
+        {
+            document.getElementById(knop).click();
+        }
+    
+	function display_leerling() 
+        {
+            if (document.getElementById('Leerling').checked)
+                {
+                    document.getElementById('Leerlingen').style.display = 'block';
+                    document.getElementById('Niet_Leerling').style.display = 'none';
+                    document.getElementById('Div_Pasfoto').style.display = 'block';
+                }
+               else 
+                    {
+                        document.getElementById('Leerlingen').style.display = 'none';
+                        document.getElementById('Niet_Leerling').style.display = 'block';
+                        document.getElementById('Div_Pasfoto').style.display = 'none';
+                    }
 	   }
-       else {
-        document.getElementById('Leerlingen').style.display = 'none';
-        document.getElementById('Niet_Leerling').style.display = 'block';
-        document.getElementById('Div_Pasfoto').style.display = 'none';
-       }
-	}
+       
     function display_bis() {
 	   if (document.getElementById('Geen_Register_nr').checked) {
         document.getElementById('Div_Register_nr').style.display = 'none';
