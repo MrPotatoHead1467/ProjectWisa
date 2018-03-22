@@ -12,45 +12,45 @@
 </head>
 
 <body>
-<?php
-include "WISA-Connection.php";
-$Datum = date("Y-m-d");
-if (isset($_SESSION['EID_Voornaam']))
-    {
+    <?php
+        include "WISA-Connection.php";
+        $Datum = date("Y-m-d");
+        if (isset($_SESSION['EID_Voornaam']))
+            {
+                
+            }
+        else
+            {
+                $_SESSION['EID_Voornaam'] = '';
+            }
+            
+        if (isset($_SESSION['EID_Achternaam']))
+            {
+                
+            }
+        else 
+            {
+                $_SESSION['EID_Achternaam'] = '';
+            }
+            
+        if (isset($_SESSION['EID_Rijksregisternr']))
+            {
+                
+            }
+        else 
+            {
+                $_SESSION['EID_Rijksregisternr'] = '';
+            }
         
-    }
-else
-    {
-        $_SESSION['EID_Voornaam'] = '';
-    }
-    
-if (isset($_SESSION['EID_Achternaam']))
-    {
-        
-    }
-else 
-    {
-        $_SESSION['EID_Achternaam'] = '';
-    }
-    
-if (isset($_SESSION['EID_Rijksregisternr']))
-    {
-        
-    }
-else 
-    {
-        $_SESSION['EID_Rijksregisternr'] = '';
-    }
-
-if (isset($_SESSION['EID_GB_Datum']))
-    {
-        
-    }
-else 
-    {
-        $_SESSION['EID_GB_Datum'] = '';
-    }
-?>
+        if (isset($_SESSION['EID_GB_Datum']))
+            {
+                
+            }
+        else 
+            {
+                $_SESSION['EID_GB_Datum'] = '';
+            }
+    ?>
 <!-- EID inlezen -->
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">

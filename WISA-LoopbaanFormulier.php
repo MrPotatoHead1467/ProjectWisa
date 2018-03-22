@@ -15,17 +15,17 @@ include "WISA-Connection.php";
 ?>
 
 <form action="WISA-LoopbaanFormulier_Check.php" method="post">
+
     <!-- bestanden toevoegen -->
-    <!--
     <div class="form_box_1">
         <input class="form_bsd" id="Bestand_loopbaan" name="Bestand_loopbaan[]" multiple type="file"/>
         <label class="form_bsdi" onclick="KlikKnop('Bestand_loopbaan')" title="Document selecteren."></label>
     </div>
-    -->
     
-    <div>
-        <label for="Schooljaar">Schooljaar</label>
-        <select id="Schooljaar" onchange="display_school()">
+    <!-- schooljaar -->
+    <div class="form_box_1">
+        <label class="form_lbl" for="Schooljaar">Schooljaar</label><br />
+        <select class="form_slt" id="Schooljaar" onchange="display_school()">
             <option value="Kies">...</option>
             <?php
                 $Datum = date('Y');
@@ -37,9 +37,10 @@ include "WISA-Connection.php";
         </select>
     </div>
     
-    <div>
-        <label>Richting</label>
-        <select id="Richting">
+    <!-- richting -->
+    <div class="form_box_1">
+        <label class="form_lbl">Richting</label><br />
+        <select class="form_slt" id="Richting">
             <option value="Kies">...</option>
             <?php
                 $sql = "SELECT * FROM tbl_richtingen";
@@ -47,22 +48,25 @@ include "WISA-Connection.php";
         </select>
     </div>
     
-    <div>
-        <label></label>
-        <select>
+    <!--
+    <div class="form_box_1">
+        <label class="form_lbl"></label><br/>
+        <select class="form_slt">
             <option value="Kies">...</option>
             <?php
             
             ?>
         </select>
     </div>
+    -->
     
     
     <div class="Dit_Schooljaar" id="Dit_Schooljaar">        
         <div>
-            <div>
-                <label for="Attest_Slct">Attest</label>
-                <select id="Attest_Slct" onchange="display_attest()">
+            <!-- Attest -->
+            <div class="form_box_1">
+                <label class="form_lbl" for="Attest_Slct">Attest</label><br/>
+                <select class="form_slt" id="Attest_Slct" onchange="display_attest()">
                     <option value="Kies">...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -70,30 +74,35 @@ include "WISA-Connection.php";
                 </select>
             </div>
             
+            <!-- Attest -->
             <div class="form_box_1" id="Attest_Doc_Div">
-                <input class="form_bsd" id="Attest_Doc" name="Attest_Doc" type="file"/>
-                <label class="form_bsdi1" onclick="KlikKnop('Attest_Doc')" title="Document selecteren."></label>
+                <div class="form_box_in">
+                    <input class="form_bsd" id="Attest_Doc" name="Attest_Doc" type="file"/> 
+                    <label class="form_bsdi1" onclick="KlikKnop('Attest_Doc')" title="Attest selecteren (document)."></label>
+                </div>
             </div>
             
-            <div id="Clausule_Div">
-                <label for="Clausule">Clausule</label>
-                <input id="Clausule" name="Clausule" type="text"/>
+            <div class="form_box_1" id="Clausule_Div">
+                <label class="form_lbl" for="Clausule">Clausule</label><br />
+                <div class="form_box_in">  
+                    <input id="Clausule" name="Clausule" type="text"/>
+                </div>
             </div>
         </div>
         
-        <div>
-            <label for="School">School</label>
-            <select id="School">
+        <div class="form_box_1">
+            <label class="form_lbl" for="School">School</label><br />
+            <select class="form_slt" id="School">
                 <option value="Kies">...</option>
             </select>
         </div>
     </div>
     
-    <div>
+    <div class="form_box_1">
         <!-- Loopbaan opslaan knop -->
-        <button type="submit" id="Loopbaan_Opslaan" name="Loopbaan_Opslaan">Opslaan</button>
+        <button class="form_btn" type="submit" id="Loopbaan_Opslaan" name="Loopbaan_Opslaan" title="Schooljaar opslagen en formulier leegmaken voor het volgende schooljaar.">Opslaan</button>
         <!-- Volgende knop -->
-        <button type="submit" id="Volgende" name="Volgende">Volgende</button>
+        <button class="form_cll" type="submit" id="Volgende" name="Volgende" title="Volgende formulier: Inschrijving.">Volgende</button>
     </div>
 </form>
 
