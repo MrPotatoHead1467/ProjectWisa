@@ -106,7 +106,9 @@ if (isset($_POST["Mogelijk_antwoord_toevoegen"])) {
 
 if (isset($_SESSION['Mogelijke_antwoorden'])){
     foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord_verwijderen){
-        if (isset($_POST[$Mogelijk_antwoord_verwijderen])){
+        echo "Mogelijk_antwoord_verwijderen = ".$Mogelijk_antwoord_verwijderen;
+        $Mogelijk_antwoord_verwijderen_no_space = str_replace(' ', '_', $Mogelijk_antwoord_verwijderen);
+        if (isset($_POST[$Mogelijk_antwoord_verwijderen_no_space])){
             if (($key = array_search($Mogelijk_antwoord_verwijderen, $_SESSION['Mogelijke_antwoorden'])) !== false){
                 unset($_SESSION['Mogelijke_antwoorden'][$key]);
                 header ("Location: WISA-Formulier.php");

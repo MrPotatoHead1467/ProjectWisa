@@ -9,6 +9,7 @@ if ($result->num_rows > 0) {
         echo "<br />";
     }
 }
+*/
 
 $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
 $client = new SoapClient('http://10.0.5.1:8080/SOAP/WisaAPIService.wsdl');
@@ -20,6 +21,7 @@ foreach ($array as $array2){
     foreach ($array2 as $array3){
         foreach ($array3 as $Gods){
             echo $Gods."<br />";
+            /**
             $sqlGods = "INSERT INTO tbl_godsdiensten (fld_godsdienst_naam) VALUES ('".$Gods."')";
             if (mysqli_query($conn, $sqlGods)){
                 echo $Gods.": Gelukt";
@@ -28,9 +30,10 @@ foreach ($array as $array2){
             else {
                 echo "Error: " . $sqlGods . "<br>" . mysqli_error($conn);
             }
+            */
         }
 
     }
 }
-*/
+
 ?>

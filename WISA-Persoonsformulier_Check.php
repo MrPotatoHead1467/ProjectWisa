@@ -22,17 +22,17 @@ if (isset($_POST['Persoon_Opslaan'])){
     }
     
     $Godsdienst = mysqli_real_escape_string($conn, $_POST['Godsdienst']);
-    if ($Godsdienst == '' and $Leerling == 1){
+    if ($Godsdienst == 'undefined' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorGodsdienst");
     }
     
     $Nation = mysqli_real_escape_string($conn, $_POST['Nationaliteit']);
-    if ($Nation == '' and $Leerling == 1){
+    if ($Nation == 'undefined' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorNationaliteit");
     }
     
     $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats']);
-    if ($GB_Plaats == '' and $Leerling == 1){
+    if ($GB_Plaats == 'undefined' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorGeboorteplaats");
     }
     
@@ -56,10 +56,17 @@ if (isset($_POST['Persoon_Opslaan'])){
         $Overleden = 0;
     }
     
-    $sqlPersoon = "INSERT INTO tbl_personen(fld_persoon_voornaam, fld_persoon_achternaam, fld_persoon_naam, fld_persoon_gb_datum, fld_persoon_geslacht, fld_godsdienst_id_fk,
+    if ($_SESSION['Bestaande_Persoon'] == 0){
+        $sqlPersoon = "INSERT INTO tbl_personen(fld_persoon_voornaam, fld_persoon_achternaam, fld_persoon_naam, fld_persoon_gb_datum, fld_persoon_geslacht, fld_godsdienst_id_fk,
                    fld_persoon_nation_id_fk, fld_persoon_gb_plaats".$Register_Bis.", fld_persoon_leerling, fld_persoon_overleden) VALUES 
                    ('".$Voornaam."', '".$Achternaam."', '".$Naam."', '".$GB_Datum."', '".$Geslacht."', '".$Godsdienst."', '".$Nation."', '".$GB_Plaats."'".$ID_Nummer.", '".$Leerling."', '".$Overleden."')";
 
+    }
+    else {
+        $sqlPersoon = "UPDATE tbl_personen SET fld_persoon_voornaam='".$Voornaam."', fld_persoon_achternaam='".$Achternaam."', fld_persoon_gb_datum='".$GB_Datum."',
+                       fld_persoon_geslacht='".$Geslacht."', fld_godsdienst_id_fk='".$Godsdienst."', ";
+    }
+    
     if (mysqli_query($conn, $sqlPersoon)){
         $Persoon_Id = mysqli_insert_id($conn);
         if ($Leerling == 1){
@@ -124,6 +131,9 @@ if (isset($_POST['Persoon_Opslaan'])){
         if (isset($_SESSION['EID_Rijksregisternr'])){
             $_SESSION['EID_Rijksregisternr'] = '';
         }
+        if (isset($_SESSION['EID_Rijksregisternr'])){
+            $_SESSION['EID_GB_Datum'] = '';
+        }
         header("Location: WISA-Formulier.php?Gelukt");
     }
     else {
@@ -131,4 +141,29 @@ if (isset($_POST['Persoon_Opslaan'])){
     }
 }
 
+if (isset($_POST['Persoon_Zoeken_btn'])){
+    $Persoon_Zoeken = mysqli_real_escape_string($conn, $_POST['Persoon_Zoeken']);
+    $sqlPersoon_Zoeken = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$Persoon_Zoeken."'";
+    $result = $conn->query($sqlPersoon_Zoeken);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()){
+            $_SESSION['Bestaande_Persoon'] = 1;
+            $_SESSION['Is_Leerling'] = $row['fld_persoon_leerling'];
+            $_SESSION['EID_Voornaam'] = $row['fld_persoon_voornaam'];
+            $_SESSION['EID_Achternaam'] = $row['fld_persoon_achternaam'];
+            $_SESSION['Geslacht'] = $row['fld_persoon_geslacht'];
+            $_SESSION['EID_GB_Datum'] = $row['fld_persoon_gb_datum'];
+            $_SESSION['GB_Plaats'] = $row['fld_persoon_gb_plaats'];
+            $_SESSION['Nationaliteit'] = $row['fld_persoon_nation_id_fk'];
+            $_SESSION['EID_Rijksregisternr'] = $row['fld_persoon_register_nr'];
+            if ($_SESSION['EID_Rijksregisternr'] == NULL){
+                $_SESSION['Geen_Rijksregisternr'] = 1;
+            }
+            $_SESSION['Bisnr'] = $row['fld_persoon_bis_nr'];
+            $_SESSION['Godsdienst'] = $row['fld_godsdienst_id_fk'];
+            $_SESSION['Overleden'] = $row['fld_persoon_overleden'];
+            header("Location: WISA-Formulier.php");
+        }
+    }
+}
 ?>
