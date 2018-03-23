@@ -10,6 +10,9 @@ $i = 0;
 foreach ($array as $array2){
     foreach ($array2 as $array3){
         foreach ($array3 as $POST_GEM){
+            if ($i == 0){
+                $Post_Id = mysqli_real_escape_string($conn, $POST_GEM);
+            }
             echo $POST_GEM." - ".$i;
             echo "<br />";
             ++$i;

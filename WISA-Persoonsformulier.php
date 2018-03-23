@@ -93,10 +93,10 @@ if (!isset($_SESSION['Is_Leerling']))
             <datalist class="form_slt" id="Persoon_Zoeken_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_personen";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()){
-                            echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].")'>";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].") '>";
                         }
                     }
                 ?>
@@ -286,7 +286,7 @@ if (!isset($_SESSION['Is_Leerling']))
                     }
                 ?>
             </datalist>
-            <input id="Godsdienst" name="Godsdienst" type="hidden"/>
+            <input id="Godsdienst" name="Godsdienst" type="hidden" <?php echo "value='".$_SESSION['Godsdienst']."'"; ?>/>
         </div>
     </div>
     
@@ -301,9 +301,11 @@ if (!isset($_SESSION['Is_Leerling']))
     <!-- persoon opslaan knop -->
     <div class="form_box_1">
         <!-- Knop om de Persoon op te slaan -->  
-        <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon.">Persoon opslaan</button>
+        <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon." type="submit">Persoon opslaan</button>
+        <!-- Knop om te annuleren --> 
+        <button id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         <!-- Volgende formulier -->
-        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: Relaties.">Volgende</button>
+        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: Relaties." type="submit">Volgende</button>
     </div>
 </form>
 

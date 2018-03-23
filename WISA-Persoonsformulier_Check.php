@@ -44,6 +44,11 @@ if (isset($_POST['Persoon_Opslaan'])){
         $ID_Nummer = ", '".mysqli_real_escape_string($conn, $_POST['Bis_nr'])."'";
         $Register_Bis = ", fld_persoon_bis_nr";
     }
+    /**
+     * elseif (!isset()){
+        
+    }
+    */
     else {
         $ID_Nummer = NULL;
         $Register_Bis = NULL;
@@ -63,12 +68,58 @@ if (isset($_POST['Persoon_Opslaan'])){
 
     }
     else {
-        $sqlPersoon = "UPDATE tbl_personen SET fld_persoon_voornaam='".$Voornaam."', fld_persoon_achternaam='".$Achternaam."', fld_persoon_gb_datum='".$GB_Datum."',
-                       fld_persoon_geslacht='".$Geslacht."', fld_godsdienst_id_fk='".$Godsdienst."', ";
+         if (mysqli_real_escape_string($conn, $_POST['Register_nr']) != '' && !isset($_POST['Geen_Register_nr'])){
+            $ID_Nummer = mysqli_real_escape_string($conn, $_POST['Register_nr'])."', ";
+            $Register_Bis = "fld_persoon_register_nr='";
+            $Rijksregister = true;
+            $Bis = false;
+         }
+        elseif (isset($_POST['Geen_Register_nr']) and mysqli_real_escape_string($conn, $_POST['Bis_nr'] != '')){
+            $ID_Nummer = mysqli_real_escape_string($conn, $_POST['Bis_nr'])."', ";
+            $Register_Bis = "fld_persoon_bis_nr='";
+            $Rijksregister = false;
+            $Bis = true;
+        }
+        else {
+            $ID_Nummer = NULL;
+            $Register_Bis = NULL;
+            $Rijksregister = false;
+            $Bis = false;
+        }
+        $sqlPersoon = "UPDATE tbl_personen SET fld_persoon_voornaam='".$Voornaam."', fld_persoon_achternaam='".$Achternaam."', fld_persoon_naam='".$Naam."', fld_persoon_gb_datum='".$GB_Datum."',
+                       fld_persoon_geslacht='".$Geslacht."', fld_godsdienst_id_fk='".$Godsdienst."', fld_persoon_nation_id_fk='".$Nation."', fld_persoon_gb_plaats='".$GB_Plaats."', ".$Register_Bis.$ID_Nummer."fld_persoon_leerling='".$Leerling."', 
+                       fld_persoon_overleden='".$Overleden."' WHERE fld_persoon_id='".$_SESSION['Bestaande_Persoon_Id']."'";
     }
     
     if (mysqli_query($conn, $sqlPersoon)){
-        $Persoon_Id = mysqli_insert_id($conn);
+        if ($_SESSION['Bestaande_Persoon'] == 0){
+            $Persoon_Id = mysqli_insert_id($conn);
+        }
+        elseif ($_SESSION['Bestaande_Persoon'] == 1){
+            $Persoon_Id = $_SESSION['Bestaande_Persoon_Id'];
+        }
+        else {
+            $Persoon_Id = "Je hebt iets heel verkeerd gedaan";
+        }        
+        if ($Rijksregister == true){
+            $sqlRijksregister = "UPDATE tbl_personen SET fld_persoon_bis_nr=NULL WHERE fld_persoon_id='".$Persoon_Id."'";
+            if (mysqli_query($conn, $sqlRijksregister)){
+                echo $Persoon_Id;
+            }
+            else {
+                echo "Error: " . $sqlRijksregister . "<br>" . mysqli_error($conn);
+            }
+        }
+        elseif ($Bis == true){
+            $sqlBis = "UPDATE tbl_personen SET fld_persoon_register_nr=NULL WHERE fld_persoon_id='".$Persoon_Id."'";
+            if (mysqli_query($conn, $sqlBis)){
+                echo $Persoon_Id;
+            }
+            else {
+                echo "Error: " . $sqlBis . "<br>" . mysqli_error($conn);
+            }
+        }
+        
         if ($Leerling == 1){
             $_SESSION['Leerling'] = $Persoon_Id;
         }
@@ -122,19 +173,22 @@ if (isset($_POST['Persoon_Opslaan'])){
             }
         }
         
-        if (isset($_SESSION['EID_Voornaam'])){
-            $_SESSION['EID_Voornaam'] = '';
-        }
-        if (isset($_SESSION['EID_Achternaam'])){
-            $_SESSION['EID_Achternaam'] = '';
-        }
-        if (isset($_SESSION['EID_Rijksregisternr'])){
-            $_SESSION['EID_Rijksregisternr'] = '';
-        }
-        if (isset($_SESSION['EID_Rijksregisternr'])){
-            $_SESSION['EID_GB_Datum'] = '';
-        }
+        $_SESSION['Bestaande_Persoon'] = 0;
+        $_SESSION['Bestaande_Persoon_Id'] = '';
+        $_SESSION['Is_Leerling'] = 1;
+        $_SESSION['EID_Voornaam'] = '';
+        $_SESSION['EID_Achternaam'] = '';
+        $_SESSION['Geslacht'] = '';
+        $_SESSION['EID_GB_Datum'] = '';
+        $_SESSION['GB_Plaats'] = '';
+        $_SESSION['Nationaliteit'] = '';
+        $_SESSION['EID_Rijksregisternr'] = '';
+        $_SESSION['Geen_Rijksregisternr'] = 0;
+        $_SESSION['Bisnr'] = '';
+        $_SESSION['Godsdienst'] = '';
+        $_SESSION['Overleden'] = 0;
         header("Location: WISA-Formulier.php?Gelukt");
+        
     }
     else {
         echo "Error: " . $sqlPersoon . "<br>" . mysqli_error($conn);
@@ -148,22 +202,53 @@ if (isset($_POST['Persoon_Zoeken_btn'])){
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()){
             $_SESSION['Bestaande_Persoon'] = 1;
+            $_SESSION['Bestaande_Persoon_Id'] = $row['fld_persoon_id'];
+            echo $_SESSION['Bestaande_Persoon_Id']."<br />";
             $_SESSION['Is_Leerling'] = $row['fld_persoon_leerling'];
+            echo $_SESSION['Is_Leerling']."<br />";
             $_SESSION['EID_Voornaam'] = $row['fld_persoon_voornaam'];
+            echo $_SESSION['EID_Voornaam']."<br />";
             $_SESSION['EID_Achternaam'] = $row['fld_persoon_achternaam'];
+            echo $_SESSION['EID_Achternaam']."<br />";
             $_SESSION['Geslacht'] = $row['fld_persoon_geslacht'];
+            echo $_SESSION['Geslacht']."<br />";
             $_SESSION['EID_GB_Datum'] = $row['fld_persoon_gb_datum'];
+            echo $_SESSION['EID_GB_Datum']."<br />";
             $_SESSION['GB_Plaats'] = $row['fld_persoon_gb_plaats'];
+            echo $_SESSION['GB_Plaats']."<br />";
             $_SESSION['Nationaliteit'] = $row['fld_persoon_nation_id_fk'];
+            echo $_SESSION['Nationaliteit']."<br />";
             $_SESSION['EID_Rijksregisternr'] = $row['fld_persoon_register_nr'];
+            echo $_SESSION['EID_Rijksregisternr']."<br />";
             if ($_SESSION['EID_Rijksregisternr'] == NULL){
                 $_SESSION['Geen_Rijksregisternr'] = 1;
+                echo $_SESSION['Geen_Rijksregisternr']."<br />";
             }
             $_SESSION['Bisnr'] = $row['fld_persoon_bis_nr'];
+            echo $_SESSION['Bisnr']."<br />";
             $_SESSION['Godsdienst'] = $row['fld_godsdienst_id_fk'];
+            echo $_SESSION['Godsdienst']."<br />";
             $_SESSION['Overleden'] = $row['fld_persoon_overleden'];
+            echo $_SESSION['Overleden']."<br />";
             header("Location: WISA-Formulier.php");
         }
     }
+}
+if (isset($_POST['Annuleer'])){
+    $_SESSION['Bestaande_Persoon'] = 0;
+    $_SESSION['Bestaande_Persoon_Id'] = '';
+    $_SESSION['Is_Leerling'] = 1;
+    $_SESSION['EID_Voornaam'] = '';
+    $_SESSION['EID_Achternaam'] = '';
+    $_SESSION['Geslacht'] = '';
+    $_SESSION['EID_GB_Datum'] = '';
+    $_SESSION['GB_Plaats'] = '';
+    $_SESSION['Nationaliteit'] = '';
+    $_SESSION['EID_Rijksregisternr'] = '';
+    $_SESSION['Geen_Rijksregisternr'] = 0;
+    $_SESSION['Bisnr'] = '';
+    $_SESSION['Godsdienst'] = '';
+    $_SESSION['Overleden'] = 0;
+    header("Location: WISA-Formulier.php");
 }
 ?>
