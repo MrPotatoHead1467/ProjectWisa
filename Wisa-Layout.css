@@ -862,6 +862,22 @@ footer {
             transition: 0.3s;
             text-align: center;
             width: 10%}
+            
+.form_pls1  {
+            background-color: #7C849A;
+            border: transparent solid 1px;
+            border-radius: 10px;
+            color: #CBCCD4;
+            float: right;
+            font-size: 1em;
+            height: 1.5em;
+            margin: 0;
+            margin-right: 12%;
+            overflow: hidden;
+            padding:0;
+            transition: 0.3s;
+            text-align: center;
+            width: 5.5%}
 
 .form_mn    {
             background-color: transparent;
@@ -986,7 +1002,7 @@ footer {
 .Niet_Leerling {
     display: none;
 }
-.Woonplaats_niet_be {
+#Woonplaats_niet_be {
     display: none;
 }
 #Div_Bis_nr{

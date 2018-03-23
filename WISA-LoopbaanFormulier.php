@@ -102,7 +102,7 @@ include "WISA-Connection.php";
         <!-- Loopbaan opslaan knop -->
         <button class="form_btn" type="submit" id="Loopbaan_Opslaan" name="Loopbaan_Opslaan" title="Schooljaar opslagen en formulier leegmaken voor het volgende schooljaar.">Opslaan</button>
         <!-- Volgende knop -->
-        <button class="form_cll" type="submit" id="Volgende" name="Volgende" title="Volgende formulier: Inschrijving.">Volgende</button>
+        <button class="form_ccl" type="submit" id="Volgende" name="Volgende" title="Volgende formulier: Inschrijving.">Volgende</button>
     </div>
 </form>
 
