@@ -746,14 +746,31 @@ footer {
             outline: none;
             transition: 0.3s;
             width: 4em}
+            
+.form_bsdi2 {
+            background-image:  url("WISA_Print_IconFile-Normal.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            float: right;
+            height: 2.4em;
+            margin-right: 2%;
+            margin-top: -2.5vh;
+            outline: none;
+            transition: 0.3s;
+            width: 4em}
                     
-.form_bsdi:hover, .form_bsdi1:hover {
-                                    background-image:  url("WISA_Print_IconFile-Hover.png");
-                                    transition: 0.3s;}
+.form_bsdi:hover, .form_bsdi1:hover, .form_bsdi2:hover  {
+                                                        background-image:  url("WISA_Print_IconFile-Hover.png");
+                                                        transition: 0.3s;}
                     
-.form_bsdi:focus, .form_bsdi1:focus, .form_bsdi:active, .form_bsdi1:active  {
-                                                                            background-image:  url("WISA_Print_IconFile-Focus.png");
-                                                                            transition: 0.3s;}
+.form_bsdi:focus, .form_bsdi1:focus, .form_bsdi:active, .form_bsdi1:active, .form_bsdi2:active, .form_bsdi2:active  {
+                                                                                                                    background-image:  url("WISA_Print_IconFile-Focus.png");
+                                                                                                                    transition: 0.3s;}
 
 .form_picp  {
             width: 0.1px;
