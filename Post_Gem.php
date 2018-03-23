@@ -13,11 +13,33 @@ foreach ($array as $array2){
             if ($i == 0){
                 $Post_Id = mysqli_real_escape_string($conn, $POST_GEM);
             }
-            echo $POST_GEM." - ".$i;
-            echo "<br />";
+            elseif ($i == 3){
+                $Postcode = mysqli_real_escape_string($conn, $POST_GEM);
+            }
+            elseif ($i == 4){
+                $Postnummer = mysqli_real_escape_string($conn, $POST_GEM);
+            }
+            elseif ($i == 5){
+                $Deelgemeente = mysqli_real_escape_string($conn, $POST_GEM);
+            }
+            elseif ($i == 6){
+                $Fusiegemeente = mysqli_real_escape_string($conn, $POST_GEM);
+            }
+            elseif ($i == 8){
+                $Land_Id = mysqli_real_escape_string($conn, $POST_GEM);
+            }
             ++$i;
         }
-        echo "<br /><br />";
+        $sqlPost_Gem = "INSERT INTO tbl_postcodes";
+        echo "Post_Id = ".$Post_Id."<br />";
+        echo "Postcode = ".$Postcode."<br />";
+        echo "Postnummer = ".$Postnummer."<br />";
+        echo "Deelgemeente = ".$Deelgemeente."<br />";
+        echo "Fusiegemeente = ".$Fusiegemeente."<br />";
+        echo "Land_Id = ".$Land_Id."<br />";
+        echo "<br />";
+
+        
         $i = 0;
     }
 }
