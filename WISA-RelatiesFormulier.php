@@ -117,7 +117,7 @@
         <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         <!-- Volgende formulier -->
         <button class="form_next"  id="VolgendeContact" name="VolgendeContact" title="Volgende formulier: Contactgegevens." type="submit">Volgende</button>
-        <label class="form_nexti" onclick="KlikKnop('VolgendeContact')" title="Identiteitskaart inlezen."></label>
+        <label class="form_nexti" onclick="KlikKnop('VolgendeContact')" title="Volgende formulier: Contactgegevens."></label>
     </div>
 </form>
 
