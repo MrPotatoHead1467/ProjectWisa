@@ -80,8 +80,11 @@ if (!isset($_SESSION['Is_Leerling']))
     }
 ?>
 
+    <!-- Icons -->
+    <label class="form_bsdi" onclick="KlikKnop('Bestand_persoon')" title="Document selecteren."></label>
+    <label class="form_eidi" onclick="KlikKnop('EID_Lezen')" title="Identiteitskaart inlezen."></label>
 
-<div>
+    <!-- Bestaand persoon opzoeken -->
     <form action="WISA-Persoonsformulier_Check.php" method="post">
         <div class="form_box_zoek">
             <label class="form_lbl" for="Persoon_Zoeken_in">Persoon zoeken</label><br />
@@ -104,13 +107,12 @@ if (!isset($_SESSION['Is_Leerling']))
             <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
         </div>
     </form>
-</div>
+
 
 <!-- EID inlezen -->
 <div class="form_box_1">
     <form action="EID_Lezen.php" method="post">
         <button class="form_eid" id="EID_Lezen" name="EID_Lezen" type="submit">EID lezen</button>
-        <label class="form_eidi" onclick="KlikKnop('EID_Lezen')" title="Identiteitskaart inlezen."></label>
     </form>
 </div>
 
@@ -119,7 +121,6 @@ if (!isset($_SESSION['Is_Leerling']))
     <!-- bestanden toevoegen -->
     <div class="form_box_1">
         <input class="form_bsd" id="Bestand_persoon" name="Bestand_persoon[]" multiple type="file"/>
-        <label class="form_bsdi" onclick="KlikKnop('Bestand_persoon')" title="Document selecteren."></label>
     </div>
     
     
@@ -178,7 +179,9 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- geboorteplaats -->
         <div class="form_box_1">
             <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
-            <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."
+            <div class="form_zoek">
+                <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."/>
+            </div>
             <?php 
             if ($_SESSION['GB_Plaats'] != '') {
                 $sql = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$_SESSION['GB_Plaats']."'";
@@ -190,7 +193,7 @@ if (!isset($_SESSION['Is_Leerling']))
                 }
             } 
             ?>
-            />
+            
             <datalist class="form_slt" id="GB_Plaats_List">
                 <!-- lijst geboorteplaatsen nog toevoegen -->
                 <?php
@@ -210,7 +213,9 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- nationaliteiten -->
         <div class="form_box_1">
             <label class="form_lbl" for="Nationaliteit_in">Nationaliteit</label><br />
-            <input id="Nationaliteit_in" list="Nationaliteit_List" name="Nationaliteit_in" placeholder="..." 
+            <div class="form_zoek">
+                <input id="Nationaliteit_in" list="Nationaliteit_List" name="Nationaliteit_in" placeholder="..." />
+            </div>
             <?php 
             if ($_SESSION['Nationaliteit'] != '') {
                 $sql = "SELECT * FROM tbl_nationaliteiten WHERE fld_nation_id='".$_SESSION['Nationaliteit']."'";
@@ -222,7 +227,7 @@ if (!isset($_SESSION['Is_Leerling']))
                 }
             } 
             ?>
-            />
+            
             <datalist class="form_slt" id="Nationaliteit_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_nationaliteiten";
@@ -262,7 +267,9 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- godsdiensten -->
         <div class="form_box_1">
             <label class="form_lbl" for="Godsdienst" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">Godsdienst</label><br/>
-            <input id="Godsdienst_in" list="Godsdienst_List" name="Godsdienst_in" placeholder="..." title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven."
+            <div class="form_zoek">
+                <input id="Godsdienst_in" list="Godsdienst_List" name="Godsdienst_in" placeholder="..." title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven."/>
+            </div>
             <?php 
             if ($_SESSION['Godsdienst'] != '') {
                 $sql = "SELECT * FROM tbl_godsdiensten WHERE fld_godsdienst_id='".$_SESSION['Godsdienst']."'";
@@ -274,7 +281,6 @@ if (!isset($_SESSION['Is_Leerling']))
                 }
             } 
             ?>
-            />
             <datalist class="form_slt" id="Godsdienst_List" title="De godsdienst die u kiest, moet overeenkomen met dat van de instelling waarvoor u zich wenst in te schrijven.">
                 <?php
                     $sql = "SELECT * FROM tbl_godsdiensten";
@@ -303,9 +309,10 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- Knop om de Persoon op te slaan -->  
         <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon." type="submit">Persoon opslaan</button>
         <!-- Knop om te annuleren --> 
-        <button id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
+        <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         <!-- Volgende formulier -->
-        <button class="form_ccl"  id="Volgende" name="Volgende" title="Volgende formulier: Relaties." type="submit">Volgende</button>
+        <button class="form_next"  id="VolgendeRelaties" name="VolgendeRelaties" title="Volgende formulier: Relaties." type="submit">Volgende</button>
+        <label class="form_nexti" onclick="KlikKnop('VolgendeRelaties')" title="Identiteitskaart inlezen."></label>
     </div>
 </form>
 

@@ -691,7 +691,7 @@ footer {
             display: block;
             float: right;
             height: 2.4em;
-            margin-right: 2%;
+            margin-top: 3.5vh;
             outline: none;
             transition: 0.3s;
             width: 4em}
@@ -726,6 +726,8 @@ footer {
             display: block;
             float: right;
             height: 2.4em;
+            margin-right: 2%;
+            margin-top: 3.5vh;
             outline: none;
             transition: 0.3s;
             width: 4em}
@@ -753,7 +755,7 @@ footer {
                                                                             background-image:  url("WISA_Print_IconFile-Focus.png");
                                                                             transition: 0.3s;}
 
-.form_picp   {
+.form_picp  {
             width: 0.1px;
         	height: 0.1px;
         	opacity: 0;
@@ -761,7 +763,7 @@ footer {
         	position: absolute;
         	z-index: -1;}
 
-.form_picpi  {
+.form_picpi {
             background-image: url("WISA_Print_IconPic-Normal.png");
             background-position: center;
             background-size: contain;
@@ -775,15 +777,15 @@ footer {
             transition: 0.3s;
             width: 4em}
             
-.form_picpi:hover {
-                background-image:  url("WISA_Print_IconPic-Hover.png");
-                transition: 0.3s;}
+.form_picpi:hover   {
+                    background-image:  url("WISA_Print_IconPic-Hover.png");
+                    transition: 0.3s;}
                 
-.form_picpi:focus, .form_picpi:active {
-                                    background-image:  url("WISA_Print_IconPic-Focus.png");
-                                    transition: 0.3s;}
+.form_picpi:focus, .form_picpi:active   {
+                                        background-image:  url("WISA_Print_IconPic-Focus.png");
+                                        transition: 0.3s;}
             
-.form_lbl  {
+.form_lbl   {
             color: #5A667B;
             font-size: 1em;
             margin: 0;
@@ -935,7 +937,7 @@ footer {
             /*width: auto*/
             margin-top: 1vh;
             /*width: 30%*/}
-                    
+            
 .form_ccl:hover, .form_mn:hover {
                                 border-color: #7C849A;}
 
@@ -943,7 +945,33 @@ footer {
                                 border-color: #FAFAFA;
                                 color: #FAFAFA;
                                 outline: none;
-                                transition: 0.3s}            
+                                transition: 0.3s}     
+                                         
+.form_next  {width: 0.1px;
+        	height: 0.1px;
+        	opacity: 0;
+        	overflow: hidden;
+        	position: absolute;
+        	z-index: -1;}
+
+.form_nexti {
+            background-image:  url("WISA_Print_IconTest.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            float: right;
+            height: 2.4em;
+            margin-right: 2%;
+            /*margin-top: -2em;*/
+            outline: none;
+            transition: 0.3s;
+            width: 4em}
+                    
+          
                                                        
 /* vraagtoevoegen.php */
            

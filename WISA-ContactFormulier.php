@@ -15,7 +15,7 @@
     ?>
     
     <!-- bestanden toevoegen D1-->
-    
+    <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
     
     
     <!-- Persoons gegevens zoeken -->
@@ -40,7 +40,6 @@
                 ?>
             </datalist>
             <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
-            <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
             </div>
         </form>
     </div>
