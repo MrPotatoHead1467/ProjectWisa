@@ -10,17 +10,18 @@
 </head>
 
 <body>
-<?php
-include "WISA-Connection.php";
-?>
+    <?php
+    include "WISA-Connection.php";
+    ?>
+    
+    <!-- icons -->
+    <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
 
 <form action="WISA-RelatiesFormulier_Check.php" method="post">
     
     <!-- bestanden toevoegen -->
-    <div class="form_box_1">
-        <input class="form_bsd" id="Bestand_relatie" name="Bestand_relatie[]" multiple type="file"/>
-        <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
-    </div>
+    <input class="form_bsd" id="Bestand_relatie" name="Bestand_relatie[]" multiple type="file"/>
+    
     
     <!-- keuze leerling -->
     <div class="form_box_1">
@@ -52,7 +53,7 @@ include "WISA-Connection.php";
         <!-- Keuzelijst relatie -->
         <label class='form_lbl' for="Relatie">Relatie</label><br />
         <select class="form_slt" id="Relatie" name="Relatie">
-            <option value="Kies">...</option>
+            <option value="Kies">Soort relatie</option>
             <?php
                 $sql = "SELECT * FROM tbl_soorten";
                 $result = $conn->query($sql);
@@ -63,12 +64,8 @@ include "WISA-Connection.php";
                 }
             ?>
         </select>
-    </div>
-    
-    <div class="form_box_1">
-        <!-- Veld om beschrijving aan de relatie toe te voegen -->
-        <label class="form_lbl" for="Relatie_beschrijving">Beschrijving</label><br/>
-        <textarea class="form_in1" id="Relatie_beschrijving" maxlength="511" name="Relatie_beschrijving" title="Voeg een beschrijving van de relatie tussen deze twee personen. Mag persoon 2 gecontacteerd worden? Zo ja, wanneer?"></textarea>
+        <!-- Beschrijving relatie -->
+        <textarea class="form_in1" id="Relatie_beschrijving" maxlength="511" name="Relatie_beschrijving" placeholder="Beschrijving relatie" title="Voeg een beschrijving van de relatie tussen deze twee personen. Mag persoon 2 gecontacteerd worden? Zo ja, wanneer?"></textarea>
     </div>
     
     <div>
@@ -116,8 +113,11 @@ include "WISA-Connection.php";
     <div>
         <!-- Relatie opslaan knop -->
         <button class="form_btn" type="submit" id="Relatie_opslaan" name="Relatie_opslaan">Relatie opslaan</button>
-        <!-- Volgende knop -->
-        <button class="form_ccl" type="submit" id="Volgende" name="Volgende" title="Volgende formulier: Contactgegevens.">Volgende</button>
+        <!-- Knop om te annuleren --> 
+        <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
+        <!-- Volgende formulier -->
+        <button class="form_next"  id="VolgendeContact" name="VolgendeContact" title="Volgende formulier: Contactgegevens." type="submit">Volgende</button>
+        <label class="form_nexti" onclick="KlikKnop('VolgendeContact')" title="Volgende formulier: Contactgegevens."></label>
     </div>
 </form>
 

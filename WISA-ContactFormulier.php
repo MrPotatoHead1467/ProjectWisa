@@ -15,7 +15,7 @@
     ?>
     
     <!-- bestanden toevoegen D1-->
-    
+    <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
     
     
     <!-- Persoons gegevens zoeken -->
@@ -40,7 +40,6 @@
                 ?>
             </datalist>
             <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
-            <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
             </div>
         </form>
     </div>
@@ -49,50 +48,6 @@
     
         <!-- bestanden toevoegen D2-->
         <input class="form_bsd" id="Bestand_contact" name="Bestand_contact[]" multiple type="file"/>
-        
-        <!-- adres -->
-        <div class="form_box_1">
-            <label class="form_lbl" for="Straat">Adres</label><br />
-            <!-- straat -->
-            <div class="form_box_in">
-                <input id="Straat" name="Straat" placeholder="Straatnaam" type="text" />
-            </div>
-            <!-- huisnummer -->
-            <div class="form_box_in">
-                <input id="Huisnummer" name="Huisnummer" placeholder="Huisnummer" type="text"/>
-            </div>
-            <!-- bus -->
-            <div class="form_box_in">
-                <input id="Bus" name="Bus" placeholder="Bus" type="text"/>
-            </div>
-            <!-- woonplaats -->
-            <select class="form_slt" id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
-                <option value="Kies">Postcode en woonplaats</option>
-                <option value="Niet_BE">Woonplaats niet in Belgie</option>
-                <?php
-                    $sql = "SELECT * FROM tbl_postcodes";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()){
-                            echo "<option value='".$row['fld_postcode_id']."'>".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."</option>";
-                        }
-                    }
-                ?>
-            </select>
-            <!-- woonplaats niet België-->
-            <div id="Woonplaats_niet_be">
-                <div class="form_box_in">
-                    <input id="Woonplaats_niet_be_txt" name="Woonplaats_niet_be_txt" placeholder="Woonplaats (niet in België)" type="text"/>
-                </div>
-            </div>
-            <!-- land -->
-            <br />
-            <select class="form_slt" id="Land" name="Land">
-                <option value="Kies">Land</option>
-            </select>
-            <!-- beschrijving -->
-            <textarea class="form_in1" id="Besch_Woonplaats" name="Besch_Woonplaats" placeholder="Beschrijving woonplaats"></textarea> 
-        </div>
         
         <!-- GSM -->
         <div class="form_box_1">
@@ -196,11 +151,60 @@
         </div>
         
         
+        <!-- adres -->
+        <div class="form_box_1">
+            <label class="form_lbl" for="Straat">Adres</label><br />
+            <!-- straat -->
+            <div class="form_box_in">
+                <input id="Straat" name="Straat" placeholder="Straatnaam" type="text" />
+            </div>
+            <!-- huisnummer -->
+            <div class="form_box_in">
+                <input id="Huisnummer" name="Huisnummer" placeholder="Huisnummer" type="text"/>
+            </div>
+            <!-- bus -->
+            <div class="form_box_in">
+                <input id="Bus" name="Bus" placeholder="Bus" type="text"/>
+            </div>
+            <!-- woonplaats -->
+            <select class="form_slt" id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
+                <option value="Kies">Postcode en woonplaats</option>
+                <option value="Niet_BE">Woonplaats niet in Belgie</option>
+                <?php
+                    $sql = "SELECT * FROM tbl_postcodes";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            echo "<option value='".$row['fld_postcode_id']."'>".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."</option>";
+                        }
+                    }
+                ?>
+            </select>
+            <!-- woonplaats niet België-->
+            <div id="Woonplaats_niet_be">
+                <div class="form_box_in">
+                    <input id="Woonplaats_niet_be_txt" name="Woonplaats_niet_be_txt" placeholder="Woonplaats (niet in België)" type="text"/>
+                </div>
+            </div>
+            <!-- land -->
+            <br />
+            <select class="form_slt" id="Land" name="Land">
+                <option value="Kies">Land</option>
+            </select>
+            <!-- toevoeg knop -->
+            <button class='form_pls1' id="Adres_Opslaan" name="Adres_Opslaan" type="submit">+</button>
+            <!-- beschrijving -->
+            <textarea class="form_in1" id="Besch_Woonplaats" name="Besch_Woonplaats" placeholder="Beschrijving woonplaats"></textarea> 
+        </div>
+        
         <div class="form_box_1">
             <!-- Contact opslaan knop -->
-            <button class="form_btn" id="Contact_Opslaan" name="Contact_Opslaan" type="submit">Opslaan</button>
-            <!-- Volgende knop -->
-            <button class="form_ccl" id="Volgende" name="Volgende" title="Volgende formulier: Loopbaan."type="submit">Volgende</button>
+            <button class="form_btn" id="Contact_Opslaan" name="Contact_Opslaan" type="submit">Gegevens opslaan</button>
+            <!-- Knop om te annuleren --> 
+            <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
+            <!-- Volgende formulier -->
+            <button class="form_next"  id="VolgendeLoopbaan" name="VolgendeLoopbaan" title="Volgende formulier: Loopbaan." type="submit">Volgende</button>
+            <label class="form_nexti" onclick="KlikKnop('VolgendeLoopbaan')" title="Volgende formulier: Loopbaan."></label>
         </div>
     </form>
 
