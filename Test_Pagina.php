@@ -10,9 +10,9 @@ if ($result->num_rows > 0) {
     }
 }
 */
-
+echo "13";
 $auth=array('Username'=>'API','Password'=>'API');
-$client = new SoapClient('http://remote.wisa.be:60581/SOAP?service=LeerlingService');
+$client = new SoapClient("http://remote.wisa.be:60581/SOAP?service=LeerlingService");
 $res=$client->FindLeerling($auth,'00091936134','Van Beneden','Maarten','19/09/2000');
 
 // $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
