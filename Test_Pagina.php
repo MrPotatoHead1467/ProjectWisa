@@ -11,29 +11,28 @@ if ($result->num_rows > 0) {
 }
 */
 
-$auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
-$client = new SoapClient('http://10.0.5.1:8080/SOAP/WisaAPIService.wsdl');
-$res=$client->GetXMLData($auth,'BI_GODS','',5,'');
+$auth=array('Username'=>'API','Password'=>'API');
+$client = new SoapClient('http://remote.wisa.be:60581/SOAP?service=LeerlingService');
+$res=$client->FindLeerling($auth,'00091936134','Van Beneden','Maarten','19/09/2000');
+
+// $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
+// $client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
+// $res=$client->GetXMLData($auth,'BI_LAND','',5,'');
+
+echo $res;
+/**
 $xml_SMART=simplexml_load_string($res);
+
 $json = json_encode($xml_SMART);
 $array = json_decode($json,TRUE);
 foreach ($array as $array2){
     foreach ($array2 as $array3){
         foreach ($array3 as $Gods){
             echo $Gods."<br />";
-            /**
-            $sqlGods = "INSERT INTO tbl_godsdiensten (fld_godsdienst_naam) VALUES ('".$Gods."')";
-            if (mysqli_query($conn, $sqlGods)){
-                echo $Gods.": Gelukt";
-                echo "<br />";
-            }
-            else {
-                echo "Error: " . $sqlGods . "<br>" . mysqli_error($conn);
-            }
-            */
+
         }
 
     }
 }
-
+*/
 ?>
