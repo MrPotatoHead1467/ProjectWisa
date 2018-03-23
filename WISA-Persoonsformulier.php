@@ -83,10 +83,13 @@ if (!isset($_SESSION['Is_Leerling']))
 
 <div>
     <form action="WISA-Persoonsformulier_Check.php" method="post">
-        <div class="form_box_1">
+        <div class="form_box_zoek">
             <label class="form_lbl" for="Persoon_Zoeken_in">Persoon zoeken</label><br />
-            <button id="Persoon_Zoeken_btn" name="Persoon_Zoeken_btn" type="submit">Gegevens invullen</button>
-            <input id="Persoon_Zoeken_in" list="Persoon_Zoeken_List" name="Persoon_Zoeken_in" placeholder="..."/>
+            <button class="form_edit" id="Persoon_Zoeken_btn" name="Persoon_Zoeken_btn" type="submit">Gegevens invullen</button>
+            <div class="form_zoek">
+                <input class="form_in" id="Persoon_Zoeken_in" list="Persoon_Zoeken_List" name="Persoon_Zoeken_in" placeholder="..." />
+                <label class="form_editi" for="Persoon_Zoeken_btn" onclick="KlikKnop('Persoon_Zoeken_btn')" title="Bestaand persoon opzoeken."></label>
+            </div>
             <datalist class="form_slt" id="Persoon_Zoeken_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_personen";
