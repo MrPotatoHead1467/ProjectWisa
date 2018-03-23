@@ -139,19 +139,16 @@ if (!isset($_SESSION['Is_Leerling']))
         </div>
     </div>
     
-    <!-- voornaam -->
+    <!-- naam -->
     <div class="form_box_1">
-        <label class="form_lbl" for="Voornaam">Voornaam</label><br />
+        <label class="form_lbl" for="Voornaam">Naam</label><br />
+        <!-- voornaam -->
         <div class="form_box_in">
-            <input class="form_in" id="Voornaam" name="Voornaam" maxlength="255" type="text"<?php echo "value='".$_SESSION['EID_Voornaam']."'" ?> required="True"/><br />
+            <input class="form_in" id="Voornaam" maxlength="255" name="Voornaam" placeholder="Voornaam" type="text"<?php echo "value='".$_SESSION['EID_Voornaam']."'" ?> required="True"/><br />
         </div>
-    </div>
-    
-    <!-- achternaam -->
-    <div class="form_box_1">
-        <label class="form_lbl" for="Achternaam">Achternaam</label><br />
+        <!-- achternaam -->
         <div class="form_box_in">    
-            <input class="form_in" id="Achternaam" name="Achternaam" maxlength="255" type="text" <?php echo "value='".$_SESSION['EID_Achternaam']."'" ?> required="True"/><br />
+            <input class="form_in" id="Achternaam" maxlength="255" name="Achternaam" placeholder="Achternaam" type="text" <?php echo "value='".$_SESSION['EID_Achternaam']."'" ?> required="True"/><br />
         </div>
     </div>
     
@@ -207,7 +204,6 @@ if (!isset($_SESSION['Is_Leerling']))
                 ?>
             </datalist>
             <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo "value='".$_SESSION['GB_Plaats']."'"; ?>/>
-            <br />
         </div>
         
         <!-- nationaliteiten -->
