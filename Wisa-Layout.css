@@ -634,6 +634,7 @@ footer {
 
 .form_box_zoek  {
                /*border: #5A667B solid 1px;*/
+                height: 3em;
                 margin: 0;
                 margin-bottom: 3vh;
                 padding: 0;
@@ -769,7 +770,7 @@ footer {
             float: right;
             height: 2.4em;
             margin-right: 2%;
-            margin-top: -2.5vh;
+            margin-top: -1vh;
             outline: none;
             transition: 0.3s;
             width: 4em}

@@ -18,8 +18,6 @@
     <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
     
     <div class="form_box_zoek">
-        <label class="form_box_zoek_transparent">iets</label>
-        <label class="form_box_zoek_transparent">iets</label>
     </div>
     
     <div class="form_box_zoek_border">
