@@ -702,7 +702,7 @@ footer {
             display: block;
             float: right;
             height: 2.4em;
-            margin-top: 3.5vh;
+            margin-top: 2vh;
             outline: none;
             transition: 0.3s;
             width: 4em}
@@ -738,7 +738,7 @@ footer {
             float: right;
             height: 2.4em;
             margin-right: 2%;
-            margin-top: 3.5vh;
+            margin-top: 2vh;
             outline: none;
             transition: 0.3s;
             width: 4em}
