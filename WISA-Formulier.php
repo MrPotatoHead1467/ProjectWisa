@@ -17,17 +17,27 @@
     
         if (isset($_SESSION['gebruiker']))
             {
+                
                 // code voor het openen van een formulier  echo "<script type='text/javascript'>tab_show_info(event, 'SESSION-DING')</script>";
-                if (isset($_SESSION['Formulier']) and $_SESSION['Formulier'] !== '')
+                /**
+                 * 
+                 if (isset($_SESSION['Formulier']) and $_SESSION['Formulier'] != '')
                     {
-                        echo "<script type='text/javascript'>document.getElementById('".$_SESSION['Formulier']."').style.display = 'block'';";
-                            echo "";
+                        echo "<script type='text/javascript'>";
+                            echo "tab_show_info('click', "; echo "'"; echo $_SESSION['Formulier']."')";
                         echo "</script>";
                     }
                 else
                     {
                         echo "";
-                    }
+                    }*/
+                $Formulier = $_SERVER['QUERY_STRING'];
+                $URL = $_SERVER['REQUEST_URI'].$Formulier;
+                $parameters = "'click', '".$Formulier."'";
+                echo "<script type='text/javascript'>";
+                    echo "tab_show_info(".$parameters.")";
+                echo "</script>";
+                
             }
         else
             {
@@ -191,21 +201,11 @@
                 document.getElementsByClassName("tabs_info-box-mess").style.display = "none";
                 //document.getElementsByClassName("tabs_info-box-space").style.display = "block";
             }
-    </script>
-    <script>           
+          
         function tab_show_info(evt, form)
             {
-                //<%Session["Formulier"] = form;%>;
                 var i, tab_info, tab_links;
-                var inhoud = form
-                //var session_value='<%=Session["Formulier"]%>';
-                //alert(session_value); 
-                
-                //'<%Session["Formulier"] = "' + form + '"; %>';
-                //alert('<%=Session["Formulier"] %>');
-                
-                //sessionStorage.setItem("Formulier", inhoud);
-                
+                var inhoud = form     
                 
                 tab_info = document.getElementsByClassName("tabs_info");
                 for (i = 0; i < tab_info.length; i++)
@@ -219,7 +219,11 @@
                     }
                 document.getElementById(form).style.display = "block";
                 evt.currentTarget.className += " active";
-                
+                //document.getElementsByClassName("tabs_names").setActive();
+                //location .assign("http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php?" + form);
+                //document.documentURI("http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php?" + form);
+                //window.history.pushState("?" + form, "WISA | " + form, "http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php");
+                //window.location.href.replace("?" + inhoud;  )
             }
     </script>
   
@@ -229,6 +233,23 @@
 
     <?PHP
         include "WISA-Footer.php";
+        
+        $Formulier = $_SERVER['QUERY_STRING'];
+        $URL = $_SERVER['REQUEST_URI'].$Formulier;
+        
+        if ($Formulier == '?' or $Formulier == '')
+            {
+                //echo "Formulier: ".$Formulier;
+                echo "";
+            }
+        else
+            {
+                $parameters = "'click', '".$Formulier."'";
+                echo "Parameters: ".$parameters;
+                echo "<script type='text/javascript'>";
+                    echo "tab_show_info(".$parameters.")";
+                echo "</script>"; 
+            }
     ?>
 
 </body>

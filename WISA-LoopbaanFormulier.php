@@ -16,6 +16,12 @@
     
     <!-- icons -->
     <label class="form_bsdi" onclick="KlikKnop('Bestand_loopbaan')" title="Document selecteren."></label>
+    
+    <div class="form_box_zoek">
+    </div>
+    
+    <div class="form_box_zoek_border">
+    </div>
 
     <form action="WISA-LoopbaanFormulier_Check.php" method="post">
     

@@ -17,7 +17,6 @@
     <!-- bestanden toevoegen D1-->
     <label class="form_bsdi" onclick="KlikKnop('Bestand_contact')" title="Document selecteren."></label>
     
-    
     <!-- Persoons gegevens zoeken -->
     <div>
         <form action="WISA-ContactFormulier_Check.php" method="post">
@@ -42,6 +41,9 @@
             <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
             </div>
         </form>
+    </div>
+    
+    <div class="form_box_zoek_border">
     </div>
     
     <form action="WISA-ContactFormulier_Check.php" method="post">

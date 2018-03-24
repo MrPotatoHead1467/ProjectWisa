@@ -593,6 +593,7 @@ footer {
                 position: fixed;
                 text-align: left;
                 top: 35vh;
+                transition: 0.3s;
                 width: 66%;}
                 
  .tabs_info-box-space   {
@@ -602,6 +603,7 @@ footer {
                         padding: 0;
                         margin: 0;
                         height: 100%;
+                        transition: 0.3s;
                         width: 100%}
                         
 #mess   {
@@ -619,6 +621,7 @@ footer {
             display:  none;
             padding: 0;
             margin: 0;
+            transition: 0.3s;
             width: 100%;}
             
 /* algemene layout formulieren.php */
@@ -630,11 +633,19 @@ footer {
             width: 100%}
 
 .form_box_zoek  {
+               /*border: #5A667B solid 1px;*/
+                height: 3em;
                 margin: 0;
-                margin-bottom: 5vh;
+                margin-bottom: 3vh;
                 padding: 0;
-                padding-bottom: 2vh;
                 width: 100%}
+
+.form_box_zoek_border   {
+                        border-bottom: #7C849A solid 3px;
+                        margin-bottom: 3vh;
+                        margin-left: 2%;
+                        margin-right: 2%;
+                        width: 96%;}
             
 .form_edit  {
             width: 0.1px;
@@ -759,7 +770,7 @@ footer {
             float: right;
             height: 2.4em;
             margin-right: 2%;
-            margin-top: -2.5vh;
+            margin-top: -1vh;
             outline: none;
             transition: 0.3s;
             width: 4em}
