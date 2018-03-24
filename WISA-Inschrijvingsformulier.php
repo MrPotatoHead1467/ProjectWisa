@@ -14,7 +14,9 @@
 <?php
 include "WISA-Connection.php";
 ?>
-
+    
+    
+    
     <form action="WISA-Inschrijvingsformulier_Check.php" method="post" enctype="multipart/form-data">
     
         <?php

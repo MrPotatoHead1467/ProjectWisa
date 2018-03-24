@@ -107,6 +107,9 @@ if (!isset($_SESSION['Is_Leerling']))
             <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
         </div>
     </form>
+    
+    <div class="form_box_zoek_border">
+    </div>
 
 
 <!-- EID inlezen -->

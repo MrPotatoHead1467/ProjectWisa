@@ -633,11 +633,18 @@ footer {
             width: 100%}
 
 .form_box_zoek  {
+               /*border: #5A667B solid 1px;*/
                 margin: 0;
-                margin-bottom: 5vh;
+                margin-bottom: 3vh;
                 padding: 0;
-                padding-bottom: 2vh;
                 width: 100%}
+
+.form_box_zoek_border   {
+                        border-bottom: #7C849A solid 3px;
+                        margin-bottom: 3vh;
+                        margin-left: 2%;
+                        margin-right: 2%;
+                        width: 96%;}
             
 .form_edit  {
             width: 0.1px;
