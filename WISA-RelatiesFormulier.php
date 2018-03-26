@@ -31,22 +31,42 @@
     
     <!-- keuze leerling -->
     <div class="form_box_1">
-        <label class='form_lbl' for="Leerling">Leerling</label><br />
+        <label class='form_lbl' for="Leerling_Zoeken">Leerling</label><br />
         <?php 
             /** Als er een leerling is meegenomen uit persoonsformulier wordt zijn naam automatisch getoond */
             if (isset($_SESSION['Leerling'])){
-                echo '<label for="Persoon_1">Naam leerling</label><br />';
                 $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id=".$_SESSION['Leerling'];
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "<p id='Persoon_1'>".$row['fld_persoon_naam']."</p>";
+                        echo "<div class='form_box_in'>";
+                            echo "<input class='form_in' disabled='true' id='Leerling_Zoeken' name='Leerling_Zoeken' type='text' value='".$row['fld_persoon_naam']."'/>";
+                        echo "</div>";
                     }
                 }
             }
             /** Als er geen leerling is meegenomen wordt er een zoekvak met keuzelijst tevoorschijn */
-                
-            
+            else {
+                echo '<div class="form_box_zoek">';
+                    echo '<label class="form_lbl" for="Leerling_Zoeken_in">Leerling zoeken</label><br />';
+                    echo '<button class="form_edit" id="Leerling_Zoeken_btn" name="Leerling_Zoeken_btn" type="submit">Gegevens invullen</button>';
+                    echo '<div class="form_zoek">';
+                        echo '<input class="form_in" id="Leerling_Zoeken_in" list="Leerling_Zoeken_List" name="Leerling_Zoeken_in" placeholder="..." />';
+                        echo '<label class="form_editi" for="Leerling_Zoeken_btn" onclick="KlikKnop(&#39;Leerling_Zoeken_btn&#39;)" title="Bestaand Leerling opzoeken."></label>';
+                    echo '</div>';
+                    echo '<datalist class="form_slt" id="Leerling_Zoeken_List" >';
+                    
+                        $sql = "SELECT * FROM tbl_personen";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<option id='".$row['fld_Leerling_id']."' value='".$row['fld_Leerling_naam']." (".$row['fld_Leerling_gb_datum'].") '>";
+                            }
+                        }
+                echo '</datalist>';
+                echo '<input id="Leerling_Zoeken" name="Leerling_Zoeken" type="hidden"/>';
+            echo '</div>';
+            }
         ?>
     </div>
         
@@ -63,16 +83,16 @@
                 if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)){
                         echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].") '>";
+                        echo "<option value='".$row['fld_persoon_id']."'>".$row['fld_persoon_id']."</option>";
                     }
                 }
             ?>
         </datalist>
-        <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
+        <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="text"/>
     </div>
-    
     <div  class="form_box_1">
         <!-- Keuzelijst relatie -->
-        <label class='form_lbl' for="Relatie_Zoeken_In">Relatie</label><br />
+        <label class='form_lbl' for="Relatie_Zoeken_in">Relatie</label><br />
         <div class="form_zoek">
             <input class="form_in" id="Relatie_Zoeken_in" list="Relatie_Zoeken_List" name="Relatie_Zoeken_in" placeholder="Soort relatie" />
         </div>
@@ -87,7 +107,7 @@
                 }
             ?>
         </datalist>
-        <input id="Relatie_Zoeken" name="Relatie_Zoeken" type="hidden"/>  
+        <input id="Relatie_Zoeken" name="Relatie_Zoeken" type="text"/>  
         
         <!-- Beschrijving relatie -->
         <textarea class="form_in1" id="Relatie_beschrijving" maxlength="511" name="Relatie_beschrijving" placeholder="Beschrijving relatie" title="Voeg een beschrijving van de relatie tussen deze twee personen. Mag persoon 2 gecontacteerd worden? Zo ja, wanneer?"></textarea>
@@ -95,7 +115,7 @@
     
     <div>
             <?php
-                if (isset($_SESSION['Personen_Relaties']))
+                if (isset($_SESSION['Personen_Relaties']) && $_SESSION['Personen_Relaties'] != '')
                     {
                     $i = 0;
                     foreach($_SESSION['Personen_Relaties'] as $x => $value) 
@@ -112,7 +132,7 @@
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()){
-                                $x_value = $row['fld_soort_naam'];
+                                $value = $row['fld_soort_naam'];
                             }
                         }
                         
@@ -127,7 +147,7 @@
                             /** Verwijderknop */
                             echo "<button class='form_mn' id='".$i."' name='".$i."' title='Relatie verwijderen.' type='submit' >x</button>";
                             /** Al toegevoegde relaties*/
-                            echo "<label class='form_lbl' for='".$i."' title='Bestaande relatie: ".$x.", ".$x_value." van ".$Leerling.".' type='text'>".$x.", ".$x_value." van ".$Leerling."</label><br/>";
+                            echo "<label class='form_lbl' for='".$i."' title='Bestaande relatie: ".$x.", ".$value." van ".$Leerling.".' type='text'>".$x.", ".$x_value." van ".$Leerling."</label><br/>";
                         echo '</div>';
                         ++$i;
                         }
@@ -156,6 +176,14 @@
         }
         $(function()
             {
+              $('#Leerling_Zoeken_in').on('input',function() 
+                                                  {
+                                                    var opt = $('option[value="'+$(this).val()+'"]');
+                                                    document.getElementById("Leerling_Zoeken").value = opt.attr('id');
+                                                  });
+            });
+        $(function()
+            {
               $('#Persoon_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
@@ -167,9 +195,10 @@
               $('#Relatie_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
-                                                    document.getElementById("Relaties_Zoeken").value = opt.attr('id');
+                                                    document.getElementById("Relatie_Zoeken").value = opt.attr('id');
                                                   });
             });
+        
         
     
     </script>
