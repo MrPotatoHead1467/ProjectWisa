@@ -5,6 +5,7 @@
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 	<title>WISA | Relaties formulier</title>
 </head>
@@ -44,31 +45,50 @@
                 }
             }
             /** Als er geen leerling is meegenomen wordt er een zoekvak met keuzelijst tevoorschijn */
-            
+                
             
         ?>
     </div>
         
     <!-- Persoon 2 -->
     <div  class="form_box_1">
-        <label class='form_lbl' for="Persoon2">Tweede persoon</label><br />
+        <label class="form_lbl" for="Persoon_Zoeken_in">Tweede persoon</label><br />
+        <div class="form_zoek">
+            <input class="form_in" id="Persoon_Zoeken_in" list="Persoon_Zoeken_List" name="Persoon_Zoeken_in" placeholder="..." />
+        </div>
+        <datalist class="form_slt" id="Persoon_Zoeken_List" >
+            <?php
+                $sql = "SELECT * FROM tbl_personen";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].") '>";
+                    }
+                }
+            ?>
+        </datalist>
+        <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
     </div>
     
     <div  class="form_box_1">
         <!-- Keuzelijst relatie -->
-        <label class='form_lbl' for="Relatie">Relatie</label><br />
-        <select class="form_slt" id="Relatie" name="Relatie">
-            <option value="Kies">Soort relatie</option>
+        <label class='form_lbl' for="Relatie_Zoeken_In">Relatie</label><br />
+        <div class="form_zoek">
+            <input class="form_in" id="Relatie_Zoeken_in" list="Relatie_Zoeken_List" name="Relatie_Zoeken_in" placeholder="Soort relatie" />
+        </div>
+        <datalist class="form_slt" id="Relatie_Zoeken_List" >
             <?php
-                $sql = "SELECT * FROM tbl_soorten";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['fld_soort_id']."'>".$row['fld_soort_naam']."</option>";
+                $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_item = 'Relatie'";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "<option id='".$row['fld_soort_id']."' value='".$row['fld_soort_naam']."'>";
                     }
                 }
             ?>
-        </select>
+        </datalist>
+        <input id="Relatie_Zoeken" name="Relatie_Zoeken" type="hidden"/>  
+        
         <!-- Beschrijving relatie -->
         <textarea class="form_in1" id="Relatie_beschrijving" maxlength="511" name="Relatie_beschrijving" placeholder="Beschrijving relatie" title="Voeg een beschrijving van de relatie tussen deze twee personen. Mag persoon 2 gecontacteerd worden? Zo ja, wanneer?"></textarea>
     </div>
@@ -115,7 +135,10 @@
             ?>
         </div>
     
-    <div>
+    <div class="form_box_btn_border">
+    </div>
+    
+    <div class="form_box_btn">
         <!-- Relatie opslaan knop -->
         <button class="form_btn" type="submit" id="Relatie_opslaan" name="Relatie_opslaan">Relatie opslaan</button>
         <!-- Knop om te annuleren --> 
@@ -131,6 +154,23 @@
         {
             document.getElementById(knop).click();
         }
+        $(function()
+            {
+              $('#Persoon_Zoeken_in').on('input',function() 
+                                                  {
+                                                    var opt = $('option[value="'+$(this).val()+'"]');
+                                                    document.getElementById("Persoon_Zoeken").value = opt.attr('id');
+                                                  });
+            });
+        $(function()
+            {
+              $('#Relatie_Zoeken_in').on('input',function() 
+                                                  {
+                                                    var opt = $('option[value="'+$(this).val()+'"]');
+                                                    document.getElementById("Relaties_Zoeken").value = opt.attr('id');
+                                                  });
+            });
+        
     
     </script>
 

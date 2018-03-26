@@ -5,6 +5,7 @@
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
 	<title>Inschrijvingsformulier</title>
     
@@ -197,7 +198,11 @@ include "WISA-Connection.php";
                     }
             }
         ?>
-        <div>
+        
+        <div class="form_box_btn_border">
+        </div>
+        
+        <div class="form_box_btn">
             <!-- inschrijving voltooien -->
             <button type="submit" name="Inschrijving_Opslaan">Inschrijving voltooien</button>
             <!-- Knop om te annuleren --> 

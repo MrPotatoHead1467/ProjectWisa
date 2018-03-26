@@ -187,7 +187,7 @@ if (isset($_POST['Persoon_Opslaan'])){
         $_SESSION['Bisnr'] = '';
         $_SESSION['Godsdienst'] = '';
         $_SESSION['Overleden'] = 0;
-        header("Location: WISA-Formulier.php?Gelukt");
+        header("Location: WISA-Formulier.php?persoon");
         
     }
     else {
@@ -198,7 +198,7 @@ if (isset($_POST['Persoon_Opslaan'])){
 if (isset($_POST['Persoon_Zoeken_btn'])){
     $Persoon_Zoeken = mysqli_real_escape_string($conn, $_POST['Persoon_Zoeken']);
     if ($Persoon_Zoeken == '' || $Persoon_Zoeken == 'undefined'){
-        header("Location: WISA-Formulier.php");
+        header("Location: WISA-Formulier.php?persoon");
     }
     $sqlPersoon_Zoeken = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$Persoon_Zoeken."'";
     $result = $conn->query($sqlPersoon_Zoeken);
@@ -233,25 +233,33 @@ if (isset($_POST['Persoon_Zoeken_btn'])){
             echo $_SESSION['Godsdienst']."<br />";
             $_SESSION['Overleden'] = $row['fld_persoon_overleden'];
             echo $_SESSION['Overleden']."<br />";
-            header("Location: WISA-Formulier.php");
+            header("Location: WISA-Formulier.php?persoon");
         }
     }
 }
-if (isset($_POST['Annuleer'])){
-    $_SESSION['Bestaande_Persoon'] = 0;
-    $_SESSION['Bestaande_Persoon_Id'] = '';
-    $_SESSION['Is_Leerling'] = 1;
-    $_SESSION['EID_Voornaam'] = '';
-    $_SESSION['EID_Achternaam'] = '';
-    $_SESSION['Geslacht'] = '';
-    $_SESSION['EID_GB_Datum'] = '';
-    $_SESSION['GB_Plaats'] = '';
-    $_SESSION['Nationaliteit'] = '';
-    $_SESSION['EID_Rijksregisternr'] = '';
-    $_SESSION['Geen_Rijksregisternr'] = 0;
-    $_SESSION['Bisnr'] = '';
-    $_SESSION['Godsdienst'] = '';
-    $_SESSION['Overleden'] = 0;
-    header("Location: WISA-Formulier.php");
-}
+    if (isset($_POST['Annuleer']))
+        {
+            $_SESSION['Bestaande_Persoon'] = 0;
+            $_SESSION['Bestaande_Persoon_Id'] = '';
+            $_SESSION['Is_Leerling'] = 1;
+            $_SESSION['EID_Voornaam'] = '';
+            $_SESSION['EID_Achternaam'] = '';
+            $_SESSION['Geslacht'] = '';
+            $_SESSION['EID_GB_Datum'] = '';
+            $_SESSION['GB_Plaats'] = '';
+            $_SESSION['Nationaliteit'] = '';
+            $_SESSION['EID_Rijksregisternr'] = '';
+            $_SESSION['Geen_Rijksregisternr'] = 0;
+            $_SESSION['Bisnr'] = '';
+            $_SESSION['Godsdienst'] = '';
+            $_SESSION['Overleden'] = 0;
+            header("Location: WISA-Formulier.php?persoon");
+        }
+
+    if (isset($_POST['Volgende']))
+        {
+            header("Location: WISA-Formulier.php?relaties");
+        }
+        
+        
 ?>

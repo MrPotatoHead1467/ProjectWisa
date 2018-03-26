@@ -5,6 +5,7 @@
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 	<title>WISA | Loopbaan formulier</title>
 </head>
@@ -104,7 +105,11 @@
             </div>
         </div>
         
-        <div class="form_box_1">
+        
+        <div class="form_box_btn_border">
+        </div>
+        
+        <div class="form_box_btn">
             <!-- Loopbaan opslaan knop -->
             <button class="form_btn" type="submit" id="Loopbaan_Opslaan" name="Loopbaan_Opslaan" title="Schooljaar opslagen en formulier leegmaken voor het volgende schooljaar.">Jaar opslaan</button>
             <!-- Knop om te annuleren --> 
