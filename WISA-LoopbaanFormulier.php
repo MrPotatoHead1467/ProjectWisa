@@ -47,12 +47,21 @@
         <!-- richting -->
         <div class="form_box_1">
             <label class="form_lbl">Richting</label><br />
-            <select class="form_slt" id="Richting">
-                <option value="Kies">...</option>
+            <div class="form_zoek">
+                <input class="form_in" id="Richting_Zoeken_in" list="Richting_Zoeken_List" name="Richting_Zoeken_in" placeholder="..." />
+            </div>
+            <datalist class="form_slt" id="Richting_Zoeken_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_richtingen";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option id='".$row['fld_richting_id']."' value='".$row['fld_richting_naam']."'>";
+                        }
+                    }
                 ?>
-            </select>
+            </datalist>
+            <input id="Soort_GSM_Zoeken" name="Soort_GSM_Zoeken" type="hidden"/> 
         </div>
         
         <!--
@@ -70,15 +79,21 @@
         
         <div class="Dit_Schooljaar" id="Dit_Schooljaar">        
             <div>
+                
+                
+                
                 <!-- Attest -->
                 <div class="form_box_1">
-                    <label class="form_lbl" for="Attest_Slct">Attest</label><br/>
-                    <select class="form_slt" id="Attest_Slct" onchange="display_attest()">
-                        <option value="Kies">...</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                    </select>
+                    <label class="form_lbl" for="Attest_Zoeken_in">Attest</label><br/>
+                    <div class="form_zoek">
+                        <input class="form_in" id="Attest_Zoeken_in" list="Attest_Zoeken_List" name="Attest_Zoeken_in" placeholder="..." />
+                    </div>
+                    <datalist class="form_slt" id="Attest_Zoeken_List" >
+                        <option value="A">
+                        <option value="B">
+                        <option value="C">
+                    </datalist>
+                    <input id="Attest_Zoeken" name="Attest_Zoeken" type="hidden"/>
                 </div>
                 
                 <!-- Attest -->
@@ -89,6 +104,7 @@
                     </div>
                 </div>
                 
+                <!-- clausule -->
                 <div class="form_box_1" id="Clausule_Div">
                     <label class="form_lbl" for="Clausule">Clausule</label><br />
                     <div class="form_box_in">  
@@ -97,11 +113,27 @@
                 </div>
             </div>
             
+            <!-- school -->
             <div class="form_box_1">
                 <label class="form_lbl" for="School">School</label><br />
-                <select class="form_slt" id="School">
-                    <option value="Kies">...</option>
-                </select>
+                
+                <div class="form_zoek">
+                    <input class="form_in" id="School_Zoeken_in" list="School_Zoeken_List" name="School_Zoeken_in" placeholder="..." />
+                </div>
+                <datalist class="form_slt" id="School_Zoeken_List" >
+                    <?php
+                        $sql = "SELECT * FROM tbl_scholen";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) 
+                            {
+                                while($row = mysqli_fetch_assoc($result))
+                                    {
+                                        echo "<option id='".$row['fld_school_id']."' value='".$row['fld_school_naam']."'>";
+                                    }
+                            }
+                    ?>
+                </datalist>
+                <input id="School_Zoeken" name="School_Zoeken" type="hidden"/>
             </div>
         </div>
         
@@ -142,8 +174,8 @@
         }
         
         function display_attest(){
-            var Attest = document.getElementById("Attest_Slct");
-            if (Attest.value == "B") {
+            var Attest = document.getElementById("Attest_Zoeken_in").value;
+            if (Attest == "B") {
                 document.getElementById('Clausule_Div').style.display = 'block';
             }
             else {
