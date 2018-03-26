@@ -249,24 +249,27 @@ INSERT INTO `tbl_gegevens_soorten` (`fld_gegeven_soort_id`, `fld_gegeven_soort_n
 CREATE TABLE IF NOT EXISTS `tbl_godsdiensten` (
   `fld_godsdienst_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_godsdienst_naam` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `fld_godsdienst_wisa_id` int(11) NOT NULL,
+  `fld_godsdienst_afkorting` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
+  `fld_godsdienst_code` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`fld_godsdienst_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- Dumpen data van tabel wisa-db-test.tbl_godsdiensten: ~12 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_godsdiensten` DISABLE KEYS */;
-INSERT INTO `tbl_godsdiensten` (`fld_godsdienst_id`, `fld_godsdienst_naam`) VALUES
-	(1, 'Onbekend'),
-	(2, 'Niet van toepassing (hoofdstructuur = 1xx)'),
-	(3, 'Cultuurbeschouwing'),
-	(4, 'Eigen cultuur en religie (hoofdstructuur = 3xx'),
-	(5, 'Islamitische godsdienst'),
-	(6, 'IsraÃ«lische godsdienst'),
-	(7, 'Katholieke godsdienst'),
-	(8, 'Niet-confessionele zedenleer'),
-	(9, 'Orthodoxe godsdienst'),
-	(10, 'Protestantse godsdienst'),
-	(11, 'Anglicaanse godsdienst'),
-	(12, 'vrijstelling (of niet van toepassing bij hoofdstructuur = 3xx)');
+INSERT INTO `tbl_godsdiensten` (`fld_godsdienst_id`, `fld_godsdienst_naam`, `fld_godsdienst_wisa_id`, `fld_godsdienst_afkorting`, `fld_godsdienst_code`) VALUES
+	(1, 'Onbekend', 654, '', ''),
+	(2, 'Niet van toepassing (hoofdstructuur = 1xx)', 655, '', '0000'),
+	(3, 'Cultuurbeschouwing', 656, 'CBS', '0052'),
+	(4, 'Eigen cultuur en religie (hoofdstructuur = 3xx', 657, 'ECR', '0063'),
+	(5, 'Islamitische godsdienst', 658, 'ISL', '0135'),
+	(6, 'IsraÃ«lische godsdienst', 659, 'ISR', '0136'),
+	(7, 'Katholieke godsdienst', 660, 'KGD', '0140'),
+	(8, 'Niet-confessionele zedenleer', 661, 'NCZ', '0187'),
+	(9, 'Orthodoxe godsdienst', 662, 'ORT', '0194'),
+	(10, 'Protestantse godsdienst', 663, 'PGD', '0225'),
+	(11, 'Anglicaanse godsdienst', 664, 'ANG', '0418'),
+	(12, 'vrijstelling (of niet van toepassing bij hoofdstructuur = 3xx)', 665, 'VRG', '9999');
 /*!40000 ALTER TABLE `tbl_godsdiensten` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_klassen wordt geschreven
@@ -1076,7 +1079,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personen` (
   PRIMARY KEY (`fld_persoon_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen: ~16 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_personen: ~17 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen` DISABLE KEYS */;
 INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_persoon_achternaam`, `fld_persoon_naam`, `fld_persoon_gb_datum`, `fld_persoon_geslacht`, `fld_godsdienst_id_fk`, `fld_persoon_nation_id_fk`, `fld_persoon_gb_plaats`, `fld_persoon_register_nr`, `fld_persoon_bis_nr`, `fld_persoon_leerling`, `fld_persoon_overleden`) VALUES
 	(3, 'Test', 'test', 'Test test', '2018-02-27', 'M', 4, 1, 'Werkt', '18022700054', NULL, 1, 0),

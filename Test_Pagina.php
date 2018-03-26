@@ -1,5 +1,4 @@
 <?php
-include "WISA-Connection.php";
 /**
 $sql = "SELECT * FROM tbl_landen";
 $result = $conn->query($sql);
@@ -11,9 +10,12 @@ if ($result->num_rows > 0) {
 }
 */
 echo "13";
-$auth=array('Username'=>'API','Password'=>'API');
-$client = new SoapClient("http://remote.wisa.be:60581/SOAP?service=LeerlingService");
-$res=$client->FindLeerling($auth,'00091936134','Van Beneden','Maarten','19/09/2000');
+ $auth=array('Username'=>'API','Password'=>'API');
+echo "14";
+ $client = new SoapClient("http://remote.wisa.be:60581/SOAP?service=LeerlingService");
+// $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
+// $client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
+$res=$client->FindLeerling('API','API','00091936134','Van Beneden','Maarten','2000-09-19T00:00',false);
 
 // $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
 // $client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
