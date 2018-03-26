@@ -27,6 +27,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
 	<meta name="author" content="KSLeuven" />
     
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 	<title>WISA | Beheer vragen</title>
 
@@ -179,8 +180,11 @@ $_SESSION['Formulier'] = "nieuwevraag"
             <label class="form_lbl" for="Verplicht" title="Aanvinken indien de vraag verplicht beantwoord moet worden.">Antwoord verplicht</label>
         </div>
       
-      
-        <div class="form_box_1">
+        
+        <div class="form_box_btn_border">
+        </div>
+        
+        <div class="form_box_btn">
             <!-- Knop om de vraag op te slaan -->
             <button class="form_btn" id="Vraag_opslaan" name="Vraag_opslaan" title="Vraag opslagen en formulier leegmaken voor de volgende vraag." type="submit">Vraag opslaan</button>
             <!-- Knop om te annuleren, alle -->

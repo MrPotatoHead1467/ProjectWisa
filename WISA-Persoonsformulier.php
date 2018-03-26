@@ -304,8 +304,11 @@ if (!isset($_SESSION['Is_Leerling']))
         </div>
     </div>
     
+    <div class="form_box_btn_border">
+    </div>
+    
     <!-- persoon opslaan knop -->
-    <div class="form_box_1">
+    <div class="form_box_btn">
         <!-- Knop om de Persoon op te slaan -->  
         <button class="form_btn"  id="Persoon_Opslaan" name="Persoon_Opslaan" title="Persoon opslagen en formulier leegmaken voor de volgende persoon." type="submit">Persoon opslaan</button>
         <!-- Knop om te annuleren --> 

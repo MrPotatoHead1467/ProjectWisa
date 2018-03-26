@@ -219,6 +219,7 @@
                     }
                 document.getElementById(form).style.display = "block";
                 evt.currentTarget.className += " active";
+                evt.currentTarget.className += " focus";
                 //document.getElementsByClassName("tabs_names").setActive();
                 //location .assign("http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php?" + form);
                 //document.documentURI("http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php?" + form);
