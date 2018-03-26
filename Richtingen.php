@@ -17,14 +17,8 @@ $client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl')
 // /**
 $res=$client->GetXMLData($auth,'BI_RICHT','',5,'');
 
-// /**
+ /**
 $xml_SMART=simplexml_load_string($res);
-if ($xml_SMART === false) {
-    echo "Failed loading XML: ";
-    foreach(libxml_get_errors() as $error) {
-        echo "<br>", $error->message;
-    }
-}
 $json = json_encode($xml_SMART);
 $array = json_decode($json,TRUE);
 $i = 0;
@@ -40,17 +34,13 @@ foreach ($array as $array2){
     }
 }
 // */
-/**
+///**
 $res=$client->GetCSVData($auth,'BI_RICHT','',true,';','');
 // /**
 $i = 0;
 $explode = explode(";",$res);
 foreach ($explode as $exploded){
-    if ($exploded == ''){
-        
-    }
-    echo $i."<br />";
-    ++$i;
+    echo $exploded."<br />";
     
     // echo $exploded."<br />";
 }

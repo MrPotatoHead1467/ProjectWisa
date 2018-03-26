@@ -10,8 +10,8 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Persoon_1']);
     }
     
-    $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie']);
-    $Persoon_2 = mysqli_real_escape_string($conn, $_POST['Persoon_2']);
+    $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie_Zoeken']);
+    $Persoon_2 = mysqli_real_escape_string($conn, $_POST['Persoon_Zoeken']);
     $Beschrijving = mysqli_real_escape_string($conn, $_POST['Relatie_beschrijving']);
     
     $sqlRelatie = "INSERT INTO tbl_personen_linken (fld_master_id_fk, fld_child_id_fk, fld_soort_id_fk, fld_persoon_link_beschrijving)
@@ -22,34 +22,21 @@ if (isset($_POST['Relatie_opslaan'])){
              $_SESSION['Personen_Relaties'][$Persoon_2] = $Relatie;
         }
         else {
-             $_SESSION['Personen_Relaties'][$Persoon_2] = $Relatie;
+             $_SESSION['Personen_Relaties'] = array($Persoon_2 => $Relatie);
+        }   
+        echo $Persoon_1;
+        echo $Persoon_2;
+        echo $Relatie;
+        foreach($_SESSION['Personen_Relaties'] as $x => $value){
+            echo $x." - ".$value;
         }
-                
-        if (isset($_SESSION['Filter_1'])){
-            unset($_SESSION['Filter_1']);
-        }
-        if (isset($_SESSION['Filter_2'])){
-            unset($_SESSION['Filter_2']);
-        }
-        
-        header("Location: WISA-Formulier.php");
+                        
     }
     else {
         echo "Error: " . $sqlRelatie . "<br>" . mysqli_error($conn);
     }
 }
 
-if (isset($_POST['Filter_1_Zoeken'])){
-    $Filter_1 = mysqli_real_escape_string($conn, $_POST['Filter_1']);
-    $_SESSION['Filter_1'] = "SELECT * FROM tbl_personen WHERE fld_persoon_naam LIKE '%".$Filter_1."%'";
-    header("Location: WISA-Formulier.php");
-}
-
-if (isset($_POST['Filter_2_Zoeken'])){
-    $Filter_2 = mysqli_real_escape_string($conn, $_POST['Filter_2']);
-    $_SESSION['Filter_2'] = "SELECT * FROM tbl_personen WHERE fld_persoon_naam LIKE '%".$Filter_2."%'";
-    header("Location: WISA-Formulier.php");
-}
 
 if (isset($_SESSION['Personen_Relaties'])){
     $i=0;
