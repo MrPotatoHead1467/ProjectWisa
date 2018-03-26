@@ -206,7 +206,7 @@ if (!isset($_SESSION['Is_Leerling']))
                     }
                 ?>
             </datalist>
-            <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo "value='".$_SESSION['GB_Plaats']."'"; ?>/>
+            <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo 'value="'.$_SESSION["GB_Plaats"].'"'; ?>/>
         </div>
         
         <!-- nationaliteiten -->

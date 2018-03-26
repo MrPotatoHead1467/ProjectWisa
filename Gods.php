@@ -12,17 +12,21 @@ if ($result->num_rows > 0) {
 */
 
 $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
-$client = new SoapClient('http://10.0.5.1:8080/SOAP/WisaAPIService.wsdl');
+$client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
 // /**
 $res=$client->GetXMLData($auth,'BI_GODS','',5,'');
 $xml_SMART=simplexml_load_string($res);
 $json = json_encode($xml_SMART);
 $array = json_decode($json,TRUE);
 $i = 0;
+/**
 foreach ($array as $array2){
     foreach ($array2 as $array3){
         foreach ($array3 as $Gods){
-            /**
+            if ($Gods == '?'){
+                $Gods = NULL;
+            }
+            
             if ($i == 0){
                 $Gods_Id = mysqli_real_escape_string($conn, $Gods);
             }
@@ -35,14 +39,20 @@ foreach ($array as $array2){
             elseif ($i == 7){
                 $Afkorting = mysqli_real_escape_string($conn, $Gods);
             }
-            ++$i;
-            */
+            ++$i; 
         }
-        echo "Gods_Id = ".$Gods_Id."<br />";
-        echo "Code = ".$Code."<br />";
-        echo "Godsdienst = ".$Godsdienst."<br />";
-        echo "Afkorting = ".$Afkorting."<br />";
-        echo "<br />";
+        $sqlGods = "INSERT INTO tbl_godsdiensten (fld_godsdienst_naam, fld_godsdienst_wisa_id, fld_godsdienst_afkorting, fld_godsdienst_code) 
+                VALUES ('".$Godsdienst."', '".$Gods_Id."', '".$Afkorting."', '".$Code."')";
+        if (mysqli_query($conn, $sqlGods)){
+            echo "Gods_Id = ".$Gods_Id."<br />";
+            echo "Code = ".$Code."<br />";
+            echo "Godsdienst = ".$Godsdienst."<br />";
+            echo "Afkorting = ".$Afkorting."<br />";
+            echo "<br />";
+        }
+        else {
+            echo "Error: " . $sqlPost_Gem . "<br>" . mysqli_error($conn);
+        }
         $i = 0;
     }
 }
