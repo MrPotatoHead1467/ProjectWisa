@@ -73,9 +73,14 @@
                                 Beheer vragen
                             </button>';
                             
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'bestemmingen'"; echo ')">
+                                Bestemmingen
+                            </button>';
+                            
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
                                 Inschrijvingen goedkeuren
                             </button>';
+                            
                 }
             elseif  ($_SESSION['soort'] == "3")
                 {
@@ -120,6 +125,11 @@
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
                                 Inschrijving
                             </button>';
+                            
+                            
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'bestemmingen'"; echo ')">
+                                Bestemmingen
+                            </button>';     
                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
                                 Beheer vragen
@@ -176,6 +186,12 @@
             <div id="beheervragen" class="tabs_info">
                 <?PHP
                     include "WISA-BeheerVragen.php";
+                ?>
+            </div>
+            
+            <div id="bestemmingen" class="tabs_info">
+                <?PHP
+                    include "WISA-Bestemmingen.php";
                 ?>
             </div>   
             
