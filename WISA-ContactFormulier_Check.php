@@ -6,7 +6,7 @@ if (isset($_POST['Contact_Opslaan'])){
     $Persoon = mysqli_real_escape_string($conn, $_POST['Persoon']);
     $Straat = mysqli_real_escape_string($conn, $_POST['Straat']);
     $Huisnr = mysqli_real_escape_string($conn, $_POST['Huisnummer']);
-    $Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_Lijst']);
+    $Postcode = mysqli_real_escape_string($conn, $_POST['Postcode']);
     if ($Woonplaats == 'Niet_BE'){
         $Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_txt']);
     }
@@ -20,88 +20,158 @@ if (isset($_POST['Contact_Opslaan'])){
         $fld_Bus = ", fld_adres_bus_nr";
     }
     $sqlAdres = "INSERT INTO tbl_adressen(fld_adres_straatnaam, fld_adres_huis_nr".$fld_Bus.", fld_adres_postcode_id_fk, fld_adres_gemeente_id_fk, fld_adres_land_id_fk)
-                   VALUES ('".$Straat."', '".$Huisnrs."'".$Bus.", '"; /** Moet nog af gemaakt worden? */
-}
-
-if (isset($_POST['Zoekvak_Zoeken'])){
-    $Zoekvak = mysqli_real_escape_string($conn, $_POST['Zoekvak']);
-    $_SESSION['Zoekvak'] = "SELECT * FROM tbl_personen WHERE fld_persoon_naam LIKE '%".$Zoekvak."%'";
-    header("Location: WISA-Formulier.php");
+                   VALUES ('".$Straat."', '".$Huisnrs."'".$Bus.", '".$Postcode."'"; /** Moet nog af gemaakt worden? */
 }
 
 if (isset($_POST["GSM_Opslaan"])) {
     $GSM_Opslaan = mysqli_real_escape_string($conn, $_POST['GSM']);
+    $GSM_Soort = mysqli_real_escape_string($conn, $_POST['Soort_GSM_Zoeken']);
+    $GSM_Besch = mysqli_real_escape_string($conn, $_POST['Besch_GSM']);
     if ($GSM_Opslaan !== ''){
+        $GSM_Array = array('GSM_Nr' => $GSM_Opslaan,
+                           'GSM_Soort' => $GSM_Soort,
+                           'GSM_Besch' => $GSM_Besch);
+                           
         if (isset($_SESSION['Mogelijke_GSM_nrs'])) {
-             array_push($_SESSION['Mogelijke_GSM_nrs'],mysqli_real_escape_string($conn, $GSM_Opslaan));
+             array_push($_SESSION['Mogelijke_GSM_nrs'], $GSM_Array);
         }
         else {
-            $_SESSION['Mogelijke_GSM_nrs'] = array(mysqli_real_escape_string($conn, $GSM_Opslaan));
+            $_SESSION['Mogelijke_GSM_nrs'] = array($GSM_Array);
         }
     }
     header("Location: WISA-Formulier.php");
 }
 
 if (isset($_SESSION['Mogelijke_GSM_nrs'])){
+    $i = 0;
     foreach ($_SESSION['Mogelijke_GSM_nrs'] as $Mogelijk_GSM_verwijderen){
-        $Mogelijk_GSM_verwijderen_no_dot = str_replace('.', '_', $Mogelijk_GSM_verwijderen);
-        if (isset($_POST[$Mogelijk_GSM_verwijderen_no_dot])){
-            if (($key = array_search($Mogelijk_GSM_verwijderen, $_SESSION['Mogelijke_GSM_nrs'])) !== false){
-                unset($_SESSION['Mogelijke_GSM_nrs'][$key]);
-                header ("Location: WISA-Formulier.php");
+        while ($i <= 50){
+            if (isset($_POST['GSM_'.$i])){
+                unset($_SESSION['Mogelijke_GSM_nrs'][$i]);
+                header ("Location: WISA-Formulier.php?contact");
             }
+            ++$i;
         }
     }
 }
 
 if (isset($_POST["Telefoon_Opslaan"])) {
-    $Telefoon_Opslaan = mysqli_real_escape_string($conn, $_POST['Telefoon']);
-    if ($Telefoon_Opslaan !== ''){
+    $Tel_Opslaan = mysqli_real_escape_string($conn, $_POST['Telefoon']);
+    $Tel_Soort = mysqli_real_escape_string($conn, $_POST['Soort_Tel_Zoeken']);
+    $Tel_Besch = mysqli_real_escape_string($conn, $_POST['Besch_Tel']);
+    if ($Tel_Opslaan !== ''){
+        $Tel_Array = array('Tel_Nr' => $Tel_Opslaan,
+                           'Tel_Soort' => $Tel_Soort,
+                           'Tel_Besch' => $Tel_Besch);
+                           
         if (isset($_SESSION['Mogelijke_Tel_nrs'])) {
-             array_push($_SESSION['Mogelijke_Tel_nrs'],mysqli_real_escape_string($conn, $Telefoon_Opslaan));
+             array_push($_SESSION['Mogelijke_Tel_nrs'], $Tel_Array);
         }
         else {
-            $_SESSION['Mogelijke_Tel_nrs'] = array(mysqli_real_escape_string($conn, $Telefoon_Opslaan));
+            $_SESSION['Mogelijke_Tel_nrs'] = array($Tel_Array);
         }
     }
-    header("Location: WISA-Formulier.php");
+    header("Location: WISA-Formulier.php?contact");
 }
 
 if (isset($_SESSION['Mogelijke_Tel_nrs'])){
+    $i = 0;
     foreach ($_SESSION['Mogelijke_Tel_nrs'] as $Mogelijk_Tel_verwijderen){
-        $Mogelijk_Tel_verwijderen = str_replace('.', '_', $Mogelijk_Tel_verwijderen);
-        if (isset($_POST[$Mogelijk_Tel_verwijderen])){
-            $Mogelijk_Tel_verwijderen = str_replace('_', '.', $Mogelijk_Tel_verwijderen);
-            if (($key = array_search($Mogelijk_Tel_verwijderen, $_SESSION['Mogelijke_Tel_nrs'])) !== false){
-                unset($_SESSION['Mogelijke_Tel_nrs'][$key]);
-                header ("Location: WISA-Formulier.php");
+        while ($i <= 50){
+            if (isset($_POST['Tel_'.$i])){
+                unset($_SESSION['Mogelijke_Tel_nrs'][$i]);
+                header ("Location: WISA-Formulier.php?contact");
             }
+            ++$i;
         }
     }
 }
 
-if (isset($_POST["Email_Opslaan"])) {
-    $Email_Opslaan = mysqli_real_escape_string($conn, $_POST['Email']);
-    if ($Email_Opslaan !== ''){
-        if (isset($_SESSION['Mogelijke_Emailadressen'])) {
-             array_push($_SESSION['Mogelijke_Emailadressen'],mysqli_real_escape_string($conn, $Email_Opslaan));
+if (isset($_POST["EMail_Opslaan"])) {
+    $EMail_Opslaan = mysqli_real_escape_string($conn, $_POST['EMail']);
+    $EMail_Soort = mysqli_real_escape_string($conn, $_POST['Soort_EMail_Zoeken']);
+    $EMail_Besch = mysqli_real_escape_string($conn, $_POST['Besch_EMail']);
+    if ($EMail_Opslaan !== ''){
+        $EMail_Array = array('EMail' => $EMail_Opslaan,
+                             'EMail_Soort' => $EMail_Soort,
+                             'EMail_Besch' => $EMail_Besch);
+                             
+        if (isset($_SESSION['Mogelijke_EMail'])) {
+             array_push($_SESSION['Mogelijke_EMail'], $EMail_Array);
         }
         else {
-            $_SESSION['Mogelijke_Emailadressen'] = array(mysqli_real_escape_string($conn, $Email_Opslaan));
+            $_SESSION['Mogelijke_EMail'] = array($EMail_Array);
+        }
+    }
+    header("Location: WISA-Formulier.php?contact");
+}
+
+if (isset($_SESSION['Mogelijke_EMail'])){
+    $i = 0;
+    foreach ($_SESSION['Mogelijke_EMail'] as $Mogelijk_EMail_verwijderen){
+        while ($i <= 50){
+            if (isset($_POST['EMail_'.$i])){
+                unset($_SESSION['Mogelijke_EMail'][$i]);
+                header ("Location: WISA-Formulier.php?contact");
+            }
+            ++$i;
+        }
+    }
+}
+if (isset($_POST["Adres_Opslaan"])) {
+    $Adres_Straat = mysqli_real_escape_string($conn, $_POST['Straat']);
+    $Adres_Huisnr = mysqli_real_escape_string($conn, $_POST['Huisnummer']);
+    $Adres_Bus = mysqli_real_escape_string($conn, $_POST['Bus']);
+    if (isset($_POST['Niet_Be'])){
+        $Niet_Be = true;
+        $Adres_Niet_Be = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_in']);
+        $Adres_Land = mysqli_real_escape_string($conn, $_POST['Land_Zoeken']);
+    }
+    else {
+        $Niet_Be = false;
+        $Adres_Postcode = mysqli_real_escape_string($conn, $_POST['Woonplaats']);
+        $Adres_Be = mysqli_real_escape_string($conn, $_POST['Land_Be_Hidden']);
+        $sqlLand = "SELECT * FROM tbl_landen WHERE fld_land_naam = '".$Adres_Be."'";
+        $result = $conn->query($sqlLand);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()){
+                $Adres_Land = $row['fld_land_id'];
+            }
+        }
+    }
+    
+    $Adres_Soort = mysqli_real_escape_string($conn, $_POST['Soort_Adres_Zoeken']);
+    $Adres_Besch = mysqli_real_escape_string($conn, $_POST['Besch_Adres']);
+    if ($Adres_Opslaan !== ''){
+        $Adres_Array = array('Adres_Straat' => $Adres_Straat,
+                             'Adres_Huisnr' => $Adres_Huisnr,
+                             'Adres_Bus' => $Adres_Bus,
+                             'Adres_Niet_Be' => $Niet_Be,
+                             'Adres_Woonplaats' => $Adres_Woonplaats,
+                             'Adres_Land' => $Adres_Land,
+                             'Adres_Soort' => $Adres_Soort,
+                             'Adres_Besch' => $Adres_Besch);
+                             
+        if (isset($_SESSION['Mogelijke_Adressen'])) {
+             array_push($_SESSION['Mogelijke_Adressen'], $Adres_Array);
+        }
+        else {
+            $_SESSION['Mogelijke_Adressen'] = array($Adres_Array);
         }
     }
     header("Location: WISA-Formulier.php");
 }
 
-if (isset($_SESSION['Mogelijke_Emailadressen'])){
-    foreach ($_SESSION['Mogelijke_Emailadressen'] as $Mogelijk_Email_verwijderen){
-        $Mogelijk_Email_verwijderen = str_replace('.', '_', $Mogelijk_Email_verwijderen);
-        if (isset($_POST[$Mogelijk_Email_verwijderen])){
-            $Mogelijk_Email_verwijderen = str_replace('_', '.', $Mogelijk_Email_verwijderen);
-            if (($key = array_search($Mogelijk_Email_verwijderen, $_SESSION['Mogelijke_Emailadressen'])) !== false){
-                unset($_SESSION['Mogelijke_Emailadressen'][$key]);
-                header ("Location: WISA-Formulier.php");
+if (isset($_SESSION['Mogelijke_Adressen'])){
+    $i = 0;
+    foreach ($_SESSION['Mogelijke_Adressen'] as $Mogelijk_Adres_verwijderen){
+        while ($i <= 50){
+            if (isset($_POST['Adres_'.$i])){
+                unset($_SESSION['Mogelijke_Adressen'][$i]);
+                header ("Location: WISA-Formulier.php?contact");
+                
             }
+            ++$i;
         }
     }
 }

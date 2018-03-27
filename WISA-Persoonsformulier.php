@@ -179,7 +179,8 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- geboorteplaats -->
         <div class="form_box_1">
             <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
-            <div class="form_zoek">
+            <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox"/>
+            <div class="form_zoek" id="GB_Plaats_Wel_Be">
                 <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."
             <?php 
             if ($_SESSION['GB_Plaats'] != '') {
@@ -187,7 +188,7 @@ if (!isset($_SESSION['Is_Leerling']))
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "value='".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."'";
+                        echo "value='".$row['fld_postnummer']." | ".$row['fld_woonplaats_naam']."'";
                     }
                 }
             } 
@@ -195,18 +196,21 @@ if (!isset($_SESSION['Is_Leerling']))
             />
             </div>
             <datalist class="form_slt" id="GB_Plaats_List">
-                <!-- lijst geboorteplaatsen nog toevoegen -->
                 <?php
                     $sql = "SELECT * FROM tbl_postcodes";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
-                            echo "<option id='".$row['fld_postcode_id']."' value='".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."'>";
+                            echo "<option id='".$row['fld_postcode_id']."' value='".$row['fld_postnummer']." | ".$row['fld_woonplaats_naam']."'>";
                         }
                     }
                 ?>
             </datalist>
             <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo 'value="'.$_SESSION["GB_Plaats"].'"'; ?>/>
+            
+            <div id="GB_Plaats_Niet_Be_Div">
+                <input type="text" id="GB_Plaats_Niet_Be_in" name="GB_Plaats_Niet_Be_in"/>
+            </div>
         </div>
         
         <!-- nationaliteiten -->
@@ -339,6 +343,21 @@ if (!isset($_SESSION['Is_Leerling']))
                     document.getElementById('Leerlingen').style.display = 'none';
                     document.getElementById('Niet_Leerling').style.display = 'block';
                     document.getElementById('Div_Pasfoto').style.display = 'none';
+                }
+	   }
+    function display_gb_plaats() 
+        {
+            if (document.getElementById('GB_Plaats_Niet_Be').checked)
+                {
+                    document.getElementById('Leerlingen').style.display = 'block';
+                    document.getElementById('Niet_Leerling').style.display = 'none';
+
+                }
+            else 
+                {
+                    document.getElementById('Leerlingen').style.display = 'none';
+                    document.getElementById('Niet_Leerling').style.display = 'block';
+
                 }
 	   }
        
