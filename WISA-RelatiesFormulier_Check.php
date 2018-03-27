@@ -7,11 +7,12 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = $_SESSION['Leerling'];
     }
     else {
-        $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Persoon_1']);
+        $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
+        $_SESSION['Leerling'] = $Persoon_1;
     }
-    
+
     $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie_Zoeken']);
-    $Persoon_2 = mysqli_real_escape_string($conn, $_POST['Persoon_Zoeken']);
+    $Persoon_2 = mysqli_real_escape_string($conn, $_POST['Persoon_2_Zoeken']);
     $Beschrijving = mysqli_real_escape_string($conn, $_POST['Relatie_beschrijving']);
     
     $sqlRelatie = "INSERT INTO tbl_personen_linken (fld_master_id_fk, fld_child_id_fk, fld_soort_id_fk, fld_persoon_link_beschrijving)
@@ -23,14 +24,9 @@ if (isset($_POST['Relatie_opslaan'])){
         }
         else {
              $_SESSION['Personen_Relaties'] = array($Persoon_2 => $Relatie);
-        }   
-        echo $Persoon_1;
-        echo $Persoon_2;
-        echo $Relatie;
-        foreach($_SESSION['Personen_Relaties'] as $x => $value){
-            echo $x." - ".$value;
         }
-                        
+        header ("Lcation: WISA-RelatiesFormulier.php?relaties");
+           
     }
     else {
         echo "Error: " . $sqlRelatie . "<br>" . mysqli_error($conn);
@@ -47,7 +43,9 @@ if (isset($_SESSION['Personen_Relaties'])){
                 $sql = "DELETE FROM tbl_personen_linken WHERE fld_master_id_fk='".$key."' AND fld_child_id_fk='".$_SESSION['Leerling']."' AND fld_soort_id_fk='".$Relatie_verwijderen."'";
                 if (mysqli_query($conn, $sql)){
                     unset($_SESSION['Personen_Relaties'][$key]);
-                    header ("Location: WISA-Formulier.php");
+                    // echo $key."<br />";
+                    // echo $Relatie_verwijderen."<br />";
+                    header ("Location: WISA-Formulier.php?relaties");
                 }
                 else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);

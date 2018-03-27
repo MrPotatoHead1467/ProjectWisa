@@ -33,10 +33,16 @@
                     }*/
                 $Formulier = $_SERVER['QUERY_STRING'];
                 $URL = $_SERVER['REQUEST_URI'].$Formulier;
-                $parameters = "'click', '".$Formulier."'";
-                echo "<script type='text/javascript'>";
-                    echo "tab_show_info(".$parameters.")";
-                echo "</script>";
+                if ($Formulier == ''){
+                    
+                }
+                else {
+                    $parameters = "'click', '".$Formulier."'";
+                    echo "<script type='text/javascript'>";
+                        echo "tab_show_info(".$parameters.")";
+                    echo "</script>";
+                }
+                
                 
             }
         else
