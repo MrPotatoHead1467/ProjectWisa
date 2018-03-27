@@ -39,7 +39,7 @@
                     }
                 ?>
             </datalist>
-            <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
+            <input id="Contact_Zoeken" name="Contact_Zoeken" type="hidden"/>
             </div>
         </form>
     </div>
@@ -90,17 +90,45 @@
                 <?php
                     if (isset($_SESSION['Mogelijke_GSM_nrs']))
                         {
-                            foreach ($_SESSION['Mogelijke_GSM_nrs'] as $Mogelijk_GSM_nr)
+                            foreach ($_SESSION['Mogelijke_GSM_nrs'] as $i => $Mogelijk_GSM)
                                 {
-                                    echo "<div>";
-                                        /** Verwijderknop */
+                                    foreach ($Mogelijk_GSM as $Omsch => $Waarde)
+                                        {
+                                            if ($Omsch == 'GSM_Nr'){
+                                                $GSM_Nr = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'GSM_Soort'){
+                                                $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Waarde = $row['fld_soort_naam'];
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                        /** 
+                                        $GSM_Nr = GSMnummer
+                                        $GSM_Soort = Soort GSMnummer
+                                        $GSM_Besch = Beschrijving GSMnummer
+                                        
+                                        Onder mijn domme echo kan je zien dat je div er nog staat.
+                                        Je mag onder de button kiezen hoe je de al aangemaakte GSMnummers wilt laten zien.
+                                        De namen die je nodig hebt zie je hierboven :)
+                                        Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
+                                        Deze commentaar en mijn domme echo mogen weg :D
+                                        */
+                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        
                                         echo "<div class='form_box_in'>";
-                                            echo "<button class='form_mn' id='".$Mogelijk_GSM_nr."' name='".$Mogelijk_GSM_nr."' type='submit'>x</button>";
-                                            /** Mogelijk gsm nummer tonen in tekstvak */
-                                            echo "<label class='form_lbl' id='Mogelijke_GSM_nrs' name='Mogelijke_GSM_nrs[]'>".$Mogelijk_GSM_nr."</label><br />";
+                                            /** Verwijderknop */
+                                            echo "<button class='form_mn' id='GSM_".$i."' name='GSM_".$i."' type='submit'>x</button>";
+                                            /** Mogelijk GSM nummer tonen in tekstvak */
+                                            
+                                            
                                         echo "</div>";
-                                    echo '</div>';
-                                }   
+                                }
                         }
                 ?>
             </div>
@@ -141,35 +169,65 @@
         <div class="form_box_1" id="Mogelijke_Tel">
             <?php
                 if (isset($_SESSION['Mogelijke_Tel_nrs']))
-                    {
-                        foreach ($_SESSION['Mogelijke_Tel_nrs'] as $Mogelijk_Tel_nr)
-                            {
-                                echo "<div>";
-                                    echo "<div class='form_box_in'>";
-                                        /** Verwijderknop */
-                                        echo "<button class='form_mn' id='".$Mogelijk_Tel_nr."' name='".$Mogelijk_Tel_nr."' type='submit'>x</button>";
-                                        /** Mogelijk telefoon nummer tonen in tekstvak */
-                                        echo "<label class='form_lbl' id='Mogelijke_Tel_nrs' name='Mogelijke_Tel_nrs[]'>".$Mogelijk_Tel_nr."</label><br />";
-                                    echo "</div>";
-                                echo '</div>';
-                            }   
-                    }
+                        {
+                            foreach ($_SESSION['Mogelijke_Tel_nrs'] as $i => $Mogelijk_Tel)
+                                {
+                                    foreach ($Mogelijk_Tel as $Omsch => $Waarde)
+                                        {
+                                            if ($Omsch == 'Tel_Nr'){
+                                                $Tel_Nr = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'Tel_Soort'){
+                                                $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Tel_Soort = $row['fld_soort_naam'];
+                                                    }
+                                                }
+                                            }
+                                            elseif ($Omsch == 'Tel_Besch'){
+                                                $Tel_Besch = $Waarde;
+                                            }
+                                        }
+                                        /** 
+                                        $Tel_Nr = Telefoonnummer
+                                        $Tel_Soort = Soort telefoonnummer
+                                        $Tel_Besch = Beschrijving telefoonnummer
+                                        
+                                        Onder mijn domme echo kan je zien dat je div er nog staat.
+                                        Je mag onder de butten kiezen hoe je de al aangemaakte telefoonnummers wilt laten zien.
+                                        De namen die je nodig hebt zie je hierboven :)
+                                        Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
+                                        Deze commentaar en mijn domme echo mogen weg :D
+                                        */
+                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        
+                                        echo "<div class='form_box_in'>";
+                                            /** Verwijderknop */
+                                            echo "<button class='form_mn' id='Tel_".$i."' name='Tel_".$i."' type='submit'>x</button>";
+                                            /** Mogelijk Tel nummer tonen in tekstvak */
+                                            
+                                            
+                                        echo "</div>";
+                                }
+                        }
             ?>
         </div>
         
         <!-- e-mail -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Email">E-mail</label><br />
+            <label class="form_lbl" for="EMail">E-mail</label><br />
             <!-- E-mail adres -->
             <div class="form_box_in">
-                <input id="Email" name="Email" placeholder="Adres" type="text"/>
+                <input id="EMail" name="EMail" placeholder="Adres" type="text"/>
             </div>
             
             <!-- Soort geg -->
             <div class="form_zoek">
-                <input class="form_in" id="Soort_Email_Zoeken_in" list="Soort_Email_Zoeken_List" name="Soort_Email_Zoeken_in" placeholder="Soort" />
+                <input class="form_in" id="Soort_EMail_Zoeken_in" list="Soort_EMail_Zoeken_List" name="Soort_EMail_Zoeken_in" placeholder="Soort" />
             </div>
-            <datalist class="form_slt" id="Soort_Email_Zoeken_List" >
+            <datalist class="form_slt" id="Soort_EMail_Zoeken_List" >
                 <?php
                     $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_item = 'Gegeven'";
                     $result = mysqli_query($conn, $sql);
@@ -180,34 +238,63 @@
                     }
                 ?>
             </datalist>
-            <input id="Soort_tel_Zoeken" name="Soort_tel_Zoeken" type="hidden"/>  
+            <input id="Soort_EMail_Zoeken" name="Soort_EMail_Zoeken" type="hidden"/>  
             
             <!-- toevoeg knop -->
-            <button class='form_pls1' id="Email_Opslaan" name="Email_Opslaan" type="submit">+</button>
+            <button class='form_pls1' id="EMail_Opslaan" name="EMail_Opslaan" type="submit">+</button>
             <!-- Beschrijving E-mail adres -->
-            <textarea class="form_in1" id="Besch_Email" name="Besch_Email" placeholder="Beschrijving"></textarea>
+            <textarea class="form_in1" id="Besch_EMail" name="Besch_EMail" placeholder="Beschrijving"></textarea>
         </div>
                       
         <!-- bestaande e-mail adressen -->    
         <div class="form_box_1" id="Mogelijke_Email">
             <?php
-                if (isset($_SESSION['Mogelijke_Emailadressen']))
-                    {
-                        foreach ($_SESSION['Mogelijke_Emailadressen'] as $Mogelijk_Emailadres)
-                            {
-                                echo "<div>";
-                                    echo "<div class='form_box_in'>";
-                                        /** Verwijderknop */
-                                        echo "<button class='form_mn' id='".$Mogelijk_Emailadres."' name='".$Mogelijk_Emailadres."' type='submit'>x</button>";
-                                        /** Mogelijk emailadres tonen in tekstvak */
-                                        echo "<label class='form_lbl' id='Mogelijke_Emailadressen' name='Mogelijke_Emailadressen[]'>".$Mogelijk_Emailadres."</label><br />";
-                                    echo "</div>";
-                                echo '</div>';
-                            }   
-                    }
+                if (isset($_SESSION['Mogelijke_EMail']))
+                        {
+                            foreach ($_SESSION['Mogelijke_EMail'] as $i => $Mogelijk_EMail)
+                                {
+                                    foreach ($Mogelijk_EMail as $Omsch => $Waarde)
+                                        {
+                                            if ($Omsch == 'EMail'){
+                                                $EMail_Nr = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'EMail_Soort'){
+                                                $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Waarde = $row['fld_soort_naam'];
+                                                    }
+                                                }
+                                            }
+                                            elseif ($Omsch == 'EMail_Besch'){
+                                                $EMail_Besch = $Waarde;
+                                            }
+                                        }
+                                        /** 
+                                        $EMail = EMail
+                                        $EMail_Soort = Soort EMail
+                                        $EMail_Besch = Beschrijving EMail
+                                        
+                                        Onder mijn domme echo kan je zien dat je div er nog staat.
+                                        Je mag onder de butten kiezen hoe je de al aangemaakte EMailadressen wilt laten zien.
+                                        De namen die je nodig hebt zie je hierboven :)
+                                        Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
+                                        Deze commentaar en mijn domme echo mogen weg :D
+                                        */
+                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        
+                                        echo "<div class='form_box_in'>";
+                                            /** Verwijderknop */
+                                            echo "<button class='form_mn' id='EMail_".$i."' name='EMail_".$i."' type='submit'>x</button>";
+                                            /** Mogelijk EMail nummer tonen in tekstvak */
+                                            
+                                            
+                                        echo "</div>";
+                                }
+                        }
             ?>
         </div>
-        
         
         <!-- adres -->
         <div class="form_box_1">
@@ -229,77 +316,59 @@
             </div>
             
             <!--  Woonplaats -->
-            <div class="form_zoek">
-                <input id="Woonplaats_in" list="Woonplaats_List" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()" placeholder="Postcode en woonplaats"/>
+            <div>
+                <!-- Checkbox voor woonplaats niet in België -->
+                <label for="Niet_Be">Woonplaats niet in Belgi&euml;</label>
+                <input id="Niet_Be" name="Niet_Be" onclick="woonplaats_niet_be()" type="checkbox"/>
             </div>
-            <datalist class="form_slt" id="Woonplaats_List">
-                <option value="Niet_BE">Woonplaats niet in Belgi&euml;</option>
-                <?php
-                    $sql = "SELECT * FROM tbl_postcodes";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc())
-                            {
-                                echo "<option id='".$row['fld_postcode_id']."' value='".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."'>";
-                            }
-                    }
-                ?>
-            </datalist>
-            <input id="Woonplaats" name="Woonplaats" type="hidden"/>
             
-            <!-- woonplaats -->
-            <!--
-            <select class="form_slt" id="Woonplaats_Lijst" name="Woonplaats_Lijst" onchange="woonplaats_niet_be()">
-                <option value="Kies">Postcode en woonplaats</option>
-                <option value="Niet_BE">Woonplaats niet in Belgie</option>
-                <?php
-                    /**
-                     * 
-                    
-                    $sql = "SELECT * FROM tbl_postcodes";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()){
-                            echo "<option value='".$row['fld_postcode_id']."'>".$row['fld_postcode_nr']." | ".$row['fld_woonplaats_naam']."</option>";
+            <div id="Woonplaats_Wel_Be">
+                <div class="form_zoek">
+                    <input id="Woonplaats_in" list="Woonplaats_List" name="Woonplaats_Lijst" placeholder="Postcode en woonplaats"/>
+                </div>
+                
+                <datalist class="form_slt" id="Woonplaats_List">
+                    <?php
+                        $sql = "SELECT * FROM tbl_postcodes";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc())
+                                {
+                                    echo "<option id='".$row['fld_postcode_id']."' value='".$row['fld_postnummer']." | ".$row['fld_woonplaats_naam']."'>";
+                                }
                         }
-                    }
-                     */
-                ?>
-            </select>
-            -->
-            
-            <!-- woonplaats niet België-->
-            <div id="Woonplaats_niet_be">
-                <div class="form_box_in">
-                    <input id="Woonplaats_niet_be_txt" name="Woonplaats_niet_be_txt" placeholder="Woonplaats (niet in België)" type="text"/>
+                    ?>
+                </datalist>
+                <input id="Woonplaats" name="Woonplaats" type="hidden"/>
+                
+                <div>
+                    <input disabled="true" id="Land_Be" name="Land_Be" value="Belgi&euml;" />
+                    <input type="hidden" id="Land_Be_Hidden" name="Land_Be_Hidden" value="Belgi&euml;" />
                 </div>
             </div>
-            
-            <!-- land -->
-            <div class="form_zoek">
-                <input class="form_in" id="Land_Zoeken_in" list="Land_Zoeken_List" name="Land_Zoeken_in" placeholder="Land" />
-            </div>
-            <datalist class="form_slt" id="Land_Zoeken_List" >
-                <?php
-                    $sql = "SELECT * FROM tbl_landen";
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo "<option id='".$row['fld_land_id']."' value='".$row['fld_land_naam']." (".$row['fld_land_afkorting'].")'>";
+            <div id="Woonplaats_niet_be">
+                <div class="form_box_in">
+                    <input id="Woonplaats_niet_be_in" name="Woonplaats_niet_be_in" placeholder="Woonplaats (niet in Belgi&euml;)" type="text"/>
+                </div>
+                
+                <!-- land -->
+                <div class="form_zoek">
+                    <input class="form_in" id="Land_Zoeken_in" list="Land_Zoeken_List" name="Land_Zoeken_in" placeholder="Land" />
+                </div>
+                <datalist class="form_slt" id="Land_Zoeken_List" >
+                    <?php
+                        $sql = "SELECT * FROM tbl_landen";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<option id='".$row['fld_land_id']."' value='".$row['fld_land_naam']." (".$row['fld_land_afkorting'].")'>";
+                            }
                         }
-                    }
-                ?>
-            </datalist>
-            <input id="Land_Zoeken" name="Land_Zoeken" type="hidden"/>
-            
-            <!-- land -->
-            <!--
-            <br />
-            <select class="form_slt" id="Land" name="Land">
-                <option value="Kies">Land</option>
-            </select>
-            -->
-            
+                    ?>
+                </datalist>
+                <input id="Land_Zoeken" name="Land_Zoeken" type="text"/>
+            </div>
+
             <!-- Soort geg -->
             <div class="form_zoek">
                 <input class="form_in" id="Soort_Adres_Zoeken_in" list="Soort_Adres_Zoeken_List" name="Soort_Adres_Zoeken_in" placeholder="Soort" />
@@ -320,7 +389,90 @@
             <!-- toevoeg knop -->
             <button class='form_pls1' id="Adres_Opslaan" name="Adres_Opslaan" type="submit">+</button>
             <!-- beschrijving -->
-            <textarea class="form_in1" id="Besch_Woonplaats" name="Besch_Woonplaats" placeholder="Beschrijving woonplaats"></textarea>
+            <textarea class="form_in1" id="Besch_Adres" name="Besch_Adres" placeholder="Beschrijving adres"></textarea>
+        </div>
+        
+        <div class="form_box_1" id="Mogelijke_Adres">
+            <?php
+                if (isset($_SESSION['Mogelijke_Adressen']))
+                        {
+                            foreach ($_SESSION['Mogelijke_Adressen'] as $i => $Mogelijk_Adres)
+                                {
+                                    foreach ($Mogelijk_Adres as $Omsch => $Waarde)
+                                        {
+                                            if ($Omsch == 'Adres_Straat'){
+                                                $Adres_Straat = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'Adres_Huisnr'){
+                                                $Adres_Huisnr = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'Adres_Bus'){
+                                                $Adres_Bus = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'Adres_Niet_Be'){
+                                                $Adres_Niet_Be = $Waarde;
+                                            }
+                                            elseif ($Omsch == 'Adres_Woonplaats'){
+                                                $sql = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Adres_Post = $row['fld_postnummer'];
+                                                        $Adres_Gem = $row['fld_woonplaats_naam'];
+                                                    }
+                                                }
+                                            }
+                                            elseif ($Omsch == 'Adres_Land'){
+                                                $sql = "SELECT * FROM tbl_landen WHERE fld_land_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Adres_Land = $row['fld_land_naam'];
+                                                    }
+                                                }
+                                            }
+                                            elseif ($Omsch == 'Adres_Soort'){
+                                                $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$Waarde."'";
+                                                $result = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $Soort = $row['fld_soort_naam'];
+                                                    }
+                                                }
+                                            }
+                                            elseif ($Omsch == 'Adres_Besch'){
+                                                $Adres_Besch = $Waarde;
+                                            }
+                                        }
+                                        /** 
+                                        $Adres_Straat = Straatnaam
+                                        $Adres_Huisnr = Huisnummer
+                                        $Adres_Bus = Bus
+                                        $Adres_Niet_Be = true -> niet be
+                                                         false -> wel be
+                                                         Ik denk dat het niet nodig is om deze te laten zien aan de gebruiker
+                                        $Adres_Post = Postnummer
+                                        $Adres_Gem = Gemeente
+                                        $Adres_Land = Land
+                                        $Adres_Soort = Soort adres
+                                        $Adres_Besch = Beschrijving adres
+                                        
+                                        Onder mijn domme echo kan je zien dat je div er nog staat.
+                                        Je mag onder de butten kiezen hoe je de al aangemaakte adressen wilt laten zien.
+                                        De namen die je nodig hebt zie je hierboven :)
+                                        Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
+                                        Deze commentaar en mijn domme echo mogen weg :D
+                                        */
+                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        
+                                        echo "<div class='form_box_in'>";
+                                            /** Verwijderknop */
+                                            echo "<button class='form_mn' id='Adres_".$i."' name='Adres_".$i."' type='submit'>x</button>";
+                                            /** Mogelijk Adres nummer tonen in tekstvak */
+                                        echo "</div>";
+                                }
+                        }
+            ?>
         </div>
         
         <div class="form_box_btn_border">
@@ -346,25 +498,24 @@
     
     	function woonplaats_niet_be() 
             {
-                var woonplaats = document.getElementById("Woonplaats_List");
-                //var selectedValue = document.getElementById("Woonplaats_Lijst").value;
-                //var selectedValue = woonplaats.options[woonplaats.selectedIndex].value;
-                if (woonplaats.value == "Niet_BE") 
+                if (document.getElementById('Niet_Be').checked)
                     {
                         document.getElementById('Woonplaats_niet_be').style.display = 'block';
+                        document.getElementById('Woonplaats_Wel_Be').style.display = 'none';
                     }
                 else 
                     {
                         document.getElementById('Woonplaats_niet_be').style.display = 'none';
+                        document.getElementById('Woonplaats_Wel_Be').style.display = 'block';
                     }
             }
         
         $(function() 
             {
-                $('#Persoon_Zoeken_in').on('input',function()
+                $('#Contact_Zoeken_in').on('input',function()
                                                 {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
-                                                    document.getElementById("Persoon_Zoeken").value = opt.attr('id');
+                                                    document.getElementById("Contact_Zoeken").value = opt.attr('id');
                                                 });
             });
             
@@ -382,16 +533,16 @@
               $('#Soort_Tel_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
-                                                    document.getElementById("Soort_tel_Zoeken").value = opt.attr('id');
+                                                    document.getElementById("Soort_Tel_Zoeken").value = opt.attr('id');
                                                   });
             });
             
         $(function()
             {
-              $('#Soort_Email_Zoeken_in').on('input',function() 
+              $('#Soort_EMail_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
-                                                    document.getElementById("Soort_Email_Zoeken").value = opt.attr('id');
+                                                    document.getElementById("Soort_EMail_Zoeken").value = opt.attr('id');
                                                   });
             });
         
@@ -415,12 +566,13 @@
         
         $(function()
             {
-              $('Land_Zoeken_in').on('input',function() 
+              $('#Land_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
                                                     document.getElementById("Land_Zoeken").value = opt.attr('id');
                                                   });
             });
+        
         
     -->
     </script>
