@@ -30,10 +30,14 @@ if (isset($_POST['Persoon_Opslaan'])){
     if ($Nation == 'undefined' and $Leerling == 1){
         header("Location: WISA-Formulier.php?errorNationaliteit");
     }
-    
-    $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats']);
-    if ($GB_Plaats == 'undefined' and $Leerling == 1){
-        header("Location: WISA-Formulier.php?errorGeboorteplaats");
+    if (isset($_POST['GB_Plaats_Niet_Be'])){
+        $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats_Niet_Be_in']);
+    }
+    else{
+        $GB_Plaats = mysqli_real_escape_string($conn, $_POST['GB_Plaats']);
+        if ($GB_Plaats == 'undefined' and $Leerling == 1){
+            header("Location: WISA-Formulier.php?errorGeboorteplaats");
+        }
     }
     
     if (mysqli_real_escape_string($conn, $_POST['Register_nr']) != ''){

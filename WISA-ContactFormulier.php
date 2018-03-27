@@ -423,11 +423,11 @@
                                                 }
                                             }
                                             elseif ($Omsch == 'Adres_Land'){
-                                                $sql = "SELECT * FROM tbl_landen WHERE fld_soort_id='".$Waarde."'";
+                                                $sql = "SELECT * FROM tbl_landen WHERE fld_land_id='".$Waarde."'";
                                                 $result = mysqli_query($conn, $sql);
                                                 if (mysqli_num_rows($result) > 0) {
                                                     while($row = mysqli_fetch_assoc($result)){
-                                                        $Adres_Land = $row['fld_soort_naam'];
+                                                        $Adres_Land = $row['fld_land_naam'];
                                                     }
                                                 }
                                             }
@@ -566,12 +566,13 @@
         
         $(function()
             {
-              $('Land_Zoeken_in').on('input',function() 
+              $('#Land_Zoeken_in').on('input',function() 
                                                   {
                                                     var opt = $('option[value="'+$(this).val()+'"]');
                                                     document.getElementById("Land_Zoeken").value = opt.attr('id');
                                                   });
             });
+        
         
     -->
     </script>

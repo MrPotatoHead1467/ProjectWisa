@@ -179,7 +179,9 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- geboorteplaats -->
         <div class="form_box_1">
             <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
+            <label for="GB_Plaats_Niet_Be">Geboorteplaas niet in Belgi&euml;</label>
             <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox"/>
+            
             <div class="form_zoek" id="GB_Plaats_Wel_Be">
                 <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."
             <?php 
@@ -349,14 +351,14 @@ if (!isset($_SESSION['Is_Leerling']))
         {
             if (document.getElementById('GB_Plaats_Niet_Be').checked)
                 {
-                    document.getElementById('Leerlingen').style.display = 'block';
-                    document.getElementById('Niet_Leerling').style.display = 'none';
+                    document.getElementById('GB_Plaats_Niet_Be_Div').style.display = 'block';
+                    document.getElementById('GB_Plaats_Wel_Be').style.display = 'none';
 
                 }
             else 
                 {
-                    document.getElementById('Leerlingen').style.display = 'none';
-                    document.getElementById('Niet_Leerling').style.display = 'block';
+                    document.getElementById('GB_Plaats_Niet_Be_Div').style.display = 'none';
+                    document.getElementById('GB_Plaats_Wel_Be').style.display = 'block';
 
                 }
 	   }
