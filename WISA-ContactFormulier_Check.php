@@ -32,7 +32,7 @@ if (isset($_POST["GSM_Opslaan"])) {
             $_SESSION['Mogelijke_GSM_nrs'] = array($GSM_Array);
         }
     }
-    header("Location: WISA-Formulier.php");
+    header("Location: WISA-Formulier.php?contact");
 }
 
 if (isset($_SESSION['Mogelijke_GSM_nrs'])){
@@ -117,12 +117,12 @@ if (isset($_POST["Adres_Opslaan"])) {
     $Adres_Bus = mysqli_real_escape_string($conn, $_POST['Bus']);
     if (isset($_POST['Niet_Be'])){
         $Niet_Be = true;
-        $Adres_Niet_Be = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_in']);
+        $Adres_Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats_niet_be_in']);
         $Adres_Land = mysqli_real_escape_string($conn, $_POST['Land_Zoeken']);
     }
     else {
         $Niet_Be = false;
-        $Adres_Postcode = mysqli_real_escape_string($conn, $_POST['Woonplaats']);
+        $Adres_Woonplaats = mysqli_real_escape_string($conn, $_POST['Woonplaats']);
         $Adres_Be = mysqli_real_escape_string($conn, $_POST['Land_Be_Hidden']);
         $sqlLand = "SELECT * FROM tbl_landen WHERE fld_land_naam = '".$Adres_Be."'";
         $result = $conn->query($sqlLand);
@@ -152,7 +152,7 @@ if (isset($_POST["Adres_Opslaan"])) {
             $_SESSION['Mogelijke_Adressen'] = array($Adres_Array);
         }
     }
-    header("Location: WISA-Formulier.php");
+    header("Location: WISA-Formulier.php?contact");
 }
 
 if (isset($_SESSION['Mogelijke_Adressen'])){
