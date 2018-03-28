@@ -33,15 +33,17 @@
                     }*/
                 $Formulier = $_SERVER['QUERY_STRING'];
                 $URL = $_SERVER['REQUEST_URI'].$Formulier;
-                if ($Formulier == ''){
-                    
-                }
-                else {
-                    $parameters = "'click', '".$Formulier."'";
-                    echo "<script type='text/javascript'>";
-                        echo "tab_show_info(".$parameters.")";
-                    echo "</script>";
-                }
+                if ($Formulier == '')
+                    {
+                        
+                    }
+                else 
+                    {
+                        $parameters = "'click', '".$Formulier."'";
+                        echo "<script type='text/javascript'>";
+                            echo "tab_show_info(".$parameters.")";
+                        echo "</script>";
+                    }
                 
                 
             }
@@ -85,6 +87,10 @@
                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
                                 Inschrijvingen goedkeuren
+                            </button>';
+                    
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'logins'"; echo ')">
+                                Beheer logins
                             </button>';
                             
                 }
@@ -152,11 +158,54 @@
         <div class="tabs_info-box-space">
             <!-- bericht -->
             <div id="mess" class="tabs_info">
-                <p>Klik op een tabblad om te starten.</p>
+                <?PHP
+                $Formulier = $_SERVER['QUERY_STRING'];
+                $URL = $_SERVER['REQUEST_URI'].$Formulier;
+                if ($Formulier == '')
+                    {
+                        echo "<p>Klik op een tabblad om te starten.</p>";
+                    }
+                else 
+                    {
+                        echo "<p>Formulier aan het laden..</p>";
+                        echo "<label class='form_load' title='Formulier aan het laden..'></label>";
+                    }
+                
+                ?>
             </div>
             <!-- formulieren gelinkt aan tabbladen-->
             <div id="..." class="tabs_info">
                 <p>...</p>
+            </div>
+            
+            <div id="logins" class="tabs_info">
+                <?PHP
+                    include "WISA-BeheerLogins.php";
+                ?>
+            </div>
+                    
+            <div id="beheervragen" class="tabs_info">
+                <?PHP
+                    include "WISA-BeheerVragen.php";
+                ?>
+            </div>
+            
+            <div id="bestemmingen" class="tabs_info">
+                <?PHP
+                    include "WISA-Bestemmingen.php";
+                ?>
+            </div>  
+             
+            <div id="contact" class="tabs_info">
+                <?PHP
+                    include "WISA-ContactFormulier.php";
+                ?>
+            </div>
+            
+            <div id="loopbaan" class="tabs_info">
+                <?PHP
+                    include "WISA-LoopbaanFormulier.php";
+                ?>
             </div>
             
             <div id="persoon" class="tabs_info">
@@ -171,35 +220,11 @@
                 ?>
             </div>
             
-            <div id="contact" class="tabs_info">
-                <?PHP
-                    include "WISA-ContactFormulier.php";
-                ?>
-            </div>
-            
-            <div id="loopbaan" class="tabs_info">
-                <?PHP
-                    include "WISA-LoopbaanFormulier.php";
-                ?>
-            </div>
-            
             <div id="vragen" class="tabs_info">
                 <?PHP
                     include "WISA-Inschrijvingsformulier.php";
                 ?>
             </div>
-                    
-            <div id="beheervragen" class="tabs_info">
-                <?PHP
-                    include "WISA-BeheerVragen.php";
-                ?>
-            </div>
-            
-            <div id="bestemmingen" class="tabs_info">
-                <?PHP
-                    include "WISA-Bestemmingen.php";
-                ?>
-            </div>   
             
             <div id="goedkeuren" class="tabs_info">
                 <?PHP
