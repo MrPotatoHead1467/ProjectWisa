@@ -44,7 +44,7 @@ if (isset($_POST['login_form-inloggen']))
                                     $_SESSION['schoolID'] = $row['fld_school_id_fk'];
                                     $_SESSION['Formulier'] = "";
                            
-                                    header("Location: WISA-Formulier.php?login=success");
+                                    header("Location: WISA-Formulier.php");
                                     #exit();
                                 }
                         }

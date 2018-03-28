@@ -37,6 +37,37 @@ $_SESSION['Formulier'] = "nieuwevraag"
     <?php
         include "WISA-Connection.php";
     ?>
+    
+    <!-- Bestaand persoon opzoeken -->
+    <form action="WISA-BeheerVragen_Check.php" method="post">
+        <div class="form_box_zoek">
+            <label class="form_lbl" for="Vraag_Zoeken_in">Vraag zoeken</label><br />
+            <button class="form_edit" id="Vraag_Zoeken_btn" name="Vraag_Zoeken_btn" type="submit">Gegevens invullen</button>
+            <div class="form_zoek">
+                <input class="form_in" id="Vraag_Zoeken_in" list="Vraag_Zoeken_List" name="Vraag_Zoeken_in" placeholder="..." />
+                <label class="form_editi" for="Vraag_Zoeken_btn" onclick="KlikKnop('Vraag_Zoeken_btn')" title="Bestaande vraag opzoeken."></label>
+            </div>
+            <datalist class="form_slt" id="Vraag_Zoeken_List" >
+                <?php
+                    $sql = "SELECT * FROM tbl_vragen";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<option id='".$row['fld_vraag_id']."' value='".$row['fld_vraag_vraag']." (".$row['fld_vraag_kernwoord'].") '>";
+                        }
+                    }
+                ?>
+            </datalist>
+            <input id="Vraag_Zoeken" name="Vraag_Zoeken" type="hidden"/>
+        </div>
+    </form>
+    
+    <div class="form_box_zoek_border">
+    </div>
+    
+    
+    
+    
     <!-- Formulier om vragen toe te voegen -->
     <form action="WISA-BeheerVragen_Check.php" method="post">
     
@@ -228,7 +259,15 @@ $_SESSION['Formulier'] = "nieuwevraag"
                         document.getElementById('Max_aantal_antwoorden').style.display = 'none';
                         document.getElementById('Mogelijke_antwoorden').style.display = 'none';
                     }
-            }   
+            }
+        $(function() 
+            {
+                $('#Vraag_Zoeken_in').on('input',function() 
+                    {
+                        var opt = $('option[value="'+$(this).val()+'"]');
+                        document.getElementById("Vraag_Zoeken").value = opt.attr('id');
+                    });
+            });  
     
     </script>
     

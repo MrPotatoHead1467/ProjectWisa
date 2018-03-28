@@ -21,6 +21,18 @@ arial black
 arial narrow
 */
 
+/* animaties */
+
+@keyframes loading  {
+                    0%   {background-image: url("WISA_Print_IconLoad-A1.png");}
+                    25%  {background-image: url("WISA_Print_IconLoad-A2.png");}
+                    50%  {background-image: url("WISA_Print_IconLoad-A3.png");}
+                    75%  {background-image: url("WISA_Print_IconLoad-A4.png");}
+                    100% {background-image: url("WISA_Print_IconLoad-A1.png");}
+                    }
+
+/* base */
+
 body    {
         background-color: #FAFAFA;
         color: #373B47;
@@ -1012,8 +1024,44 @@ footer {
             outline: none;
             transition: 0.3s;
             width: 4em}
-                    
-          
+            
+/* formulier.php */
+
+.form_load  {
+            animation-name: loading;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            background-image: url("WISA_Print_IconLoad-A1.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: transparent solid 1px;
+            border-radius: 0px;
+            cursor:  pointer;
+            display: block;
+            height: 2.4em;
+            outline: none;
+            transition: 0.3s;
+            width: 4em;}
+
+/* contact.php  *//* contact.php  *//* contact.php  *//* contact.php  *//* contact.php  *//* contact.php  *//* contact.php  *//* contact.php  */
+
+.form_li_gsm    {
+                color: #5A667B;}
+
+
+.form_li_tel    {
+                color: #5A667B;}
+
+
+.form_li_email  {
+                color: #5A667B;}
+
+
+.form_li_adres  {
+                color: #5A667B;}
+
+
                                                        
 /* vraagtoevoegen.php */
            
@@ -1076,6 +1124,9 @@ footer {
     display: none;
 }
 #Div_Bis_nr{
+    display: none;
+}
+#Div_Bis_nr_2{
     display: none;
 }
 .Dit_Schooljaar {

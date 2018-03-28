@@ -85,8 +85,8 @@
         </div>
         
         <!-- Bestaande GSM nummers -->
-        <div class="form_box_1">
-            <div id="Mogelijke_GSM" class="Mogelijke_GSM">
+        <div class="form_box_1" id="Mogelijke_GSM">
+            <ul>
                 <?php
                     if (isset($_SESSION['Mogelijke_GSM_nrs']))
                         {
@@ -102,11 +102,16 @@
                                                 $result = mysqli_query($conn, $sql);
                                                 if (mysqli_num_rows($result) > 0) {
                                                     while($row = mysqli_fetch_assoc($result)){
-                                                        $Waarde = $row['fld_soort_naam'];
+                                                        $GSM_Soort = $row['fld_soort_naam'];
                                                     }
                                                 }
                                             }
-                                            
+                                            elseif ($Omsch == 'GSM_Besch'){
+                                                $GSM_Besch = $Waarde;
+                                                if ($GSM_Besch != ''){
+                                                    $GSM_Besch = " (".$GSM_Besch.")";
+                                                }
+                                            }
                                         }
                                         /** 
                                         $GSM_Nr = GSMnummer
@@ -119,19 +124,20 @@
                                         Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
                                         Deze commentaar en mijn domme echo mogen weg :D
                                         */
-                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        //echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
                                         
-                                        echo "<div class='form_box_in'>";
-                                            /** Verwijderknop */
-                                            echo "<button class='form_mn' id='GSM_".$i."' name='GSM_".$i."' type='submit'>x</button>";
-                                            /** Mogelijk GSM nummer tonen in tekstvak */
-                                            
-                                            
-                                        echo "</div>";
+                                        echo "<li class='form_li_gsm'>";
+                                            echo "<div class='form_box_in'>";
+                                                /** Verwijderknop */
+                                                echo "<button class='form_mn' id='GSM_".$i."' name='GSM_".$i."' type='submit'>x</button>";
+                                                /** Mogelijk GSM nummer tonen in tekstvak */
+                                                echo "<label class='form_lbl' type='text'><b>".$GSM_Soort.":</b> ".$GSM_Nr.$GSM_Besch."</label>"; 
+                                            echo "</div>";
+                                        echo "</li>";
                                 }
                         }
                 ?>
-            </div>
+            </ul>
         </div>
         
         <!-- telefoon -->
@@ -167,6 +173,7 @@
                 
         <!-- toegevoegde telefoon nummers -->  
         <div class="form_box_1" id="Mogelijke_Tel">
+            <ul>
             <?php
                 if (isset($_SESSION['Mogelijke_Tel_nrs']))
                         {
@@ -188,6 +195,10 @@
                                             }
                                             elseif ($Omsch == 'Tel_Besch'){
                                                 $Tel_Besch = $Waarde;
+                                                if ($Tel_Besch != ''){
+                                                    $Tel_Besch = " (".$Tel_Besch.")";
+                                                }
+                                                
                                             }
                                         }
                                         /** 
@@ -201,18 +212,20 @@
                                         Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
                                         Deze commentaar en mijn domme echo mogen weg :D
                                         */
-                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        //echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
                                         
-                                        echo "<div class='form_box_in'>";
-                                            /** Verwijderknop */
-                                            echo "<button class='form_mn' id='Tel_".$i."' name='Tel_".$i."' type='submit'>x</button>";
-                                            /** Mogelijk Tel nummer tonen in tekstvak */
-                                            
-                                            
-                                        echo "</div>";
+                                        echo "<li class='form_li_tel'>";
+                                            echo "<div class='form_box_in'>";
+                                                /** Verwijderknop */
+                                                echo "<button class='form_mn' id='Tel_".$i."' name='Tel_".$i."' type='submit'>x</button>";
+                                                /** Mogelijk Tel nummer tonen in tekstvak */
+                                                echo "<label class='form_lbl' type='text'><b>".$Tel_Soort.":</b> ".$Tel_Nr.$Tel_Besch."</label>"; 
+                                            echo "</div>";
+                                        echo "</li>";
                                 }
                         }
             ?>
+            </ul>
         </div>
         
         <!-- e-mail -->
@@ -248,6 +261,7 @@
                       
         <!-- bestaande e-mail adressen -->    
         <div class="form_box_1" id="Mogelijke_Email">
+            <ul>
             <?php
                 if (isset($_SESSION['Mogelijke_EMail']))
                         {
@@ -256,19 +270,22 @@
                                     foreach ($Mogelijk_EMail as $Omsch => $Waarde)
                                         {
                                             if ($Omsch == 'EMail'){
-                                                $EMail_Nr = $Waarde;
+                                                $EMail = $Waarde;
                                             }
                                             elseif ($Omsch == 'EMail_Soort'){
                                                 $sql = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$Waarde."'";
                                                 $result = mysqli_query($conn, $sql);
                                                 if (mysqli_num_rows($result) > 0) {
                                                     while($row = mysqli_fetch_assoc($result)){
-                                                        $Waarde = $row['fld_soort_naam'];
+                                                        $EMail_Soort = $row['fld_soort_naam'];
                                                     }
                                                 }
                                             }
                                             elseif ($Omsch == 'EMail_Besch'){
                                                 $EMail_Besch = $Waarde;
+                                                if ($EMail_Besch != ''){
+                                                    $EMail_Besch = " (".$EMail_Besch.")";
+                                                }
                                             }
                                         }
                                         /** 
@@ -282,23 +299,32 @@
                                         Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
                                         Deze commentaar en mijn domme echo mogen weg :D
                                         */
-                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        //echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
                                         
-                                        echo "<div class='form_box_in'>";
-                                            /** Verwijderknop */
-                                            echo "<button class='form_mn' id='EMail_".$i."' name='EMail_".$i."' type='submit'>x</button>";
-                                            /** Mogelijk EMail nummer tonen in tekstvak */
-                                            
-                                            
-                                        echo "</div>";
+                                        echo "<li class='form_li_email'>";
+                                            echo "<div class='form_box_in'>";
+                                                /** Verwijderknop */
+                                                echo "<button class='form_mn' id='EMail_".$i."' name='EMail_".$i."' type='submit'>x</button>";
+                                                /** Mogelijk EMail nummer tonen in tekstvak */
+                                                echo "<label class='form_lbl' type='text'><b>".$EMail_Soort.":</b> ".$EMail.$EMail_Besch."</label>";
+                                            echo "</div>";
+                                        echo "</li>";
                                 }
                         }
             ?>
+            </ul>
         </div>
         
         <!-- adres -->
         <div class="form_box_1">
             <label class="form_lbl" for="Straat">Adres</label><br />
+            
+            <!-- België? -->
+            <div class="form_box_in">
+                <!-- Checkbox voor woonplaats niet in België -->
+                <input id="Niet_Be" name="Niet_Be" onclick="woonplaats_niet_be()" type="checkbox"/>
+                <label class="form_lbl" for="Niet_Be">Woonplaats niet in Belgi&euml;</label>
+            </div>
             
             <!-- straat -->
             <div class="form_box_in">
@@ -316,15 +342,10 @@
             </div>
             
             <!--  Woonplaats -->
-            <div>
-                <!-- Checkbox voor woonplaats niet in België -->
-                <label for="Niet_Be">Woonplaats niet in Belgi&euml;</label>
-                <input id="Niet_Be" name="Niet_Be" onclick="woonplaats_niet_be()" type="checkbox"/>
-            </div>
             
             <div id="Woonplaats_Wel_Be">
                 <div class="form_zoek">
-                    <input id="Woonplaats_in" list="Woonplaats_List" name="Woonplaats_Lijst" placeholder="Postcode en woonplaats"/>
+                    <input class="form_in" id="Woonplaats_in" list="Woonplaats_List" name="Woonplaats_Lijst" placeholder="Postcode en woonplaats"/>
                 </div>
                 
                 <datalist class="form_slt" id="Woonplaats_List">
@@ -342,8 +363,10 @@
                 <input id="Woonplaats" name="Woonplaats" type="hidden"/>
                 
                 <div>
-                    <input disabled="true" id="Land_Be" name="Land_Be" value="Belgi&euml;" />
-                    <input type="hidden" id="Land_Be_Hidden" name="Land_Be_Hidden" value="Belgi&euml;" />
+                    <div class="form_zoek">
+                        <input class="form_in" disabled="true" id="Land_Be" name="Land_Be" value="Belgi&euml;" type="text"/>
+                    </div>
+                    <input id="Land_Be_Hidden" name="Land_Be_Hidden" type="hidden" value="Belgi&euml;" />
                 </div>
             </div>
             <div id="Woonplaats_niet_be">
@@ -366,7 +389,7 @@
                         }
                     ?>
                 </datalist>
-                <input id="Land_Zoeken" name="Land_Zoeken" type="text"/>
+                <input id="Land_Zoeken" name="Land_Zoeken" type="hidden"/>
             </div>
 
             <!-- Soort geg -->
@@ -393,6 +416,7 @@
         </div>
         
         <div class="form_box_1" id="Mogelijke_Adres">
+            <ul>
             <?php
                 if (isset($_SESSION['Mogelijke_Adressen']))
                         {
@@ -408,6 +432,9 @@
                                             }
                                             elseif ($Omsch == 'Adres_Bus'){
                                                 $Adres_Bus = $Waarde;
+                                                if ($Adres_Bus != ''){
+                                                    $Adres_Bus = " (".$Adres_Bus.")";
+                                                }
                                             }
                                             elseif ($Omsch == 'Adres_Niet_Be'){
                                                 $Adres_Niet_Be = $Waarde;
@@ -436,12 +463,15 @@
                                                 $result = mysqli_query($conn, $sql);
                                                 if (mysqli_num_rows($result) > 0) {
                                                     while($row = mysqli_fetch_assoc($result)){
-                                                        $Soort = $row['fld_soort_naam'];
+                                                        $Adres_Soort = $row['fld_soort_naam'];
                                                     }
                                                 }
                                             }
                                             elseif ($Omsch == 'Adres_Besch'){
                                                 $Adres_Besch = $Waarde;
+                                                if ($Adres_Besch != ''){
+                                                    $Adres_Besch = " (".$Adres_Besch.")";
+                                                }
                                             }
                                         }
                                         /** 
@@ -463,16 +493,20 @@
                                         Zolang je niet voorbij de } gaat zouden er geen problemen moeten zijn.
                                         Deze commentaar en mijn domme echo mogen weg :D
                                         */
-                                        echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
+                                        //echo "Kijk in de code hierboven voor de namen en zet ze hoe je wil :)";
                                         
-                                        echo "<div class='form_box_in'>";
-                                            /** Verwijderknop */
-                                            echo "<button class='form_mn' id='Adres_".$i."' name='Adres_".$i."' type='submit'>x</button>";
-                                            /** Mogelijk Adres nummer tonen in tekstvak */
-                                        echo "</div>";
+                                        echo "<li class='form_li_adres'>";
+                                            echo "<div class='form_box_in'>";
+                                                /** Verwijderknop */
+                                                echo "<button class='form_mn' id='Adres_".$i."' name='Adres_".$i."' type='submit'>x</button>";
+                                                /** Mogelijk Adres tonen in tekstvak */
+                                                echo "<label class='form_lbl' type='text'><b>".$Adres_Soort.":</b> ".$Adres_Straat." ".$Adres_Huisnr.$Adres_Bus.", ".$Adres_Post." ".$Adres_Gem.", ".$Adres_Land.$Adres_Besch."</label>";
+                                            echo "</div>";
+                                        echo "</li>";
                                 }
                         }
             ?>
+            </ul>
         </div>
         
         <div class="form_box_btn_border">

@@ -79,10 +79,10 @@ if (isset($_POST["Vraag_opslaan"])) {
                 }
             }
         }
-        header("Location: WISA-Formulier.php");
+        header("Location: WISA-Formulier.php?beheervragen");
     }
     else {
-        header("Location: WISA-Formulier.php");
+        header("Location: WISA-Formulier.php?beheervragen");
     }
 }
 
@@ -101,7 +101,7 @@ if (isset($_POST["Mogelijk_antwoord_toevoegen"])) {
     $_SESSION['Nieuwe_vraag'] = mysqli_real_escape_string($conn, $_POST['Nieuwe_vraag']);
     $_SESSION['Kernwoord_vraag'] = mysqli_real_escape_string($conn, $_POST['Kernwoord_vraag']);
     $_SESSION['Max_antwoord'] = mysqli_real_escape_string($conn, $_POST['Max_antwoord']);
-    header("Location: WISA-Formulier.php");
+    header("Location: WISA-Formulier.php?beheervragen");
 }
 
 if (isset($_SESSION['Mogelijke_antwoorden'])){
@@ -111,7 +111,7 @@ if (isset($_SESSION['Mogelijke_antwoorden'])){
         if (isset($_POST[$Mogelijk_antwoord_verwijderen_no_space])){
             if (($key = array_search($Mogelijk_antwoord_verwijderen, $_SESSION['Mogelijke_antwoorden'])) !== false){
                 unset($_SESSION['Mogelijke_antwoorden'][$key]);
-                header ("Location: WISA-Formulier.php");
+                header ("Location: WISA-Formulier.php?beheervragen");
             }
         }
     }
@@ -123,7 +123,7 @@ foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord_verwijderen){
     if (isset($_POST[$x])){
         $Mogelijk_antwoord_wijzigen = array($i => mysqli_real_escape_string($conn, $_POST['Mogelijke_antwoorden['.$i.']']));
         $_SESSION['Mogelijke_antwoorden'] = array_replace($_SESSION['Mogelijke_antwoorden'], $Mogelijk_antwoord_wijzigen);
-        header ("Location: WISA-BeheerVragen.php");
+        header ("Location: WISA-BeheerVragen.php?beheervragen");
     }
     --$x;
     ++$i;
@@ -141,7 +141,7 @@ if (isset($_POST['Vraag_annuleren'])){
             }
         }
     }
-    header("Location: WISA-Formulier.php");
+    header("Location: WISA-Formulier.php?beheervragen");
 }
 
 ?>
