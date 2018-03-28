@@ -179,8 +179,12 @@ if (!isset($_SESSION['Is_Leerling']))
         <!-- geboorteplaats -->
         <div class="form_box_1">
             <label class="form_lbl" for="GB_Plaats_in">Geboorteplaats</label><br />
-            <label for="GB_Plaats_Niet_Be">Geboorteplaas niet in Belgi&euml;</label>
-            <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox"/>
+            
+            <!-- België? -->
+            <div class="form_box_in">  
+                <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox"/>
+                <label class="form_lbl" for="GB_Plaats_Niet_Be">Geboorteplaas niet in Belgi&euml;</label>
+            </div>
             
             <div class="form_zoek" id="GB_Plaats_Wel_Be">
                 <input id="GB_Plaats_in" list="GB_Plaats_List" name="GB_Plaats_in" placeholder="..."
@@ -247,27 +251,37 @@ if (!isset($_SESSION['Is_Leerling']))
             <input id="Nationaliteit" name="Nationaliteit" type="hidden" <?php echo "value='".$_SESSION['Nationaliteit']."'"; ?>/>
         </div>
         
-        <!-- rijksregisternummer?? -->
-        <div class="form_box_1">
-            <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr" onclick="display_bis()" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken."/>
-            <label class="form_lbl" for="Geen_Register_nr" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken.">Geen rijksregisternummer</label><br />
+        
+        
+        <!-- rijksregisternummer label -->
+        <div id="Div_Register_nr">
+            <label class="form_lbl" for="Register_nr">Rijksregisternummer</label><br />
         </div>
         
-        <!-- rijksregisternummer -->
-        <div class="form_box_1" id="Div_Register_nr">
-            <label class="form_lbl" for="Register_nr" title="Vb: 99041254023">Rijksregisternummer</label><br />
-            <div class="form_box_in ">
-                <input class="form_in" id="Register_nr" name="Register_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
-            </div>
-        </div>
-        
-        <!-- bis-nummer -->
-        <div class="form_box_1" id="Div_Bis_nr">
+        <!-- bis-nummer label -->
+        <div id="Div_Bis_nr">
             <label class="form_lbl" for="Bis_nr" title="Vb: 99041254023">BIS-Nummer</label>
-            <div class="form_box_in ">
-                <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['Bisnr']."'" ?> />
-            </div>
         </div>
+            <!-- rijksregisternummer?? -->
+            <div class="form_box_in ">
+                <input type="checkbox" id="Geen_Register_nr" name="Geen_Register_nr" onclick="display_bis()" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken."/>
+                <label class="form_lbl" for="Geen_Register_nr" title="Indien u uw rijksregister niet meeheeft of geen geen heeft aanvinken.">Geen rijksregisternummer</label><br />
+            </div>
+            
+            <!-- rijksregisternummer -->
+            <div class="form_box_1" id="Div_Register_nr_2">
+                <div class="form_box_in ">
+                    <input class="form_in" id="Register_nr" name="Register_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
+                </div>
+            </div>
+        
+        
+            <!-- bisnummer -->
+            <div class="form_box_1" id="Div_Bis_nr_2">
+                <div class="form_box_in ">
+                    <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['Bisnr']."'" ?> />
+                </div>
+            </div>
         
         <!-- godsdiensten -->
         <div class="form_box_1">
@@ -367,10 +381,14 @@ if (!isset($_SESSION['Is_Leerling']))
 	   if (document.getElementById('Geen_Register_nr').checked) {
         document.getElementById('Div_Register_nr').style.display = 'none';
         document.getElementById('Div_Bis_nr').style.display = 'block';
+        document.getElementById('Div_Register_nr_2').style.display = 'none';
+        document.getElementById('Div_Bis_nr_2').style.display = 'block';
 	   }
        else {
         document.getElementById('Div_Register_nr').style.display = 'block';
         document.getElementById('Div_Bis_nr').style.display = 'none';
+        document.getElementById('Div_Register_nr_2').style.display = 'block';
+        document.getElementById('Div_Bis_nr_2').style.display = 'none';
        }
 	}
     function leerling() {
