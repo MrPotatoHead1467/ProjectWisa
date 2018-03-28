@@ -210,33 +210,20 @@ if (isset($_POST['Persoon_Zoeken_btn'])){
         while($row = $result->fetch_assoc()){
             $_SESSION['Bestaande_Persoon'] = 1;
             $_SESSION['Bestaande_Persoon_Id'] = $row['fld_persoon_id'];
-            echo $_SESSION['Bestaande_Persoon_Id']."<br />";
             $_SESSION['Is_Leerling'] = $row['fld_persoon_leerling'];
-            echo $_SESSION['Is_Leerling']."<br />";
             $_SESSION['EID_Voornaam'] = $row['fld_persoon_voornaam'];
-            echo $_SESSION['EID_Voornaam']."<br />";
             $_SESSION['EID_Achternaam'] = $row['fld_persoon_achternaam'];
-            echo $_SESSION['EID_Achternaam']."<br />";
             $_SESSION['Geslacht'] = $row['fld_persoon_geslacht'];
-            echo $_SESSION['Geslacht']."<br />";
             $_SESSION['EID_GB_Datum'] = $row['fld_persoon_gb_datum'];
-            echo $_SESSION['EID_GB_Datum']."<br />";
             $_SESSION['GB_Plaats'] = $row['fld_persoon_gb_plaats'];
-            echo $_SESSION['GB_Plaats']."<br />";
             $_SESSION['Nationaliteit'] = $row['fld_persoon_nation_id_fk'];
-            echo $_SESSION['Nationaliteit']."<br />";
             $_SESSION['EID_Rijksregisternr'] = $row['fld_persoon_register_nr'];
-            echo $_SESSION['EID_Rijksregisternr']."<br />";
             if ($_SESSION['EID_Rijksregisternr'] == NULL){
                 $_SESSION['Geen_Rijksregisternr'] = 1;
-                echo $_SESSION['Geen_Rijksregisternr']."<br />";
             }
             $_SESSION['Bisnr'] = $row['fld_persoon_bis_nr'];
-            echo $_SESSION['Bisnr']."<br />";
             $_SESSION['Godsdienst'] = $row['fld_godsdienst_id_fk'];
-            echo $_SESSION['Godsdienst']."<br />";
             $_SESSION['Overleden'] = $row['fld_persoon_overleden'];
-            echo $_SESSION['Overleden']."<br />";
             header("Location: WISA-Formulier.php?persoon");
         }
     }

@@ -1,0 +1,53 @@
+<?php
+session_start();
+class Credentials {
+    function Credentials($username, $password, $database) 
+    {
+        $this->Username = $username;
+        $this->Password = $password;
+        $this->Database = $database;
+    }
+}
+$auth=array('Username'=>'API',
+
+              'Password'=>'API',
+
+              'Database'=>'Miniemen');
+
+$credentials = new Credentials("API", "API", "Miniemen");
+
+$client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
+// $client = new SoapClient("WisaAPIService.wsdl",array('location'=>'http://remote.wisa.be:60580/SOAP/'));
+$params = array('Name'=>'LL_ID', 'Value'=>'3534');           
+// /**
+$res=$client->GetXMLData($credentials,'BI_LEERL',$params,5,'');
+// $response = $client->__soapCall("GetXMLData", array($params));
+
+echo "15";
+$xml_SMART=simplexml_load_string($res);
+$json = json_encode($xml_SMART);
+$array = json_decode($json,TRUE);
+//*/
+// /**
+foreach ($array as $Test=>$array2){
+    echo $Test." - ".$array2."<br />";
+    ///**
+    foreach ($array2 as $array3){
+        foreach ($array3 as $Leerling){
+           echo $i." - ".$Leerling;
+           ++$i;
+        }
+        echo "<br />";
+        $i = 0;
+    }
+    // 
+}
+// */
+/**
+$res=$client->GetCSVData($credentials,'BI_LEERL',3534,5,'');
+$explode = explode(";",$res);
+foreach ($explode as $exploded){
+    echo $exploded."<br />";
+}
+// */
+?>
