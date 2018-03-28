@@ -1,4 +1,3 @@
-<meta charset="UTF-8">
 <?php
 include "WISA-Connection.php";
 /**
@@ -47,15 +46,18 @@ foreach ($array as $array2){
             elseif ($i == 8){
                 $Richting = $Value;
             }
+            elseif ($i == 9){
+                $HoofdstructuurCode = $Value;
+            }
             elseif ($i == 11){
                 $Onderwijsvorm = $Value;
             }
-            echo $Name.": ".$Value."<br />";
+            // echo $i." - ".$Name.": ".$Value."<br />";
            
            ++$i;
         }
-        echo "<br />";
-        /**
+        /** */
+        
         echo "Richting_Id = ".$Richting_Id."<br />";
         echo "Code = ".$Code."<br />";
         echo "Omschrijving = ".$Omschrijving."<br />";
@@ -63,14 +65,27 @@ foreach ($array as $array2){
         echo "Graad = ".$Graad."<br />";
         echo "Richting_Code = ".$Richting_Code."<br />";
         echo "Richting = ".$Richting."<br />";
+        echo "Hoofdstructuurcode = ".$HoofdstructuurCode."<br />";
         echo "Onderwijsvorm = ".$Onderwijsvorm."<br />";
         echo "<br />";
-        */
-        $sqlRichting = "INSERT INTO tbl_richtingen (fld_
-                        VALUES ('";
+            
+        $sqlRichting = "INSERT INTO tbl_richtingen (fld_richting_afkorting_code, fld_richting_afkorting, fld_richting_naam, 
+                        fld_richting_graad, fld_richting_leerjaar, fld_richting_code, fld_richting_hoofdstructuurcode, 
+                        fld_richting_onderwijsvorm, fld_richting_wisa_id)
+                        VALUES ('".$Code."', '".$Omschrijving."', '".$Richting."', '".$Graad."', '".$Leerjaar."', '".$Richting_Code."',
+                        '".$HoofdstructuurCode."', '".$Onderwijsvorm."', '".$Richting_Id."')";
         /**
         if (mysqli_query($conn, $sqlRichting)){
-            
+            echo "Richting_Id = ".$Richting_Id."<br />";
+            echo "Code = ".$Code."<br />";
+            echo "Omschrijving = ".$Omschrijving."<br />";
+            echo "Leerjaar = ".$Leerjaar."<br />";
+            echo "Graad = ".$Graad."<br />";
+            echo "Richting_Code = ".$Richting_Code."<br />";
+            echo "Richting = ".$Richting."<br />";
+            echo "Hoofdstructuurcode = ".$HoofdstructuurCode."<br />";
+            echo "Onderwijsvorm = ".$Onderwijsvorm."<br />";
+            echo "<br />";
         }
         else {
             echo "Error: " . $sqlRichting . "<br>" . mysqli_error($conn);
@@ -98,7 +113,7 @@ foreach ($explode as $exploded){
 6 graad
 7 richtingcode
 8 richting
+9 hoofdstructuurcode
 11 onderwijsvormcode vb tso
-
 */
 ?>
