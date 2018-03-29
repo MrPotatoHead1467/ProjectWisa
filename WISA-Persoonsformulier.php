@@ -104,7 +104,7 @@ if (!isset($_SESSION['Is_Leerling']))
                     }
                 ?>
             </datalist>
-            <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
+            <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="text"/>
         </div>
     </form>
     
