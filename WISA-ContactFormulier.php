@@ -34,8 +34,7 @@
                                 while($row = $result->fetch_assoc()){
                                     echo "value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].")'";
                                 }
-                            }
-                            
+                            }           
                         }
                      ?>
                     />
