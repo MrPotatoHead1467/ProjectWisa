@@ -25,7 +25,20 @@
                 <label class="form_lbl" for="Contact_Zoeken_in">Persoons gegevens zoeken</label><br />
                 <button class="form_edit" id="Contact_Zoeken_btn" name="Contact_Zoeken_btn" type="submit">Gegevens invullen</button>
                 <div class="form_zoek">
-                    <input class="form_in" id="Contact_Zoeken_in" list="Contact_Zoeken_List" name="Contact_Zoeken_in" placeholder="..." />
+                    <input class="form_in" id="Contact_Zoeken_in" list="Contact_Zoeken_List" name="Contact_Zoeken_in" placeholder="..." 
+                    <?php 
+                        if (isset($_SESSION['Contact']) && $_SESSION['Contact'] != ''){
+                            $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$_SESSION['Contact']."'";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()){
+                                    echo "value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].")'";
+                                }
+                            }
+                            
+                        }
+                     ?>
+                    />
                     <label class="form_editi" for="Contact_Zoeken_btn" onclick="KlikKnop('Contact_Zoeken_btn')" title="Personns gegevens zoekn."></label>
                 </div>
                 <datalist class="form_slt" id="Contact_Zoeken_List" >
@@ -88,7 +101,7 @@
         <div class="form_box_1" id="Mogelijke_GSM">
             <ul>
                 <?php
-                    if (isset($_SESSION['Mogelijke_GSM_nrs']))
+                    if (isset($_SESSION['Mogelijke_GSM_nrs']) && $_SESSION['Mogelijke_GSM_nrs'] != '')
                         {
                             foreach ($_SESSION['Mogelijke_GSM_nrs'] as $i => $Mogelijk_GSM)
                                 {
@@ -175,7 +188,7 @@
         <div class="form_box_1" id="Mogelijke_Tel">
             <ul>
             <?php
-                if (isset($_SESSION['Mogelijke_Tel_nrs']))
+                if (isset($_SESSION['Mogelijke_Tel_nrs']) && $_SESSION['Mogelijke_Tel_nrs'] != '')
                         {
                             foreach ($_SESSION['Mogelijke_Tel_nrs'] as $i => $Mogelijk_Tel)
                                 {
@@ -263,7 +276,7 @@
         <div class="form_box_1" id="Mogelijke_Email">
             <ul>
             <?php
-                if (isset($_SESSION['Mogelijke_EMail']))
+                if (isset($_SESSION['Mogelijke_EMail']) && $_SESSION['Mogelijke_EMail'] != '')
                         {
                             foreach ($_SESSION['Mogelijke_EMail'] as $i => $Mogelijk_EMail)
                                 {
@@ -418,7 +431,7 @@
         <div class="form_box_1" id="Mogelijke_Adres">
             <ul>
             <?php
-                if (isset($_SESSION['Mogelijke_Adressen']))
+                if (isset($_SESSION['Mogelijke_Adressen']) && $_SESSION['Mogelijke_Adressen'] != '')
                         {
                             foreach ($_SESSION['Mogelijke_Adressen'] as $i => $Mogelijk_Adres)
                                 {
@@ -440,14 +453,21 @@
                                                 $Adres_Niet_Be = $Waarde;
                                             }
                                             elseif ($Omsch == 'Adres_Woonplaats'){
-                                                $sql = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$Waarde."'";
-                                                $result = mysqli_query($conn, $sql);
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    while($row = mysqli_fetch_assoc($result)){
-                                                        $Adres_Post = $row['fld_postnummer'];
-                                                        $Adres_Gem = $row['fld_woonplaats_naam'];
+                                                if ($Adres_Niet_Be == true){
+                                                    $Adres_Woonplaats = $Waarde;
+                                                }
+                                                else {
+                                                    $sql = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$Waarde."'";
+                                                    $result = mysqli_query($conn, $sql);
+                                                    if (mysqli_num_rows($result) > 0) {
+                                                        while($row = mysqli_fetch_assoc($result)){
+                                                            $Adres_Post = $row['fld_postnummer'];
+                                                            $Adres_Gem = $row['fld_woonplaats_naam'];
+                                                            $Adres_Woonplaats = $Adres_Post." ".$Adres_Gem;
+                                                        }
                                                     }
                                                 }
+                                                
                                             }
                                             elseif ($Omsch == 'Adres_Land'){
                                                 $sql = "SELECT * FROM tbl_landen WHERE fld_land_id='".$Waarde."'";
@@ -500,7 +520,7 @@
                                                 /** Verwijderknop */
                                                 echo "<button class='form_mn' id='Adres_".$i."' name='Adres_".$i."' type='submit'>x</button>";
                                                 /** Mogelijk Adres tonen in tekstvak */
-                                                echo "<label class='form_lbl' type='text'><b>".$Adres_Soort.":</b> ".$Adres_Straat." ".$Adres_Huisnr.$Adres_Bus.", ".$Adres_Post." ".$Adres_Gem.", ".$Adres_Land.$Adres_Besch."</label>";
+                                                echo "<label class='form_lbl' type='text'><b>".$Adres_Soort.":</b> ".$Adres_Straat." ".$Adres_Huisnr.$Adres_Bus.", ".$Adres_Woonplaats.", ".$Adres_Land.$Adres_Besch."</label>";
                                             echo "</div>";
                                         echo "</li>";
                                 }
