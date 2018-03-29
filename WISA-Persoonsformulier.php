@@ -335,7 +335,7 @@ if (!isset($_SESSION['Is_Leerling']))
         <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         <!-- Volgende formulier -->
         <button class="form_next"  id="Volgende" name="Volgende" title="Volgende formulier: Relaties." type="submit">Volgende</button>
-        <label class="form_nexti" onclick="KlikKnop('Volgende')" title="Identiteitskaart inlezen."></label>
+        <label class="form_nexti" onclick="KlikKnop('Volgende')" title="Volgende formulier: Relaties."></label>
     </div>
 </form>
 
