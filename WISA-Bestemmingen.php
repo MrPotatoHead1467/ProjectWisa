@@ -50,7 +50,7 @@
                     }
                 ?>
             </datalist>
-            <input id="Persoon_Zoeken" name="Persoon_Zoeken" type="hidden"/>
+            <input id="Bestem_Zoeken" name="Bestem_Zoeken" type="hidden"/>
             </div>
         </form>
     </div>
