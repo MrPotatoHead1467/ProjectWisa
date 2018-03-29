@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen` (
   `fld_adres_straatnaam` varchar(255) NOT NULL,
   `fld_adres_huis_nr` int(11) DEFAULT '0',
   `fld_adres_bus_nr` varchar(255) DEFAULT NULL,
-  `fld_adres_postcode_id_fk` int(11) DEFAULT '0',
+  `fld_adres_postcode_id_fk` int(11) DEFAULT NULL,
   `fld_adres_land_id_fk` int(11) NOT NULL DEFAULT '0',
   `fld_adres_niet_be` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`fld_adres_id`),
@@ -1077,9 +1077,9 @@ CREATE TABLE IF NOT EXISTS `tbl_personen` (
   `fld_persoon_leerling` tinyint(1) DEFAULT NULL,
   `fld_persoon_overleden` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`fld_persoon_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen: ~17 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_personen: ~19 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen` DISABLE KEYS */;
 INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_persoon_achternaam`, `fld_persoon_naam`, `fld_persoon_gb_datum`, `fld_persoon_geslacht`, `fld_godsdienst_id_fk`, `fld_persoon_nation_id_fk`, `fld_persoon_gb_plaats`, `fld_persoon_register_nr`, `fld_persoon_bis_nr`, `fld_persoon_leerling`, `fld_persoon_overleden`) VALUES
 	(3, 'Test', 'test', 'Test test', '2018-02-27', 'M', 4, 1, 'Werkt', '18022700054', NULL, 1, 0),
@@ -1090,14 +1090,17 @@ INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_perso
 	(10, 'Hi', 'Hello', 'Hi Hello', '2018-02-26', 'M', 1, 1, 'Werkt', '12345678911', NULL, 1, 0),
 	(11, 'Luna', 'Van Beneden', 'Luna Van Beneden', '2003-07-14', 'V', 1, 1, 'Werkt', '03071445625', NULL, 1, 0),
 	(12, 'Lily', 'Bendrad', 'Lily Bendrad', '2001-09-29', 'V', 0, 10, '28', '15092975648', NULL, 1, 0),
-	(13, 'Maarten', 'Van Beneden', 'Maarten Van Beneden', '2000-09-19', 'M', 0, 1, 'Werkt', '00091936134', NULL, 1, 1),
-	(15, 'Sarah', 'Vandercruysse', 'Sarah Vandercruysse', '1999-03-29', 'V', 1, 49, '38', NULL, NULL, 1, 0),
+	(13, 'Maarten', 'Van Beneden', 'Maarten Van Beneden', '2000-09-19', 'M', 1, 49, '425', '00091936134', NULL, 1, 1),
+	(15, 'Sarah', 'Vandercruysse', 'Sarah Vandercruysse', '1999-03-29', 'V', 1, 49, '38', '00000000000', NULL, 1, 0),
 	(16, 'Marie-Pascale', 'Fantuzzi', 'Marie-Pascale Fantuzzi', '1975-04-02', 'V', 0, 49, '', NULL, NULL, 0, 0),
 	(17, 'Stephanie', 'De Zutter', 'Stephanie De Zutter', '1970-10-23', 'V', 0, 49, '423', '70102380129', NULL, 1, 0),
 	(18, 'Stephanie', 'Bill', 'Stephanie Bill', '1970-10-23', 'V', 10, 49, '1129', NULL, '70102345685', 1, 0),
 	(19, 'Manrick', 'Serrus', 'Manrick Serrus', '1999-08-04', 'M', 4, 49, '423', '99080425898', NULL, 1, 0),
 	(20, 'Jonathan', 'Steylaerts', 'Jonathan Steylaerts', '2000-12-25', 'M', 4, 49, '425', NULL, '00122575648', 1, 0),
-	(21, 'Jasper', 'Van Beneden', 'Jasper Van Beneden', '2006-02-03', 'M', 10, 49, '423', NULL, '06020345678', 1, 0);
+	(21, 'Jasper', 'Van Beneden', 'Jasper Van Beneden', '2006-02-03', 'M', 10, 49, '423', NULL, '06020345678', 1, 0),
+	(22, 'Alex', 'Bethu', 'Alex Bethu', '2000-02-28', 'M', 1, 49, '253', '00022855506', NULL, 1, 0),
+	(23, 'Jaqueline', 'Bethu', 'Jaqueline Bethu', '1969-02-23', 'V', 0, 0, '', NULL, NULL, 0, 0),
+	(24, 'Michel', 'Bethu', 'Michel Bethu', '1968-02-23', 'M', 0, 0, '', NULL, NULL, 0, 1);
 /*!40000 ALTER TABLE `tbl_personen` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_personen_gegevens wordt geschreven
@@ -1124,9 +1127,9 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_linken` (
   KEY `fld_child_id_fk` (`fld_child_id_fk`),
   KEY `fld_persoon_link_id` (`fld_persoon_link_id`),
   KEY `fld_master_id_fk` (`fld_master_id_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen_linken: ~13 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_personen_linken: ~16 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen_linken` DISABLE KEYS */;
 INSERT INTO `tbl_personen_linken` (`fld_persoon_link_id`, `fld_master_id_fk`, `fld_child_id_fk`, `fld_soort_id_fk`, `fld_persoon_link_beschrijving`) VALUES
 	(5, 7, 9, 1, 'Dit is een test'),
@@ -1141,7 +1144,10 @@ INSERT INTO `tbl_personen_linken` (`fld_persoon_link_id`, `fld_master_id_fk`, `f
 	(14, 11, 12, 4, ''),
 	(15, 6, 12, 1, ''),
 	(16, 5, 12, 1, ''),
-	(17, 10, 12, 3, '');
+	(17, 10, 12, 3, ''),
+	(18, 21, 13, 3, ''),
+	(19, 23, 22, 1, ''),
+	(21, 24, 22, 2, '');
 /*!40000 ALTER TABLE `tbl_personen_linken` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_postcodes wordt geschreven
@@ -5500,9 +5506,9 @@ CREATE TABLE IF NOT EXISTS `tbl_soorten` (
   `fld_soort_naam` varchar(255) NOT NULL,
   `fld_soort_item` varchar(255) NOT NULL,
   PRIMARY KEY (`fld_soort_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_soorten: ~20 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_soorten: ~22 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_soorten` DISABLE KEYS */;
 INSERT INTO `tbl_soorten` (`fld_soort_id`, `fld_soort_naam`, `fld_soort_item`) VALUES
 	(1, 'Moeder', 'Relatie'),
@@ -5524,7 +5530,9 @@ INSERT INTO `tbl_soorten` (`fld_soort_id`, `fld_soort_naam`, `fld_soort_item`) V
 	(17, 'Personeel', 'Gegeven'),
 	(18, 'Professioneel', 'Gegeven'),
 	(19, 'Andere', 'Gegeven'),
-	(20, 'Titularis', 'Persoon');
+	(20, 'Titularis', 'Persoon'),
+	(21, 'Primair', 'Gegeven'),
+	(22, 'Gebruiker', 'Persoon');
 /*!40000 ALTER TABLE `tbl_soorten` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_vragen wordt geschreven
