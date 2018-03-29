@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen` (
 
 -- Dumpen data van tabel wisa-db-test.tbl_adressen: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_adressen` DISABLE KEYS */;
+INSERT INTO `tbl_adressen` (`fld_adres_id`, `fld_adres_straatnaam`, `fld_adres_huis_nr`, `fld_adres_bus_nr`, `fld_adres_postcode_id_fk`, `fld_adres_land_id_fk`, `fld_adres_niet_be`) VALUES
+	(1, 'test', 13, '123', NULL, 168, 'Ergens'),
+	(2, 'Duivenstraat', 23, NULL, 425, 21, NULL);
 /*!40000 ALTER TABLE `tbl_adressen` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_adressen_linken wordt geschreven
@@ -47,6 +50,9 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen_linken` (
 
 -- Dumpen data van tabel wisa-db-test.tbl_adressen_linken: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_adressen_linken` DISABLE KEYS */;
+INSERT INTO `tbl_adressen_linken` (`fld_adres_link_id`, `fld_persoon_id_fk`, `fld_adres_id_fk`, `fld_soort_id_fk`, `fld_school_id_fk`, `fld_adres_link_beschrijving`) VALUES
+	(1, 15, 1, 11, NULL, NULL),
+	(2, 0, 2, 11, NULL, 'Thuis');
 /*!40000 ALTER TABLE `tbl_adressen_linken` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_antwoorden wordt geschreven
@@ -142,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `tbl_docs` (
   KEY `fld_doc_id` (`fld_doc_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs: ~11 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_docs: ~13 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_docs` DISABLE KEYS */;
 INSERT INTO `tbl_docs` (`fld_doc_id`, `fld_doc_naam`, `fld_doc_soort`, `fld_doc_plaats`, `fld_doc_datum`) VALUES
 	(1, 'Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', 'png2018-02', 'Uploads/Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', '2018-02-28 04:11:00'),
@@ -173,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `tbl_docs_links` (
   KEY `fld_doc_link_id` (`fld_doc_link_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs_links: ~2 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_docs_links: ~3 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_docs_links` DISABLE KEYS */;
 INSERT INTO `tbl_docs_links` (`fld_doc_link_id`, `fld_doc_id_fk`, `fld_loopbaan_id_fk`, `fld_persoon_id_fk`, `fld_school_id_fk`, `fld_klas_id_fk`, `fld_vraag_id_fk`) VALUES
 	(1, 11, 0, 4, 0, 0, 0),
@@ -228,6 +234,14 @@ CREATE TABLE IF NOT EXISTS `tbl_gegevens` (
 
 -- Dumpen data van tabel wisa-db-test.tbl_gegevens: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_gegevens` DISABLE KEYS */;
+INSERT INTO `tbl_gegevens` (`fld_gegeven_id`, `fld_gegeven_inhoud`, `fld_gegeven_soort_id_fk`) VALUES
+	(4, '0474243595', 3),
+	(5, '016224106', 2),
+	(6, 'maarten.vanbeneden@gmail.com', 1),
+	(7, '0474243595', 3),
+	(8, '0474246897', 3),
+	(9, '0124895478', 3),
+	(10, '016224106', 3);
 /*!40000 ALTER TABLE `tbl_gegevens` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_gegevens_soorten wordt geschreven
@@ -1114,6 +1128,14 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_gegevens` (
 
 -- Dumpen data van tabel wisa-db-test.tbl_personen_gegevens: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen_gegevens` DISABLE KEYS */;
+INSERT INTO `tbl_personen_gegevens` (`fld_persoon_gegeven_id`, `fld_persoon_id_fk`, `fld_gegeven_id_fk`, `fld_soort_id_fk`, `fld_persoon_gegeven_beschrijving`) VALUES
+	(4, 0, 4, 21, 'Hoofd'),
+	(5, 0, 5, 21, 'Thuis'),
+	(6, 0, 6, 21, 'Hoofd'),
+	(7, 0, 7, 17, 'Testerino'),
+	(8, 0, 8, 19, 'Help'),
+	(9, 0, 9, 19, 'Test'),
+	(10, 6, 10, 19, 'Testerino 2.0');
 /*!40000 ALTER TABLE `tbl_personen_gegevens` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_personen_linken wordt geschreven
@@ -5494,7 +5516,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   KEY `fld_school_id` (`fld_school_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen: ~0 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_scholen: ~1 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_scholen` DISABLE KEYS */;
 INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`) VALUES
 	(1, 'Miniemeninstituut');
