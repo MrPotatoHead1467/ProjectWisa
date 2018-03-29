@@ -30,6 +30,14 @@ arial narrow
                     75%  {background-image: url("WISA_Print_IconLoad-A4.png");}
                     100% {background-image: url("WISA_Print_IconLoad-A1.png");}
                     }
+                    
+@keyframes moveright  {
+                    3%   {left: 0; right: 0;}
+                    20%  {left: 2%; right: -2%;}
+                    50%  {left: 1%; right: -1%;}
+                    70% {left: 2%; right: -2%;}
+                    100% {left: 0; right: 0;}
+                    }
 
 /* base */
 
@@ -1009,7 +1017,7 @@ footer {
         	z-index: -1;}
 
 .form_nexti {
-            background-image:  url("WISA_Print_IconTest.png");
+            background-image:  url("WISA_Print_IconNext-Normal.png");
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
@@ -1024,6 +1032,16 @@ footer {
             outline: none;
             transition: 0.3s;
             width: 4em}
+            
+.form_nexti:hover   {
+                    animation-direction: alternate;
+                    animation-duration: 4s;
+                    animation-iteration-count: 2;
+                    animation-name: moveright;
+                    background-image:  url("WISA_Print_IconNext-Hover.png");
+                    outline: none;
+                    position: relative;
+                    transition: 0.3s}
             
 /* formulier.php */
 
