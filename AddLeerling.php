@@ -1,28 +1,16 @@
 <?php
 session_start();
 include "WISA-Connection.php";
-/* Create a class for your webservice structure, in this case: Contact */
-class Credentials {
-    function Credentials($username, $password) 
-    {
-        $this->Username = $username;
-        $this->Password = $password;
-    }
-}
-
-/* Initialize webservice with your WSDL */
-$client = new SoapClient("http://remote.wisa.be:60581/SOAP?service=LeerlingService");
-
-/* Fill your Contact Object */
-$credentials = new Credentials("API", "API");
+include "API_Connection.php";
+$sqlLeerling = 'SELECT * FROM tbl_personen WHERE fld_persoon_id=""';
 
 $Personalia = array(
     "Naam" => 'Van Beneden',
     "Voornaam" => 'Jasper',
     "EMail" => 'jasper.vanbeneden@gmail.com',
     "GSM" => '0474 24 35 95',
-    "OntvangtSMS" => false,
-    "OntvangtEmail" => true,
+    "OntvangtSMS" => NULL,
+    "OntvangtEmail" => NULL,
     "Roepnaam" => 'Jasper',
     "AndereVoornamen" => '',
     "GeboortedatumOngekend" => false,
@@ -43,16 +31,16 @@ $Vader = array(
     "Voornaam" => 'Joris',
     "EMail" => ' joris.vanbeneden@skynet.be',
     "GSM" => '0497 26 75 15',
-    "OntvangtSMS" => false,
-    "OntvangtEmail" => true
+    "OntvangtSMS" => NULL,
+    "OntvangtEmail" => NULL
 );
 $Moeder = array(
     "Naam" => 'Meul',
     "Voornaam" => 'Marijs',
     "EMail" => 'marijs.meul@skynet.be',
     "GSM" => '0471 74 90 79',
-    "OntvangtSMS" => false,
-    "OntvangtEmail" => true
+    "OntvangtSMS" => NULL,
+    "OntvangtEmail" => NULL
 );
 $Adres = array(
     "Straat" => 'Duivestraat',

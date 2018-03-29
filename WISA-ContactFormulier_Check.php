@@ -3,17 +3,62 @@ session_start();
 include "WISA-Connection.php";
 
 if (isset($_POST['Contact_Opslaan'])){
-    $Bus = mysqli_real_escape_string($conn, $_POST['Bus']);
-    if ($Bus == ''){
-        $Bus = NULL;
-        $fld_Bus = NULL;
-    }
-    else {
-        $Bus = ", '".$Bus."'";
-        $fld_Bus = ", fld_adres_bus_nr";
-    }
-    $sqlAdres = "INSERT INTO tbl_adressen(fld_adres_straatnaam, fld_adres_huis_nr".$fld_Bus.", fld_adres_postcode_id_fk, fld_adres_gemeente_id_fk, fld_adres_land_id_fk)
-                   VALUES ('".$Straat."', '".$Huisnrs."'".$Bus.", '".$Postcode."'"; /** Moet nog af gemaakt worden? */
+    if (isset($_SESSION['Mogelijke_Adressen']))
+        {
+            foreach ($_SESSION['Mogelijke_Adressen'] as $i => $Mogelijk_Adres)
+                {
+                    foreach ($Mogelijk_Adres as $Omsch => $Waarde)
+                        {
+                            if ($Omsch == 'Adres_Straat'){
+                                $Adres_Straat = $Waarde;
+                            }
+                            elseif ($Omsch == 'Adres_Huisnr'){
+                                $Adres_Huisnr = $Waarde;
+                            }
+                            elseif ($Omsch == 'Adres_Bus'){
+                                $Adres_Bus = $Waarde;
+                                if ($Adres_Bus != ''){
+                                    $Adres_Bus = ", '".$Adres_Bus."'";
+                                    $fld_Bus = ", fld_adres_bus_nr";
+                                }
+                                else{
+                                    $Adres_Bus = NULL;
+                                    $fld_Bus = NULL;
+                                }
+                            }
+                            elseif ($Omsch == 'Adres_Niet_Be'){
+                                $Adres_Niet_Be = $Waarde;
+                                if ($Adres_Niet_Be != ''){
+                                    $Adres_Niet_Be = ", '".$Adres_Niet_Be."'";
+                                }
+                            }
+                            elseif ($Omsch == 'Adres_Woonplaats'){
+                                $Adres_Postcode = $Waarde;
+                                if ($Adres_Postcode != ''){
+                                    $Adres_Postcode = ", '".$Adres_Postcode."'";
+                                }
+                                else{
+                                    $Adres_Postcode = NULL;
+                                    $fld_Postcode = NULL;
+                                }
+                            }
+                            elseif ($Omsch == 'Adres_Land'){
+                                $Land = $Waarde;
+                            }
+                            elseif ($Omsch == 'Adres_Soort'){
+                                $Adres_Soort = $Waarde;
+                            }
+                            elseif ($Omsch == 'Adres_Besch'){
+                                $Adres_Besch = $Waarde;
+                                if ($Adres_Besch != ''){
+                                    $Adres_Besch = " (".$Adres_Besch.")";
+                                }
+                            }
+                            $sqlAdres = "INSERT INTO tbl_adressen(fld_adres_straatnaam, fld_adres_huis_nr".$fld_Bus.$fld_Postcode.", fld_adres_land_id_fk, fld_adres_niet_be)
+                                         VALUES ('".$Straat."', '".$Huisnrs."'".$Bus." '".$Postcode."', '";
+                        }
+                }
+        }
 }
 
 if (isset($_POST["GSM_Opslaan"])) {
