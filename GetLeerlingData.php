@@ -17,7 +17,7 @@ $client = new SoapClient("http://remote.wisa.be:60581/SOAP?service=LeerlingServi
 $credentials = new Credentials("API", "API");
 /* Set your parameters for the request */
 $params = array(
-    "LeerlingID" => 4019,
+    "LeerlingID" => 4020,
     "Credentials" => $credentials
 );
 

@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen` (
   KEY `fld_adres_postcode_id_fk` (`fld_adres_postcode_id_fk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table wisa-db-test.tbl_adressen: ~4 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_adressen: ~4 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_adressen` DISABLE KEYS */;
 INSERT INTO `tbl_adressen` (`fld_adres_id`, `fld_adres_straatnaam`, `fld_adres_huis_nr`, `fld_adres_bus_nr`, `fld_adres_postcode_id_fk`, `fld_adres_land_id_fk`, `fld_adres_niet_be`) VALUES
 	(1, 'test', 13, '123', NULL, 168, 'Ergens'),
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen_linken` (
   KEY `fld_persoon_id_fk` (`fld_persoon_id_fk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table wisa-db-test.tbl_adressen_linken: ~4 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_adressen_linken: ~4 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_adressen_linken` DISABLE KEYS */;
 INSERT INTO `tbl_adressen_linken` (`fld_adres_link_id`, `fld_persoon_id_fk`, `fld_adres_id_fk`, `fld_soort_id_fk`, `fld_school_id_fk`, `fld_adres_link_beschrijving`) VALUES
 	(1, 15, 1, 11, NULL, NULL),
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gegevens` (
   PRIMARY KEY (`fld_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Dumping data for table wisa-db-test.tbl_gegevens: ~15 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_gegevens: ~15 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_gegevens` (`fld_gegeven_id`, `fld_gegeven_inhoud`, `fld_gegeven_soort_id_fk`) VALUES
 	(4, '0474243595', 3),
@@ -299,7 +299,7 @@ INSERT INTO `tbl_godsdiensten` (`fld_godsdienst_id`, `fld_godsdienst_naam`, `fld
 	(12, 'vrijstelling (of niet van toepassing bij hoofdstructuur = 3xx)', 665, 'VRG', '9999');
 /*!40000 ALTER TABLE `tbl_godsdiensten` ENABLE KEYS */;
 
--- Dumping structure for table wisa-db-test.tbl_inschrijvingen
+-- Structuur van  tabel wisa-db-test.tbl_inschrijvingen wordt geschreven
 CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen` (
   `fld_inschrijving_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_inschrijving_datum` date NOT NULL,
@@ -312,11 +312,11 @@ CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen` (
   PRIMARY KEY (`fld_inschrijving_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table wisa-db-test.tbl_inschrijvingen: ~0 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_inschrijvingen: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_inschrijvingen` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_inschrijvingen` ENABLE KEYS */;
 
--- Dumping structure for table wisa-db-test.tbl_inschrijvingen_statussen
+-- Structuur van  tabel wisa-db-test.tbl_inschrijvingen_statussen wordt geschreven
 CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_statussen` (
   `fld_inschrijving_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_inschrijving_status_naam` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_statussen` (
   PRIMARY KEY (`fld_inschrijving_status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table wisa-db-test.tbl_inschrijvingen_statussen: ~4 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_inschrijvingen_statussen: ~4 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_inschrijvingen_statussen` DISABLE KEYS */;
 INSERT INTO `tbl_inschrijvingen_statussen` (`fld_inschrijving_status_id`, `fld_inschrijving_status_naam`, `fld_inschrijving_status_beschrijving`) VALUES
 	(1, 'Aanvraag', NULL),
@@ -333,7 +333,7 @@ INSERT INTO `tbl_inschrijvingen_statussen` (`fld_inschrijving_status_id`, `fld_i
 	(4, 'Stand-by', NULL);
 /*!40000 ALTER TABLE `tbl_inschrijvingen_statussen` ENABLE KEYS */;
 
--- Dumping structure for table wisa-db-test.tbl_klassen
+-- Structuur van  tabel wisa-db-test.tbl_klassen wordt geschreven
 CREATE TABLE IF NOT EXISTS `tbl_klassen` (
   `fld_klas_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_klas_afkorting` varchar(255) DEFAULT NULL,
@@ -1174,7 +1174,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_gegevens` (
   PRIMARY KEY (`fld_persoon_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Dumping data for table wisa-db-test.tbl_personen_gegevens: ~15 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_personen_gegevens: ~15 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_personen_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_personen_gegevens` (`fld_persoon_gegeven_id`, `fld_persoon_id_fk`, `fld_gegeven_id_fk`, `fld_soort_id_fk`, `fld_persoon_gegeven_beschrijving`) VALUES
 	(4, 0, 4, 21, 'Hoofd'),
@@ -5572,7 +5572,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   KEY `fld_school_id` (`fld_school_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table wisa-db-test.tbl_scholen: ~0 rows (approximately)
+-- Dumpen data van tabel wisa-db-test.tbl_scholen: ~0 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_scholen` DISABLE KEYS */;
 INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`) VALUES
 	(1, 'Miniemeninstituut');
