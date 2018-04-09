@@ -61,7 +61,7 @@
                     }
                 ?>
             </datalist>
-            <input id="Soort_GSM_Zoeken" name="Soort_GSM_Zoeken" type="hidden"/> 
+            <input id="Richting_Zoeken" name="Richting_Zoeken" type="hidden"/> 
         </div>
         
         <!--
@@ -80,13 +80,11 @@
         <div class="Dit_Schooljaar" id="Dit_Schooljaar">        
             <div>
                 
-                
-                
                 <!-- Attest -->
                 <div class="form_box_1">
                     <label class="form_lbl" for="Attest_Zoeken_in">Attest</label><br/>
                     <div class="form_zoek">
-                        <input class="form_in" id="Attest_Zoeken_in" list="Attest_Zoeken_List" name="Attest_Zoeken_in" placeholder="..." />
+                        <input class="form_in" id="Attest_Zoeken_in" list="Attest_Zoeken_List" name="Attest_Zoeken_in" onchange="display_attest()" placeholder="..."  />
                     </div>
                     <datalist class="form_slt" id="Attest_Zoeken_List" >
                         <option value="A">
