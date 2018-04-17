@@ -168,6 +168,12 @@ if (!isset($_SESSION['Is_Leerling']))
     
     <!-- geboorte datum -->
     <div class="form_box_1">
+        <label for="GB_Datum_Onbekend">Geboortedatum onbekend</label>
+        <input id="GB_Datum_Onbekend" type="checkbox" onchange="display_gb_datum_onbekend()"/>
+        <div id="GB_Datum_Onbekend_Div">
+            <label>Gelieve als geboortedatum 01/01 van het geboortejaar in te geven</label>
+        </div>
+        <br />
         <label class="form_lbl" for="GB_Datum">Geboortedatum</label><br />
         <div class="form_box_in">  
             <input class="form_in" type="date" id="GB_Datum" name="GB_Datum" max="<?php echo $Datum; ?>" <?php echo "value='".$_SESSION['EID_GB_Datum']."'"; ?>/><br />
@@ -376,6 +382,19 @@ if (!isset($_SESSION['Is_Leerling']))
 
                 }
 	   }
+    function display_gb_datum_onbekend() 
+        {
+            if (document.getElementById('GB_Datum_Onbekend').checked)
+                {
+                    document.getElementById('GB_Datum_Onbekend_Div').style.display = 'block';
+
+                }
+            else 
+                {
+                    document.getElementById('GB_Datum_Onbekend_Div').style.display = 'none';
+
+                }
+	   }
        
     function display_bis() {
 	   if (document.getElementById('Geen_Register_nr').checked) {
@@ -411,6 +430,11 @@ if (!isset($_SESSION['Is_Leerling']))
     
     function overleden(){
         document.getElementById("Overleden").checked = true;
+    }
+    
+    function gb_datum_onbekend() {
+        document.getElementById("GB_Datum_Onbekend").checked = true;
+        display_gb_datum_onbekend();
     }
     
     $(function() {
@@ -459,6 +483,9 @@ elseif ($_SESSION['Is_Leerling'] == 0){
 
 if ($_SESSION['Overleden'] == 1){
     echo '<script type="text/javascript">overleden();</script>';
+}
+if ($_SESSION['GB_Datum_Onbekend'] == 1){
+    echo '<script type="text/javascript">gb_datum_onbekend();</script>';
 }
 
 ?>

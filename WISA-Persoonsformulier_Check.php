@@ -15,6 +15,12 @@ if (isset($_POST['Persoon_Opslaan'])){
     $Voornaam = mysqli_real_escape_string($conn, $_POST['Voornaam']);
     $Achternaam = mysqli_real_escape_string($conn, $_POST['Achternaam']);
     $Naam = $Voornaam." ".$Achternaam;
+    if (isset($_POST['GB_Datum_Onbekend'])){
+        $GB_Datum_Onbekend = 1;
+    }
+    else {
+        $GB_Datum_Onbekend = 0;
+    }
     $GB_Datum = mysqli_real_escape_string($conn, $_POST['GB_Datum']);    
     $Geslacht = mysqli_real_escape_string($conn, $_POST['Geslacht']);
     if ($Geslacht == "Kies"){
@@ -66,9 +72,9 @@ if (isset($_POST['Persoon_Opslaan'])){
     }
     
     if ($_SESSION['Bestaande_Persoon'] == 0){
-        $sqlPersoon = "INSERT INTO tbl_personen(fld_persoon_voornaam, fld_persoon_achternaam, fld_persoon_naam, fld_persoon_gb_datum, fld_persoon_geslacht, fld_godsdienst_id_fk,
+        $sqlPersoon = "INSERT INTO tbl_personen(fld_persoon_voornaam, fld_persoon_achternaam, fld_persoon_naam, fld_persoon_gb_datum_onbekend, fld_persoon_gb_datum, fld_persoon_geslacht, fld_godsdienst_id_fk,
                    fld_persoon_nation_id_fk, fld_persoon_gb_plaats".$Register_Bis.", fld_persoon_leerling, fld_persoon_overleden) VALUES 
-                   ('".$Voornaam."', '".$Achternaam."', '".$Naam."', '".$GB_Datum."', '".$Geslacht."', '".$Godsdienst."', '".$Nation."', '".$GB_Plaats."'".$ID_Nummer.", '".$Leerling."', '".$Overleden."')";
+                   ('".$Voornaam."', '".$Achternaam."', '".$Naam."', '".$GB_Datum_Onbekend."', '".$GB_Datum."', '".$Geslacht."', '".$Godsdienst."', '".$Nation."', '".$GB_Plaats."'".$ID_Nummer.", '".$Leerling."', '".$Overleden."')";
 
     }
     else {
@@ -90,7 +96,7 @@ if (isset($_POST['Persoon_Opslaan'])){
             $Rijksregister = false;
             $Bis = false;
         }
-        $sqlPersoon = "UPDATE tbl_personen SET fld_persoon_voornaam='".$Voornaam."', fld_persoon_achternaam='".$Achternaam."', fld_persoon_naam='".$Naam."', fld_persoon_gb_datum='".$GB_Datum."',
+        $sqlPersoon = "UPDATE tbl_personen SET fld_persoon_voornaam='".$Voornaam."', fld_persoon_achternaam='".$Achternaam."', fld_persoon_naam='".$Naam."', fld_persoon_gb_datum_onbekend='".$GB_Datum_Onbekend."', fld_persoon_gb_datum='".$GB_Datum."',
                        fld_persoon_geslacht='".$Geslacht."', fld_godsdienst_id_fk='".$Godsdienst."', fld_persoon_nation_id_fk='".$Nation."', fld_persoon_gb_plaats='".$GB_Plaats."', ".$Register_Bis.$ID_Nummer."fld_persoon_leerling='".$Leerling."', 
                        fld_persoon_overleden='".$Overleden."' WHERE fld_persoon_id='".$_SESSION['Bestaande_Persoon_Id']."'";
     }
@@ -103,7 +109,7 @@ if (isset($_POST['Persoon_Opslaan'])){
             $Persoon_Id = $_SESSION['Bestaande_Persoon_Id'];
         }
         else {
-            $Persoon_Id = "Je hebt iets heel verkeerd gedaan";
+            echo "Je hebt iets heel verkeerd gedaan";
         }        
         if ($Rijksregister == true){
             $sqlRijksregister = "UPDATE tbl_personen SET fld_persoon_bis_nr=NULL WHERE fld_persoon_id='".$Persoon_Id."'";
@@ -215,6 +221,7 @@ if (isset($_POST['Persoon_Zoeken_btn'])){
             $_SESSION['EID_Achternaam'] = $row['fld_persoon_achternaam'];
             $_SESSION['Geslacht'] = $row['fld_persoon_geslacht'];
             $_SESSION['EID_GB_Datum'] = $row['fld_persoon_gb_datum'];
+            $_SESSION['GB_Datum_Onbekend'] = $row['fld_persoon_gb_datum_onbekend'];
             $_SESSION['GB_Plaats'] = $row['fld_persoon_gb_plaats'];
             $_SESSION['Nationaliteit'] = $row['fld_persoon_nation_id_fk'];
             $_SESSION['EID_Rijksregisternr'] = $row['fld_persoon_register_nr'];
@@ -236,6 +243,7 @@ if (isset($_POST['Persoon_Zoeken_btn'])){
             $_SESSION['EID_Voornaam'] = '';
             $_SESSION['EID_Achternaam'] = '';
             $_SESSION['Geslacht'] = '';
+            $_SESSION['GB_Datum_Onbekend'] = 0;
             $_SESSION['EID_GB_Datum'] = '';
             $_SESSION['GB_Plaats'] = '';
             $_SESSION['Nationaliteit'] = '';
