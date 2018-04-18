@@ -1,16 +1,16 @@
 <?php
 include "WISA-Connection.php";
-/**
-$sql = "SELECT * FROM tbl_landen";
+///**
+$sql = "SELECT * FROM tbl_scholen WHERE fld_school_naam='Miniemeninstituut'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()){
-        echo $row['fld_land_naam'];
+        echo $row['fld_school_wisa_id'];
         echo "<br />";
     }
 }
-*/
-
+//*/
+/**
 $auth=array('Username'=>'API','Password'=>'API','Database'=>'Miniemen');
 $client = new SoapClient('http://remote.wisa.be:60580/SOAP/WisaAPIService.wsdl');
 // /**
@@ -199,7 +199,7 @@ foreach ($array as $Test2 => $array2){
             echo "Error: " . $sqlSchool . "<br>" . mysqli_error($conn);
         }
         //*/
-        
+        /**
         $Instellingsnummer = '';
         $Straat = '';
         $Straatnummer = '';
