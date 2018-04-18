@@ -23,7 +23,6 @@ include "WISA-Connection.php";
         <?php
         $sqlVragen = "SELECT * FROM tbl_vragen";
         $result = $conn->query($sqlVragen);
-        $_SESSION['Vragen_Id'] = array();
         
         if ($result->num_rows > 0)
             {
@@ -179,10 +178,10 @@ include "WISA-Connection.php";
                                     $resultLijst = $conn->query($sqlLijst);
                                     if ($resultLijst->num_rows > 0)
                                         {
-                                            echo "<select class='form_slt'>";
+                                            echo "<select class='form_slt' name='".$row['fld_vraag_id']."'>";
                                             while ($rowLijst = $resultLijst->fetch_assoc())
                                                 {
-                                                    echo "<option>".$rowLijst['fld_lijst_item']."</option>";
+                                                    echo "<option value='".$rowLijst['fld_lijst_item']."'>".$rowLijst['fld_lijst_item']."</option>";
                                                 }
                                             echo "</select>";
                                             
@@ -194,7 +193,6 @@ include "WISA-Connection.php";
                                     echo "Er is iets verkeerd gegaan...";
                                 }
                         echo "</div>";
-                        array_push($_SESSION['Vragen_Id'],mysqli_real_escape_string($conn, $row['fld_vraag_id']));
                     }
             }
         ?>

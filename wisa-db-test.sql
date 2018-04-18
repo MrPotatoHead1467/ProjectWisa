@@ -10729,7 +10729,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gegevens` (
   PRIMARY KEY (`fld_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18848 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_gegevens: ~18.847 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_gegevens: ~18.681 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_gegevens` (`fld_gegeven_id`, `fld_gegeven_inhoud`, `fld_gegeven_soort_id_fk`) VALUES
 	(1, '012-24.20.40', 2),
@@ -29997,12 +29997,16 @@ CREATE TABLE IF NOT EXISTS `tbl_loopbanen` (
   `fld_loopbaan_schooljaar` varchar(255) NOT NULL,
   `fld_loopbaan_b_datum` datetime DEFAULT NULL,
   `fld_loopbaan_e_datum` datetime DEFAULT NULL,
+  `fld_loopbaan_clausule` varchar(255) DEFAULT NULL,
+  `fld_loopbaan_attest` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`fld_loopbaan_id`),
   KEY `fld_loopbaan_id` (`fld_loopbaan_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_loopbanen: ~0 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_loopbanen: ~1 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_loopbanen` DISABLE KEYS */;
+INSERT INTO `tbl_loopbanen` (`fld_loopbaan_id`, `fld_persoon_id_fk`, `fld_school_id_fk`, `fld_richting_id_fk`, `fld_klas_id_fk`, `fld_loopbaan_schooljaar`, `fld_loopbaan_b_datum`, `fld_loopbaan_e_datum`, `fld_loopbaan_clausule`, `fld_loopbaan_attest`) VALUES
+	(1, 13, 0, 440, 0, '2017 - 2018', '2017-09-01 00:00:00', '2018-06-30 00:00:00', NULL, '');
 /*!40000 ALTER TABLE `tbl_loopbanen` ENABLE KEYS */;
 
 -- Structuur van  tabel wisa-db-test.tbl_nationaliteiten wordt geschreven
@@ -34885,7 +34889,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   KEY `fld_school_id` (`fld_school_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5251 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen: ~5.250 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_scholen: ~5.275 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_scholen` DISABLE KEYS */;
 INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`, `fld_school_instellingsnummer`, `fld_school_wisa_id`) VALUES
 	(1, 'GO! freinetschool De Mijlpaal', 1719, 1),
@@ -40148,7 +40152,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen_gegevens` (
   PRIMARY KEY (`fld_school_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18848 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen_gegevens: ~18.847 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_scholen_gegevens: ~17.963 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_scholen_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_scholen_gegevens` (`fld_school_gegeven_id`, `fld_school_id_fk`, `fld_gegeven_id_fk`) VALUES
 	(1, 1, 0),
@@ -59008,7 +59012,7 @@ CREATE TABLE IF NOT EXISTS `tbl_soorten` (
   PRIMARY KEY (`fld_soort_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_soorten: ~23 rows (ongeveer)
+-- Dumpen data van tabel wisa-db-test.tbl_soorten: ~22 rows (ongeveer)
 /*!40000 ALTER TABLE `tbl_soorten` DISABLE KEYS */;
 INSERT INTO `tbl_soorten` (`fld_soort_id`, `fld_soort_naam`, `fld_soort_item`) VALUES
 	(1, 'Moeder', 'Relatie'),

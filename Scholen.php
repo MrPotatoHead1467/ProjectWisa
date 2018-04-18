@@ -5,7 +5,7 @@ $sql = "SELECT * FROM tbl_scholen WHERE fld_school_naam='Miniemeninstituut'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()){
-        echo $row['fld_school_wisa_id'];
+        echo $row['fld_school_id'];
         echo "<br />";
     }
 }
@@ -77,28 +77,32 @@ foreach ($array as $Test2 => $array2){
             
            ++$i;
         }
-        /**
-        echo "<br />";
-        echo "Wisa_ID: ".$Wisa_School_ID."<br />";
-        echo "Instellingsnummer: ".$Instellingsnummer."<br />";
-        echo "Straat: ".$Straat."<br />";
-        echo "Straatnummer: ".$Straatnummer."<br />";
-        echo "Postcode_ID: ".$Postcode_ID."<br />";
-        if ($Tel != ''){
-            echo "Tel: ".$Tel."<br />";
+        ///**
+        if ($Schoolnaam == "Miniemeninstituut"){
+            echo "<br />";
+            echo "Wisa_ID: ".$Wisa_School_ID."<br />";
+            echo "Instellingsnummer: ".$Instellingsnummer."<br />";
+            echo "Straat: ".$Straat."<br />";
+            echo "Straatnummer: ".$Straatnummer."<br />";
+            echo "Postcode_ID: ".$Postcode_ID."<br />";
+        
+            
+            if ($Tel != ''){
+                echo "Tel: ".$Tel."<br />";
+            }
+            if ($Fax != ''){
+                echo "Fax: ".$Fax."<br />";
+            }
+            if ($EMail != ''){
+                echo "EMail: ".$EMail."<br />";
+            }
+            if ($Website != ''){
+                echo "Website: ".$Website."<br />";
+            } 
+            echo "Schoolnaam: ".$Schoolnaam."<br />";
+            echo "Land_ID: ".$Land_ID."<br />";
         }
-        if ($Fax != ''){
-            echo "Fax: ".$Fax."<br />";
-        }
-        if ($EMail != ''){
-            echo "EMail: ".$EMail."<br />";
-        }
-        if ($Website != ''){
-            echo "Website: ".$Website."<br />";
-        } 
-        echo "Schoolnaam: ".$Schoolnaam."<br />";
-        echo "Land_ID: ".$Land_ID."<br />";
-        */
+        //*/
         /**
         $sqlSchool = "INSERT INTO tbl_scholen (fld_school_naam, fld_school_instellingsnummer, fld_school_wisa_id)
                       VALUES ('".$Schoolnaam."', '".$Instellingsnummer."', '".$Wisa_School_ID."')";
@@ -211,7 +215,7 @@ foreach ($array as $Test2 => $array2){
         $Wisa_School_ID = '';
         $Schoolnaam = '';
         $Land_ID = '';
-        
+
         $i = 0;
     }
 }
