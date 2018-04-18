@@ -37,6 +37,9 @@ if (isset($_POST['Loopbaan_Opslaan'])){
         header("Location: WISA-Formulier.php?loopbaan");
         exit();
     }
+    else {
+        echo "Error: " . $sqlLoopbaan . "<br>" . mysqli_error($conn);
+    }
     /** KLAS NOG TOE TE VOEGEN !!! */    
 }
 

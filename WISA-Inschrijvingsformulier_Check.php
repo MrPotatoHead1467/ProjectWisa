@@ -3,6 +3,7 @@ session_start();
 include "WISA-Connection.php";
 
 if(isset($_POST["Inschrijving_Opslaan"])) {
+    $Persoon_Id = $_SESSION['Leerling'];
     $Datum = date("Y-m-d_h-i");
     $target_dir = "Uploads/";
     $sqlVragen = "SELECT * FROM tbl_vragen";
@@ -33,9 +34,69 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                     }
                 }
             }
+            
             $Vraag_ID = $rowVragen['fld_vraag_id'];
             $Antwoord = mysqli_real_escape_string($conn, $_POST[$Vraag_ID]);
-            echo $Antwoord;
+            
+            if ($rowVragen['fld_antwoord_type_k_tekst'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_k_tekst";
+                }
+            // lange tekst vraag
+            elseif ($rowVragen['fld_antwoord_type_l_tekst'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_l_tekst";
+                }
+            // num vraag
+            elseif ($rowVragen['fld_antwoord_type_num'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_num";
+                }
+            // datum vraag
+            elseif ($rowVragen['fld_antwoord_type_datum'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_datum";
+                }
+            // j/n vraag
+            elseif ($rowVragen['fld_antwoord_type_j/n'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_j/n";
+                }
+            // foto vraag
+            elseif ($rowVragen['fld_antwoord_type_foto'] == 1)
+                {
+                    $Soort_Antwoord = "fld_antwoord_foto";
+                }
+            /**
+            // doc vraag 
+            elseif ($row['fld_antwoord_type_doc'] == 1)
+                {
+                    
+                }  
+            * 
+             */ 
+            // lijst vraag
+            elseif ($rowVragen['fld_antwoord_type_lijst'] == 1)
+                {   
+                    $Soort_Antwoord = "fld_antwoord_lijst_id_fk";
+                    $sqlLijst = "SELECT * FROM tbl_antwoorden_lijst WHERE fld_vraag_id_fk='".$Vraag_ID."' AND fld_lijst_item='".$Antwoord."'";
+                    $resultLijst = mysqli_query($conn, $sqlLijst);
+                    if (mysqli_num_rows($resultLijst) > 0) {
+                        while($rowLijst = mysqli_fetch_assoc($resultLijst)){
+                            $Antwoord = $rowLijst['fld_lijst_id'];
+                        }
+                    }
+                }
+                
+            $sqlAntwoorden = "INSERT INTO tbl_antwoorden (fld_persoon_id_fk, fld_vraag_id_fk, ".$Soort_Antwoord.")
+                              VALUES ('".$Persoon_Id."', '".$Vraag_ID."', '".$Antwoord."')";
+                              
+            if (mysqli_query($conn, $sqlAntwoorden)){
+                
+            }
+            else {
+                echo "Error: " . $sqlAntwoorden . "<br>" . mysqli_error($conn);
+            }
         }
     }
 }
