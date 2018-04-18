@@ -101,45 +101,72 @@
     $aantalLlnGeg = mysqli_num_rows($infoGegLln);
     if ($infoGegLln->num_rows > 0)
         {
-            $a = 1;
+            $a = 0;
             $gegLln = array();
             
-            while($row = $infoGegLln->fetch_assoc() && $a <= $aantalLlnGeg)
+            while(($row = $infoGegLln->fetch_assoc()) && $a < $aantalLlnGeg)
                 {
-                    $gegLlnInhoud = array("SOORT"=>"", "GEG"=>"", "BESCHR"=>$row['fld_persoon_gegeven-beschrijving']);
                     
-                    $soortGeg = $row['fld_soort_id_fk'];
-                    $sqlSoortGeg = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$soortGeg."'";
+                    $gegLln[$a] = array();
+                    
+                    $Beschr = $row['fld_persoon_gegeven_beschrijving'];
+                    
+                    
+                    $soortGegID = $row['fld_soort_id_fk'];
+                    $sqlSoortGeg = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$soortGegID."'";
                     $infoSoortGeg = $conn->query($sqlSoortGeg);
                     if ($infoSoortGeg->num_rows > 0)
                         {
-                            while($row = $infoSoortGeg->fetch_assoc())
+                            while($rowSoort = $infoSoortGeg->fetch_assoc())
                                 {
-                                    $gegLlnInhoud['SOORT'] = $row['fld_soort_naam'];
+                                    $Soort = $rowSoort['fld_soort_naam'];
                                 }
                                 
                         }
-                    echo 
-                    $inhoudGeg = $row['fld_soort_id_fk'];
-                    $sqlInhoudGeg = "SELECT * FROM tbl_gegevens WHERE fld_gegeven_id='".$inhoudGeg."'";
+                    $inhoudGegID = $row['fld_gegeven_id_fk'];
+                    $sqlInhoudGeg = "SELECT * FROM tbl_gegevens WHERE fld_gegeven_id='".$inhoudGegID."'";
                     $infoInhoudGeg = $conn->query($sqlInhoudGeg);
                     if ($infoInhoudGeg->num_rows > 0)
                         {
-                            while($row = $infoSoortGeg->fetch_assoc())
+                            while($rowInhoud = $infoInhoudGeg->fetch_assoc())
                                 {
-                                    $gegLlnInhoud['GEG'] = $row['fld_gegeven_inhoud'];
+                                    $Gegeven = $rowInhoud['fld_gegeven_inhoud'];
+                                    
+                                    $gegevenSoortID = $rowInhoud['fld_gegeven_soort_id_fk'];
+                                    $sqlGegevenSoort = "SELECT * FROM tbl_gegevens_soorten WHERE fld_gegeven_soort_id='".$gegevenSoortID."'";
+                                    $infoGegevenSoort = $conn->query($sqlGegevenSoort);
+                                    if ($infoGegevenSoort->num_rows > 0)
+                                        {
+                                            while($rowGegSoort = $infoGegevenSoort->fetch_assoc())
+                                                {
+                                                    $gegevenSoort = $rowGegSoort['fld_gegeven_soort_naam'];
+                                                }
+                                        }
                                 }
-                                
                         }
-                    array_push($gegLln, $gegLlnInhoud);
+                        
+                    $gegLln[$a] = array("SOORT"=>strtoupper($gegevenSoort)." ".strtolower($Soort), "GEG"=>$Gegeven, "BESCHR"=>$Beschr);
+                    array_push($gegLln, $gegLln[$a]);
                     ++$a;
                     
                     
-                    
                 }
-        }    
-        //foreach ($geg)
-    
+                $noMultiArray = array_map('serialize', $gegLln);
+                $unique_noMultiArray = array_unique($noMultiArray);
+                $gegLln = array_map('unserialize', $unique_noMultiArray);
+                //print_r($gegLln);
+        }
+        /**
+         * 
+        foreach ($gegLln as $geg)
+        {
+            echo count($gegLln)."<br/>";
+            echo $geg["SOORT"]."<br />";
+            echo $geg["GEG"]."<br />";
+            echo $geg["BESCHR"]."<br />";
+        }
+        
+         */
     //
     //
     $adresLln1 = array("STRAAT"=>"",);
@@ -346,15 +373,20 @@
     $pdf -> SetTextColor( 0, 0, 0 );
     $pdf -> Ln(2);
     
-    foreach ($gegLln as $gegLlnInhoud)
+    foreach ($gegLln as $geg)
         {
             $pdf -> cell(10, 5, '', 0, 0);  
             $pdf -> cell(5, 5, '•', 0, 0);
-            $pdf -> cell(175, 5, $gegLlnInhoud["SOORT"], 0, 1);
+            $pdf -> cell(175, 5, $geg["SOORT"], 0, 1);
+            $pdf -> SetTextColor( 137, 137, 137 );
             $pdf -> cell(15, 5, '', 0, 0);
-            $pdf -> cell(175, 5, $gegLlnInhoud["GEG"], 0, 1);
-            $pdf -> cell(15, 5, '', 0, 0);
-            $pdf -> MultiCell(180, 5, $gegLlnInhoud["BESCHR"], 0, 1);
+            $pdf -> cell(175, 5, $geg["GEG"], 0, 1);
+            if ($geg["BESCHR"] != "")
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> MultiCell(180, 5, $geg["BESCHR"], 0, 1);
+                }
+            $pdf -> SetTextColor( 0, 0, 0 );
             $pdf -> Ln(2);
         }
     
