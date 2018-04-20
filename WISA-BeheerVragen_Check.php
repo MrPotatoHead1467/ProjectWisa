@@ -55,7 +55,7 @@ if (isset($_POST["Vraag_opslaan"])) {
             }
             if ($Soort_antwoord == "fld_antwoord_type_lijst" and isset($_SESSION['Mogelijke_antwoorden'])) {
                 foreach ($_SESSION['Mogelijke_antwoorden'] as $Mogelijk_antwoord) {
-                    $sqlMogelijkeAntwoorden = "INSERT INTO tbl_antwoorden_lijst(fld_vraag_id_fk,fld_lijst_item) VALUES ('".$Vraag_Id."','".$Mogelijk_antwoord."')";
+                    $sqlMogelijkeAntwoorden = "INSERT INTO tbl_antwoorden_lijst(fld_vraag_id_fk, fld_lijst_item) VALUES ('".$Vraag_Id."','".$Mogelijk_antwoord."')";
                     if (mysqli_query($conn, $sqlMogelijkeAntwoorden)) {
                         
                     }
