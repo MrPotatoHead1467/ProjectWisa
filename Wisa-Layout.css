@@ -1150,6 +1150,9 @@ footer {
 .Dit_Schooljaar {
     display: none;
 }
+.Niet_Dit_Schooljaar {
+    display: none;
+}
 #Clausule_Div {
     display: none;
 }
@@ -1157,5 +1160,8 @@ footer {
     display: none;
 }
 #GB_Datum_Onbekend_Div{
+    display: none;
+}
+.Loopbaan {
     display: none;
 }
