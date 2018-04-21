@@ -123,48 +123,20 @@ include "WISA-Connection.php";
                 </div>
                 <datalist class="form_slt" id="School_Zoeken_List" >
                     <?php
-                        $sql = "SELECT * FROM tbl_scholen";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0)
-                            {
-                                while($row = mysqli_fetch_assoc($result))
-                                    {
-                                        $Schoolnaam = $row['fld_school_naam'];
-                                        $School_Id = $row['fld_school_id'];
-                                        
-                                        $sqlSchoolAdres = "SELECT * FROM tbl_adressen_linken WHERE fld_school_id_fk=".$School_Id;
-                                        $resultSchoolAdres = mysqli_query($conn, $sqlSchoolAdres);
-                                        if (mysqli_num_rows($resultSchoolAdres) > 0) 
-                                            {
-                                                while($rowSchoolAdres = mysqli_fetch_assoc($resultSchoolAdres))
-                                                    {
-                                                        $Adres_Id = $rowSchoolAdres['fld_adres_id_fk'];
-                                                        
-                                                        $sqlAdres = "SELECT * FROM tbl_adressen WHERE fld_adres_id=".$Adres_Id;
-                                                        $resultAdres = mysqli_query($conn, $sqlAdres);
-                                                        if (mysqli_num_rows($resultSchoolAdres) > 0)
-                                                            {
-                                                                while($rowAdres = mysqli_fetch_assoc($resultAdres))
-                                                                    {
-                                                                        $Postcode_Id = $rowAdres['fld_adres_postcode_id_fk'];
-                                                                        
-                                                                        $sqlPostcode = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id=".$Postcode_Id;
-                                                                        $resultPostcode = mysqli_query($conn, $sqlPostcode);
-                                                                        if (mysqli_num_rows($resultPostcode) > 0)
-                                                                            {
-                                                                                while($rowPostcode = mysqli_fetch_assoc($resultPostcode))
-                                                                                    {
-                                                                                        $Postcode = $rowPostcode['fld_postnummer'];
-                                                                                        $Gemeente = $rowPostcode['fld_woonplaats_naam'];
-                                                                                    }
-                                                                            }
-                                                                    }
-                                                            }
-                                                    }
-                                            }
-                                        echo "<option id='".$row['fld_school_id']."' value='".$row['fld_school_naam']." | ".$Postcode."(".$Gemeente.")'>";
-                                    }
-                            }
+                    $sql = "SELECT tbl_scholen.fld_school_naam, tbl_scholen.fld_school_id, tbl_adressen_linken.fld_adres_id_fk, tbl_adressen.fld_adres_id, tbl_postcodes.fld_postnummer, tbl_postcodes.fld_woonplaats_naam
+                            FROM (((tbl_scholen
+                            INNER JOIN tbl_adressen_linken ON tbl_scholen.fld_school_id = tbl_adressen_linken.fld_school_id_fk)
+                            INNER JOIN tbl_adressen ON tbl_adressen_linken.fld_adres_id_fk = tbl_adressen.fld_adres_id)
+                            INNER JOIN tbl_postcodes ON tbl_adressen.fld_adres_postcode_id_fk = tbl_postcodes.fld_postcode_id);";
+                            
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0)
+                        {
+                            while($row = mysqli_fetch_assoc($result))
+                                {              
+                                    echo "<option id='".$row['fld_school_id']."' value='".$row['fld_school_naam']." | ".$row['fld_postnummer']."(".$row['fld_woonplaats_naam'].")'>";
+                                }
+                        }
                     ?>
                 </datalist>
                 <input id="School_Zoeken" name="School_Zoeken" type="hidden"/>

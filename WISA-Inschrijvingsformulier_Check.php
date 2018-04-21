@@ -4,7 +4,7 @@ include "WISA-Connection.php";
 $_SESSION['Leerling'] = 13;
 if(isset($_POST["Inschrijving_Opslaan"])) {
     $Persoon_Id = $_SESSION['Leerling'];
-    $Datum = date("Y-m-d_h-i");
+    $Datum = date("Y-m-d_H-i");
     $target_dir = "Uploads/";
     $sqlVragen = "SELECT * FROM tbl_vragen";
     $resultVragen = mysqli_query($conn, $sqlVragen);
@@ -75,13 +75,19 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                 {
                     if (isset($_FILES["Document_".$rowVragen['fld_vraag_id']]) and $_FILES["Document_".$rowVragen['fld_vraag_id']] != ''){
                         $Bestand = $_FILES["Document_".$rowVragen['fld_vraag_id']];
-                        $Bestand_Naam = "Document_".$rowVragen['fld_vraag_id']."_".$Datum;
-                        $Bestand_Locatie = $target_dir . $Bestand_Naam;
+                        
+                        $Soort_Bestand = pathinfo($Bestand["name"], PATHINFO_EXTENSION);
+                        $Bestand_Basename = pathinfo($Bestand["name"], PATHINFO_FILENAME);
+                        $Bestand_Naam = $Bestand_Basename."_".$rowVragen['fld_vraag_id']."_".$Persoon_Id;
+                        
+                        $Bestand_Locatie = $target_dir . $Bestand_Naam.".".$Soort_Bestand;
+                        echo $Bestand_Naam;
                         /** Het bestand wordt ge�pload */
+                        
                         if (move_uploaded_file($Bestand["tmp_name"], $Bestand_Locatie)) {
-                            echo "Het bestand ". basename($Bestand["name"]). " is ge�pload.<br />";
-                            $Soort_Bestand = strtolower(pathinfo($Bestand_Locatie, PATHINFO_EXTENSION));
+                            echo "Het bestand ". basename($Bestand["name"]). " is geüpload.<br />";
                             
+                            echo "Soort_Bestand: ".$Soort_Bestand."<br />";
                             $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum)
                                              VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
                             
@@ -90,7 +96,7 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                                 $sqlDoc_link = "INSERT INTO tbl_docs_links (fld_doc_id_fk, fld_persoon_id_fk, fld_vraag_id_fk)
                                                 VALUES ('".$Doc_Id."', '".$Persoon_Id."', '".$Vraag_ID."')";
                                 if (mysqli_query($conn, $sqlDoc_link)){
-                                    $Soort_Antwoord = "fld_antwoord_doc_id_fk";
+                                    $Soort_Antwoord = "fld_antwoord_doc_link_id_fk";
                                     $Antwoord = mysqli_insert_id($conn);
                                 }
                                 else {
@@ -100,10 +106,12 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                             else {
                                 echo "Error: " . $sqlBestanden . "<br>" . mysqli_error($conn);
                             }
+                            
                         }
                         else {
                             
                         }
+                        
                     }
                 }  
             // lijst vraag
