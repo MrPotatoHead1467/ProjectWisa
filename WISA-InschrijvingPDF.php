@@ -411,7 +411,6 @@
                                                             }
                                                     }
                                             }
-                                            
                                         $adresR[$c] = array("SOORT"=>"ADRES: ".strtolower($SoortAR), "STRAAT"=>$StraatAR, "HUIS"=>$HuisAR, "BUS"=>$BusAR, "POST"=>$PostAR, "PLAATS"=>$PlaatsAR, "LAND"=>$LandAR, "BESCHR"=>$BeschrAR);
                                         array_push($adresR, $adresR[$c]);
                                         ++$c;
@@ -421,11 +420,7 @@
                                     $adresR = array_map('unserialize', $unique_noMultiArray);
                                     //print_r($adresLln)."<br/>";                
                                 }
-                        
-                        //
                         }    
-                  
-                    //
                     $relatieLln[$a] = array("SOORT"=>strtolower($SoortRLln), "NAAM"=>$NaamRLln, "GESLACHT"=>$GeslachtRLln, "GEBOORTE"=>(date('d/m/Y', strtotime($GbRLln))), "OVER"=>$OverledenRLln, "BESCHR"=>$BeschrRLln, "GEGR"=>$gegR, "ADRESR"=>$adresR);
                     array_push($relatieLln, $relatieLln[$a]);
                     ++$a;
@@ -437,9 +432,64 @@
                 //echo "<br/>";                
         }                    
     
-    
-    
-    //
+    // loopbaan lln
+    $sqlLoopbaanLln = "SELECT * FROM tbl_loopbanen WHERE fld_persoon_id_fk='".$llnID."'";
+    $infoLoopbaanLln = $conn->query($sqlLoopbaanLln);
+    $aantalLoopbaanLln = mysqli_num_rows($infoLoopbaanLln);
+    if ($infoLoopbaanLln->num_rows > 0)
+        {
+            $a = 0;
+            $loopbaanLln = array();
+            
+            while(($row = $infoLoopbaanLln->fetch_assoc()))
+                {
+                    $loopbaanLln[$a] = array();
+                    
+                    $SchooljaarL = $row['fld_loopbaan_schooljaar'];
+                    $BDatumL = $row["fld_loopbaan_b_datum"];
+                    $EDatumL = $row["fld_loopbaan_e_datum"];
+                    
+                    $schoolID = $row['fld_school_id_fk'];
+                    $sqlSchool = "SELECT * FROM tbl_scholen WHERE fld_school_id='".$schoolID."'";
+                    $infoSchool = $conn->query($sqlSchool);
+                    if ($infoSchool->num_rows > 0)
+                        {
+                            while($rowSchool = $infoSchool->fetch_assoc())
+                                {
+                                    $SchoolL = $rowSchool['fld_school_naam'];
+                                }
+                        }
+                    $richtingID = $row['fld_richting_id_fk'];
+                    $sqlRichting = "SELECT * FROM tbl_richtingen WHERE fld_richting_id='".$richtingID."'";
+                    $infoRichting = $conn->query($sqlRichting);
+                    if ($infoRichting->num_rows > 0)
+                        {
+                            while($rowRichting = $infoRichting->fetch_assoc())
+                                {
+                                    $RichtingL = $rowRichting['fld_richting_naam'];
+                                }
+                        }
+                    $klasID = $row['fld_school_id_fk'];
+                    $sqlKlas = "SELECT * FROM tbl_klassen WHERE fld_klas_id='".$klasID."'";
+                    $infoKlas = $conn->query($sqlKlas);
+                    if ($infoKlas->num_rows > 0)
+                        {
+                            while($rowKlas = $infoKlas->fetch_assoc())
+                                {
+                                    $KlasL = $rowKlas['fld_klas_afkorting'];
+                                }
+                        }
+                    $loopbaanLln[$a] = array("SCHOOL"=>$SchoolL, "JAAR"=>$SchooljaarL, "RICHTING"=>$RichtingL, "KLAS"=>$KlasL, "BEGIN"=>(date('d/m/Y', strtotime($BDatumL))), "EIND"=>(date('d/m/Y', strtotime($EDatumL))));
+                    array_push($loopbaanLln, $loopbaanLln[$a]);
+                    ++$a;
+                }
+                $noMultiArray = array_map('serialize', $loopbaanLln);
+                $unique_noMultiArray = array_unique($noMultiArray);
+                $loopbaanLln = array_map('unserialize', $unique_noMultiArray);
+                //print_r($loopbaanLln);
+                //echo "lol<br/>"; 
+             
+        }
     //
     //
     //
@@ -781,47 +831,36 @@
                 }
                 
         }
-           
-        
-    
-       
-    
-    
-    
+
     $pdf -> AddPage('P', 'A4');
     
+    // jaar va inschrijving: schooljaar, graad, jaar, onderwijs, richting..
     // Loopbaan
     $pdf -> SetFont('Arial','B',11);;
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> Cell(185, 7, 'Loopbaan leerling', 0,1);
     $pdf -> Ln(2);
-    // Loopbaan (0)
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '•', 0, 0);
-    $pdf -> cell(175, 5, 'Schooljaar', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Graad jaar onderwijs', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Richting', 0, 1);
-    $pdf -> Ln(2);
-    // Loopbaan (-1/ ...)
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '•', 0, 0);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(175, 5, 'SCHOOLNAAM', 0, 1);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Schooljaar', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Graad jaar onderwijs', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Richting', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> cell(175, 5, 'Attest (Clausule)', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> MultiCell(175, 5, 'Advies klassenraad', 0, 1);
-    $pdf -> Ln(5);
+    
+    foreach ($loopbaanLln as $loopbaan)
+        {
+            $pdf -> cell(10, 5, '', 0, 0);
+            $pdf -> cell(5, 5, '•', 0, 0);
+            $pdf -> SetFont('Arial','B',10);
+            $pdf -> cell(175, 5, $loopbaan["SCHOOL"], 0, 1);
+            $pdf -> SetFont('Arial','',10);
+            $pdf -> cell(15, 5, '', 0, 0);
+            $pdf -> cell(175, 5, $loopbaan["JAAR"], 0, 1);
+            //$pdf -> cell(15, 5, '', 0, 0);
+            //$pdf -> cell(175, 5, 'Graad jaar onderwijs', 0, 1);
+            $pdf -> cell(15, 5, '', 0, 0);
+            $pdf -> cell(175, 5, $loopbaan["RICHTING"], 0, 1);
+            $pdf -> cell(15, 5, '', 0, 0);
+            $pdf -> cell(175, 5, 'Attest (Clausule)', 0, 1);
+            $pdf -> cell(15, 5, '', 0, 0);
+            $pdf -> MultiCell(175, 5, 'Advies klassenraad', 0, 1);
+            $pdf -> Ln(5);
+        }
+    
     
     $pdf -> AddPage('P', 'A4');
     
