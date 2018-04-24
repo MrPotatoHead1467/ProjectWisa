@@ -35,10 +35,12 @@
                                 </button>
                             </form>';
                 }
+            /**
             else
                 {
                     echo '<a class="nav1-link" href="WISA-Inloggen.php" id="nav1-link2">LOG IN</a>';
                 }
+            */
         ?>
         
     </nav>
