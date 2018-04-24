@@ -41,7 +41,7 @@ include "WISA-Connection.php";
                                 {
                                     // extra bestand voor korte tekst    
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]'  type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // input korte tekst
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
@@ -60,7 +60,7 @@ include "WISA-Connection.php";
                                 {
                                     // extra bestand voor lange tekst
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // input lange tekst
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
@@ -78,7 +78,7 @@ include "WISA-Connection.php";
                                 {
                                     // extra bestand voor num
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // input num
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
@@ -97,7 +97,7 @@ include "WISA-Connection.php";
                                 {
                                     //extra bestand voor datum
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // invoervak datum
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
@@ -115,7 +115,7 @@ include "WISA-Connection.php";
                                 {
                                     // extra bestand voor j/n
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // invoervak voor j/n
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
@@ -135,13 +135,13 @@ include "WISA-Connection.php";
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
                                             {
-                                                echo "<input class='form_picp' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='file' required='True'/>";
-                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
+                                                echo "<input class='form_picp' id='Foto_".$row['fld_vraag_id']."' name='Foto_".$row['fld_vraag_id']."' type='file' required='True'/>";
+                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"Foto_'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
                                             }
                                         else 
                                             {
-                                                echo "<input class='form_picp' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='file'/>";
-                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
+                                                echo "<input class='form_picp' id='Foto_".$row['fld_vraag_id']."' name='Foto_".$row['fld_vraag_id']."' type='file'/>";
+                                                echo "<label class='form_picpi' onclick='KlikKnop("; echo '"Foto_'.$row['fld_vraag_id'].'"'; echo ")' title='Pasfoto van de leerling selecteren.'></label>";
                                             }
                                     echo "</div>";
                                 }
@@ -169,7 +169,7 @@ include "WISA-Connection.php";
                                 {   
                                     // extra bestand voor lijst
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
-                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
+                                    echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // lijst
                                     $sqlLijst = "SELECT * FROM tbl_antwoorden_lijst WHERE fld_vraag_id_fk = ".$row['fld_vraag_id'];
                                     $resultLijst = $conn->query($sqlLijst);

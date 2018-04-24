@@ -133,7 +133,7 @@ include "WISA-Connection.php";
                     if (mysqli_num_rows($result) > 0)
                         {
                             while($row = mysqli_fetch_assoc($result))
-                                {              
+                                {
                                     echo "<option id='".$row['fld_school_id']."' value='".$row['fld_school_naam']." | ".$row['fld_postnummer']."(".$row['fld_woonplaats_naam'].")'>";
                                 }
                         }
