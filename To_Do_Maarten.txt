@@ -92,3 +92,9 @@ Persoonsformulier:
 Relatiesformulier:
 ------------------
 [] Hoe divs bij filters?
+
+----------
+Loopbanen:
+----------
+[X] Begin- / einddatum?
+[X] Waar clausule in database?

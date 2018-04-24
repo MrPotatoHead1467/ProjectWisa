@@ -1,4 +1,4 @@
-<!-- <?php session_start();?> -->
+<?php session_start();?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -174,63 +174,58 @@
                 ?>
             </div>
             <!-- formulieren gelinkt aan tabbladen-->
-            <div id="..." class="tabs_info">
-                <p>...</p>
-            </div>
-            
-            <div id="logins" class="tabs_info">
-                <?PHP
-                    include "WISA-BeheerLogins.php";
-                ?>
-            </div>
+            <?PHP
+            if ($_SESSION['soort'] == "1")
+                {
+                    echo '<div id="..." class="tabs_info">
+                              <p>...</p>
+                          </div>';
+                }
+            elseif  ($_SESSION['soort'] == "2")
+                {
+                    echo '<div id="logins" class="tabs_info">';
+                            include "WISA-BeheerLogins.php";
+                    echo '</div>';
                     
-            <div id="beheervragen" class="tabs_info">
-                <?PHP
-                    include "WISA-BeheerVragen.php";
-                ?>
-            </div>
-            
-            <div id="bestemmingen" class="tabs_info">
-                <?PHP
-                    include "WISA-Bestemmingen.php";
-                ?>
-            </div>  
-             
-            <div id="contact" class="tabs_info">
-                <?PHP
-                    include "WISA-ContactFormulier.php";
-                ?>
-            </div>
-            
-            <div id="loopbaan" class="tabs_info">
-                <?PHP
-                    include "WISA-LoopbaanFormulier.php";
-                ?>
-            </div>
-            
-            <div id="persoon" class="tabs_info">
-                <?PHP
-                    include "WISA-Persoonsformulier.php";
-                ?>
-            </div>
-            
-            <div id="relaties" class="tabs_info">
-                <?PHP
-                    include "WISA-RelatiesFormulier.php";
-                ?>
-            </div>
-            
-            <div id="vragen" class="tabs_info">
-                <?PHP
-                    include "WISA-Inschrijvingsformulier.php";
-                ?>
-            </div>
-            
-            <div id="goedkeuren" class="tabs_info">
-                <?PHP
-                    include "WISA-InschrijvingenGoedkeuren.php";
-                ?>
-            </div>
+                    echo '<div id="beheervragen" class="tabs_info">';
+                            include "WISA-BeheerVragen.php";
+                    echo '</div>';
+                    
+                    echo '<div id="bestemmingen" class="tabs_info">';
+                            include "WISA-Bestemmingen.php";
+                    echo '</div>';
+                    
+                    echo '<div id="goedkeuren" class="tabs_info">';
+                            include "WISA-InschrijvingenGoedkeuren.php";
+                    echo '</div>';
+                }
+            elseif  ($_SESSION['soort'] == "3")
+                {
+                    echo '<div id="persoon" class="tabs_info">';
+                            include "WISA-Persoonsformulier.php";
+                    echo '</div>';
+                    
+                    echo '<div id="relaties" class="tabs_info">';
+                            include "WISA-RelatiesFormulier.php";
+                    echo '</div>';
+                    
+                    echo '<div id="contact" class="tabs_info">';
+                            include "WISA-ContactFormulier.php";
+                    echo '</div>';
+                    
+                    echo '<div id="loopbaan" class="tabs_info">';
+                            include "WISA-LoopbaanFormulier.php";
+                    echo '</div>';
+                    
+                    echo '<div id="vragen" class="tabs_info">';
+                            include "WISA-Inschrijvingsformulier.php";
+                    echo '</div>';
+                }
+            else
+                {
+
+                }
+        ?>
         </div>    
     </div>
     

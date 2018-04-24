@@ -101,6 +101,7 @@ $_SESSION['Formulier'] = "nieuwevraag"
                 <option value="fld_antwoord_type_datum">Datum</option>
                 <option value="fld_antwoord_type_j/n">Ja/Nee</option>
                 <option value="fld_antwoord_type_foto">Foto</option>
+                <option value="fld_antwoord_type_doc">Document</option>
                 <?php if ($_SESSION['Nieuwe_vraag'] == '')
                     {
                         echo '<option value="fld_antwoord_type_lijst">Lijst</option>';

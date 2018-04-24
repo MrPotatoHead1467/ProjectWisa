@@ -39,6 +39,11 @@ if (!isset($_SESSION['EID_GB_Datum']))
     {
         $_SESSION['EID_GB_Datum'] = '';
     }
+    
+    if (!isset($_SESSION['GB_Datum_Onbekend']))
+    {
+        $_SESSION['GB_Datum_Onbekend'] = '';
+    }
 
 if (!isset($_SESSION['GB_Plaats']))
     {
@@ -346,7 +351,6 @@ if (!isset($_SESSION['Is_Leerling']))
 </form>
 
 <script type="text/javascript">
-<!--
     function KlikKnop(knop)
         {
             document.getElementById(knop).click();
@@ -367,6 +371,7 @@ if (!isset($_SESSION['Is_Leerling']))
                     document.getElementById('Div_Pasfoto').style.display = 'none';
                 }
 	   }
+       
     function display_gb_plaats() 
         {
             if (document.getElementById('GB_Plaats_Niet_Be').checked)
@@ -382,6 +387,7 @@ if (!isset($_SESSION['Is_Leerling']))
 
                 }
 	   }
+       
     function display_gb_datum_onbekend() 
         {
             if (document.getElementById('GB_Datum_Onbekend').checked)
@@ -410,10 +416,12 @@ if (!isset($_SESSION['Is_Leerling']))
         document.getElementById('Div_Bis_nr_2').style.display = 'none';
        }
 	}
+    
     function leerling() {
         document.getElementById("Leerling").checked = true;
         display_leerling();
     }
+    
     function niet_leerling() {
         document.getElementById("Leerling").checked = false;
         display_leerling();
@@ -443,25 +451,27 @@ if (!isset($_SESSION['Is_Leerling']))
         document.getElementById("Nationaliteit").value = opt.attr('id');
       });
     });
+    
     $(function() {
       $('#GB_Plaats_in').on('input',function() {
         var opt = $('option[value="'+$(this).val()+'"]');
         document.getElementById("GB_Plaats").value = opt.attr('id');
       });
     });
+    
     $(function() {
       $('#Godsdienst_in').on('input',function() {
         var opt = $('option[value="'+$(this).val()+'"]');
         document.getElementById("Godsdienst").value = opt.attr('id');
       });
     });
+    
     $(function() {
       $('#Persoon_Zoeken_in').on('input',function() {
         var opt = $('option[value="'+$(this).val()+'"]');
         document.getElementById("Persoon_Zoeken").value = opt.attr('id');
       });
     });
--->
 </script>
 
 <?php 
