@@ -25,7 +25,7 @@ if (isset($_POST['login_form-inloggen']))
                 if($resultCheck < 1)
                     {
                         header("Location: WISA-Inloggen.php?login=error");
-                        #exit();
+                        exit();
                         #nood aan mess
                     }
             else 
@@ -38,20 +38,39 @@ if (isset($_POST['login_form-inloggen']))
                                 {
                                     $_SESSION['gebruikerID'] = $row['fld_gebruiker_id'];
                                     $_SESSION['gebruiker'] = $row['fld_gebruiker_naam'];
+                                    //$_SESSION['inschrijverID'] = $row['fld_persoon_id_fk'];
                                     $_SESSION['instelling'] = $row['fld_gebruiker_instelling'];
                                     $_SESSION['wachtwoord'] = $row['fld_gebruiker_wachtwoord'];
                                     $_SESSION['soort'] = $row['fld_gebruiker_soort_id_fk'];
                                     $_SESSION['schoolID'] = $row['fld_school_id_fk'];
-                                    $_SESSION['Formulier'] = "";
+                                    
+                                    // zoek in tbl_personen
+                                    //$_SESSION['inschrijverNaam'] = $row[fld_persoon_naam];
+                                    
+                                    // zoek in tbl_scholen
+                                    //$_SESSION['schoolNaam'] = $row['fld_school_naam'];
+                                    //$_SESSION['schoolTel'] = $row['fld_school_tel'];
+                                    //$_SESSION['schoolFax'] = $row['fld_school_fax'];
+                                    //$_SESSION['schoolEmail'] = $row['fld_school_email'];
+                                    //$_SESSION['schoolLogo'] = $row['fld_school_logo'];
+                                    
+                                    // zoeken in tbl_adressen
+                                    //$_SESSION['schoolStraat'] = $row['fld_adres_straatnaam'];
+                                    //$_SESSION['schoolHuisNR'] = $row['fld_adres_huis_nr'];
+                                    //$_SESSION['schoolBus'] = $row['fld_adres_bus_nr'];
+                                    
+                                    // zoeken in tbl_postcodes
+                                    //$_SESSION['schoolPostNR'] = $row['fld_postnummer];
+                                    //$_SESSION['schoolPlaats'] = $row['fld_woonplaats_naam'];
                            
                                     header("Location: WISA-Formulier.php");
                                     #exit();
                                 }
                         }
-                    else 
+                    else
                         {
                             header("Location: WISA-Inloggen.php?login=error");
-                            #exit();
+                            exit();
                         }
                 }
             }
@@ -59,7 +78,9 @@ if (isset($_POST['login_form-inloggen']))
 
 else 
     {
-        echo("Er is iets verkeerd gegaan");
+        //echo("Er is iets verkeerd gegaan");
+        header("Location: WISA-Inloggen.php?login=error");
+        exit();
         #transit pagina aanmaken..
     }
 
