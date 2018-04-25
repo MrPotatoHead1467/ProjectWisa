@@ -14,7 +14,7 @@
     <?php
     include "WISA-Connection.php";
     ?>
-<form action="WISA-RelatiesFormulier_Check.php" method="post">    
+<form action="WISA-RelatiesFormulier_Check.php" method="post" enctype="multipart/form-data">    
     <!-- icons -->                        
     <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
     
