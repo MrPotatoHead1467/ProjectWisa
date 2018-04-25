@@ -14,7 +14,7 @@
     <?php
     include "WISA-Connection.php";
     ?>
-    
+<form action="WISA-RelatiesFormulier_Check.php" method="post">    
     <!-- icons -->                        
     <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
     
@@ -24,7 +24,7 @@
     <div class="form_box_zoek_border">
     </div>
 
-<form action="WISA-RelatiesFormulier_Check.php" method="post">
+
     
     <!-- bestanden toevoegen -->
     <input class="form_bsd" id="Bestand_relatie" name="Bestand_relatie[]" multiple type="file"/>
