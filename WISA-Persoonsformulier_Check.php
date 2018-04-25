@@ -110,7 +110,28 @@ if (isset($_POST['Persoon_Opslaan'])){
         }
         else {
             echo "Je hebt iets heel verkeerd gedaan";
-        }        
+        }
+        
+        $target_dir = 'Uploads/'.$Naam.'_'.$Persoon_Id;
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
+        if (!file_exists($target_dir.'/Persoon')) {
+            mkdir($target_dir.'/Persoon', 0777, true);
+        }
+        if (!file_exists($target_dir.'/Relatie')) {
+            mkdir($target_dir.'/Relatie', 0777, true);
+        }
+        if (!file_exists($target_dir.'/Contact')) {
+            mkdir($target_dir.'/Contact', 0777, true);
+        }
+        if (!file_exists($target_dir.'/Loopbaan')) {
+            mkdir($target_dir.'/Loopbaan', 0777, true);
+        }
+        if (!file_exists($target_dir.'/Inschrijving')) {
+            mkdir($target_dir.'/Inschrijving', 0777, true);
+        }
+        
         if ($Rijksregister == true){
             $sqlRijksregister = "UPDATE tbl_personen SET fld_persoon_bis_nr=NULL WHERE fld_persoon_id='".$Persoon_Id."'";
             if (mysqli_query($conn, $sqlRijksregister)){
@@ -133,54 +154,76 @@ if (isset($_POST['Persoon_Opslaan'])){
         if ($Leerling == 1){
             $_SESSION['Leerling'] = $Persoon_Id;
         }
-        $target_dir = "Uploads/";
-        if (isset($_FILES["Bestand_persoon"]) and $_FILES["Bestand_persoon"] != ''){
+        $Persoon_dir = $target_dir."/Persoon/";
+        
+        if (isset($_FILES["Bestand_persoon"])){
             $Bestand = $_FILES["Bestand_persoon"];
             $Aantal_Bestanden = count($Bestand['name']);
             for ($i = 0; $i < $Aantal_Bestanden; $i++){
-                $Soort_Bestand = strtolower(pathinfo($Bestand["name"][$i],PATHINFO_EXTENSION));
-                $Bestand_Naam = $Persoon_Id."_".$Datum."_".$i.".".$Soort_Bestand;
-                $Bestand_Locatie = $target_dir . $Bestand_Naam;
-                if (move_uploaded_file($_FILES["Bestand_persoon"]["tmp_name"][$i], $Bestand_Locatie)) {              
-                    $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
-                    if (mysqli_query($conn, $sqlBestanden)){
-                        $Bestand_Id = mysqli_insert_id($conn);
-                        $sqlPersoonBestand = "INSERT INTO tbl_docs_links(fld_doc_id_fk, fld_persoon_id_fk) VALUES ('".$Bestand_Id."', '".$Persoon_Id."')";
-                        if (mysqli_query($conn, $sqlPersoonBestand)){
-                            
+                $Bestand_Basename = pathinfo($Bestand["name"][$i], PATHINFO_FILENAME);
+                $Soort_Bestand = pathinfo($Bestand["name"][$i], PATHINFO_EXTENSION);
+                $Bestand_Naam = $Bestand_Basename."_Persoon_".$Persoon_Id.".".$Soort_Bestand;
+                $Bestand_Locatie = $Persoon_dir.$Bestand_Naam;
+                /** Het bestand wordt geüpload */
+                if ($_FILES["Bestand_persoon"]['size'][$i] != 0){
+                    if (move_uploaded_file($_FILES["Bestand_persoon"]["tmp_name"][$i], $Bestand_Locatie)) {
+                        echo "Het bestand ". basename($Bestand["name"][$i]). " is geüpload.<br />";
+                        
+                        $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) 
+                                         VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
+                        if (mysqli_query($conn, $sqlBestanden)){
+                            $Doc_Id = mysqli_insert_id($conn);
+                            $sqlDoc_link = "INSERT INTO tbl_docs_links (fld_doc_id_fk, fld_persoon_id_fk)
+                                            VALUES ('".$Doc_Id."', '".$Persoon_Id."')";
+                                            
+                            if (mysqli_query($conn, $sqlDoc_link)){
+                                
+                            }
+                            else {
+                                echo "Error: " . $sqlDoc_link . "<br>" . mysqli_error($conn);
+                            }
                         }
                         else {
-                            echo "Error: " . $sqlPersoonBestand . "<br>" . mysqli_error($conn);
+                            echo "Error: " . $sqlBestanden . "<br>" . mysqli_error($conn);
                         }
                     }
                     else {
-                        echo "Error: " . $sqlBestanden . "<br>" . mysqli_error($conn);
+                        echo "Bestand niet geüpload";
                     }
                 }
+                
             }
         }
         
-        if (isset($_FILES["Foto_persoon"]) and $_FILES["Foto_persoon"] != ''){
+        if (isset($_FILES["Foto_persoon"]) and $_FILES["Foto_persoon"]['size'] != 0){
             $Bestand = $_FILES["Foto_persoon"];
-            $Soort_Bestand = strtolower(pathinfo($Bestand["name"],PATHINFO_EXTENSION));
-            $Bestand_Naam = $Persoon_Id."_".$Datum."_Foto.".$Soort_Bestand;
-            $Bestand_Locatie = $target_dir . $Bestand_Naam;
-            if (move_uploaded_file($_FILES["Foto_persoon"]["tmp_name"], $Bestand_Locatie)) {              
-                $sqlFoto = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
-                if (mysqli_query($conn, $sqlFoto)){
-                    $Bestand_Id = mysqli_insert_id($conn);
-                    $sqlPersoonFoto = "INSERT INTO tbl_docs_links(fld_doc_id_fk, fld_persoon_id_fk) VALUES ('".$Bestand_Id."', '".$Persoon_Id."')";
-                    if (mysqli_query($conn, $sqlPersoonFoto)){
+            $Bestand_Basename = pathinfo($Bestand["name"], PATHINFO_FILENAME);
+            $Soort_Bestand = pathinfo($Bestand["name"], PATHINFO_EXTENSION);
+            $Bestand_Naam = $Bestand_Basename."_Pasfoto_".$Persoon_Id.".".$Soort_Bestand;
+            $Bestand_Locatie = $Persoon_dir . $Bestand_Naam;
+            if ($Bestand['size'] != 0){
+                if (move_uploaded_file($_FILES["Foto_persoon"]["tmp_name"], $Bestand_Locatie)) {              
+                    $sqlFoto = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) 
+                                VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
+                    
+                    if (mysqli_query($conn, $sqlFoto)){
+                        $Bestand_Id = mysqli_insert_id($conn);
+                        $sqlPersoonFoto = "INSERT INTO tbl_docs_links(fld_doc_id_fk, fld_persoon_id_fk) 
+                                           VALUES ('".$Bestand_Id."', '".$Persoon_Id."')";
                         
+                        if (mysqli_query($conn, $sqlPersoonFoto)){
+                            
+                        }
+                        else {
+                            echo "Error: " . $sqlPersoonFoto . "<br>" . mysqli_error($conn);
+                        }
                     }
                     else {
-                        echo "Error: " . $sqlPersoonFoto . "<br>" . mysqli_error($conn);
+                        echo "Error: " . $sqlFoto . "<br>" . mysqli_error($conn);
                     }
                 }
-                else {
-                    echo "Error: " . $sqlFoto . "<br>" . mysqli_error($conn);
-                }
             }
+            
         }
         
         $_SESSION['Bestaande_Persoon'] = 0;
