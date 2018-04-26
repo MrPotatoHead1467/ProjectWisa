@@ -24,7 +24,7 @@ include "WISA-Connection.php";
 <div class="form_box_zoek_border">
 </div>
 
-<form action="WISA-LoopbaanFormulier_Check.php" method="post">
+<form action="WISA-LoopbaanFormulier_Check.php" method="post" enctype="multipart/form-data">
     
     <!-- bestanden toevoegen -->
     <input class="form_bsd" id="Bestand_loopbaan" name="Bestand_loopbaan[]" multiple type="file"/>
