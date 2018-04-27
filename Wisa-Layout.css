@@ -406,7 +406,7 @@ footer {
 /* help.php */
 
 .page_fullscreen-grey   {
-                        background-color: rgba(241,242,244,0.10);
+                        background-color: rgba(241,242,244,0.8);
                         color: #FAFAFA;
                         display: block;
                         height:  100vh;
@@ -415,7 +415,8 @@ footer {
                         position: fixed;
                         text-align: center;
                         top: 0;
-                        width: 100%;}
+                        width: 100%;
+                        z-index: 111;}
                         
 .page_cover     {
                 background-color: #5A667B;
@@ -430,7 +431,24 @@ footer {
                 padding-top:  2vh;
                 transition: 0.3s;
                 text-align: center;
-                width: 62%}
+                width: 62%;
+                z-index: 111;}
+
+.page_cover_mess    {
+                    background-color: #5A667B;
+                    border-radius: 10px;
+                    display: block; 
+                    height: 60vh ;
+                    margin: 28%;
+                    margin-bottom: 18vh;
+                    margin-top: 16vh;
+                    padding: 2%;
+                    padding-bottom: 2vh;
+                    padding-top:  4vh;
+                    transition: 0.3s;
+                    text-align: center;
+                    width: 40%;
+                    z-index: 111;}
                 
 .page_cover-space   {
                     background-color: inherit;
@@ -444,15 +462,17 @@ footer {
 .page_cover-close   {
                     background-color: transparent;
                     border: none;
-                    display: none;
+                    display: block;
                     color: #373B47;
                     cursor: pointer;
                     float: right;
-                    font-family: arial black;
-                    font-size: 1.5em;
-                    height: 2em;
+                    font-family: calibri;
+                    font-size: 2em;
+                    height: auto;
+                    margin: 0;
+                    padding: 0;
                     transition: 0.3s;
-                    width: 2em;}
+                    width: auto;}
 
 .page_cover-close:hover     {
                             color: #FAFAFA;

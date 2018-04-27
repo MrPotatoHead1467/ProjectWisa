@@ -229,6 +229,25 @@
         </div>    
     </div>
     
+    <div class="page_fullscreen-grey">
+        <div class="page_cover_mess">
+            <div class="page_cover-space">
+                <button class="page_cover-close" onclick="page_cover_close() "title="Handleiding sluiten">x</button>
+                <div class="page_cover-titlebox">
+                    <h3 class="page_cover-title">Inschrijving</h3>
+                </div>
+                <!--
+                    - print
+                    - handtekeningen als gevraagd in instellingen
+                    - voorwaarden geaccepteerd
+                    - commentaar toevoegen
+                    - opslaan knop
+                -->
+            </div>
+        </div>
+    
+    </div>
+    
     <!-- code: website op full screen laten afbeelden -->
     <script>
         //function page_fullscreen()

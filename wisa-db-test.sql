@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         localhost
--- Server versie:                10.1.28-MariaDB - mariadb.org binary distribution
+-- Host:                         127.0.0.1
+-- Server version:               10.1.31-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win32
--- HeidiSQL Versie:              9.4.0.5125
+-- HeidiSQL Version:             9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Databasestructuur van wisa-db-test wordt geschreven
+-- Dumping database structure for wisa-db-test
 CREATE DATABASE IF NOT EXISTS `wisa-db-test` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `wisa-db-test`;
 
--- Structuur van  tabel wisa-db-test.tbl_adressen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_adressen
 CREATE TABLE IF NOT EXISTS `tbl_adressen` (
   `fld_adres_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_adres_straatnaam` varchar(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen` (
   KEY `fld_adres_postcode_id_fk` (`fld_adres_postcode_id_fk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5251 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_adressen: ~5.250 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_adressen: ~5,250 rows (approximately)
 /*!40000 ALTER TABLE `tbl_adressen` DISABLE KEYS */;
 INSERT INTO `tbl_adressen` (`fld_adres_id`, `fld_adres_straatnaam`, `fld_adres_huis_nr`, `fld_adres_bus_nr`, `fld_adres_postcode_id_fk`, `fld_adres_land_id_fk`, `fld_adres_niet_be`) VALUES
 	(1, 'Koninksemsteenweg', '174', NULL, 625, 21, NULL),
@@ -5285,7 +5285,7 @@ INSERT INTO `tbl_adressen` (`fld_adres_id`, `fld_adres_straatnaam`, `fld_adres_h
 	(5250, 'Jean-Baptiste Depairelaan', '68', NULL, 2, 21, NULL);
 /*!40000 ALTER TABLE `tbl_adressen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_adressen_linken wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_adressen_linken
 CREATE TABLE IF NOT EXISTS `tbl_adressen_linken` (
   `fld_adres_link_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_persoon_id_fk` int(11) DEFAULT NULL,
@@ -5297,7 +5297,7 @@ CREATE TABLE IF NOT EXISTS `tbl_adressen_linken` (
   KEY `fld_persoon_id_fk` (`fld_persoon_id_fk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5251 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_adressen_linken: ~5.250 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_adressen_linken: ~5,250 rows (approximately)
 /*!40000 ALTER TABLE `tbl_adressen_linken` DISABLE KEYS */;
 INSERT INTO `tbl_adressen_linken` (`fld_adres_link_id`, `fld_persoon_id_fk`, `fld_adres_id_fk`, `fld_soort_id_fk`, `fld_school_id_fk`, `fld_adres_link_beschrijving`) VALUES
 	(1, NULL, 1, 23, 1, NULL),
@@ -10552,7 +10552,7 @@ INSERT INTO `tbl_adressen_linken` (`fld_adres_link_id`, `fld_persoon_id_fk`, `fl
 	(5250, NULL, 5250, 23, 5250, NULL);
 /*!40000 ALTER TABLE `tbl_adressen_linken` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_antwoorden wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_antwoorden
 CREATE TABLE IF NOT EXISTS `tbl_antwoorden` (
   `fld_antwoord_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_persoon_id_fk` int(11) NOT NULL DEFAULT '0',
@@ -10567,9 +10567,9 @@ CREATE TABLE IF NOT EXISTS `tbl_antwoorden` (
   PRIMARY KEY (`fld_antwoord_id`),
   KEY `fld_antwoord_id` (`fld_antwoord_id`),
   KEY `fld_vraag_id_fk` (`fld_vraag_id_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=369 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_antwoorden: ~326 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_antwoorden: ~18 rows (approximately)
 /*!40000 ALTER TABLE `tbl_antwoorden` DISABLE KEYS */;
 INSERT INTO `tbl_antwoorden` (`fld_antwoord_id`, `fld_persoon_id_fk`, `fld_vraag_id_fk`, `fld_antwoord_k_tekst`, `fld_antwoord_l_tekst`, `fld_antwoord_num`, `fld_antwoord_datum`, `fld_antwoord_j/n`, `fld_antwoord_lijst_id_fk`, `fld_antwoord_doc_link_id_fk`) VALUES
 	(7, 13, 35, 'Maarten', NULL, NULL, NULL, 0, 0, NULL),
@@ -10589,354 +10589,10 @@ INSERT INTO `tbl_antwoorden` (`fld_antwoord_id`, `fld_persoon_id_fk`, `fld_vraag
 	(21, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
 	(22, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
 	(23, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(24, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 15),
-	(25, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(26, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(27, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(28, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(29, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(30, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(31, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(32, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(33, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(34, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(35, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(36, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(37, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(38, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(39, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(40, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(41, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(42, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(43, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(44, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(45, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(46, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(47, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(48, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(49, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(50, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(51, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(52, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(53, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 5),
-	(54, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(55, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(56, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(57, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(58, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(59, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 6),
-	(60, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(61, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(62, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(63, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(64, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(65, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 7),
-	(66, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(67, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(68, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(69, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(70, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(71, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(72, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(73, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(74, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(75, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(76, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(77, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(78, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(79, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(80, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(81, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(82, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(83, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(84, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(85, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(86, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(87, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(88, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(89, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(90, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(91, 13, 37, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(92, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(93, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(94, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(95, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 8),
-	(96, 13, 35, 'test', NULL, NULL, NULL, 0, 0, NULL),
-	(97, 13, 37, 'test', NULL, NULL, NULL, 0, 0, NULL),
-	(98, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(99, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(100, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(101, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(102, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 9),
-	(103, 13, 35, 'test', NULL, NULL, NULL, 0, 0, NULL),
-	(104, 13, 37, 'test', NULL, NULL, NULL, 0, 0, NULL),
-	(105, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(106, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(107, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(108, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(109, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 10),
-	(110, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(111, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(112, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(113, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(114, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(115, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 11),
-	(116, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 12),
-	(117, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(118, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(119, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(120, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(121, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(122, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 14),
-	(123, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 15),
-	(124, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(125, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(126, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(127, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(128, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(129, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 17),
-	(130, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 18),
-	(131, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(132, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(133, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(134, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(135, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(136, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 20),
-	(137, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 21),
-	(138, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(139, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(140, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(141, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(142, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(143, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 23),
-	(144, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 24),
-	(145, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(146, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(147, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(148, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(149, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(150, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 26),
-	(151, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 27),
-	(152, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(153, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(154, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(155, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(156, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(157, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 29),
-	(158, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 30),
-	(159, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(160, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(161, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(162, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(163, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(164, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 32),
-	(165, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 33),
-	(166, 13, 35, 'Martinez', NULL, NULL, NULL, 0, 0, NULL),
-	(167, 13, 37, 'donno', NULL, NULL, NULL, 0, 0, NULL),
-	(168, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(169, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(170, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(171, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 35),
-	(172, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 36),
-	(173, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(174, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(175, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(176, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(177, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(178, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 38),
-	(179, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 39),
-	(180, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(181, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(182, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(183, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(184, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(185, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 40),
-	(186, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 41),
-	(187, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(188, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(189, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(190, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(191, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(192, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 42),
-	(193, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 43),
-	(194, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(195, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(196, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(197, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(198, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(199, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 44),
-	(200, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 45),
-	(201, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(202, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(203, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(204, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(205, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(206, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 46),
-	(207, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 47),
-	(208, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(209, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(210, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(211, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(212, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(213, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 48),
-	(214, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 49),
-	(215, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(216, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(217, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(218, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(219, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(220, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 51),
-	(221, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 52),
-	(222, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(223, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(224, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(225, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(226, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(227, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 54),
-	(228, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 55),
-	(229, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(230, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(231, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(232, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(233, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(234, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 57),
-	(235, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 58),
-	(236, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(237, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(238, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(239, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(240, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(241, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 60),
-	(242, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 61),
-	(243, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(244, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(245, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(246, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(247, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(248, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 63),
-	(249, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 64),
-	(250, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(251, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(252, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(253, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(254, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(255, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 66),
-	(256, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 67),
-	(257, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(258, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(259, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(260, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(261, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(262, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 69),
-	(263, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 70),
-	(264, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(265, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(266, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(267, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(268, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(269, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 72),
-	(270, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 73),
-	(271, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(272, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(273, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(274, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(275, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(276, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 75),
-	(277, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 76),
-	(278, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(279, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(280, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(281, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(282, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(283, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 78),
-	(284, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 79),
-	(285, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(286, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(287, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(288, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(289, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(290, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 80),
-	(291, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 81),
-	(292, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(293, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(294, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(295, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(296, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(297, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 82),
-	(298, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 83),
-	(299, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(300, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(301, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(302, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(303, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(304, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 85),
-	(305, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 86),
-	(306, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(307, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(308, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(309, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(310, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(311, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 88),
-	(312, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 89),
-	(313, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(314, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(315, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(316, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(317, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(318, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 91),
-	(319, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 92),
-	(320, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(321, 13, 37, 'erino', NULL, NULL, NULL, 0, 0, NULL),
-	(322, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(323, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(324, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(325, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 94),
-	(326, 13, 45, NULL, NULL, NULL, NULL, 0, 0, 95),
-	(327, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(328, 13, 37, 'Weeral', NULL, NULL, NULL, 0, 0, NULL),
-	(329, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(330, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(331, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(332, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(333, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(334, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(335, 13, 37, 'Weeral', NULL, NULL, NULL, 0, 0, NULL),
-	(336, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(337, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(338, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(339, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(340, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(341, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(342, 13, 37, 'Weeral', NULL, NULL, NULL, 0, 0, NULL),
-	(343, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(344, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(345, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(346, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(347, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(348, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(349, 13, 37, 'Weeral', NULL, NULL, NULL, 0, 0, NULL),
-	(350, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(351, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(352, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(353, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(354, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(355, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(356, 13, 37, 'Weeral', NULL, NULL, NULL, 0, 0, NULL),
-	(357, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(358, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(359, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(360, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(361, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(362, 13, 35, 'Test', NULL, NULL, NULL, 0, 0, NULL),
-	(363, 13, 37, 'test', NULL, NULL, NULL, 0, 0, NULL),
-	(364, 13, 38, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL),
-	(365, 13, 42, NULL, NULL, NULL, NULL, 0, 20, NULL),
-	(366, 13, 43, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(367, 13, 44, NULL, NULL, NULL, NULL, 0, 23, NULL),
-	(368, 13, 45, NULL, NULL, NULL, NULL, 0, 23, NULL);
+	(24, 13, 44, NULL, NULL, NULL, NULL, 0, 0, 15);
 /*!40000 ALTER TABLE `tbl_antwoorden` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_antwoorden_lijst wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_antwoorden_lijst
 CREATE TABLE IF NOT EXISTS `tbl_antwoorden_lijst` (
   `fld_lijst_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_vraag_id_fk` int(11) NOT NULL DEFAULT '0',
@@ -10945,7 +10601,7 @@ CREATE TABLE IF NOT EXISTS `tbl_antwoorden_lijst` (
   KEY `fld_lijst_id` (`fld_lijst_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_antwoorden_lijst: ~6 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_antwoorden_lijst: ~6 rows (approximately)
 /*!40000 ALTER TABLE `tbl_antwoorden_lijst` DISABLE KEYS */;
 INSERT INTO `tbl_antwoorden_lijst` (`fld_lijst_id`, `fld_vraag_id_fk`, `fld_lijst_item`) VALUES
 	(20, 42, 'Te voet'),
@@ -10956,7 +10612,7 @@ INSERT INTO `tbl_antwoorden_lijst` (`fld_lijst_id`, `fld_vraag_id_fk`, `fld_lijs
 	(25, 43, 'Zwemmen');
 /*!40000 ALTER TABLE `tbl_antwoorden_lijst` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_bestaande_lijsten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_bestaande_lijsten
 CREATE TABLE IF NOT EXISTS `tbl_bestaande_lijsten` (
   `fld_bestaande_lijst_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_bestaande_lijst_naam` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -10967,7 +10623,7 @@ CREATE TABLE IF NOT EXISTS `tbl_bestaande_lijsten` (
   PRIMARY KEY (`fld_bestaande_lijst_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_bestaande_lijsten: ~9 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_bestaande_lijsten: ~9 rows (approximately)
 /*!40000 ALTER TABLE `tbl_bestaande_lijsten` DISABLE KEYS */;
 INSERT INTO `tbl_bestaande_lijsten` (`fld_bestaande_lijst_id`, `fld_bestaande_lijst_naam`, `fld_bestaande_lijst_tabel`, `fld_bestaande_lijst_tabel_key`, `fld_bestaande_lijst_veld`, `fld_bestaande_lijst_beschrijving`) VALUES
 	(1, 'Godsdiensten', 'tbl_godsdiensten', 'fld_godsdienst_id', 'fld_godsdienst_naam', NULL),
@@ -10981,7 +10637,7 @@ INSERT INTO `tbl_bestaande_lijsten` (`fld_bestaande_lijst_id`, `fld_bestaande_li
 	(9, 'Woonplaatsen', 'tbl_woonplaatsen', 'fld_woonplaats_id', 'fld_woonplaats_naam', NULL);
 /*!40000 ALTER TABLE `tbl_bestaande_lijsten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_bestemmingen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_bestemmingen
 CREATE TABLE IF NOT EXISTS `tbl_bestemmingen` (
   `fld_bestemming_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_bestemming_naam` varchar(255) NOT NULL,
@@ -10990,7 +10646,7 @@ CREATE TABLE IF NOT EXISTS `tbl_bestemmingen` (
   KEY `fld_bestemming_id` (`fld_bestemming_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_bestemmingen: ~3 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_bestemmingen: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_bestemmingen` DISABLE KEYS */;
 INSERT INTO `tbl_bestemmingen` (`fld_bestemming_id`, `fld_bestemming_naam`, `fld_school_id_fk`) VALUES
 	(1, 'Wisa', 0),
@@ -10998,7 +10654,7 @@ INSERT INTO `tbl_bestemmingen` (`fld_bestemming_id`, `fld_bestemming_naam`, `fld
 	(3, 'Smartschool', 0);
 /*!40000 ALTER TABLE `tbl_bestemmingen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_docs wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_docs
 CREATE TABLE IF NOT EXISTS `tbl_docs` (
   `fld_doc_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_doc_naam` varchar(255) NOT NULL,
@@ -11007,9 +10663,9 @@ CREATE TABLE IF NOT EXISTS `tbl_docs` (
   `fld_doc_datum` datetime NOT NULL,
   PRIMARY KEY (`fld_doc_id`),
   KEY `fld_doc_id` (`fld_doc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs: ~123 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_docs: ~15 rows (approximately)
 /*!40000 ALTER TABLE `tbl_docs` DISABLE KEYS */;
 INSERT INTO `tbl_docs` (`fld_doc_id`, `fld_doc_naam`, `fld_doc_soort`, `fld_doc_plaats`, `fld_doc_datum`) VALUES
 	(1, 'Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', 'png2018-02', 'Uploads/Print_Gebouwen1-Dak_Filmpje.png2018-02-28_04-11', '2018-02-28 04:11:00'),
@@ -11026,119 +10682,10 @@ INSERT INTO `tbl_docs` (`fld_doc_id`, `fld_doc_naam`, `fld_doc_soort`, `fld_doc_
 	(12, '5_2018-03-07_09-40_0.txt', 'txt', 'Uploads/5_2018-03-07_09-40_0.txt', '2018-03-07 09:40:00'),
 	(13, '5_2018-03-07_09-40_1.txt', 'txt', 'Uploads/5_2018-03-07_09-40_1.txt', '2018-03-07 09:40:00'),
 	(14, 'Document_44_2018-04-20_09-14', '', 'Uploads/Document_44_2018-04-20_09-14', '2018-04-20 09:14:00'),
-	(15, 'Document_44_2018-04-20_09-22', '', 'Uploads/Document_44_2018-04-20_09-22', '2018-04-20 09:22:00'),
-	(16, 'Document_44_2018-04-21_09-57', '', 'Uploads/Document_44_2018-04-21_09-57', '2018-04-21 09:57:00'),
-	(17, 'Document_44_2018-04-21_10-05', 'jpg', 'Uploads/Document_44_2018-04-21_10-05jpg', '2018-04-21 10:05:00'),
-	(18, 'Document_44_2018-04-21_10-06', 'jpg', 'Uploads/Document_44_2018-04-21_10-06.jpg', '2018-04-21 10:06:00'),
-	(19, 'Document_44_2018-04-21_10-09-49', 'jpg', 'Uploads/Document_44_2018-04-21_10-09-49.jpg', '2018-04-21 10:09:49'),
-	(20, 'Hat_44_13', 'jpg', 'Uploads/Hat_44_13.jpg', '2018-04-21 10:21:00'),
-	(25, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Wallpaper_35_13.jpg', '2018-04-24 13:48:00'),
-	(26, 'aap_37_13.jpg', 'jpg', 'Uploads/aap_37_13.jpg', '2018-04-24 13:48:00'),
-	(27, 'Pf_37_13.jpg', 'jpg', 'Uploads/Pf_37_13.jpg', '2018-04-24 13:48:00'),
-	(28, 'aap_37_13.jpg', 'jpg', 'Uploads/aap_37_13.jpg', '2018-04-24 14:59:00'),
-	(29, 'Pf_45_13', 'jpg', 'Uploads/Pf_45_13.jpg', '2018-04-24 15:27:00'),
-	(30, 'Pf_45_13', 'jpg', 'Uploads/Pf_45_13.jpg', '2018-04-24 15:29:00'),
-	(31, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 19:49:00'),
-	(32, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 19:49:00'),
-	(33, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 19:49:00'),
-	(34, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:00:00'),
-	(35, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:00:00'),
-	(36, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:00:00'),
-	(37, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:01:00'),
-	(38, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:01:00'),
-	(39, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:01:00'),
-	(40, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:05:00'),
-	(41, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:05:00'),
-	(42, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:05:00'),
-	(43, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:05:00'),
-	(44, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:05:00'),
-	(45, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:05:00'),
-	(46, 'aap_35_13.jpg', 'jpg', 'Uploads/_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:08:00'),
-	(47, 'Pf_44_13', 'jpg', 'Uploads/_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:08:00'),
-	(48, 'Wallpaper_45_13', 'jpg', 'Uploads/_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:08:00'),
-	(49, 'aap_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:08:00'),
-	(50, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:08:00'),
-	(51, 'Wallpaper_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:08:00'),
-	(52, 'aap_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:11:00'),
-	(53, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:11:00'),
-	(54, 'Wallpaper_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:11:00'),
-	(55, 'aap_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/aap_35_13.jpg', '2018-04-24 20:17:00'),
-	(56, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:17:00'),
-	(57, 'Wallpaper_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/Wallpaper_45_13.jpg', '2018-04-24 20:17:00'),
-	(58, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:17:00'),
-	(59, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:17:00'),
-	(60, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:17:00'),
-	(61, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:17:00'),
-	(62, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:17:00'),
-	(63, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:20:00'),
-	(64, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:20:00'),
-	(65, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:23:00'),
-	(66, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:23:00'),
-	(67, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:24:00'),
-	(68, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:24:00'),
-	(69, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:24:00'),
-	(70, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:24:00'),
-	(71, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:31:00'),
-	(72, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:31:00'),
-	(73, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:31:00'),
-	(74, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:31:00'),
-	(75, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:31:00'),
-	(76, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:31:00'),
-	(77, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:32:00'),
-	(78, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:32:00'),
-	(79, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:32:00'),
-	(80, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:33:00'),
-	(81, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:33:00'),
-	(82, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:33:00'),
-	(83, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:33:00'),
-	(84, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:33:00'),
-	(85, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:33:00'),
-	(86, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:34:00'),
-	(87, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:34:00'),
-	(88, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:34:00'),
-	(89, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:34:00'),
-	(90, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:34:00'),
-	(91, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:34:00'),
-	(92, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:36:00'),
-	(93, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:36:00'),
-	(94, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:36:00'),
-	(95, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:38:00'),
-	(96, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:38:00'),
-	(97, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:38:00'),
-	(98, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:39:00'),
-	(99, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:39:00'),
-	(100, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:39:00'),
-	(101, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:43:00'),
-	(102, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:43:00'),
-	(103, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:43:00'),
-	(104, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:43:00'),
-	(105, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:44:00'),
-	(106, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:44:00'),
-	(107, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:44:00'),
-	(108, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:44:00'),
-	(109, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:44:00'),
-	(110, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:44:00'),
-	(111, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:44:00'),
-	(112, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:44:00'),
-	(113, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:44:00'),
-	(114, 'Wallpaper_35_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/35/Wallpaper_35_13.jpg', '2018-04-24 20:45:00'),
-	(115, 'Pf_44_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/44/Pf_44_13.jpg', '2018-04-24 20:45:00'),
-	(116, 'aap_45_13', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/45/aap_45_13.jpg', '2018-04-24 20:45:00'),
-	(117, 'Wallpaper_38_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/38/Wallpaper_38_13.jpg', '2018-04-24 20:47:00'),
-	(118, 'Wallpaper_38_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/38/Wallpaper_38_13.jpg', '2018-04-24 20:48:00'),
-	(119, 'Wallpaper_38_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/38/Wallpaper_38_13.jpg', '2018-04-24 20:48:00'),
-	(120, 'Wallpaper_38_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/38/Wallpaper_38_13.jpg', '2018-04-24 20:50:00'),
-	(121, 'Wallpaper_38_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/38/Wallpaper_38_13.jpg', '2018-04-24 20:51:00'),
-	(122, 'Wallpaper_43_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Inschrijving/43/Wallpaper_43_13.jpg', '2018-04-24 20:51:00'),
-	(123, 'Wallpaper_Persoon_13.jpg', 'jpg', 'Uploads/Maarten Van Beneden_13/Persoon/Wallpaper_Persoon_13.jpg', '2018-04-25 11:36:00'),
-	(124, 'Pf_Persoon_25.jpg', 'jpg', 'Uploads/Stephanie  De Zutter_25/Persoon/Pf_Persoon_25.jpg', '2018-04-25 11:38:00'),
-	(125, 'Wallpaper_Persoon_25.jpg', 'jpg', 'Uploads/Stephanie  De Zutter_25/Persoon/Wallpaper_Persoon_25.jpg', '2018-04-25 11:40:00'),
-	(126, 'aap_Pasfoto_25.jpg', 'jpg', 'Uploads/Stephanie  De Zutter_25aap_Pasfoto_25.jpg', '2018-04-25 12:03:00'),
-	(127, 'aap_Pasfoto_25.jpg', 'jpg', 'aap_Pasfoto_25.jpg', '2018-04-25 12:05:00'),
-	(128, 'aap_Pasfoto_25.jpg', 'jpg', 'Uploads/Stephanie  De Zutter_25/Persoon/aap_Pasfoto_25.jpg', '2018-04-25 12:06:00');
+	(15, 'Document_44_2018-04-20_09-22', '', 'Uploads/Document_44_2018-04-20_09-22', '2018-04-20 09:22:00');
 /*!40000 ALTER TABLE `tbl_docs` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_docs_links wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_docs_links
 CREATE TABLE IF NOT EXISTS `tbl_docs_links` (
   `fld_doc_link_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_doc_id_fk` int(11) NOT NULL DEFAULT '0',
@@ -11149,121 +10696,17 @@ CREATE TABLE IF NOT EXISTS `tbl_docs_links` (
   `fld_vraag_id_fk` int(11) DEFAULT '0',
   PRIMARY KEY (`fld_doc_link_id`),
   KEY `fld_doc_link_id` (`fld_doc_link_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_docs_links: ~103 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_docs_links: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_docs_links` DISABLE KEYS */;
 INSERT INTO `tbl_docs_links` (`fld_doc_link_id`, `fld_doc_id_fk`, `fld_loopbaan_id_fk`, `fld_persoon_id_fk`, `fld_school_id_fk`, `fld_klas_id_fk`, `fld_vraag_id_fk`) VALUES
 	(1, 11, 0, 4, 0, 0, 0),
 	(2, 12, 0, 5, 0, 0, 0),
-	(3, 13, 0, 5, 0, 0, 0),
-	(4, 16, 0, 13, 0, 0, 44),
-	(5, 17, 0, 13, 0, 0, 44),
-	(6, 18, 0, 13, 0, 0, 44),
-	(7, 19, 0, 13, 0, 0, 44),
-	(8, 20, 0, 13, 0, 0, 44),
-	(9, 29, 0, 13, 0, 0, 45),
-	(10, 30, 0, 13, 0, 0, 45),
-	(11, 32, 0, 13, 0, 0, 44),
-	(12, 33, 0, 13, 0, 0, 45),
-	(13, 34, 0, 13, 0, 0, 35),
-	(14, 35, 0, 13, 0, 0, 44),
-	(15, 36, 0, 13, 0, 0, 45),
-	(16, 37, 0, 13, 0, 0, 35),
-	(17, 38, 0, 13, 0, 0, 44),
-	(18, 39, 0, 13, 0, 0, 45),
-	(19, 40, 0, 13, 0, 0, 35),
-	(20, 41, 0, 13, 0, 0, 44),
-	(21, 42, 0, 13, 0, 0, 45),
-	(22, 43, 0, 13, 0, 0, 35),
-	(23, 44, 0, 13, 0, 0, 44),
-	(24, 45, 0, 13, 0, 0, 45),
-	(25, 46, 0, 13, 0, 0, 35),
-	(26, 47, 0, 13, 0, 0, 44),
-	(27, 48, 0, 13, 0, 0, 45),
-	(28, 49, 0, 13, 0, 0, 35),
-	(29, 50, 0, 13, 0, 0, 44),
-	(30, 51, 0, 13, 0, 0, 45),
-	(31, 52, 0, 13, 0, 0, 35),
-	(32, 53, 0, 13, 0, 0, 44),
-	(33, 54, 0, 13, 0, 0, 45),
-	(34, 55, 0, 13, 0, 0, 35),
-	(35, 56, 0, 13, 0, 0, 44),
-	(36, 57, 0, 13, 0, 0, 45),
-	(37, 58, 0, 13, 0, 0, 35),
-	(38, 59, 0, 13, 0, 0, 44),
-	(39, 60, 0, 13, 0, 0, 45),
-	(40, 61, 0, 13, 0, 0, 44),
-	(41, 62, 0, 13, 0, 0, 45),
-	(42, 63, 0, 13, 0, 0, 44),
-	(43, 64, 0, 13, 0, 0, 45),
-	(44, 65, 0, 13, 0, 0, 44),
-	(45, 66, 0, 13, 0, 0, 45),
-	(46, 67, 0, 13, 0, 0, 44),
-	(47, 68, 0, 13, 0, 0, 45),
-	(48, 69, 0, 13, 0, 0, 44),
-	(49, 70, 0, 13, 0, 0, 45),
-	(50, 71, 0, 13, 0, 0, 35),
-	(51, 72, 0, 13, 0, 0, 44),
-	(52, 73, 0, 13, 0, 0, 45),
-	(53, 74, 0, 13, 0, 0, 35),
-	(54, 75, 0, 13, 0, 0, 44),
-	(55, 76, 0, 13, 0, 0, 45),
-	(56, 77, 0, 13, 0, 0, 35),
-	(57, 78, 0, 13, 0, 0, 44),
-	(58, 79, 0, 13, 0, 0, 45),
-	(59, 80, 0, 13, 0, 0, 35),
-	(60, 81, 0, 13, 0, 0, 44),
-	(61, 82, 0, 13, 0, 0, 45),
-	(62, 83, 0, 13, 0, 0, 35),
-	(63, 84, 0, 13, 0, 0, 44),
-	(64, 85, 0, 13, 0, 0, 45),
-	(65, 86, 0, 13, 0, 0, 35),
-	(66, 87, 0, 13, 0, 0, 44),
-	(67, 88, 0, 13, 0, 0, 45),
-	(68, 89, 0, 13, 0, 0, 35),
-	(69, 90, 0, 13, 0, 0, 44),
-	(70, 91, 0, 13, 0, 0, 45),
-	(71, 92, 0, 13, 0, 0, 35),
-	(72, 93, 0, 13, 0, 0, 44),
-	(73, 94, 0, 13, 0, 0, 45),
-	(74, 95, 0, 13, 0, 0, 35),
-	(75, 96, 0, 13, 0, 0, 44),
-	(76, 97, 0, 13, 0, 0, 45),
-	(77, 98, 0, 13, 0, 0, 35),
-	(78, 99, 0, 13, 0, 0, 44),
-	(79, 100, 0, 13, 0, 0, 45),
-	(80, 101, 0, 13, 0, 0, 44),
-	(81, 102, 0, 13, 0, 0, 45),
-	(82, 103, 0, 13, 0, 0, 44),
-	(83, 104, 0, 13, 0, 0, 45),
-	(84, 105, 0, 13, 0, 0, 35),
-	(85, 106, 0, 13, 0, 0, 44),
-	(86, 107, 0, 13, 0, 0, 45),
-	(87, 108, 0, 13, 0, 0, 35),
-	(88, 109, 0, 13, 0, 0, 44),
-	(89, 110, 0, 13, 0, 0, 45),
-	(90, 111, 0, 13, 0, 0, 35),
-	(91, 112, 0, 13, 0, 0, 44),
-	(92, 113, 0, 13, 0, 0, 45),
-	(93, 114, 0, 13, 0, 0, 35),
-	(94, 115, 0, 13, 0, 0, 44),
-	(95, 116, 0, 13, 0, 0, 45),
-	(96, 117, 0, 13, 0, 0, 38),
-	(97, 118, 0, 13, 0, 0, 38),
-	(98, 119, 0, 13, 0, 0, 38),
-	(99, 120, 0, 13, 0, 0, 38),
-	(100, 121, 0, 13, 0, 0, 38),
-	(101, 122, 0, 13, 0, 0, 43),
-	(102, 123, 0, 13, 0, 0, 0),
-	(103, 124, 0, 25, 0, 0, 0),
-	(104, 125, 0, 25, 0, 0, 0),
-	(105, 126, 0, 25, 0, 0, 0),
-	(106, 127, 0, 25, 0, 0, 0),
-	(107, 128, 0, 25, 0, 0, 0);
+	(3, 13, 0, 5, 0, 0, 0);
 /*!40000 ALTER TABLE `tbl_docs_links` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_gebruikers wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_gebruikers
 CREATE TABLE IF NOT EXISTS `tbl_gebruikers` (
   `fld_gebruiker_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_school_id_fk` int(11) NOT NULL,
@@ -11275,7 +10718,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gebruikers` (
   PRIMARY KEY (`fld_gebruiker_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_gebruikers: ~3 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_gebruikers: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_gebruikers` DISABLE KEYS */;
 INSERT INTO `tbl_gebruikers` (`fld_gebruiker_id`, `fld_school_id_fk`, `fld_gebruiker_naam`, `fld_gebruiker_wachtwoord`, `fld_gebruiker_instelling`, `fld_gebruiker_soort_id_fk`, `fld_gebruiker_beschrijving`) VALUES
 	(1, 1, 'testgebruiker2', '123', 'miniemen', 2, NULL),
@@ -11283,7 +10726,7 @@ INSERT INTO `tbl_gebruikers` (`fld_gebruiker_id`, `fld_school_id_fk`, `fld_gebru
 	(3, 1, 'testgebruiker4', '123', 'miniemen', 4, NULL);
 /*!40000 ALTER TABLE `tbl_gebruikers` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_gebruikers_soorten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_gebruikers_soorten
 CREATE TABLE IF NOT EXISTS `tbl_gebruikers_soorten` (
   `fld_gebruiker_soort_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_gebruiker_soort_naam` varchar(25) NOT NULL,
@@ -11291,7 +10734,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gebruikers_soorten` (
   PRIMARY KEY (`fld_gebruiker_soort_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_gebruikers_soorten: ~4 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_gebruikers_soorten: ~4 rows (approximately)
 /*!40000 ALTER TABLE `tbl_gebruikers_soorten` DISABLE KEYS */;
 INSERT INTO `tbl_gebruikers_soorten` (`fld_gebruiker_soort_id`, `fld_gebruiker_soort_naam`, `fld_gebruiker_soort_beschrijving`) VALUES
 	(1, 'wisa', NULL),
@@ -11300,7 +10743,7 @@ INSERT INTO `tbl_gebruikers_soorten` (`fld_gebruiker_soort_id`, `fld_gebruiker_s
 	(4, 'test', NULL);
 /*!40000 ALTER TABLE `tbl_gebruikers_soorten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_gegevens wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_gegevens
 CREATE TABLE IF NOT EXISTS `tbl_gegevens` (
   `fld_gegeven_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_gegeven_inhoud` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -11308,7 +10751,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gegevens` (
   PRIMARY KEY (`fld_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18848 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_gegevens: ~18.681 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_gegevens: ~18,847 rows (approximately)
 /*!40000 ALTER TABLE `tbl_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_gegevens` (`fld_gegeven_id`, `fld_gegeven_inhoud`, `fld_gegeven_soort_id_fk`) VALUES
 	(1, '012-24.20.40', 2),
@@ -30160,14 +29603,14 @@ INSERT INTO `tbl_gegevens` (`fld_gegeven_id`, `fld_gegeven_inhoud`, `fld_gegeven
 	(18847, 'pergolabrussel@gmail.com', 1);
 /*!40000 ALTER TABLE `tbl_gegevens` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_gegevens_soorten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_gegevens_soorten
 CREATE TABLE IF NOT EXISTS `tbl_gegevens_soorten` (
   `fld_gegeven_soort_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_gegeven_soort_naam` varchar(55) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`fld_gegeven_soort_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_gegevens_soorten: ~5 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_gegevens_soorten: ~5 rows (approximately)
 /*!40000 ALTER TABLE `tbl_gegevens_soorten` DISABLE KEYS */;
 INSERT INTO `tbl_gegevens_soorten` (`fld_gegeven_soort_id`, `fld_gegeven_soort_naam`) VALUES
 	(1, 'E-mail'),
@@ -30177,7 +29620,7 @@ INSERT INTO `tbl_gegevens_soorten` (`fld_gegeven_soort_id`, `fld_gegeven_soort_n
 	(5, 'Website');
 /*!40000 ALTER TABLE `tbl_gegevens_soorten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_godsdiensten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_godsdiensten
 CREATE TABLE IF NOT EXISTS `tbl_godsdiensten` (
   `fld_godsdienst_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_godsdienst_naam` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -30187,7 +29630,7 @@ CREATE TABLE IF NOT EXISTS `tbl_godsdiensten` (
   PRIMARY KEY (`fld_godsdienst_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_godsdiensten: ~12 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_godsdiensten: ~12 rows (approximately)
 /*!40000 ALTER TABLE `tbl_godsdiensten` DISABLE KEYS */;
 INSERT INTO `tbl_godsdiensten` (`fld_godsdienst_id`, `fld_godsdienst_naam`, `fld_godsdienst_wisa_id`, `fld_godsdienst_afkorting`, `fld_godsdienst_code`) VALUES
 	(1, 'Onbekend', 654, '', ''),
@@ -30204,7 +29647,7 @@ INSERT INTO `tbl_godsdiensten` (`fld_godsdienst_id`, `fld_godsdienst_naam`, `fld
 	(12, 'vrijstelling (of niet van toepassing bij hoofdstructuur = 3xx)', 665, 'VRG', '9999');
 /*!40000 ALTER TABLE `tbl_godsdiensten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_inschrijvingen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_inschrijvingen
 CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen` (
   `fld_inschrijving_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_inschrijving_datum` date NOT NULL,
@@ -30217,11 +29660,11 @@ CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen` (
   PRIMARY KEY (`fld_inschrijving_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_inschrijvingen: ~0 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_inschrijvingen: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tbl_inschrijvingen` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_inschrijvingen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_inschrijvingen_statussen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_inschrijvingen_statussen
 CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_statussen` (
   `fld_inschrijving_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_inschrijving_status_naam` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -30229,7 +29672,7 @@ CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_statussen` (
   PRIMARY KEY (`fld_inschrijving_status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_inschrijvingen_statussen: ~4 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_inschrijvingen_statussen: ~4 rows (approximately)
 /*!40000 ALTER TABLE `tbl_inschrijvingen_statussen` DISABLE KEYS */;
 INSERT INTO `tbl_inschrijvingen_statussen` (`fld_inschrijving_status_id`, `fld_inschrijving_status_naam`, `fld_inschrijving_status_beschrijving`) VALUES
 	(1, 'Aanvraag', NULL),
@@ -30238,7 +29681,51 @@ INSERT INTO `tbl_inschrijvingen_statussen` (`fld_inschrijving_status_id`, `fld_i
 	(4, 'Stand-by', NULL);
 /*!40000 ALTER TABLE `tbl_inschrijvingen_statussen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_klassen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_inschrijvingen_voorwaarden
+CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_voorwaarden` (
+  `fld_inschrijving_voorwaarde_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_inschrijving_voorwaarde_beschrijving` varchar(1000) CHARACTER SET utf8 NOT NULL,
+  `fld_inschrijving_voorwaarde_link` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `fld_school_id_fk` int(11) NOT NULL,
+  PRIMARY KEY (`fld_inschrijving_voorwaarde_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table wisa-db-test.tbl_inschrijvingen_voorwaarden: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tbl_inschrijvingen_voorwaarden` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_inschrijvingen_voorwaarden` ENABLE KEYS */;
+
+-- Dumping structure for table wisa-db-test.tbl_inschrijvingen_voorwaarden_check
+CREATE TABLE IF NOT EXISTS `tbl_inschrijvingen_voorwaarden_check` (
+  `fld_voorwaarde_check_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_inschrijving_id_fk` int(11) NOT NULL,
+  `fld_inschrijving_voorwaarde_id_fk` int(11) NOT NULL,
+  `fld_voorwaarde_check_check` tinyint(1) NOT NULL,
+  PRIMARY KEY (`fld_voorwaarde_check_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table wisa-db-test.tbl_inschrijvingen_voorwaarden_check: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tbl_inschrijvingen_voorwaarden_check` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_inschrijvingen_voorwaarden_check` ENABLE KEYS */;
+
+-- Dumping structure for table wisa-db-test.tbl_instellingen
+CREATE TABLE IF NOT EXISTS `tbl_instellingen` (
+  `fld_instelling_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_school_id_fk` int(11) NOT NULL,
+  `fld_instelling_Logo` longblob NOT NULL,
+  `fld_instelling_plaats_docs` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `fld_instelling_digitaal_handtekening` tinyint(1) NOT NULL,
+  `fld_instelling_handtekening_leerling` tinyint(1) NOT NULL,
+  `fld_handtekening_ouder` tinyint(1) NOT NULL,
+  `fld_handtekening_directie` tinyint(1) NOT NULL,
+  `fld_instelling_titel_doc` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`fld_instelling_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table wisa-db-test.tbl_instellingen: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tbl_instellingen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_instellingen` ENABLE KEYS */;
+
+-- Dumping structure for table wisa-db-test.tbl_klassen
 CREATE TABLE IF NOT EXISTS `tbl_klassen` (
   `fld_klas_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_klas_afkorting` varchar(255) DEFAULT NULL,
@@ -30248,11 +29735,11 @@ CREATE TABLE IF NOT EXISTS `tbl_klassen` (
   KEY `fld_klas_id` (`fld_klas_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_klassen: ~0 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_klassen: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tbl_klassen` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_klassen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_landen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_landen
 CREATE TABLE IF NOT EXISTS `tbl_landen` (
   `fld_land_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_land_naam` varchar(55) CHARACTER SET utf8 NOT NULL,
@@ -30261,7 +29748,7 @@ CREATE TABLE IF NOT EXISTS `tbl_landen` (
   PRIMARY KEY (`fld_land_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_landen: ~300 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_landen: ~300 rows (approximately)
 /*!40000 ALTER TABLE `tbl_landen` DISABLE KEYS */;
 INSERT INTO `tbl_landen` (`fld_land_id`, `fld_land_naam`, `fld_land_afkorting`, `fld_land_wisa_id`) VALUES
 	(1, 'Abu Dhabi', '', 1),
@@ -30566,7 +30053,7 @@ INSERT INTO `tbl_landen` (`fld_land_id`, `fld_land_naam`, `fld_land_afkorting`, 
 	(300, 'Kosovo', 'XK', 308);
 /*!40000 ALTER TABLE `tbl_landen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_loopbanen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_loopbanen
 CREATE TABLE IF NOT EXISTS `tbl_loopbanen` (
   `fld_loopbaan_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_persoon_id_fk` int(11) NOT NULL DEFAULT '0',
@@ -30574,23 +30061,23 @@ CREATE TABLE IF NOT EXISTS `tbl_loopbanen` (
   `fld_richting_id_fk` int(11) NOT NULL DEFAULT '0',
   `fld_klas_id_fk` int(11) DEFAULT '0',
   `fld_loopbaan_schooljaar` varchar(255) NOT NULL,
-  `fld_loopbaan_b_datum` date DEFAULT NULL,
-  `fld_loopbaan_e_datum` date DEFAULT NULL,
+  `fld_loopbaan_b_datum` datetime DEFAULT NULL,
+  `fld_loopbaan_e_datum` datetime DEFAULT NULL,
   `fld_loopbaan_clausule` varchar(255) DEFAULT NULL,
   `fld_loopbaan_attest` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`fld_loopbaan_id`),
   KEY `fld_loopbaan_id` (`fld_loopbaan_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_loopbanen: ~3 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_loopbanen: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_loopbanen` DISABLE KEYS */;
 INSERT INTO `tbl_loopbanen` (`fld_loopbaan_id`, `fld_persoon_id_fk`, `fld_school_id_fk`, `fld_richting_id_fk`, `fld_klas_id_fk`, `fld_loopbaan_schooljaar`, `fld_loopbaan_b_datum`, `fld_loopbaan_e_datum`, `fld_loopbaan_clausule`, `fld_loopbaan_attest`) VALUES
-	(1, 13, 0, 440, 0, '2017 - 2018', '2017-09-01', '2018-06-30', NULL, ''),
-	(2, 13, 0, 295, 0, '2016 - 2017', '0000-00-00', '0000-00-00', NULL, 'b'),
-	(3, 13, 2532, 295, 0, '2016 - 2017', '2016-09-01', '2017-06-30', NULL, 'B');
+	(1, 13, 0, 440, 0, '2017 - 2018', '2017-09-01 00:00:00', '2018-06-30 00:00:00', NULL, ''),
+	(2, 13, 0, 295, 0, '2016 - 2017', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, 'b'),
+	(3, 13, 2532, 295, 0, '2016 - 2017', '2016-09-01 00:00:00', '2017-06-30 00:00:00', NULL, 'B');
 /*!40000 ALTER TABLE `tbl_loopbanen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_nationaliteiten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_nationaliteiten
 CREATE TABLE IF NOT EXISTS `tbl_nationaliteiten` (
   `fld_nation_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_nation_nation` varchar(255) NOT NULL,
@@ -30599,7 +30086,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nationaliteiten` (
   KEY `fld_nation_id` (`fld_nation_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=430 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_nationaliteiten: ~429 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_nationaliteiten: ~429 rows (approximately)
 /*!40000 ALTER TABLE `tbl_nationaliteiten` DISABLE KEYS */;
 INSERT INTO `tbl_nationaliteiten` (`fld_nation_id`, `fld_nation_nation`, `fld_nation_wisa_id`) VALUES
 	(1, 'Onbekend', 0),
@@ -31033,7 +30520,7 @@ INSERT INTO `tbl_nationaliteiten` (`fld_nation_id`, `fld_nation_nation`, `fld_na
 	(429, 'van Gambiaanse herkomst', 823);
 /*!40000 ALTER TABLE `tbl_nationaliteiten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_personen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_personen
 CREATE TABLE IF NOT EXISTS `tbl_personen` (
   `fld_persoon_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_persoon_voornaam` varchar(255) NOT NULL,
@@ -31052,7 +30539,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personen` (
   PRIMARY KEY (`fld_persoon_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen: ~19 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_personen: ~20 rows (approximately)
 /*!40000 ALTER TABLE `tbl_personen` DISABLE KEYS */;
 INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_persoon_achternaam`, `fld_persoon_naam`, `fld_persoon_gb_datum_onbekend`, `fld_persoon_gb_datum`, `fld_persoon_geslacht`, `fld_godsdienst_id_fk`, `fld_persoon_nation_id_fk`, `fld_persoon_gb_plaats`, `fld_persoon_register_nr`, `fld_persoon_bis_nr`, `fld_persoon_leerling`, `fld_persoon_overleden`) VALUES
 	(3, 'Test', 'test', 'Test test', 0, '2018-02-27', 'M', 4, 1, 'Werkt', '18022700054', NULL, 1, 0),
@@ -31077,7 +30564,7 @@ INSERT INTO `tbl_personen` (`fld_persoon_id`, `fld_persoon_voornaam`, `fld_perso
 	(25, 'Stephanie', ' De Zutter', 'Stephanie  De Zutter', 0, '1988-08-03', 'V', 7, 49, '588', '88080326297', NULL, 1, 0);
 /*!40000 ALTER TABLE `tbl_personen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_personen_gegevens wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_personen_gegevens
 CREATE TABLE IF NOT EXISTS `tbl_personen_gegevens` (
   `fld_persoon_gegeven_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_persoon_id_fk` int(11) NOT NULL,
@@ -31087,11 +30574,11 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_gegevens` (
   PRIMARY KEY (`fld_persoon_gegeven_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen_gegevens: ~0 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_personen_gegevens: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tbl_personen_gegevens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_personen_gegevens` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_personen_linken wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_personen_linken
 CREATE TABLE IF NOT EXISTS `tbl_personen_linken` (
   `fld_persoon_link_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_master_id_fk` int(11) NOT NULL DEFAULT '0',
@@ -31102,9 +30589,9 @@ CREATE TABLE IF NOT EXISTS `tbl_personen_linken` (
   KEY `fld_child_id_fk` (`fld_child_id_fk`),
   KEY `fld_persoon_link_id` (`fld_persoon_link_id`),
   KEY `fld_master_id_fk` (`fld_master_id_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_personen_linken: ~19 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_personen_linken: ~17 rows (approximately)
 /*!40000 ALTER TABLE `tbl_personen_linken` DISABLE KEYS */;
 INSERT INTO `tbl_personen_linken` (`fld_persoon_link_id`, `fld_master_id_fk`, `fld_child_id_fk`, `fld_soort_id_fk`, `fld_persoon_link_beschrijving`) VALUES
 	(5, 7, 9, 1, 'Dit is een test'),
@@ -31123,12 +30610,10 @@ INSERT INTO `tbl_personen_linken` (`fld_persoon_link_id`, `fld_master_id_fk`, `f
 	(18, 21, 13, 3, ''),
 	(19, 23, 22, 1, ''),
 	(21, 24, 22, 2, ''),
-	(22, 21, 25, 3, ''),
-	(31, 21, 25, 6, ''),
-	(32, 21, 25, 6, '');
+	(22, 21, 25, 3, '');
 /*!40000 ALTER TABLE `tbl_personen_linken` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_postcodes wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_postcodes
 CREATE TABLE IF NOT EXISTS `tbl_postcodes` (
   `fld_postcode_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_postcode_nr` int(11) NOT NULL,
@@ -31141,7 +30626,7 @@ CREATE TABLE IF NOT EXISTS `tbl_postcodes` (
   PRIMARY KEY (`fld_postcode_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2783 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_postcodes: ~2.782 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_postcodes: ~2,782 rows (approximately)
 /*!40000 ALTER TABLE `tbl_postcodes` DISABLE KEYS */;
 INSERT INTO `tbl_postcodes` (`fld_postcode_id`, `fld_postcode_nr`, `fld_woonplaats_naam`, `fld_postnummer`, `fld_fusiegemeente`, `fld_land_id_fk`, `fld_land_wisa_id_fk`, `fld_postcode_wisa_id`) VALUES
 	(1, 1000, 'BRUSSEL-STAD', 1000, 'BRUSSEL', 21, 21, 1),
@@ -33928,7 +33413,7 @@ INSERT INTO `tbl_postcodes` (`fld_postcode_id`, `fld_postcode_nr`, `fld_woonplaa
 	(2782, 4300, 'BORGWORM', 4300, 'BORGWORM', 21, 21, 3408);
 /*!40000 ALTER TABLE `tbl_postcodes` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_richtingen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_richtingen
 CREATE TABLE IF NOT EXISTS `tbl_richtingen` (
   `fld_richting_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_richting_afkorting_code` int(10) DEFAULT NULL,
@@ -33944,7 +33429,7 @@ CREATE TABLE IF NOT EXISTS `tbl_richtingen` (
   KEY `fld_richting_id` (`fld_richting_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1516 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_richtingen: ~1.515 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_richtingen: ~1,515 rows (approximately)
 /*!40000 ALTER TABLE `tbl_richtingen` DISABLE KEYS */;
 INSERT INTO `tbl_richtingen` (`fld_richting_id`, `fld_richting_afkorting_code`, `fld_richting_afkorting`, `fld_richting_naam`, `fld_richting_graad`, `fld_richting_leerjaar`, `fld_richting_code`, `fld_richting_hoofdstructuurcode`, `fld_richting_onderwijsvorm`, `fld_richting_wisa_id`) VALUES
 	(1, 6246, '1e lj A', 'A', 'Eerste graad', 'Eerste leerjaar', 1, 311, 'GSO', 1),
@@ -35464,7 +34949,7 @@ INSERT INTO `tbl_richtingen` (`fld_richting_id`, `fld_richting_afkorting_code`, 
 	(1515, 36412, '3e mj 3e gr Zorgkundige', 'Zorgkundige', 'Modulair stelsel (alleen DBSO)', 'Niet van toepassing', 1057, 311, 'BSO', 23750);
 /*!40000 ALTER TABLE `tbl_richtingen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_scholen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_scholen
 CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   `fld_school_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_school_naam` varchar(255) NOT NULL,
@@ -35474,7 +34959,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen` (
   KEY `fld_school_id` (`fld_school_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5251 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen: ~5.275 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_scholen: ~5,250 rows (approximately)
 /*!40000 ALTER TABLE `tbl_scholen` DISABLE KEYS */;
 INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`, `fld_school_instellingsnummer`, `fld_school_wisa_id`) VALUES
 	(1, 'GO! freinetschool De Mijlpaal', 1719, 1),
@@ -40729,7 +40214,7 @@ INSERT INTO `tbl_scholen` (`fld_school_id`, `fld_school_naam`, `fld_school_inste
 	(5250, 'Vrije Basisschool Pergola', 131722, 19755);
 /*!40000 ALTER TABLE `tbl_scholen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_scholen_gegevens wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_scholen_gegevens
 CREATE TABLE IF NOT EXISTS `tbl_scholen_gegevens` (
   `fld_school_gegeven_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_school_id_fk` int(11) NOT NULL,
@@ -40737,7 +40222,7 @@ CREATE TABLE IF NOT EXISTS `tbl_scholen_gegevens` (
   PRIMARY KEY (`fld_school_gegeven_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18848 DEFAULT CHARSET=latin1;
 
--- Dumpen data van tabel wisa-db-test.tbl_scholen_gegevens: ~17.963 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_scholen_gegevens: ~18,847 rows (approximately)
 /*!40000 ALTER TABLE `tbl_scholen_gegevens` DISABLE KEYS */;
 INSERT INTO `tbl_scholen_gegevens` (`fld_school_gegeven_id`, `fld_school_id_fk`, `fld_gegeven_id_fk`) VALUES
 	(1, 1, 0),
@@ -59589,7 +59074,7 @@ INSERT INTO `tbl_scholen_gegevens` (`fld_school_gegeven_id`, `fld_school_id_fk`,
 	(18847, 5250, 18845);
 /*!40000 ALTER TABLE `tbl_scholen_gegevens` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_soorten wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_soorten
 CREATE TABLE IF NOT EXISTS `tbl_soorten` (
   `fld_soort_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_soort_naam` varchar(255) NOT NULL,
@@ -59597,7 +59082,7 @@ CREATE TABLE IF NOT EXISTS `tbl_soorten` (
   PRIMARY KEY (`fld_soort_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_soorten: ~22 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_soorten: ~23 rows (approximately)
 /*!40000 ALTER TABLE `tbl_soorten` DISABLE KEYS */;
 INSERT INTO `tbl_soorten` (`fld_soort_id`, `fld_soort_naam`, `fld_soort_item`) VALUES
 	(1, 'Moeder', 'Relatie'),
@@ -59625,7 +59110,7 @@ INSERT INTO `tbl_soorten` (`fld_soort_id`, `fld_soort_naam`, `fld_soort_item`) V
 	(23, 'School', 'Adres');
 /*!40000 ALTER TABLE `tbl_soorten` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_vragen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_vragen
 CREATE TABLE IF NOT EXISTS `tbl_vragen` (
   `fld_vraag_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_vraag_vraag` varchar(511) NOT NULL,
@@ -59644,9 +59129,9 @@ CREATE TABLE IF NOT EXISTS `tbl_vragen` (
   `fld_vraag_zichtbaar` tinyint(1) NOT NULL,
   PRIMARY KEY (`fld_vraag_id`),
   KEY `fld_vraag_id` (`fld_vraag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_vragen: ~5 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_vragen: ~6 rows (approximately)
 /*!40000 ALTER TABLE `tbl_vragen` DISABLE KEYS */;
 INSERT INTO `tbl_vragen` (`fld_vraag_id`, `fld_vraag_vraag`, `fld_vraag_kernwoord`, `fld_antwoord_type_k_tekst`, `fld_antwoord_type_l_tekst`, `fld_antwoord_type_num`, `fld_antwoord_type_datum`, `fld_antwoord_type_j/n`, `fld_antwoord_type_foto`, `fld_antwoord_type_lijst`, `fld_bestaande_lijst_id_fk`, `fld_antwoord_type_doc`, `fld_antwoord_aantal`, `fld_vraag_antwoord_verplicht`, `fld_vraag_zichtbaar`) VALUES
 	(35, 'Voornaam', 'Voornaam', 1, 0, 0, 0, 0, 0, 0, NULL, NULL, 1, 1, 0),
@@ -59654,20 +59139,19 @@ INSERT INTO `tbl_vragen` (`fld_vraag_id`, `fld_vraag_vraag`, `fld_vraag_kernwoor
 	(38, 'Geboortedatum', 'Geboortedatum', 0, 0, 0, 1, 0, 0, 0, NULL, NULL, 1, 0, 0),
 	(42, 'Hoe kom je naar school?', 'Vervoer', 0, 0, 0, 0, 0, 0, 1, NULL, NULL, 1, 1, 0),
 	(43, 'Welke sport doe je graag?', 'Sport', 0, 0, 0, 0, 0, 0, 1, NULL, NULL, 1, 1, 0),
-	(44, 'Geef een document in', 'Document', 0, 0, 0, 0, 0, 0, 0, NULL, 1, 1, 0, 0),
-	(45, 'Geef een foto', 'Foto', 0, 0, 0, 0, 0, 1, 0, NULL, 0, 1, 0, 0);
+	(44, 'Geef een document in', 'Document', 0, 0, 0, 0, 0, 0, 0, NULL, 1, 1, 0, 0);
 /*!40000 ALTER TABLE `tbl_vragen` ENABLE KEYS */;
 
--- Structuur van  tabel wisa-db-test.tbl_vragen_bestemmingen wordt geschreven
+-- Dumping structure for table wisa-db-test.tbl_vragen_bestemmingen
 CREATE TABLE IF NOT EXISTS `tbl_vragen_bestemmingen` (
   `fld_vraag_bestemming_id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_vraag_id_fk` int(11) NOT NULL DEFAULT '0',
   `fld_bestemming_id_fk` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`fld_vraag_bestemming_id`),
   KEY `fld_vraag_bestemming_id` (`fld_vraag_bestemming_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel wisa-db-test.tbl_vragen_bestemmingen: ~11 rows (ongeveer)
+-- Dumping data for table wisa-db-test.tbl_vragen_bestemmingen: ~12 rows (approximately)
 /*!40000 ALTER TABLE `tbl_vragen_bestemmingen` DISABLE KEYS */;
 INSERT INTO `tbl_vragen_bestemmingen` (`fld_vraag_bestemming_id`, `fld_vraag_id_fk`, `fld_bestemming_id_fk`) VALUES
 	(47, 35, 1),
@@ -59681,9 +59165,7 @@ INSERT INTO `tbl_vragen_bestemmingen` (`fld_vraag_bestemming_id`, `fld_vraag_id_
 	(58, 38, 3),
 	(61, 42, 2),
 	(62, 43, 2),
-	(63, 44, 3),
-	(64, 45, 2),
-	(65, 45, 3);
+	(63, 44, 3);
 /*!40000 ALTER TABLE `tbl_vragen_bestemmingen` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
