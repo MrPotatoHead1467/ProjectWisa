@@ -7,29 +7,30 @@
     
     // logo <img id='kamers_foto' src='data:image/jpeg;base64, ".base64_encode($_SESSION['schoolLogo'])."' width='350' height='350'/>
     //$_SESSION['schoolLogo'];
-    // schoolnaam: 
+    
+    // school gegevens: 
     $_SESSION['schoolNaam'] = 'Minlipinou';
-    // adres school: 
-    $_SESSION['schoolStraat'] = "Scholenstraat";
-    $_SESSION['schoolHuisNR'] = '123';
-    $_SESSION['schoolBus'] = 'b';
-    if ($_SESSION['schoolBus'] == '')
+    $schoolNaam = $_SESSION['schoolNaam'];
+    
+    $schoolStraat = "Scholenstraat";
+    $schoolHuisNR = '123';
+    $schoolBus = 'b';
+    if ($schoolBus == '')
         {
-            $_SESSION['schoolAdres'] = $_SESSION['schoolStraat'].' '.$_SESSION['schoolHuisNR'];
+            $schoolAdres = $schoolStraat.' '.$schoolHuisNR;
         }
     else
         {
-            $_SESSION['schoolAdres'] = $_SESSION['schoolStraat'].' '.$_SESSION['schoolHuisNR'].' ('.$_SESSION['schoolBus'].')';
+            $schoolAdres = $schoolStraat.' '.$schoolHuisNR.' ('.$schoolBus.')';
         }
-    // postcde & gemeente school: 
-    $_SESSION['schoolPostNR'] = '4010';
-    $_SESSION['schoolPlaats'] = 'Somewhere Ville';
-    // tel school:
-    $_SESSION['schoolTel'] = '016030563';
-    // fax school:
-    $_SESSION['schoolFax'] = '022030564';
-    // e-mail school:
-    $_SESSION['schoolEmail'] = 'info@Minlipinou.be';
+    $schoolPost = '4010';
+    $schoolPlaats = 'Somewhere Ville';
+    
+    $schoolTel = '016030563';
+    $schoolFax = '022030564';
+    $schoolEmail = 'info@Minlipinou.be';
+    
+    $schoolGeg = array("NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
     // titel doc: 
     $_SESSION['titelDoc'] = 'Inschrijving leerling 2017-2018';
     // inschrijvingsdatum
@@ -70,7 +71,7 @@
         {
             while($row = $infoGBPlaats->fetch_assoc())
                 {
-                    $llnGBPlaats = $row['fld_woonplaats_naam'];
+                    $llnGBPlaats = ucfirst(strtolower($row['fld_woonplaats_naam']));
                 }
         }
     // lln
@@ -96,13 +97,13 @@
         }
     
     // Lln geg
+    $gegLln = array();
     $sqlGegLln = "SELECT * FROM tbl_personen_gegevens WHERE fld_persoon_id_fk='".$llnID."' ORDER BY fld_soort_id_fk";
     $infoGegLln = $conn->query($sqlGegLln);
     $aantalLlnGeg = mysqli_num_rows($infoGegLln);
     if ($infoGegLln->num_rows > 0)
         {
             $a = 0;
-            $gegLln = array();
             
             while(($row = $infoGegLln->fetch_assoc()) && $a < $aantalLlnGeg)
                 {
@@ -168,13 +169,13 @@
         
          */
     // Lln adres
+    $adresLln = array();
     $sqlAdresLln = "SELECT * FROM tbl_adressen_linken WHERE fld_persoon_id_fk='".$llnID."' ORDER BY fld_soort_id_fk";
     $infoAdresLln = $conn->query($sqlAdresLln);
     $aantalAdresLln = mysqli_num_rows($infoAdresLln);
     if ($infoAdresLln->num_rows > 0)
         {
             $a = 0;
-            $adresLln = array();
             
             while(($row = $infoAdresLln->fetch_assoc()) && $a < $aantalAdresLln)
                 {
@@ -247,13 +248,13 @@
         }
     
     // Lln relaties
+    $relatieLln = array();
     $sqlRelatieLln = "SELECT * FROM tbl_personen_linken WHERE fld_child_id_fk='".$llnID."' ORDER BY fld_soort_id_fk";
     $infoRelatieLln = $conn->query($sqlRelatieLln);
     $aantalRelatieLln = mysqli_num_rows($infoRelatieLln);
     if ($infoRelatieLln->num_rows > 0)
         {
             $a = 0;
-            $relatieLln = array();
             
             while(($row = $infoRelatieLln->fetch_assoc()) && $a < $aantalRelatieLln)
                 {
@@ -285,15 +286,15 @@
                                     $OverledenRLln = $rowMaster['fld_persoon_overleden'];
                                 }
                         }
-                    //    
+                    //  
+                    $gegR = array();  
                     $sqlGegR = "SELECT * FROM tbl_personen_gegevens WHERE fld_persoon_id_fk='".$masterID."' ORDER BY fld_soort_id_fk";
                     $infoGegR = $conn->query($sqlGegR);
                     $aantalGegR = mysqli_num_rows($infoGegR);
                     if ($infoGegR->num_rows > 0)
                         {
                             $b = 0;
-                            $gegR = array();
-                            
+                                                       
                             while(($rowR = $infoGegR->fetch_assoc()) && $a < $aantalGegR)
                                 {
                                     
@@ -341,86 +342,89 @@
                                 $noMultiArray = array_map('serialize', $gegR);
                                 $unique_noMultiArray = array_unique($noMultiArray);
                                 $gegR = array_map('unserialize', $unique_noMultiArray);
+                                //echo "gegR";
                                 //print_r($gegR);
                                 //echo "<br/>";
                         //
-                        $sqlAdresR = "SELECT * FROM tbl_adressen_linken WHERE fld_persoon_id_fk='".$masterID."' ORDER BY fld_soort_id_fk";
-                        $infoAdresR = $conn->query($sqlAdresR);
-                        $aantalAdresR = mysqli_num_rows($infoAdresR);
-                        if ($infoAdresR->num_rows > 0)
-                            {
-                                $c = 0;
-                                $adresR = array();
-                                
-                                while(($rowAdresR = $infoAdresR->fetch_assoc()) && $a < $aantalAdresR)
-                                    {
-                                        $adresR[$c] = array();
-                                        
-                                        $BeschrAR = $rowAdresR['fld_adres_link_beschrijving'];
-                                        
-                                        $soortAdresID = $rowAdresR['fld_soort_id_fk'];
-                                        $sqlSoortAdres = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$soortAdresID."'";
-                                        $infoSoortAdres = $conn->query($sqlSoortAdres);
-                                        if ($infoSoortAdres->num_rows > 0)
-                                            {
-                                                while($rowSoort = $infoSoortAdres->fetch_assoc())
-                                                    {
-                                                        $SoortAR = $rowSoort['fld_soort_naam'];
-                                                    }
-                                            }
-                                        $inhoudAdresID = $rowAdresR['fld_adres_id_fk'];
-                                        $sqlInhoudAdres = "SELECT * FROM tbl_adressen WHERE fld_adres_id='".$inhoudAdresID."'";
-                                        $infoInhoudAdres = $conn->query($sqlInhoudAdres);
-                                        if ($infoInhoudAdres->num_rows > 0)
-                                            {
-                                                while($rowInhoud = $infoInhoudAdres->fetch_assoc())
-                                                    {
-                                                        $StraatAR = $rowInhoud['fld_adres_straatnaam'];
-                                                        $HuisAR = $rowInhoud['fld_adres_huis_nr'];
-                                                        $BusAR = $rowInhoud['fld_adres_bus_nr'];
+                        }
+                    //echo "test3";
+                    $adresR = array();
+                    $sqlAdresR = "SELECT * FROM tbl_adressen_linken WHERE fld_persoon_id_fk='".$masterID."' ORDER BY fld_soort_id_fk";
+                    $infoAdresR = $conn->query($sqlAdresR);
+                    $aantalAdresR = mysqli_num_rows($infoAdresR);
+                    if ($infoAdresR->num_rows > 0)
+                        {
+                            $c = 0;
+                            
+                            while(($rowAdresR = $infoAdresR->fetch_assoc()) && $a < $aantalAdresR)
+                                {
+                                    $adresR[$c] = array();
+                                    
+                                    $BeschrAR = $rowAdresR['fld_adres_link_beschrijving'];
+                                    
+                                    $soortAdresID = $rowAdresR['fld_soort_id_fk'];
+                                    $sqlSoortAdres = "SELECT * FROM tbl_soorten WHERE fld_soort_id='".$soortAdresID."'";
+                                    $infoSoortAdres = $conn->query($sqlSoortAdres);
+                                    if ($infoSoortAdres->num_rows > 0)
+                                        {
+                                            while($rowSoort = $infoSoortAdres->fetch_assoc())
+                                                {
+                                                    $SoortAR = $rowSoort['fld_soort_naam'];
+                                                }
+                                        }
+                                    $inhoudAdresID = $rowAdresR['fld_adres_id_fk'];
+                                    $sqlInhoudAdres = "SELECT * FROM tbl_adressen WHERE fld_adres_id='".$inhoudAdresID."'";
+                                    $infoInhoudAdres = $conn->query($sqlInhoudAdres);
+                                    if ($infoInhoudAdres->num_rows > 0)
+                                        {
+                                            while($rowInhoud = $infoInhoudAdres->fetch_assoc())
+                                                {
+                                                    $StraatAR = $rowInhoud['fld_adres_straatnaam'];
+                                                    $HuisAR = $rowInhoud['fld_adres_huis_nr'];
+                                                    $BusAR = $rowInhoud['fld_adres_bus_nr'];
+                                                    
+                                                    if ($rowInhoud['fld_adres_postcode_id_fk'] != "")
+                                                        {
+                                                            $postID = $rowInhoud['fld_adres_postcode_id_fk'];
+                                                            $sqlPost = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$postID."'";
+                                                            $infoPost = $conn->query($sqlPost);
+                                                            if ($infoPost->num_rows > 0)
+                                                                {
+                                                                    while($rowPost = $infoPost->fetch_assoc())
+                                                                        {
+                                                                            $PostAR = $rowPost['fld_postnummer'];
+                                                                            $PlaatsAR = $rowPost['fld_woonplaats_naam'];
+                                                                        }
+                                                                }
+                                                        }
+                                                    elseif ($rowInhoud['fld_adres_postcode_id_fk'] == "")
+                                                        {
+                                                            $PostAR = "";
+                                                            $PlaatsAR = $rowPost['fld_adres_niet_be'];
+                                                        }
                                                         
-                                                        if ($rowInhoud['fld_adres_postcode_id_fk'] != "")
-                                                            {
-                                                                $postID = $rowInhoud['fld_adres_postcode_id_fk'];
-                                                                $sqlPost = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$postID."'";
-                                                                $infoPost = $conn->query($sqlPost);
-                                                                if ($infoPost->num_rows > 0)
-                                                                    {
-                                                                        while($rowPost = $infoPost->fetch_assoc())
-                                                                            {
-                                                                                $PostAR = $rowPost['fld_postnummer'];
-                                                                                $PlaatsAR = $rowPost['fld_woonplaats_naam'];
-                                                                            }
-                                                                    }
-                                                            }
-                                                        elseif ($rowInhoud['fld_adres_postcode_id_fk'] == "")
-                                                            {
-                                                                $PostAR = "";
-                                                                $PlaatsAR = $rowPost['fld_adres_niet_be'];
-                                                            }
-                                                            
-                                                        $landID = $rowInhoud['fld_adres_land_id_fk'];
-                                                        $sqlLand = "SELECT * FROM tbl_landen WHERE fld_land_id='".$landID."'";
-                                                        $infoLand = $conn->query($sqlLand);
-                                                        if ($infoLand->num_rows > 0)
-                                                            {
-                                                                while($rowLand = $infoLand->fetch_assoc())
-                                                                    {
-                                                                        $LandAR = $rowLand['fld_land_naam'];
-                                                                    }
-                                                            }
-                                                    }
-                                            }
-                                        $adresR[$c] = array("SOORT"=>"ADRES: ".strtolower($SoortAR), "STRAAT"=>$StraatAR, "HUIS"=>$HuisAR, "BUS"=>$BusAR, "POST"=>$PostAR, "PLAATS"=>$PlaatsAR, "LAND"=>$LandAR, "BESCHR"=>$BeschrAR);
-                                        array_push($adresR, $adresR[$c]);
-                                        ++$c;
-                                    }
-                                    $noMultiArray = array_map('serialize', $adresR);
-                                    $unique_noMultiArray = array_unique($noMultiArray);
-                                    $adresR = array_map('unserialize', $unique_noMultiArray);
-                                    //print_r($adresLln)."<br/>";                
+                                                    $landID = $rowInhoud['fld_adres_land_id_fk'];
+                                                    $sqlLand = "SELECT * FROM tbl_landen WHERE fld_land_id='".$landID."'";
+                                                    $infoLand = $conn->query($sqlLand);
+                                                    if ($infoLand->num_rows > 0)
+                                                        {
+                                                            while($rowLand = $infoLand->fetch_assoc())
+                                                                {
+                                                                    $LandAR = $rowLand['fld_land_naam'];
+                                                                }
+                                                        }
+                                                }
+                                        }
+                                    $adresR[$c] = array("SOORT"=>"ADRES: ".strtolower($SoortAR), "STRAAT"=>$StraatAR, "HUIS"=>$HuisAR, "BUS"=>$BusAR, "POST"=>$PostAR, "PLAATS"=>$PlaatsAR, "LAND"=>$LandAR, "BESCHR"=>$BeschrAR);
+                                    array_push($adresR, $adresR[$c]);
+                                    ++$c;
                                 }
-                        }    
+                                $noMultiArray = array_map('serialize', $adresR);
+                                $unique_noMultiArray = array_unique($noMultiArray);
+                                $adresR = array_map('unserialize', $unique_noMultiArray);
+                                //print_r($adresLln)."<br/>";                
+                            }
+                            
                     $relatieLln[$a] = array("SOORT"=>strtolower($SoortRLln), "NAAM"=>$NaamRLln, "GESLACHT"=>$GeslachtRLln, "GEBOORTE"=>(date('d/m/Y', strtotime($GbRLln))), "OVER"=>$OverledenRLln, "BESCHR"=>$BeschrRLln, "GEGR"=>$gegR, "ADRESR"=>$adresR);
                     array_push($relatieLln, $relatieLln[$a]);
                     ++$a;
@@ -498,49 +502,53 @@
     
     class PDF extends FPDF
         {
+            
+            
             function Header()   
                 {
+                    global $schoolGeg;
+                    
                     if (($this -> PageNo()) == 1)
                         {
                             $this -> Image('MIN_Print_Icon.png',20,10,30,30);
                             $this -> SetFont('Arial','B',10); 
                             //$this -> cell(190, 5, '', 0, 1, 'L');
                             $this -> cell(50, 5, '', 0, 0, 'L');
-                            $this -> cell(140, 5, $_SESSION['schoolNaam'], 0, 1, 'L');
+                            $this -> cell(140, 5, $schoolGeg["NAAM"], 0, 1, 'L');
                             $this -> SetFont('Arial','',9); 
                             $this -> cell(50, 5, '', 0, 0, 'L');
-                            $this -> cell(140, 5, $_SESSION['schoolAdres'], 0, 1, 'L');
+                            $this -> cell(140, 5, $schoolGeg["ADRES"], 0, 1, 'L');
                             $this -> cell(50, 5, '', 0, 0, 'L');
-                            $this -> cell(140, 5, $_SESSION['schoolPostNR'].' '.$_SESSION['schoolPlaats'], 0, 1, 'L');
+                            $this -> cell(140, 5, $schoolGeg['POST'].' '.$schoolGeg['PLAATS'], 0, 1, 'L');
                             // Tel
-                            if ($_SESSION['schoolTel'] == '')
+                            if ($schoolGeg['TEL'] == '')
                                 {
                                     $this -> Ln(5);
                                 }
                             else
                                 {
                                     $this -> cell(50, 5, '', 0, 0, 'L');
-                                    $this -> cell(140, 5, 'Tel: '.$_SESSION['schoolTel'], 0, 1, 'L');    
+                                    $this -> cell(140, 5, 'Tel: '.$schoolGeg['TEL'], 0, 1, 'L');    
                                 }
                             // Fax
-                            if ($_SESSION['schoolFax'] == '')
+                            if ($schoolGeg['FAX'] == '')
                                 {
                                     $this -> Ln(5);
                                 }
                             else
                                 {
                                     $this -> cell(50, 5, '', 0, 0, 'L');
-                                    $this -> cell(140, 5, 'Fax: '.$_SESSION['schoolFax'], 0, 1, 'L');    
+                                    $this -> cell(140, 5, 'Fax: '.$schoolGeg['FAX'], 0, 1, 'L');    
                                 }
                             // E-mail    
-                            if ($_SESSION['schoolEmail'] == '')
+                            if ($schoolGeg["EMAIL"] == '')
                                 {
                                     $this -> Ln(5);
                                 }
                             else
                                 {
                                     $this -> cell(50, 5, '', 0, 0, 'L');
-                                    $this -> cell(140, 5, 'E-mail: '.$_SESSION['schoolEmail'], 0, 1, 'L');    
+                                    $this -> cell(140, 5, 'E-mail: '.$schoolGeg["EMAIL"], 0, 1, 'L');    
                                 }
                             $this -> Ln(5);
                             $this -> SetFont('Arial','B',14); 
@@ -561,13 +569,15 @@
                 }
             function Footer()   
                 {
+                    global $schoolGeg;
+                    
                     $this -> SetY( -20 );
                     $this -> SetFont('Arial','B',10);
                     
                     $this -> Ln(5);
                     $this -> cell(190, 0, '', 1, 1, 'C');
                     $this -> Ln(2);
-                    $this -> cell(170, 5, $_SESSION['schoolNaam'].' | Inschrijving '.$_SESSION['LeerlingNaam'], 0, 0);
+                    $this -> cell(170, 5, $schoolGeg["NAAM"].' | Inschrijving '.$_SESSION['LeerlingNaam'], 0, 0);
                     $this -> cell(20, 5, $this ->PageNo().' | {nb}', 0, 0, 'R');
                 }
         }
@@ -841,6 +851,9 @@
     $pdf -> Cell(185, 7, 'Loopbaan leerling', 0,1);
     $pdf -> Ln(2);
     
+    /**
+     * 
+     
     foreach ($loopbaanLln as $loopbaan)
         {
             $pdf -> cell(10, 5, '', 0, 0);
@@ -859,7 +872,7 @@
             $pdf -> cell(15, 5, '', 0, 0);
             $pdf -> MultiCell(175, 5, 'Advies klassenraad', 0, 1);
             $pdf -> Ln(5);
-        }
+        }*/
     
     
     $pdf -> AddPage('P', 'A4');
