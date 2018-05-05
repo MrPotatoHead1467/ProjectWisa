@@ -472,6 +472,15 @@ if (!isset($_SESSION['Is_Leerling']))
         document.getElementById("Persoon_Zoeken").value = opt.attr('id');
       });
     });
+    
+    $(document).ready(function() {
+      $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
+    });
 </script>
 
 <?php 

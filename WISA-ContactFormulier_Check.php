@@ -239,6 +239,13 @@ if (isset($_POST['Contact_Opslaan'])){
         $_SESSION['Mogelijke_EMail'] = '';
         
         if (isset($_FILES["Bestand_contact"])){
+            $sqlInstellingen = "SELECT * FROM tbl_instellingen WHERE fld_school_id_fk=".$_SESSION['schoolID'];
+            $resultInstelling = mysqli_query($conn, $sqlInstelling);
+            if (mysqli_num_rows($resultInstelling) > 0) {
+                while($rowInstelling = mysqli_fetch_assoc($resultInstelling)){
+                    $Plaats_Docs = $rowInstelling['fld_instelling_plaats_docs'];
+                }
+            }
             $Datum = date("Y-m-d_H-i");
             $sqlPersoon = "SELECT * FROM tbl_personen WHERE fld_persoon_id=".$Persoon_Id;
             $resultPersoon = mysqli_query($conn, $sqlPersoon);
@@ -247,7 +254,7 @@ if (isset($_POST['Contact_Opslaan'])){
                     $Persoon_Naam = $rowPersoon['fld_persoon_naam'];
                 }
             }
-            $Dir = "Uploads/".$Persoon_Naam."_".$Persoon_Id."/Contact";
+            $Dir = $Plaats_Docs.$Persoon_Naam."_".$Persoon_Id."/Contact";
             $target_dir = $Dir."/";
             if (!file_exists($Dir)) {
                 mkdir($Dir, 0777, true);

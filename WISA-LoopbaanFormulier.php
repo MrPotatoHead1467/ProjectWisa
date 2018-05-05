@@ -217,6 +217,15 @@ include "WISA-Connection.php";
         document.getElementById("School_Zoeken").value = opt.attr('id');
       });
     });
+    
+    $(document).ready(function() {
+      $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
+    });
 
 -->
 </script>

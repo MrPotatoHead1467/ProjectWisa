@@ -19,58 +19,21 @@
             <table class="Inschrijvingsformulier_Table">
             <p>Inschrijvingen goedkeuren</p>
                 <?php
-                $sqlVragen = "SELECT * FROM tbl_vragen";
-                $result = $conn->query($sqlVragen);
-                $_SESSION['Aantal_Vragen'] = 0;
-                
-                if ($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                        echo "<tr>";
-                        $_SESSION['Aantal_Vragen']++;
-                        echo "<td class='Inschrijvingsformulier_Td' ><label for='".$row['fld_vraag_id']."'>".$row['fld_vraag_vraag']." </label></td>";
-                        if ($row['fld_antwoord_type_k_tekst'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_l_tekst'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_num'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_datum'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='date' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_j/n'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='checkbox' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_foto'] == 1){
-                            echo "<td class='Inschrijvingsformulier_Td' ><input type='text' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'/>";
-                            echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                        }
-                        elseif ($row['fld_antwoord_type_lijst'] == 1){
-                            $sqlLijst = "SELECT * FROM tbl_antwoorden_lijst WHERE fld_vraag_id_fk = ".$row['fld_vraag_id'];
-                            $resultLijst = $conn->query($sqlLijst);
-                            if ($resultLijst->num_rows > 0){
-                                echo "<td class='Inschrijvingsformulier_Td' >";
-                                echo "<select>";
-                                while ($rowLijst = $resultLijst->fetch_assoc()){
-                                    echo "<option>".$rowLijst['fld_lijst_item']."</option>";
+                    $sqlGoedkeuren = "SELECT * FROM ((tbl_inschrijvingen INNER JOIN tbl_personen ON tbl_inschrijvingen.fld_persoon_id_fk = tbl_personen.fld_persoon_id) INNER JOIN tbl_antwoorden ON tbl_inschrijvingen.fld_persoon_id_fk = tbl_antwoorden.fld_persoon_id_fk) WHERE tbl_inschrijvingen.fld_inschrijving_status_id_fk = 1 OR tbl_inschrijvingen.fld_inschrijving_status_id_fk = 4 ORDER BY tbl_inschrijvingen.fld_inschrijving_status_id_fk ASC;";
+                            
+                    $resultGoedkeuren = mysqli_query($conn, $sqlGoedkeuren);
+                    if (mysqli_num_rows($resultGoedkeuren) > 0)
+                        {
+                            $lastrow = "";
+                            while($row = mysqli_fetch_assoc($resultGoedkeuren))
+                                {
+                                    if($row['fld_persoon_id'] != $lastrow){
+                                        echo $row['fld_persoon_naam'].":";
+                                    }
+                                    echo " antwoord: ".$row['fld_antwoord_k_tekst']."<br />";
+                                    $lastrow = $row['fld_persoon_id'];
                                 }
-                                echo "</select>";
-                                echo "<input type='file' id='".$row['fld_vraag_id']."_Bestand' name='".$row['fld_vraag_id']."_Bestand'/></td>";
-                            }
                         }
-                        else {
-                            "Er is iets verkeerd gegaan";
-                            }
-                        echo "</tr>";
-                    }
-                }
                 ?>
                 <tr>
                     <td class='Inschrijvingsformulier_Td' >
