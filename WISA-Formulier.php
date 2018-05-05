@@ -93,6 +93,10 @@
                                 Beheer logins
                             </button>';
                             
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'instelling'"; echo ')">
+                                Instellingen
+                            </button>';
+                            
                 }
             elseif  ($_SESSION['soort'] == "3")
                 {
@@ -198,6 +202,10 @@
                     echo '<div id="goedkeuren" class="tabs_info">';
                             include "WISA-InschrijvingenGoedkeuren.php";
                     echo '</div>';
+                    
+                    echo '<div id="instelling" class="tabs_info">';
+                            include "WISA-Instellingen.php";
+                    echo '</div>';
                 }
             elseif  ($_SESSION['soort'] == "3")
                 {
@@ -228,7 +236,7 @@
         ?>
         </div>    
     </div>
-    
+    <!--
     <div class="page_fullscreen-grey">
         <div class="page_cover_mess">
             <div class="page_cover-space">
@@ -247,7 +255,7 @@
         </div>
     
     </div>
-    
+    -->
     <!-- code: website op full screen laten afbeelden -->
     <script>
         //function page_fullscreen()

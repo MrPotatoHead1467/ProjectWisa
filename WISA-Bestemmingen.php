@@ -67,7 +67,7 @@
             
             <!-- naam -->
             <div class="form_box_in">
-                <input autofocus="autofocus" class="form_in" id="Naam" maxlength="255" name="Naam" placeholder="naam" required="True" type="text"/><br />
+                <input autofocus="autofocus" class="form_in" id="Naam" maxlength="255" name="Naam" placeholder="Naam" required="True" type="text"/><br />
             </div>
             
             <!-- beschrijving -->
