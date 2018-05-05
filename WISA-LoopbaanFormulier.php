@@ -24,7 +24,7 @@ include "WISA-Connection.php";
 <div class="form_box_zoek_border">
 </div>
 
-<form action="WISA-LoopbaanFormulier_Check.php" method="post">
+<form action="WISA-LoopbaanFormulier_Check.php" method="post" enctype="multipart/form-data">
     
     <!-- bestanden toevoegen -->
     <input class="form_bsd" id="Bestand_loopbaan" name="Bestand_loopbaan[]" multiple type="file"/>
@@ -215,6 +215,15 @@ include "WISA-Connection.php";
       $('#School_Zoeken_in').on('input',function() {
         var opt = $('option[value="'+$(this).val()+'"]');
         document.getElementById("School_Zoeken").value = opt.attr('id');
+      });
+    });
+    
+    $(document).ready(function() {
+      $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
       });
     });
 

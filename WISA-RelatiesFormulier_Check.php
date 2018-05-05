@@ -10,6 +10,7 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
         $_SESSION['Leerling'] = $Persoon_1;
     }
+    $Datum = date("Y-m-d_H-i");
 
     $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie_Zoeken']);
     $Persoon_2 = mysqli_real_escape_string($conn, $_POST['Persoon_2_Zoeken']);
@@ -42,7 +43,7 @@ if (isset($_POST['Relatie_opslaan'])){
                 $Bestand_Locatie = $target_dir.$Bestand_Naam;
                 echo "Bestand_Locatie: ".$Bestand_Locatie."<br />";
                 /** Het bestand wordt geüpload */
-                if ($_FILES["Bestand_persoon"]['size'][$i] != 0){
+                if ($Bestand['size'][$i] != 0){
                     if (move_uploaded_file($Bestand["tmp_name"][$i], $Bestand_Locatie)) {
                         echo "Het bestand ". basename($Bestand["name"][$i]). " is geüpload.<br />";
                         
@@ -51,7 +52,7 @@ if (isset($_POST['Relatie_opslaan'])){
                         if (mysqli_query($conn, $sqlBestanden)){
                             $Doc_Id = mysqli_insert_id($conn);
                             $sqlDoc_link = "INSERT INTO tbl_docs_links (fld_doc_id_fk, fld_persoon_id_fk)
-                                            VALUES ('".$Doc_Id."', '".$Persoon_Id."')";
+                                            VALUES ('".$Doc_Id."', '".$Persoon_1."')";
                                             
                             if (mysqli_query($conn, $sqlDoc_link)){
                                 
@@ -81,7 +82,7 @@ if (isset($_POST['Relatie_opslaan'])){
         else {
              $_SESSION['Personen_Relaties'] = array($Persoon_2 => $Relatie);
         }
-        //header ("Location: WISA-Formulier.php?relaties");
+        header ("Location: WISA-Formulier.php?relaties");
            
     }
     else {

@@ -59,7 +59,7 @@
     <div class="form_box_zoek_border">
     </div>
     
-    <form action="WISA-ContactFormulier_Check.php" method="post">
+    <form action="WISA-ContactFormulier_Check.php" method="post" enctype="multipart/form-data">
     
         <!-- bestanden toevoegen D2-->
         <input class="form_bsd" id="Bestand_contact" name="Bestand_contact[]" multiple type="file"/>
@@ -625,6 +625,15 @@
                                                     document.getElementById("Land_Zoeken").value = opt.attr('id');
                                                   });
             });
+            
+        $(document).ready(function() {
+          $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
+        });
         
         
     -->
