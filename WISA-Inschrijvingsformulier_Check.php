@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "WISA-Connection.php";
-$_SESSION['Leerling'] = 13;
 if(isset($_POST["Inschrijving_Opslaan"])) {
     $Persoon_Id = $_SESSION['Leerling'];
     $Datum = date("Y-m-d_H-i");
