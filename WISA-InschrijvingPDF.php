@@ -8,7 +8,12 @@
     // logo <img id='kamers_foto' src='data:image/jpeg;base64, ".base64_encode($_SESSION['schoolLogo'])."' width='350' height='350'/>
     //$_SESSION['schoolLogo'];
     
+    // Dit schooljaar
+    $ditSchoolJaar = '2018-2019';
+    
     // school gegevens: 
+    $_SESSION['schoolID'] = 2532;
+    $schoolID = $_SESSION['schoolID'];
     $_SESSION['schoolNaam'] = 'Minlipinou';
     $schoolNaam = $_SESSION['schoolNaam'];
     
@@ -30,21 +35,17 @@
     $schoolFax = '022030564';
     $schoolEmail = 'info@Minlipinou.be';
     
-    $schoolGeg = array("NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
+    $schoolGeg = array("ID"=>$schoolID, "NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
     // titel doc: 
-    $_SESSION['titelDoc'] = 'Inschrijving leerling 2017-2018';
-    // inschrijvingsdatum
-    $_SESSION['inschrijvingDatum'] = '29/03/2017';
-    // status inschrijving
-    $_SESSION['inschrijvingStatus'] = 'Aanvraag';
-    // gebuiker I
-    $_SESSION['inschrijverNaam'] = 'Louis Marchant';
-    // update date
-    $_SESSION['inschrijvingUDatum'] = 'some date';
+    
+    
+    
+    
+    
     // lln id 
     $_SESSION['Leerling'] = 22;
     $llnID = 22;
-    //
+    $lln = array();
     $sqlZoekLln = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$llnID."'";
     $infoLln = $conn->query($sqlZoekLln);
     if ($infoLln->num_rows > 0) 
@@ -53,49 +54,50 @@
                 {
                     $llnNaam = $row['fld_persoon_naam'];
                     $llnGeslacht = $row['fld_persoon_geslacht'];
-                    $llnGBDatum = (date('d/m/Y', strtotime($row['fld_persoon_gb_datum'])));
-                    $llnGBPlaatsID = $row['fld_persoon_gb_plaats'];
-                    //$llnGBPlaatsNB = $row['fld_persoon_gb_plaats_niet_be'];
-                    $llnNationID = $row['fld_persoon_nation_id_fk'];
+                    $llnGBDatum = $row['fld_persoon_gb_datum'];
                     $llnRijkNR = $row['fld_persoon_register_nr'];
                     $llnBisNR = $row['fld_persoon_bis_nr'];
+                    
+                    $llnGBPlaatsID = $row['fld_persoon_gb_plaats'];
+                    $sqlGBPlaats = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$llnGBPlaatsID."'";
+                    $infoGBPlaats = $conn->query($sqlGBPlaats);
+                    if ($infoGBPlaats->num_rows > 0)
+                        {
+                            while($rowGBPlaats = $infoGBPlaats->fetch_assoc())
+                                {
+                                    $llnGBPlaats = ucfirst(strtolower($rowGBPlaats['fld_woonplaats_naam']));
+                                }
+                        }
+                    else
+                        {
+                            $llnGBPlaats = $row['fld_persoon_gb_plaats'];
+                        }
+                    
+                    $llnNationID = $row['fld_persoon_nation_id_fk'];
+                    $sqlNation = "SELECT * FROM tbl_nationaliteiten WHERE fld_nation_id='".$llnNationID."'";
+                    $infoNation = $conn->query($sqlNation);
+                    if ($infoNation->num_rows > 0) 
+                        {
+                            while($rowNation = $infoNation->fetch_assoc())
+                                {
+                                    $llnNation = $rowNation['fld_nation_nation'];
+                                }
+                        }
+                    
                     $llnGodsID = $row['fld_godsdienst_id_fk'];
+                    $sqlGods = "SELECT * FROM tbl_godsdiensten WHERE fld_godsdienst_id='".$llnGodsID."'";
+                    $infoGods = $conn->query($sqlGods);
+                    if ($infoGods->num_rows > 0) 
+                        {
+                            while($rowGods = $infoGods->fetch_assoc())
+                                {
+                                    $llnGods = $rowGods['fld_godsdienst_naam'];
+                                }
+                        }
                 }
+            $lln = array("NAAM"=>$llnNaam, "GESLACHT"=>$llnGeslacht, "DATUM"=>(date('d/m/Y', strtotime($llnGBDatum))), "GBPLAATS"=>$llnGBPlaats, "NATION"=>$llnNation, "RIJKNR"=>$llnRijkNR, "BISNR"=>$llnBisNR, "GODS"=>$llnGods);
         }
-    //
-    $_SESSION['LeerlingNaam'] = $llnNaam;
-    //
-    $sqlGBPlaats = "SELECT * FROM tbl_postcodes WHERE fld_postcode_id='".$llnGBPlaatsID."'";
-    $infoGBPlaats = $conn->query($sqlGBPlaats);
-    if ($infoGBPlaats->num_rows > 0) 
-        {
-            while($row = $infoGBPlaats->fetch_assoc())
-                {
-                    $llnGBPlaats = ucfirst(strtolower($row['fld_woonplaats_naam']));
-                }
-        }
-    // lln
-    $sqlGods = "SELECT * FROM tbl_godsdiensten WHERE fld_godsdienst_id='".$llnGodsID."'";
-    $infoGods = $conn->query($sqlGods);
-    if ($infoGods->num_rows > 0) 
-        {
-            while($row = $infoGods->fetch_assoc())
-                {
-                    $llnGods = $row['fld_godsdienst_naam'];
-                }
-        }
-        
-    // lln nation
-    $sqlNation = "SELECT * FROM tbl_nationaliteiten WHERE fld_nation_id='".$llnNationID."'";
-    $infoNation = $conn->query($sqlNation);
-    if ($infoNation->num_rows > 0) 
-        {
-            while($row = $infoNation->fetch_assoc())
-                {
-                    $llnNation = $row['fld_nation_nation'];
-                }
-        }
-    
+              
     // Lln geg
     $gegLln = array();
     $sqlGegLln = "SELECT * FROM tbl_personen_gegevens WHERE fld_persoon_id_fk='".$llnID."' ORDER BY fld_soort_id_fk";
@@ -437,13 +439,14 @@
         }                    
     
     // loopbaan lln
+    
+    $loopbaanLln = array();
     $sqlLoopbaanLln = "SELECT * FROM tbl_loopbanen WHERE fld_persoon_id_fk='".$llnID."'";
     $infoLoopbaanLln = $conn->query($sqlLoopbaanLln);
     $aantalLoopbaanLln = mysqli_num_rows($infoLoopbaanLln);
     if ($infoLoopbaanLln->num_rows > 0)
         {
             $a = 0;
-            $loopbaanLln = array();
             
             while(($row = $infoLoopbaanLln->fetch_assoc()))
                 {
@@ -452,6 +455,9 @@
                     $SchooljaarL = $row['fld_loopbaan_schooljaar'];
                     $BDatumL = $row["fld_loopbaan_b_datum"];
                     $EDatumL = $row["fld_loopbaan_e_datum"];
+                    $adviesRaad = $row["fld_loopbaan_advies_klassenraad"];
+                    $attest = $row["fld_loopbaan_attest"];
+                    $clausule = $row["fld_loopbaan_clausule"];
                     
                     $schoolID = $row['fld_school_id_fk'];
                     $sqlSchool = "SELECT * FROM tbl_scholen WHERE fld_school_id='".$schoolID."'";
@@ -471,6 +477,9 @@
                             while($rowRichting = $infoRichting->fetch_assoc())
                                 {
                                     $RichtingL = $rowRichting['fld_richting_naam'];
+                                    $RichtingGraad = $rowRichting['fld_richting_graad'];
+                                    $RichtingJaar = $rowRichting['fld_richting_leerjaar'];
+                                    $RichtingVorm = $rowRichting["fld_richting_onderwijsvorm"];
                                 }
                         }
                     $klasID = $row['fld_school_id_fk'];
@@ -483,7 +492,11 @@
                                     $KlasL = $rowKlas['fld_klas_afkorting'];
                                 }
                         }
-                    $loopbaanLln[$a] = array("SCHOOL"=>$SchoolL, "JAAR"=>$SchooljaarL, "RICHTING"=>$RichtingL, "KLAS"=>$KlasL, "BEGIN"=>(date('d/m/Y', strtotime($BDatumL))), "EIND"=>(date('d/m/Y', strtotime($EDatumL))));
+                    else
+                        {
+                            $KlasL = '';
+                        }
+                    $loopbaanLln[$a] = array("SCHOOL"=>$SchoolL, "JAAR"=>$SchooljaarL, "RICHTING"=>$RichtingL, "GRAAD"=>$RichtingGraad, "LEERJAAR"=>strtolower($RichtingJaar), "VORM"=>$RichtingVorm,"KLAS"=>$KlasL, "BEGIN"=>(date('d/m/Y', strtotime($BDatumL))), "EIND"=>(date('d/m/Y', strtotime($EDatumL))), "ATTEST"=>strtoupper($attest), "CLAUSULE"=>$clausule, "ADVIES"=>$adviesRaad);
                     array_push($loopbaanLln, $loopbaanLln[$a]);
                     ++$a;
                 }
@@ -495,18 +508,74 @@
              
         }
     //
-    //
-    //
-    //
+    $inschrijvingGeg = array();
+    $sqlInschr = "SELECT * FROM tbl_inschrijvingen WHERE fld_persoon_id_fk='".$llnID."'";
+    $infoInschr = $conn->query($sqlInschr);
+    if ($infoInschr->num_rows > 0) 
+        {
+            while($row = $infoInschr->fetch_assoc())
+                {
+                    $inschrijvingDatum = $row['fld_inschrijving_datum'];
+                    $inschrijvingUDatum = $row['fld_inschrijving_update_datum'];
+                    $inschrijvingComm = $row['fld_inschrijving_commentaar'];
+                    
+                    $inschrijvingStatusID = $row['fld_inschrijving_status_id_fk'];
+                    $sqlStatus = "SELECT * FROM tbl_inschrijvingen_statussen WHERE fld_inschrijving_status_id='".$inschrijvingStatusID."'";
+                    $infoStatus = $conn->query($sqlStatus);
+                    if ($infoStatus->num_rows > 0)
+                        {
+                            while($rowStatus = $infoStatus->fetch_assoc())
+                                {
+                                    $inschrijvingStatus = $rowStatus['fld_inschrijving_status_naam'];
+                                }
+                        }
+                    
+                    $inschrijverID = $row['fld_gebruiker_id_fk'];
+                    $sqlGebrui = "SELECT * FROM tbl_gebruikers WHERE fld_gebruiker_id='".$inschrijverID."'";
+                    $infoGebrui = $conn->query($sqlGebrui);
+                    if ($infoGebrui->num_rows > 0)
+                        {
+                            while($rowGebrui = $infoGebrui->fetch_assoc())
+                                {
+                                    $inschrijverPersoonID = $rowGebrui['fld_persoon_id_fk'];
+                                    $sqlPersoon = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$inschrijverPersoonID."'";
+                                    $infoPersoon = $conn->query($sqlPersoon);
+                                    if ($infoPersoon->num_rows > 0)
+                                        {
+                                            while($rowPersoon = $infoPersoon->fetch_assoc())
+                                                {
+                                                    $inschrijverNaam = $rowPersoon['fld_persoon_naam'];
+                                                }
+                                        }
+                                }
+                        }                    
+                }
+          $inschrijvingGeg = array("DATUM"=>(date('d/m/Y', strtotime($inschrijvingDatum))), "STATUS"=>$inschrijvingStatus, "NAAM"=>$inschrijverNaam, "UPDATE"=>$inschrijvingUDatum, "COMM"=>$inschrijvingComm);
+        }
+        
+    
+    // instellingen
+    $instellingGeg = array();
+    $sqlInstell = "SELECT * FROM tbl_instellingen WHERE fld_school_id_fk='".$schoolGeg['ID']."'";
+    $infoInstell = $conn->query($sqlInstell);
+    if ($infoInstell->num_rows > 0)
+        {
+            while($rowInstell = $infoInstell->fetch_assoc())
+                {
+                    $titelDoc = $rowInstell['fld_instelling_titel_doc'];
+                    $logoSchool = $rowInstell["fld_instelling_logo"];
+                }
+            $instellingGeg = array("DOC"=>$titelDoc, "LOGO"=>$logoSchool);
+        }
     
     
     class PDF extends FPDF
         {
-            
-            
             function Header()   
                 {
                     global $schoolGeg;
+                    global $inschrijvingGeg;
+                    global $instellingGeg;
                     
                     if (($this -> PageNo()) == 1)
                         {
@@ -552,7 +621,7 @@
                                 }
                             $this -> Ln(5);
                             $this -> SetFont('Arial','B',14); 
-                            $this -> cell(190, 5, $_SESSION['titelDoc'], 0, 1, 'C');
+                            $this -> cell(190, 5, $instellingGeg["DOC"], 0, 1, 'C');
                             $this -> Ln(2);
                             $this -> cell(190, 0, '', 1, 1, 'L');
                             $this -> Ln(5);
@@ -561,7 +630,7 @@
                     if (($this -> PageNo()) > 1)
                         {
                             $this -> SetFont('Arial','B',14); 
-                            $this -> cell(190, 5, $_SESSION['titelDoc'], 0, 1, 'C');
+                            $this -> cell(190, 5, $instellingGeg["DOC"], 0, 1, 'C');
                             $this -> Ln(2);
                             $this -> cell(190, 0, '', 1, 1, 'C');
                             $this -> Ln(5);
@@ -570,6 +639,7 @@
             function Footer()   
                 {
                     global $schoolGeg;
+                    global $lln;
                     
                     $this -> SetY( -20 );
                     $this -> SetFont('Arial','B',10);
@@ -577,7 +647,7 @@
                     $this -> Ln(5);
                     $this -> cell(190, 0, '', 1, 1, 'C');
                     $this -> Ln(2);
-                    $this -> cell(170, 5, $schoolGeg["NAAM"].' | Inschrijving '.$_SESSION['LeerlingNaam'], 0, 0);
+                    $this -> cell(170, 5, $schoolGeg["NAAM"].' | Inschrijving '.$lln["NAAM"], 0, 0);
                     $this -> cell(20, 5, $this ->PageNo().' | {nb}', 0, 0, 'R');
                 }
         }
@@ -603,26 +673,26 @@
     // Info inschrijving
     $pdf -> SetFont('Arial','B',10);
     $pdf -> cell(5, 5, '', 0, 0);
-    $pdf -> cell(175, 5, strtoupper($_SESSION['inschrijvingStatus']), 0, 1);
+    $pdf -> cell(175, 5, strtoupper($inschrijvingGeg["STATUS"]), 0, 1);
     $pdf -> Ln(2);
     $pdf -> SetFont('Arial','',10);
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> cell(32, 5, 'Inschrijvingsdatum: ', 0, 0);
     $pdf -> SetTextColor( 137, 137, 137 );
-    $pdf -> cell(30, 5, $_SESSION['inschrijvingDatum'], 0, 1);
+    $pdf -> cell(30, 5, $inschrijvingGeg["DATUM"], 0, 1);
     $pdf -> SetTextColor( 0, 0, 0 );
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> cell(32, 5, 'Ingeschreven door: ', 0, 0);
     $pdf -> SetTextColor( 137, 137, 137 );
-    $pdf -> cell(50, 5, $_SESSION['inschrijverNaam'], 0, 1);
+    $pdf -> cell(50, 5, $inschrijvingGeg["NAAM"], 0, 1);
     $pdf -> SetTextColor( 0, 0, 0 );
-    if (($_SESSION['inschrijvingUDatum'] != '') || ($_SESSION['inschrijvingUDatum'] != $_SESSION['inschrijvingDatum']))
+    if (($inschrijvingGeg["UPDATE"] != '') || ($inschrijvingGeg["UPDATE"] != $inschrijvingGeg["DATUM"]))
         {   
             $pdf -> Ln(2);
             $pdf -> cell(5, 5, '', 0, 0);
             $pdf -> cell(28, 5, 'Laatst gewijzigd: ', 0, 0);
             $pdf -> SetTextColor( 137, 137, 137 );
-            $pdf -> cell(50, 5, $_SESSION['inschrijvingUDatum'], 0, 1);
+            $pdf -> cell(50, 5, $inschrijvingGeg["UPDATE"], 0, 1);
             $pdf -> SetTextColor( 0, 0, 0 );
         }
     
@@ -745,17 +815,6 @@
     $pdf -> AddPage('P', 'A4');
      
      
-     
-    /**
-     * 
-     $relatieLln[$a] = array("SOORT"=>$SoortRLln, 
-                            "NAAM"=>$NaamRLln,
-                            "GESLACHT"=>$GeslachtRLln, 
-                            "GEBOORTE"=>$GbRLln, 
-                            "OVER"=>$OverledenRLln, 
-                            "BESCHR"=>$BeschrRLln, 
-                            "GEGR"=>$gegR);*/
-     
     // relaties
     foreach ($relatieLln as $gegRelatie)
         {
@@ -851,11 +910,34 @@
     $pdf -> Cell(185, 7, 'Loopbaan leerling', 0,1);
     $pdf -> Ln(2);
     
-    /**
-     * 
+    
      
     foreach ($loopbaanLln as $loopbaan)
         {
+            if ($loopbaan["SCHOOL"] == $schoolGeg["NAAM"] || $loopbaan["JAAR"] == $ditSchoolJaar)
+                {
+                    $pdf -> SetFont('Arial','',10);
+                    $pdf -> cell(10, 5, '', 0, 0);
+                    $pdf -> cell(5, 5, '•', 0, 0);
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["BEGIN"], 0, 1);
+                    if ($loopbaan["KLAS"] != '')
+                        {
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> cell(175, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                        }
+                    else 
+                        {
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> cell(175, 5, $loopbaan["RICHTING"].' (Klas nog niet toegewezen)', 0, 1);
+                        }
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+                }
+            else
+                {
+                    
+                }
             $pdf -> cell(10, 5, '', 0, 0);
             $pdf -> cell(5, 5, '•', 0, 0);
             $pdf -> SetFont('Arial','B',10);
@@ -863,17 +945,39 @@
             $pdf -> SetFont('Arial','',10);
             $pdf -> cell(15, 5, '', 0, 0);
             $pdf -> cell(175, 5, $loopbaan["JAAR"], 0, 1);
-            //$pdf -> cell(15, 5, '', 0, 0);
-            //$pdf -> cell(175, 5, 'Graad jaar onderwijs', 0, 1);
             $pdf -> cell(15, 5, '', 0, 0);
-            $pdf -> cell(175, 5, $loopbaan["RICHTING"], 0, 1);
+            $pdf -> cell(175, 5, $loopbaan["BEGIN"].' tot '.$loopbaan["EIND"], 0, 1);
+            if ($loopbaan["KLAS"] != '')
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                }
+            else 
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["RICHTING"], 0, 1);
+                }
             $pdf -> cell(15, 5, '', 0, 0);
-            $pdf -> cell(175, 5, 'Attest (Clausule)', 0, 1);
-            $pdf -> cell(15, 5, '', 0, 0);
-            $pdf -> MultiCell(175, 5, 'Advies klassenraad', 0, 1);
+            $pdf -> cell(175, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+            if ($loopbaan["CLAUSULE"] != '')
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["ATTEST"].'-attest'.' ('.$loopbaan["CLAUSULE"].')', 0, 1);
+                }
+            else
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> cell(175, 5, $loopbaan["ATTEST"].'-attest', 0, 1);
+                }
+            if ($loopbaan["ADVIES"] != '')
+                {
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> MultiCell(175, 5, $loopbaan["ADVIES"], 0, 1);
+                }
+            
             $pdf -> Ln(5);
-        }*/
-    
+        }
+     //"RICHTING"=>$RichtingL, "KLAS"=>$KlasL, "BEGIN"=>(date('d/m/Y', strtotime($BDatumL))), "EIND"=>(date('d/m/Y', strtotime($EDatumL))), 
     
     $pdf -> AddPage('P', 'A4');
     
@@ -986,7 +1090,7 @@
     $pdf -> Ln(2);
     $pdf -> SetFont('Arial','',10);
     $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> MultiCell(180, 5, 'Tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst tekst...', 0, 1);
+    $pdf -> MultiCell(180, 5, $inschrijvingGeg['COMM'], 0, 1);
     
     // ...
     
