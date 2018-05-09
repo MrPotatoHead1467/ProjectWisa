@@ -3,7 +3,6 @@ session_start();
 include "WISA-Connection.php";
 
 if (isset($_POST['Loopbaan_Opslaan'])){
-    $_SESSION['Leerling'] = 25;
     $Persoon_Id = $_SESSION['Leerling'];
     $Datum = date('Y');
     $Schooljaar = $_POST['Schooljaar'];
