@@ -117,7 +117,7 @@
                             </button>';
                     
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
-                                Inschrijving
+                                Vragen
                             </button>';
                 }
             else
@@ -139,7 +139,7 @@
                             </button>';
                     
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
-                                Inschrijving
+                                Vragen
                             </button>';
                             
                             
@@ -236,30 +236,51 @@
         ?>
         </div>    
     </div>
-    <!--
-    <div class="page_fullscreen-grey">
+    
+    <div class="page_fullscreen-grey" id="page_fullscreen-grey">
         <div class="page_cover_mess">
             <div class="page_cover-space">
-                <button class="page_cover-close" onclick="page_cover_close() "title="Handleiding sluiten">x</button>
                 <div class="page_cover-titlebox">
-                    <h3 class="page_cover-title">Inschrijving</h3>
+                    <h3 class="page_cover-title">Inschrijving afronden</h3>
                 </div>
+                <div class="page_cover_info">
+                    <!--
                     - print
-                    - handtekeningen als gevraagd in instellingen
+                    - handtekeningen als gevraagd in instellingen (lln, ouder, directie)
                     - voorwaarden geaccepteerd
                     - commentaar toevoegen
-                    - opslaan knop
+                    -->
+                    <div class="form_box_1">
+                        <label class="form_lbl" for="Voornaam">Bestemming</label><br />
+                        
+                        <!-- naam -->
+                        <div class="form_box_in">
+                            <input autofocus="autofocus" class="form_in" id="Naam" maxlength="255" name="Naam" placeholder="Naam" required="True" type="text"/><br />
+                            </div>
+                        <textarea class="page_cover_area" id="Comm_Inschr" maxlength="511" name="Comm_Inschr" placeholder="Commentaar"></textarea>
+                        
+                        <!-- beschrijving -->
+                        
+                    </div>
+                    <div class="form_box_btn">
+                        <!-- bestemming opslaan-->  
+                        <button class="form_btn"  id="Inschr_Opslaan" name="Inschr_Opslaan" title="Aanvraag inschrijving afronden en verzenden." type="submit">Verzenden</button>
+                        <!-- bestemming annuleren --> 
+                        <button class="form_ccl" id="Annuleer" name="Annuleer" onclick="SluitAfronding()" type="submit">Annuleren</button>
+                    </div>
+                </div>
+                    
             </div>
         </div>
     
     </div>
-    -->
+    
     <!-- code: website op full screen laten afbeelden -->
     <script>
-        //function page_fullscreen()
-            //{
-                //document.requestFullScreen() OR document.mozRequestFullScreen()
-            //}
+        function SluitAfronding()
+            {
+                document.getElementById("page_fullscreen-grey").style.display = "none";
+            }
     </script>
     <!-- code: mess weglaten en -->
     <script>

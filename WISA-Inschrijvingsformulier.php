@@ -199,9 +199,12 @@ include "WISA-Connection.php";
         
         <div class="form_box_btn">
             <!-- inschrijving voltooien -->
-            <button type="submit" name="Inschrijving_Opslaan">Inschrijving voltooien</button>
+            <button type="submit" name="Inschrijving_Opslaan">Antwoorden opslaan</button>
             <!-- Knop om te annuleren --> 
             <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
+            <!-- Volgende formulier -->
+            <button class="form_next"  id="Volgende" name="Volgende" title="Volgende formulier: Inschrijving afronden." type="submit">Volgende</button>
+            <label class="form_nexti" onclick="KlikKnop('Volgende')" title="Volgende formulier: Inschrijving afronden."></label>
         </div>
     </form>
     
@@ -220,6 +223,11 @@ include "WISA-Connection.php";
             }
           });
         });
+        
+        function OpenAfronding()
+            {
+                document.getElementById("page_fullscreen-grey").style.display = "block";
+            }
     </script>
     
 
