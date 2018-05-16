@@ -8,13 +8,24 @@
     // logo <img id='kamers_foto' src='data:image/jpeg;base64, ".base64_encode($_SESSION['schoolLogo'])."' width='350' height='350'/>
     //$_SESSION['schoolLogo'];
     
-    // Dit schooljaar
-    $ditSchoolJaar = '2018 - 2019';
+    // variabelen schooljaren
+    $Jaar = date("Y");
+    $Maand = date("m");
+    if ($Maand >= 7)
+        {
+            $ditSchooljaar = $Jaar." - ".($Jaar + 1);
+            $volgendSchooljaar = ($Jaar + 1)." - ".($Jaar + 2);
+        }
+    else 
+        {
+            $ditSchooljaar = ($Jaar - 1)." - ".$Jaar;
+            $volgendSchooljaar = $Jaar." - ".($Jaar + 1);
+        }
     
     // school gegevens: 
     $_SESSION['schoolID'] = 2532;
     $schoolID = $_SESSION['schoolID'];
-    $_SESSION['schoolNaam'] = 'Minlipinou';
+    $_SESSION['schoolNaam'] = 'Miniemeninstituut';
     $schoolNaam = $_SESSION['schoolNaam'];
     
     $schoolStraat = "Scholenstraat";
@@ -1138,31 +1149,109 @@
     $pdf -> Ln(2);
     
     
-     
+    $eersteLoopbaan = 1; 
     foreach ($loopbaanLln as $loopbaan)
         {
-            if (($loopbaan["SCHOOL"] == $schoolGeg["NAAM"]) || ($loopbaan["JAAR"] == $ditSchoolJaar))
+                //echo $ditSchooljaar."<br/>";
+                //echo $volgendSchooljaar."<br/>";
+                //echo $loopbaan["JAAR"]."<br /><br />";
+                //echo $loopbaan["SCHOOL"]." = ".$schoolGeg["NAAM"];
+                
+            if (($loopbaan["SCHOOL"] == $schoolGeg["NAAM"]) && (($loopbaan["JAAR"] == $ditSchooljaar) || ($loopbaan["JAAR"] == $volgendSchooljaar)))
                 {
-                    $pdf -> cell(10, 5, '', 0, 0);
-                    $pdf -> SetFont('Arial','B',10);
-                    $pdf -> cell(180, 5, 'Inschrijving voor:', 0, 0);
-                    $pdf -> SetFont('Arial','',10);
-                    $pdf -> cell(10, 5, '', 0, 0);
-                    $pdf -> cell(180, 5, $loopbaan["JAAR"], 0, 1);
-                    $pdf -> cell(10, 5, '', 0, 0);
-                    $pdf -> cell(180, 5, $loopbaan["BEGIN"].' tot ...', 0, 1);
-                    if ($loopbaan["KLAS"] != '')
+                    
+                    if ($loopbaan["JAAR"] == $volgendSchooljaar)
                         {
                             $pdf -> cell(10, 5, '', 0, 0);
-                            $pdf -> cell(180, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                            $pdf -> SetFont('Arial','B',10);
+                            $pdf -> cell(180, 5, 'Inschrijving voor:', 0, 0);
+                            $pdf -> SetFont('Arial','',10);
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["JAAR"], 0, 1);
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["BEGIN"].' tot ...', 0, 1);
+                            if ($loopbaan["KLAS"] != '')
+                                {
+                                    $pdf -> cell(10, 5, '', 0, 0);
+                                    $pdf -> cell(180, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                                }
+                            else 
+                                {
+                                    $pdf -> cell(10, 5, '', 0, 0);
+                                    $pdf -> cell(180, 5, $loopbaan["RICHTING"].' (Klas nog niet toegewezen)', 0, 1);
+                                }
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+                            
+                            $eersteLoopbaan = 0;
                         }
-                    else 
+                        
+                    elseif (($loopbaan["JAAR"] == $ditSchooljaar) && ($eersteLoopbaan == 1))
                         {
                             $pdf -> cell(10, 5, '', 0, 0);
-                            $pdf -> cell(180, 5, $loopbaan["RICHTING"].' (Klas nog niet toegewezen)', 0, 1);
+                            $pdf -> SetFont('Arial','B',10);
+                            $pdf -> cell(180, 5, 'Inschrijving voor:', 0, 0);
+                            $pdf -> SetFont('Arial','',10);
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["JAAR"], 0, 1);
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["BEGIN"].' tot ...', 0, 1);
+                            if ($loopbaan["KLAS"] != '')
+                                {
+                                    $pdf -> cell(10, 5, '', 0, 0);
+                                    $pdf -> cell(180, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                                }
+                            else 
+                                {
+                                    $pdf -> cell(10, 5, '', 0, 0);
+                                    $pdf -> cell(180, 5, $loopbaan["RICHTING"].' (Klas nog niet toegewezen)', 0, 1);
+                                }
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(180, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+                            
+                            $eersteLoopbaan = 0;
                         }
-                    $pdf -> cell(10, 5, '', 0, 0);
-                    $pdf -> cell(180, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+                    
+                    elseif (($loopbaan["JAAR"] == $ditSchooljaar) && ($eersteLoopbaan == 0))
+                        {
+                            $pdf -> cell(10, 5, '', 0, 0);
+                            $pdf -> cell(5, 5, '•', 0, 0);
+                            $pdf -> SetFont('Arial','B',10);
+                            $pdf -> cell(175, 5, $loopbaan["SCHOOL"], 0, 1);
+                            $pdf -> SetFont('Arial','',10);
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> cell(175, 5, $loopbaan["JAAR"], 0, 1);
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> cell(175, 5, $loopbaan["BEGIN"].' tot '.$loopbaan["EIND"], 0, 1);
+                            if ($loopbaan["KLAS"] != '')
+                                {
+                                    $pdf -> cell(15, 5, '', 0, 0);
+                                    $pdf -> cell(175, 5, $loopbaan["RICHTING"].' ('.$loopbaan["KLAS"].')', 0, 1);
+                                }
+                            else 
+                                {
+                                    $pdf -> cell(15, 5, '', 0, 0);
+                                    $pdf -> cell(175, 5, $loopbaan["RICHTING"], 0, 1);
+                                }
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> cell(175, 5, $loopbaan["GRAAD"].', '.$loopbaan["LEERJAAR"].', '.$loopbaan["VORM"], 0, 1);
+                            if ($loopbaan["CLAUSULE"] != '')
+                                {
+                                    $pdf -> cell(15, 5, '', 0, 0);
+                                    $pdf -> cell(175, 5, $loopbaan["ATTEST"].'-attest'.' ('.$loopbaan["CLAUSULE"].')', 0, 1);
+                                }
+                            else
+                                {
+                                    $pdf -> cell(15, 5, '', 0, 0);
+                                    $pdf -> cell(175, 5, $loopbaan["ATTEST"].'-attest', 0, 1);
+                                }
+                            if ($loopbaan["ADVIES"] != '')
+                                {
+                                    $pdf -> cell(15, 5, '', 0, 0);
+                                    $pdf -> MultiCell(175, 5, $loopbaan["ADVIES"], 0, 1);
+                                }
+                        }
+                    
                 }
             else
                 {
