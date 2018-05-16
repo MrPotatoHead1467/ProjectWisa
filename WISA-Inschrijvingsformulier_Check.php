@@ -89,7 +89,7 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                     $Soort_Antwoord = "fld_antwoord_datum";
                 }
             // j/n vraag
-            elseif ($rowVragen['fld_antwoord_type_j/n'] == 1)
+            elseif ($rowVragen['fld_antwoord_type_jn'] == 1)
                 {
                     $Soort_Antwoord = "fld_antwoord_j/n";
                 }

@@ -19,7 +19,7 @@ include "WISA-Connection.php";
     <form action="WISA-Inschrijvingsformulier_Check.php" method="post" enctype="multipart/form-data">
     
         <?php
-        $sqlVragen = "SELECT * FROM tbl_vragen";
+        $sqlVragen = "SELECT * FROM tbl_vragen WHERE fld_vraag_zichtbaar=1";
         $result = $conn->query($sqlVragen);
         
         if ($result->num_rows > 0)
@@ -111,7 +111,7 @@ include "WISA-Connection.php";
                                     echo "</div>";
                                 }
                             // j/n vraag
-                            elseif ($row['fld_antwoord_type_j/n'] == 1)
+                            elseif ($row['fld_antwoord_type_jn'] == 1)
                                 {
                                     // extra bestand voor j/n
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
