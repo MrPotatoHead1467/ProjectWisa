@@ -517,7 +517,7 @@
             
             while(($row = $infoVragenlijst->fetch_assoc()))  
                 {
-                    echo '<br />jes ';
+                    //echo '<br />jes ';
                     $vraag[$a] = array();
                     
                     $vraagID = $row['fld_vraag_id'];
@@ -525,22 +525,58 @@
                     
                     if ($row["fld_antwoord_type_k_tekst"] == 1)
                         {
-                            echo "soort: ktekst";
+                            //echo "soort: ktekst";
                             $vraagType = 'ktekst';
+                            
+                            $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
+                            $infoAntwoord = $conn->query($sqlAntwoord);
+                            if ($infoAntwoord->num_rows > 0)
+                                {
+                                    $b = 0;
+                                    
+                                    while($rowAntwoord = $infoAntwoord->fetch_assoc())
+                                        {
+                                            $antwoordenlijst[$b] = $rowAntwoord["fld_antwoord_k_tekst"];
+                                        }
+                                }
                         }
                     elseif ($row["fld_antwoord_type_l_tekst"] == 1)
                         {
-                            echo "soort: ltekst";
+                            //echo "soort: ltekst";
                             $vraagType = 'ltekst';
+                            
+                            $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
+                            $infoAntwoord = $conn->query($sqlAntwoord);
+                            if ($infoAntwoord->num_rows > 0)
+                                {
+                                    $b = 0;
+                                    
+                                    while($rowAntwoord = $infoAntwoord->fetch_assoc())
+                                        {
+                                            $antwoordenlijst[$b] = $rowAntwoord["fld_antwoord_l_tekst"];
+                                        }
+                                }
                         }
                     elseif ($row["fld_antwoord_type_num"] == 1)
                         {
-                            echo "soort: num";
+                            //echo "soort: num";
                             $vraagType = 'num';
+                            
+                            $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
+                            $infoAntwoord = $conn->query($sqlAntwoord);
+                            if ($infoAntwoord->num_rows > 0)
+                                {
+                                    $b = 0;
+                                    
+                                    while($rowAntwoord = $infoAntwoord->fetch_assoc())
+                                        {
+                                            $antwoordenlijst[$b] = $rowAntwoord["fld_antwoord_num"];
+                                        }
+                                }
                         }
                     elseif ($row["fld_antwoord_type_datum"] == 1)
                         {
-                            echo "soort: datum";
+                            //echo "soort: datum";
                             $vraagType = 'datum';
                             
                             $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
@@ -557,7 +593,7 @@
                         }
                     elseif ($row["fld_antwoord_type_j/n"] == 1)
                         {
-                            echo "soort: j/n";
+                            //echo "soort: j/n";
                             $vraagType = 'j/n';
                             
                             $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
@@ -582,21 +618,21 @@
                         }
                     elseif ($row["fld_antwoord_type_foto"] == 1)
                         {
-                            echo "soort: foto";
+                            //echo "soort: foto";
                             $vraagType = 'foto';
                             
-                            // naam doc zoeken
+                            $antwoordenlijst = array("0"=>"foto");
                         }
                     elseif ($row["fld_antwoord_type_doc"] == 1)
                         {
-                            echo "soort: doc";
+                            //echo "soort: doc";
                             $vraagType = 'doc';
                             
-                            // naam doc zoeken
+                            $antwoordenlijst = array("0"=>"doc");
                         }
                     elseif ($row["fld_antwoord_type_lijst"] == 1)
                         {
-                            echo "soort: lijst";
+                            //echo "soort: lijst";
                             $vraagType = 'lijst';
                             
                             $antwoordenlijst = array();
@@ -625,7 +661,7 @@
                             //echo "<br/>";
                         }
                         
-                    $vraag[$a] = array("ID"=>$vraagID, "VRAAG"=>$vraagVraag, "TYPE"=>$vraagType);
+                    $vraag[$a] = array("ID"=>$vraagID, "VRAAG"=>$vraagVraag, "TYPE"=>$vraagType, "ANTWOORDEN"=>$antwoordenlijst);
                     array_push($vragenlijst, $vraag[$a]);
                     ++$a;
                 }
@@ -643,6 +679,7 @@
         {
             while($row = $infoInschr->fetch_assoc())
                 {
+                    $inschrijvingID = $row["fld_inschrijving_id"];
                     $inschrijvingDatum = $row['fld_inschrijving_datum'];
                     $inschrijvingUDatum = $row['fld_inschrijving_update_datum'];
                     $inschrijvingComm = $row['fld_inschrijving_commentaar'];
@@ -678,7 +715,7 @@
                                 }
                         }                    
                 }
-            $inschrijvingGeg = array("DATUM"=>(date('d/m/Y', strtotime($inschrijvingDatum))), "STATUS"=>$inschrijvingStatus, "NAAM"=>$inschrijverNaam, "UPDATE"=>$inschrijvingUDatum, "COMM"=>$inschrijvingComm);
+            $inschrijvingGeg = array("ID"=>$inschrijvingID, "DATUM"=>(date('d/m/Y', strtotime($inschrijvingDatum))), "STATUS"=>$inschrijvingStatus, "NAAM"=>$inschrijverNaam, "UPDATE"=>$inschrijvingUDatum, "COMM"=>$inschrijvingComm);
             //echo 'update:'.$inschrijvingGeg["UPDATE"].'.';
         }
         
@@ -693,8 +730,69 @@
                 {
                     $titelDoc = $rowInstell['fld_instelling_titel_doc'];
                     $logoSchool = $rowInstell["fld_instelling_logo"];
+                    $handtekeningDigitaal = $rowInstell["fld_instelling_digitaal_handtekening"];
+                    
+                    $handtekeningLln = $rowInstell["fld_instelling_handtekening_leerling"];
+                    $handtekeningOuder = $rowInstell["fld_instelling_handtekening_ouder"];
+                    $handtekeningDirectie = $rowInstell["fld_instelling_handtekening_directie"];
+                    
+                    $handtekeningen = array();
+                    if ($handtekeningLln == 1)
+                        {
+                            $input = "Leerling";
+                            array_push($handtekeningen, $input);
+                        }
+                    if ($handtekeningOuder == 1)
+                        {
+                            $input = "Ouder / voogd";
+                            array_push($handtekeningen, $input);
+                        }
+                    if ($handtekeningDirectie == 1)
+                        {
+                            $input = "Directie";
+                            array_push($handtekeningen, $input);
+                        }                    
                 }
-            $instellingGeg = array("DOC"=>$titelDoc, "LOGO"=>$logoSchool);
+            $instellingGeg = array("DOC"=>$titelDoc, "LOGO"=>$logoSchool, "DIGITAAL"=>$handtekeningDigitaal, "LLN"=>$handtekeningLln, "OUDER"=>$handtekeningOuder, "DIRECTIE"=>$handtekeningDirectie, "SIGNS"=>$handtekeningen);
+        }
+        
+    
+    // VOORWAARDEN
+    $voorwaardenlijst = array();
+    $sqlVoorwaarden = "SELECT * FROM tbl_inschrijvingen_voorwaarden_check WHERE fld_inschrijving_id_fk='".$inschrijvingGeg['ID']."'";
+    $infoVoorwaarden = $conn->query($sqlVoorwaarden);
+    if ($infoVoorwaarden->num_rows > 0)
+        {
+            $a = 0;
+            
+            while($row = $infoVoorwaarden->fetch_assoc())
+                {
+                    $voorwaarde[$a] = array();
+                    
+                    $voorwaardeCheck = $row["fld_voorwaarde_check_check"];
+                    
+                    $voorwaardeID = $row["fld_inschrijving_voorwaarde_id_fk"];
+                    $sqlVoorwaarde = "SELECT * FROM tbl_inschrijvingen_voorwaarden WHERE fld_inschrijving_voorwaarde_id='".$voorwaardeID."'";
+                    $infoVoorwaarde = $conn->query($sqlVoorwaarde);
+                    if ($infoVoorwaarde->num_rows > 0)
+                        {
+                            while($rowVoorwaarde = $infoVoorwaarde->fetch_assoc())
+                                {
+                                    $voorwaardeInhoud = $rowVoorwaarde["fld_inschrijving_voorwaarde_beschrijving"];
+                                    $voorwaardeLink = $rowVoorwaarde["fld_inschrijving_voorwaarde_link"];
+                                    //echo 'link: '.$voorwaardeLink.'<br/>';
+                                }
+                        }
+                    $voorwaarde[$a] = array("INHOUD"=>$voorwaardeInhoud, "LINK"=>$voorwaardeLink, "CHECK"=>$voorwaardeCheck);
+                    array_push($voorwaardenlijst, $voorwaarde[$a]);
+                    ++$a;
+                    
+                }
+            $noMultiArray = array_map('serialize', $voorwaardenlijst);
+            $unique_noMultiArray = array_unique($noMultiArray);
+            $voorwaardenlijst = array_map('unserialize', $unique_noMultiArray); 
+            //print_r($voorwaardenlijst);
+            //echo "<br/>";
         }
     
     
@@ -1118,44 +1216,39 @@
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> Cell(185, 7, 'Vragenlijst', 0,1);
     $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '1', 0, 0);
-    $pdf -> cell(175, 5, 'VRAAG', 0, 1);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> MultiCell(175, 5, 'Antwoord', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '2', 0, 0);
-    $pdf -> cell(175, 5, 'VRAAG', 0, 1);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> Cell(5,5, '•', 0,0);
-    $pdf -> cell(170, 5, 'Antwoord 1', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> Cell(5,5, '•', 0,0);
-    $pdf -> cell(170, 5, 'Antwoord 2', 0, 1);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> Cell(5, 5, '•', 0,0);
-    $pdf -> cell(170, 5, 'Antwoord 3', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '3', 0, 0);
-    $pdf -> cell(175, 5, 'VRAAG', 0, 1);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> MultiCell(175, 5, 'Antwoord', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(5, 5, '4', 0, 0);
-    $pdf -> cell(175, 5, 'VRAAG', 0, 1);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(15, 5, '', 0, 0);
-    $pdf -> MultiCell(175, 5, 'Antwoord', 0, 1);
+    
+    $a = 1;
+    foreach ($vragenlijst as $vraag)
+        {
+            if ($vraag["TYPE"] != "lijst")
+                {
+                    $pdf -> SetFont('Arial','B',10);
+                    $pdf -> cell(10, 5, '', 0, 0);
+                    $pdf -> cell(5, 5, $a, 0, 0);
+                    $pdf -> cell(175, 5, $vraag["VRAAG"], 0, 1);
+                    $pdf -> SetFont('Arial','',10);
+                    $pdf -> cell(15, 5, '', 0, 0);
+                    $pdf -> MultiCell(175, 5, $vraag["ANTWOORDEN"][0], 0, 1);
+                    $pdf -> Ln(2);
+                }
+            else 
+                {
+                    $pdf -> SetFont('Arial','B',10);
+                    $pdf -> cell(10, 5, '', 0, 0);
+                    $pdf -> cell(5, 5, $a, 0, 0);
+                    $pdf -> cell(175, 5, $vraag['VRAAG'], 0, 1);
+                    $pdf -> SetFont('Arial','',10);
+                    
+                    foreach ($vraag["ANTWOORDEN"] as $antwoord)
+                        {
+                            $pdf -> cell(15, 5, '', 0, 0);
+                            $pdf -> Cell(5,5, '•', 0,0);
+                            $pdf -> cell(170, 5, $antwoord, 0, 1);
+                        }
+                    $pdf -> Ln(2);
+                }
+            ++$a;
+        }
     
     $pdf -> AddPage('P', 'A4');
     
@@ -1164,56 +1257,111 @@
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> Cell(185, 7, 'Voorwaarden', 0,1);
     $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(7, 5, '[  ]', 0, 0);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(173, 5, 'Voorwaarde 1', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(7, 5, '[x]', 0, 0);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(173, 5, 'Voorwaarde 2', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(7, 5, '[x]', 0, 0);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(173, 5, 'Voorwaarde 3', 0, 1);
-    $pdf -> Ln(2);
-    $pdf -> SetFont('Arial','B',10);
-    $pdf -> cell(10, 5, '', 0, 0);
-    $pdf -> cell(7, 5, '[x]', 0, 0);
-    $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(173, 5, 'Voorwaarde 4', 0, 1);
-    $pdf -> Ln(5);
+    
+    foreach ($voorwaardenlijst as $voorwaarde)
+        {
+            $pdf -> SetFont('Arial','B',10);
+            $pdf -> cell(10, 5, '', 0, 0);
+            if ($voorwaarde["CHECK"] == 1)
+                {
+                    $pdf -> cell(7, 5, '[x]', 0, 0);
+                }
+            else
+                {
+                    $pdf -> cell(7, 5, '[  ]', 0, 0);
+                }
+            $pdf -> SetFont('Arial','',10);
+            if ($voorwaarde["LINK"] != '')
+                {
+                    //$aantalTekens = (count(str_split($voorwaarde["INHOUD"])));
+                    //echo $aantalTekens;
+                    //$aantalRegels = floor($aantalTekens/100);
+                    //echo $aantalRegels;
+                    //$aantalRest = ($aantalTekens%100);
+                    //echo $aantalRest;
+                    $pdf -> multicell(173, 5, $voorwaarde["INHOUD"], 0, 1, false, 0,$voorwaarde["LINK"]); // multicell cannot have an URL link, but no error given..
+                }
+            else
+                {
+                    $pdf -> multicell(173, 5, $voorwaarde["INHOUD"], 0, 1);
+                }
+            
+            $pdf -> Ln(2);
+        }
+     
     
     // Hantekeningen
     $pdf -> SetFont('Arial','B',11);
     $pdf -> cell(5, 5, '', 0, 0);
     $pdf -> Cell(185, 7, 'Handtekeningen', 0, 1);
     $pdf -> Ln(2);
+    
     $pdf -> SetFont('Arial','',10);
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Leerling', 0, 0, 'C');
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Ouder', 0, 0, 'C');
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Directie', 0, 1, 'C');
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Datum', 0, 0, 'C');
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Datum', 0, 0, 'C');
-    $pdf -> cell(10, 10, '', 0, 0);
-    $pdf -> cell(50, 10, 'Datum', 0, 1, 'C');
-    $pdf -> cell(10, 30, '', 0, 0);
-    $pdf -> cell(50, 30, 'Handtekening', 1, 0, 'C');
-    $pdf -> cell(10, 30, '', 0, 0);
-    $pdf -> cell(50, 30, 'Handtekening', 1, 0, 'C');
-    $pdf -> cell(10, 30, '', 0, 0);
-    $pdf -> cell(50, 30, 'Handtekening', 1, 1, 'C');
-    $pdf -> Ln(5);
+    
+    $aantalHandtekeningen = intval($instellingGeg["LLN"]) + intval($instellingGeg["OUDER"]) + intval($instellingGeg["DIRECTIE"]);
+    
+    if ($instellingGeg["DIGITAAL"] == 1)
+        {
+            
+        }
+        
+        
+    elseif ($instellingGeg["DIGITAAL"] == 0) 
+        {
+            if ($aantalHandtekeningen == 3)
+                { 
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][0], 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][1], 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][2], 0, 1, 'C');
+                    
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 1, 'C');
+                    
+                    $pdf -> cell(10, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 0, 'C');
+                    $pdf -> cell(10, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 0, 'C');
+                    $pdf -> cell(10, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 1, 'C');
+                }
+            elseif ($aantalHandtekeningen == 2)
+                {
+                    $pdf -> cell(40, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][0], 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][1], 0, 0, 'C');
+                    
+                    $pdf -> cell(40, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 0, 'C');
+                    $pdf -> cell(10, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 1, 'C');
+                    
+                    $pdf -> cell(40, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 0, 'C');
+                    $pdf -> cell(10, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 1, 'C');
+                }
+            elseif ($aantalHandtekeningen == 1)
+                {
+                    $pdf -> cell(70, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, $instellingGeg["SIGNS"][0], 0, 0, 'C');
+                    
+                    $pdf -> cell(70, 10, '', 0, 0);
+                    $pdf -> cell(50, 10, '__ /__ /____', 0, 1, 'C');
+                    
+                    $pdf -> cell(70, 30, '', 0, 0);
+                    $pdf -> cell(50, 30, '', 1, 1, 'C');
+                }
+        }   
+    
+    $pdf -> Ln(5);    
     
     // Commentaar
     $pdf -> SetFont('Arial','B',11);
