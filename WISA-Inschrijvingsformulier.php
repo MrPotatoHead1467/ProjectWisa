@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="content-type" content="text/html" />
 	<meta name="author" content="KSLeuven" />
-    
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 	<title>Inschrijvingsformulier</title>
     
@@ -175,7 +175,7 @@ include "WISA-Connection.php";
                                     $resultLijst = $conn->query($sqlLijst);
                                     if ($resultLijst->num_rows > 0)
                                         {
-                                            echo "<select class='form_slt' name='".$row['fld_vraag_id']."'>";
+                                            echo "<select class='form_slt' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' multiple>";
                                             while ($rowLijst = $resultLijst->fetch_assoc())
                                                 {
                                                     echo "<option value='".$rowLijst['fld_lijst_item']."'>".$rowLijst['fld_lijst_item']."</option>";
@@ -184,6 +184,15 @@ include "WISA-Connection.php";
                                             
                                         }
                                     
+                                    echo '<script type="text/javascript">
+                                        $("#'.$row["fld_vraag_id"].'").on("click", "option", function(){
+                                            var max = '.$row["fld_antwoord_aantal"].';
+                                            if ( max <= $(this).siblings(":selected").length ) {
+                                                alert("Only " + max + " selections allowed.");
+                                                $(this).removeAttr("selected");
+                                            }
+                                        });
+                                        </script>';
                                 }
                             else 
                                 {
@@ -204,7 +213,25 @@ include "WISA-Connection.php";
             <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         </div>
     </form>
-    
+    <?php 
+    $sqlLijsten = "SELECT * FROM tbl_vragen WHERE fld_antwoord_type_lijst=1";
+    $resultLijsten = $conn->query($sqlLijsten);
+    if ($resultLijsten->num_rows > 0)
+        {
+            while($rowLijst = $result->fetch_assoc())
+                {
+                    echo '<script type="text/javascript">
+                        $("#'.$rowLijst["fld_vraag_id"].'").on("click", "option", function(){
+                            var max = '.$rowLijst["fld_antwoord_aantal"].';
+                            if ( max <= $(this).siblings(":selected").length ) {
+                                alert("Only " + max + " selections allowed.");
+                                $(this).removeAttr("selected");
+                            }
+                        });
+                        </script>';
+                }
+        }
+    ?>
     <script type="text/javascript">
     
         function KlikKnop(knop)
@@ -220,6 +247,13 @@ include "WISA-Connection.php";
             }
           });
         });
+    
+        $('option').mousedown(function(e) {
+            e.preventDefault();
+            $(this).prop('selected', !$(this).prop('selected'));
+            return false;
+        });
+    
     </script>
     
 

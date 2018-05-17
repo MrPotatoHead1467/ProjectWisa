@@ -193,7 +193,7 @@ if (isset($_POST['Vraag_annuleren'])){
 if (isset($_POST['Vraag_Zoeken_btn'])){
     $Vraag_Zoeken = mysqli_real_escape_string($conn, $_POST['Vraag_Zoeken']);
     if ($Vraag_Zoeken == '' || $Vraag_Zoeken == 'undefined'){
-        header("Location: WISA-Formulier.php?logins");
+        header("Location: WISA-Formulier.php?beheervragen");
     }
     $sql = "SELECT * FROM tbl_vragen WHERE fld_vraag_id=".$Vraag_Zoeken;
     $result = mysqli_query($conn, $sql);
