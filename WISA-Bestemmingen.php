@@ -15,15 +15,20 @@
 <body>
 
     <?PHP
-    
-        if (isset($_SESSION['gebruiker']))
+        if (!isset($_SESSION['gebruiker']))
             {
-               echo "";
+               header("Location: WISA-Inloggen.php");
             }
-        else
+            
+        if (!isset($_SESSION['Bestemming_Naam']))
             {
-                header("Location: WISA-Inloggen.php");
-            }  
+               $_SESSION['Bestemming_Naam'] = "";
+            }
+            
+        if (!isset($_SESSION['Bestemming_Besch']))
+            {
+               $_SESSION['Bestemming_Besch'] = "";
+            }
         
         include "WISA-Connection.php";
     ?>
@@ -63,15 +68,15 @@
         
         <!-- bestemming -->
         <div class="form_box_1">
-            <label class="form_lbl" for="Voornaam">Bestemming</label><br />
+            <label class="form_lbl" for="Naam">Bestemming</label><br />
             
             <!-- naam -->
             <div class="form_box_in">
-                <input autofocus="autofocus" class="form_in" id="Naam" maxlength="255" name="Naam" placeholder="Naam" required="True" type="text"/><br />
+                <input autofocus="autofocus" class="form_in" id="Bestem" maxlength="255" name="Bestem" placeholder="Naam" required="True" type="text" value="<?php echo $_SESSION["Bestemming_Naam"] ?>"/><br />
             </div>
             
             <!-- beschrijving -->
-            <textarea class="form_in1" id="Beschr_Bestem" maxlength="511" name="Beschr_Bestem" placeholder="Beschrijving"></textarea>
+            <textarea class="form_in1" id="Beschr_Bestem" maxlength="511" name="Beschr_Bestem" placeholder="Beschrijving"><?php echo $_SESSION["Bestemming_Besch"] ?></textarea>
         </div>
         
         <!-- gegevens -->
@@ -86,14 +91,29 @@
             <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
         </div>
     
-    
     </form>
     
+    <script type="text/javascript">
+            
+        $(function() 
+            {
+                $('#Bestem_Zoeken_in').on('input',function() 
+                    {
+                        var opt = $('option[value="'+$(this).val()+'"]');
+                        document.getElementById("Bestem_Zoeken").value = opt.attr('id');
+                    });
+            });  
+            
+        $(document).ready(function() {
+          $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
+        });
     
-
-
-
-
+    </script>
 
 </body>
 </html>
