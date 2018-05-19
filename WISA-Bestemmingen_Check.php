@@ -11,7 +11,7 @@ if (isset($_POST['Bestem_Opslaan'])){
     }
     else {
         $sqlBestemming = "INSERT INTO tbl_bestemmingen (fld_bestemming_naam, fld_bestemming_beschrijving)
-                          VALUES ('".$Bestemming."', '".$Beschrijving."'";
+                          VALUES ('".$Bestemming."', '".$Beschrijving."')";
     }
     if (mysqli_query($conn, $sqlBestemming)){
         header("Location: WISA-Formulier.php?bestemmingen");
@@ -41,5 +41,13 @@ if (isset($_POST['Bestem_Zoeken_btn'])){
             header("Location: WISA-Formulier.php?bestemmingen");
         }
     }
+}
+
+if (isset($_POST['Annuleer'])){
+    $_SESSION['Bestemming_Id'] = "";
+    $_SESSION['Bestaande_bestemming'] = false;
+    $_SESSION['Bestemming_Naam'] = "";
+    $_SESSION['Bestemming_Besch'] = "";
+    header("Location: WISA-Formulier.php?bestemmingen");
 }
 ?>
