@@ -408,7 +408,7 @@ footer {
 .page_fullscreen-grey   {
                         background-color: rgba(241,242,244,0.8);
                         color: #FAFAFA;
-                        display: block;
+                        display: none;
                         height:  100vh;
                         margin: 0;
                         padding: 0;
@@ -456,6 +456,7 @@ footer {
                     height:  100%;
                     margin:  0;
                     padding: 0;
+                    text-align: left;
                     transition: 0.3s;
                     width: 100%}
                     
@@ -523,6 +524,18 @@ footer {
                     transition: 0.3s;
                     text-align: left;
                     width: 100%;}
+                    
+.page_cover_area    {
+                    margin-left: 2%;
+                    margin-top: 1vh;
+                    width: 73%;} 
+
+.page_cover_lbl {
+                color: #5A667B;
+                font-size: 1em;
+                margin: 0;
+                padding: 0;
+                width: 100%}  
 
 
 /* formulier.php */
