@@ -2,7 +2,10 @@
 session_start();
 include "WISA-Connection.php";
 include "API_Connection.php";
-$Leerling_Id = 22;
+foreach($_POST as $name => $content) { // Most people refer to $key => $value
+   $Leerling_Id = $name;
+}
+
 $sqlLeerling_Persoon = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$Leerling_Id."'";
 $result = $conn->query($sqlLeerling_Persoon);
 if ($result->num_rows > 0) {
@@ -35,8 +38,6 @@ if ($result->num_rows > 0) {
                 $Leerling_Nationaliteit = $row['fld_nation_wisa_id'];
             }
         }
-        
-
     }
 }
 $sqlLeerling_Ouders = "SELECT * FROM tbl_personen_linken WHERE fld_child_id_fk='".$Leerling_Id."'";
@@ -324,13 +325,13 @@ $params = array(
     "Credentials" => $credentials,
     "LeerlingDetails" => $LeerlingDetails
 );
-
-// $response = $client->__soapCall("AddLeerling", array($params));
+/**
+$response = $client->__soapCall("AddLeerling", array($params));
 
 $array = json_decode(json_encode($response), true);
 foreach ($array as $Test){
     echo $Test;
     
 }
-
+*/
 ?>
