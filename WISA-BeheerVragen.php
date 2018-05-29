@@ -1,24 +1,36 @@
 <?php
-if (isset($_SESSION['Nieuwe_vraag'])) 
-    {}
-else 
+if (!isset($_SESSION['Nieuwe_vraag'])) 
     {
         $_SESSION['Nieuwe_vraag'] = "";
     }
-if (isset($_SESSION['Kernwoord_vraag'])) 
-    {}
-else 
+if (!isset($_SESSION['Kernwoord_vraag'])) 
     {
         $_SESSION['Kernwoord_vraag'] = "";
     }
-if (isset($_SESSION['Max_antwoord']))
-    {}
-else
+if (!isset($_SESSION['Max_antwoord']))
     {
         $_SESSION['Max_antwoord'] = "1";
     }
-    
-$_SESSION['Formulier'] = "nieuwevraag"
+if (!isset($_SESSION['Antwoord_type']))
+    {
+        $_SESSION['Antwoord_type'] = "";
+    }
+if (!isset($_SESSION['Bestemmingen']))
+    {
+        $_SESSION['Bestemmingen'] = [];
+    }
+if (!isset($_SESSION['Verplicht']))
+    {
+        $_SESSION['Verplicht'] = "";
+    }
+if (!isset($_SESSION['Zichtbaar']))
+    {
+        $_SESSION['Zichtbaar'] = "1";
+    }
+if (!isset($_SESSION['Bestaande_lijst']))
+    {
+        $_SESSION['Bestaande_lijst'] = NULL;
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -90,23 +102,14 @@ $_SESSION['Formulier'] = "nieuwevraag"
         <div class="form_box_1">
             <label class="form_lbl" for="Soort_antwoord">Soort antwoord:</label><br />
             <select class="form_slt" id="Soort_antwoord" onchange="lijst()" name="Soort_antwoord">
-                <?php if ($_SESSION['Nieuwe_vraag'] != '')
-                    {
-                        echo '<option value="fld_antwoord_type_lijst">Lijst</option>';
-                    }
-                ?>
                 <option value="fld_antwoord_type_k_tekst">Korte tekst</option>
                 <option value="fld_antwoord_type_l_tekst">Lange tekst</option>
                 <option value="fld_antwoord_type_num">Numeriek</option>
                 <option value="fld_antwoord_type_datum">Datum</option>
-                <option value="fld_antwoord_type_j/n">Ja/Nee</option>
+                <option value="fld_antwoord_type_jn">Ja/Nee</option>
                 <option value="fld_antwoord_type_foto">Foto</option>
                 <option value="fld_antwoord_type_doc">Document</option>
-                <?php if ($_SESSION['Nieuwe_vraag'] == '')
-                    {
-                        echo '<option value="fld_antwoord_type_lijst">Lijst</option>';
-                    }
-                ?>
+                <option value="fld_antwoord_type_lijst">Lijst</option>
             </select>
         </div>
         
@@ -211,7 +214,11 @@ $_SESSION['Formulier'] = "nieuwevraag"
             <input id="Verplicht" name="Verplicht" title="Aanvinken indien de vraag verplicht beantwoord moet worden." type="checkbox" />
             <label class="form_lbl" for="Verplicht" title="Aanvinken indien de vraag verplicht beantwoord moet worden.">Antwoord verplicht</label>
         </div>
-      
+        
+        <div class="form_box_1">
+            <input id="Zichtbaar" name="Zichtbaar" title="Aanvinken indien de vraag zichtbaar moet zijn." type="checkbox" />
+            <label class="form_lbl" for="Zichtbaar" title="Aanvinken indien de vraag zichtbaar moet zijn.">Vraag zichtbaar</label>
+        </div>
         
         <div class="form_box_btn_border">
         </div>
@@ -261,6 +268,15 @@ $_SESSION['Formulier'] = "nieuwevraag"
                         document.getElementById('Mogelijke_antwoorden').style.display = 'none';
                     }
             }
+        function Select_option(select,option)
+            {
+                document.getElementById(select).value = option;
+            }
+        function Checkbox_check(check)
+            {
+                document.getElementById(check).checked = true;
+            }
+            
         $(function() 
             {
                 $('#Vraag_Zoeken_in').on('input',function() 
@@ -282,10 +298,33 @@ $_SESSION['Formulier'] = "nieuwevraag"
     </script>
     
     <?php
-        if ($_SESSION['Nieuwe_vraag'] != "")
+        if ($_SESSION['Nieuwe_vraag'] != "" && $_SESSION["Antwoord_type"] == "fld_antwoord_type_lijst")
             {
                 echo '<script type="text/javascript">gepersonaliseerdelijst();</script>';
             }
+            
+        if ($_SESSION["Antwoord_type"] != ""){
+            echo '<script type="text/javascript">Select_option("Soort_antwoord","'.$_SESSION["Antwoord_type"].'");</script>';
+        }
+        
+        if ($_SESSION["Bestaande_lijst"] != NULL){
+            echo '<script type="text/javascript">Select_option("Bestaande_lijst","'.$_SESSION["Bestaande_lijst"].'");</script>';
+        }
+        
+        if ($_SESSION["Verplicht"] == "1"){
+            echo '<script type="text/javascript">Checkbox_check("Verplicht");</script>';
+        }
+        
+        if ($_SESSION["Zichtbaar"] == "1"){
+            echo '<script type="text/javascript">Checkbox_check("Zichtbaar");</script>';
+        }
+        
+        if ($_SESSION["Bestemmingen"] != ""){
+            foreach ($_SESSION["Bestemmingen"] as $Bestemming){
+                echo '<script type="text/javascript">Checkbox_check("'.$Bestemming.'");</script>';
+            }
+        }
+        
     ?>
 </body>
 </html>
