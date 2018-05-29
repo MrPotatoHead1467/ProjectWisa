@@ -59,24 +59,30 @@
     ?>
     
     <div class="tabs_names_box_arrows">
-        <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_prev()" title="Vorige tabblad">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_arrow('prev')" title="Vorige tabblad">
             &#8249;
         </button>
-        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_next()" title="Volgende tabblad">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_arrow('next)" title="Volgende tabblad">
             &#8250;
         </button>
-    </div> 
-    <div class="tabs">
-        <!-- namen voor tabbladen -->
-        <?PHP
-            if ($_SESSION['soort'] == "1")
-                {
+    </div>
+    <!-- namen voor tabbladen -->
+    <?PHP
+        if ($_SESSION['soort'] == "1")
+            {
+                echo '  <div class="tabs">';
+                    
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'...'"; echo ')">
                                 ...
                             </button>';
-                }
-            elseif  ($_SESSION['soort'] == "2")
-                {
+                
+                echo '  </div>';
+                
+            }
+        elseif  ($_SESSION['soort'] == "2")
+            {
+                echo '  <div class="tabs" id="vragentab">';
+                
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
                                 Beheer vragen
                             </button>';
@@ -84,11 +90,23 @@
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'bestemmingen'"; echo ')">
                                 Bestemmingen
                             </button>';
-                            
+                        
+                echo '  </div>';
+                echo '  <div class="tabs" id="inschrijvingentab">';
+                       
+                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedgekeurd'"; echo ')">
+                                Goedgekeurde inschrijvingen
+                            </button>';
+                             
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
                                 Inschrijvingen goedkeuren
                             </button>';
+                            
                     
+                    
+                echo '  </div>';
+                echo '  <div class="tabs" id="infotab">';
+                
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'logins'"; echo ')">
                                 Beheer logins
                             </button>';
@@ -96,10 +114,14 @@
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'instelling'"; echo ')">
                                 Instellingen
                             </button>';
-                            
-                }
-            elseif  ($_SESSION['soort'] == "3")
-                {
+                
+                echo '  </div>';
+                        
+            }
+        elseif  ($_SESSION['soort'] == "3")
+            {
+                echo '  <div class="tabs">';
+                
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'persoon'"; echo ')">
                                 Persoonsgegevens
                             </button>';
@@ -119,44 +141,13 @@
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
                                 Vragen
                             </button>';
-                }
-            else
-                {
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'persoon'"; echo ')">
-                                Persoonsgegevens
-                            </button>';
-                    
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'relaties'"; echo ')">
-                                Relaties
-                            </button>';
                             
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'contact'"; echo ')">
-                                Contactgegevens
-                            </button>';
-                    
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'loopbaan'"; echo ')">
-                                Loopbanen
-                            </button>';
-                    
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'vragen'"; echo ')">
-                                Vragen
-                            </button>';
-                            
-                            
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'bestemmingen'"; echo ')">
-                                Bestemmingen
-                            </button>';     
-                            
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
-                                Beheer vragen
-                            </button>';
-                            
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
-                                Inschrijvingen goedkeuren
-                            </button>';
-                }
-        ?>
-    </div>
+                echo '  </div>';
+            }
+        else
+            {
+            }
+    ?>
     
     <div class="tabs_info-box">
         <div class="tabs_info-box-space">
@@ -314,6 +305,70 @@
                 //window.history.pushState("?" + form, "WISA | " + form, "http://localhost/ProjectWisa/ProjectWisa/WISA-Formulier.php");
                 //window.location.href.replace("?" + inhoud;  )
             }
+        
+        function tabs_arraow(way)
+            {
+                if (way == "prev")
+                    {
+                        document.getElementById("tabs_names_arrows_volgende").style.display = "none";
+                    }
+                else
+                    {
+                        document.getElementById("tabs_names_arrows_vorige").style.display = "block";
+                    }
+            }    
+        
+        function tabs_arro(way)
+            {
+                var prev = document.getElementById("tabs_names_arrows_vorige");
+                var next = document.getElementById("tabs_names_arrows_volgende");
+                
+                var vragentab = document.getElementById("vragentab");
+                var inschrijvingentab = document.getElementById("inschrijvingentab");
+                var infotab = document.getElementById("infotab");
+                
+                if (way == "prev")
+                    {
+                        if (inschrijvingentab.style.display == "block")
+                            {
+                                vragentab.style.display = "block";
+                                inschrijvingentab.style.display = "none";
+                                infotab.style.display = "none";
+                                
+                                prev.style.display = "none";
+                            }
+                        else if (infotab.style.display == "block")
+                            {
+                                vragentab.style.display = "none";
+                                inschrijvingentab.style.display = "block";
+                                infotab.style.display = "none";
+                                
+                                next.style.display = "block";
+                            }
+                    }
+                else if (way == "next")
+                    {
+                        if (vragentab.style.display == "block")
+                            {
+                                vragentab.style.display = "none";
+                                inschrijvingentab.style.display = "block";
+                                infotab.style.display = "none";
+                                
+                                prev.style.display = "block";
+                            }
+                        else if (inschrijvingentab.style.display == "block")
+                            {
+                                vragentab.style.display = "none";
+                                inschrijvingentab.style.display = "none";
+                                infotab.style.display = "block";
+                                
+                                next.style.display = "none";
+                            }
+                    }
+            }  
+            
+            
+            
     </script>
   
 
