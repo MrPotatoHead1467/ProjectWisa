@@ -7,6 +7,8 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()){
         echo $row['fld_school_id'];
         echo "<br />";
+        echo $row['fld_school_wisa_id'];
+        echo "<br />";
     }
 }
 //*/

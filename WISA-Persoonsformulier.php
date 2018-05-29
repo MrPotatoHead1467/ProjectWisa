@@ -271,7 +271,7 @@ if (!isset($_SESSION['Is_Leerling']))
         
         <!-- bis-nummer label -->
         <div id="Div_Bis_nr">
-            <label class="form_lbl" for="Bis_nr" title="Vb: 99041254023">BIS-Nummer</label>
+            <label class="form_lbl" for="Bis_nr" title="Vb: 99041254023">BIS-nummer</label>
         </div>
             <!-- rijksregisternummer?? -->
             <div class="form_box_in ">

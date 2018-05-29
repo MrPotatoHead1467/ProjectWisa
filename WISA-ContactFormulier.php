@@ -38,7 +38,7 @@
                         }
                      ?>
                     />
-                    <label class="form_editi" for="Contact_Zoeken_btn" onclick="KlikKnop('Contact_Zoeken_btn')" title="Personns gegevens zoekn."></label>
+                    <label class="form_editi" for="Contact_Zoeken_btn" onclick="KlikKnop('Contact_Zoeken_btn')" title="Persoons gegevens zoeken."></label>
                 </div>
                 <datalist class="form_slt" id="Contact_Zoeken_List" >
                 <?php

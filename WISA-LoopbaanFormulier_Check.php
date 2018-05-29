@@ -32,8 +32,6 @@ if (isset($_POST['Loopbaan_Opslaan'])){
                         VALUES ('".$Persoon_Id."', '".$School_Id."', '".$Richting."', '".$Schooljaar."', '".$Begindatum."', '".$Einddatum."')";
     }
     
-    
-            
     if (mysqli_query($conn, $sqlLoopbaan)){
         $Loopbaan_Id = mysqli_insert_id($conn);
         $Datum = date("Y-m-d_H-i");

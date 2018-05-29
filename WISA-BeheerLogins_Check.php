@@ -4,7 +4,7 @@ include "WISA-Connection.php";
 
 if (isset($_POST['Login_Opslaan'])){
     /** Gegevens worden opgehaald */
-    $School_Id = 4199;
+    $School_Id = 2532;
     $Instelling = "Miniemen";
     $Voornaam = mysqli_real_escape_string($conn, $_POST['Voornaam_G']);
     $Achternaam = mysqli_real_escape_string($conn, $_POST['Achternaam_G']);

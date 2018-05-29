@@ -100,8 +100,6 @@ if (isset($_SESSION['Personen_Relaties'])){
                 $sql = "DELETE FROM tbl_personen_linken WHERE fld_master_id_fk='".$key."' AND fld_child_id_fk='".$_SESSION['Leerling']."' AND fld_soort_id_fk='".$Relatie_verwijderen."'";
                 if (mysqli_query($conn, $sql)){
                     unset($_SESSION['Personen_Relaties'][$key]);
-                    // echo $key."<br />";
-                    // echo $Relatie_verwijderen."<br />";
                     header ("Location: WISA-Formulier.php?relaties");
                 }
                 else {

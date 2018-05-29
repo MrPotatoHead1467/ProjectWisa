@@ -254,7 +254,7 @@ if (isset($_POST['Contact_Opslaan'])){
                     $Persoon_Naam = $rowPersoon['fld_persoon_naam'];
                 }
             }
-            $Dir = $Plaats_Docs.$Persoon_Naam."_".$Persoon_Id."/Contact";
+            $Dir = "Uploads/".$Persoon_Naam."_".$Persoon_Id."/Contact";
             $target_dir = $Dir."/";
             if (!file_exists($Dir)) {
                 mkdir($Dir, 0777, true);
