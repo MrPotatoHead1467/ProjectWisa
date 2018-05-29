@@ -19,6 +19,9 @@
             <table class="Inschrijvingsformulier_Table">
             <p>Inschrijvingen goedkeuren</p>
                 <?php
+                $Eerste_aanvraag = true;
+                $Eerste_afgewezen = true;
+                $Eerste_stand_by = true;
                 $_SESSION['schoolID'] = 4199;
                 $schoolID = $_SESSION['schoolID'];
                 $_SESSION['schoolNaam'] = 'Miniemeninstituut';
@@ -44,12 +47,26 @@
                 
                 $schoolGeg = array("ID"=>$schoolID, "NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
 
-                $sqlInschrijvingen = "SELECT * FROM tbl_inschrijvingen";
+                $sqlInschrijvingen = "SELECT * FROM tbl_inschrijvingen 
+                                      WHERE NOT fld_inschrijving_status_id_fk=2 
+                                      ORDER BY fld_inschrijving_status_id_fk";
                 $resultInschrijvingen = $conn->query($sqlInschrijvingen);
                     if ($resultInschrijvingen->num_rows > 0) 
                         {
                             while($rowInschrijvingen = $resultInschrijvingen->fetch_assoc())
                                 {
+                                    if ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 1 and $Eerste_aanvraag == true){
+                                        echo "<p>Aanvragen</p>";
+                                        $Eerste_aanvraag == false;
+                                    }
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 3 and $Eerste_afgewezen == true){
+                                        echo "<p>Afgewezen</p>";
+                                        $Eerste_afgewezen == false;
+                                    }
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 4 and $Eerste_stand_by == true){
+                                        echo "<p>Stand-by</p>";
+                                        $Eerste_stand_by == false;
+                                    }
                                     $llnID = $rowInschrijvingen['fld_persoon_id_fk'];
                                     $lln = array();
                                     $sqlZoekLln = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$llnID."'";
@@ -777,41 +794,51 @@
                                         $unique_noMultiArray = array_unique($noMultiArray);
                                         $voorwaardenlijst = array_map('unserialize', $unique_noMultiArray); 
                                     }
-                                    
-                                    echo "<button type='button' onclick='Open(&#34;Leerling_".$lln['ID']."&#34;)'>".$lln['NAAM']."</button>";
-                                    echo "<button type='submit' name='".$lln['ID']."' id='".$lln['ID']."'>Goed</button>";
-                                    echo "<div id='Leerling_".$lln['ID']."' style='display: none;'>";
-                                        echo "Geslacht: ".$lln['GESLACHT']."<br />";
-                                        echo "GBDatum: ".$lln['DATUM']."<br />";
-                                        echo "GBPlaats: ".$lln['GBPLAATS']."<br />";
-                                        echo "Nationaliteit: ".$lln['NATION']."<br />";
-                                        
-                                        if  ($lln['RIJKNR'] == ''){
-                                            echo "Leerling Bisnr: ".$lln['BISNR']."<br />";
-                                        }
-                                        else {
-                                            echo "Rijksregisternr: ".$lln['RIJKNR']."<br />";
-                                        }
-                                        
-                                        echo "Leerling Godsdienst: ".$lln['GODS']."<br /><br />";
-                                        foreach ($gegLln as $Gegeven){
-                                            echo "Leerling Soort: ".$Gegeven['SOORT']."<br />";
-                                            echo "Leerling Gegeven: ".$Gegeven['GEG']."<br />";
-                                            echo "Leerling Gegeven: ".$Gegeven['BESCHR']."<br /><br />";
-                                        }
-                                        
-                                    echo "</div>";
+                                    echo "<tr>";
+                                        echo "<button type='button' onclick='Open(&#34;Leerling_".$lln['ID']."&#34;)'>".$lln['NAAM']."</button>";
+                                        echo "<div id='Leerling_".$lln['ID']."' style='display: none;'>";
+                                            echo "<button type='submit' name='Goed_".$lln['ID']."' id='Goed_".$lln['ID']."'>Goedkeuren</button>";
+                                            echo "<button type='submit' name='Afgewezen_".$lln['ID']."' id='Afgewezen_".$lln['ID']."'>Weigeren</button>";
+                                            echo "<button type='submit' name='Stand-by_".$lln['ID']."' id='Stand-by_".$lln['ID']."'>Stand-by</button><br />";
+                                            echo "<label>Geslacht: ".$lln['GESLACHT']."</label><br />";
+                                            echo "<label>GBDatum: ".$lln['DATUM']."</label><br />";
+                                            echo "<label>GBPlaats: ".$lln['GBPLAATS']."</label><br />";
+                                            echo "<label>Nationaliteit: ".$lln['NATION']."</label><br />";
+                                            
+                                            if  ($lln['RIJKNR'] == ''){
+                                                echo "<label>Leerling Bisnr: ".$lln['BISNR']."</label><br />";
+                                            }
+                                            else {
+                                                echo "<label>Rijksregisternr: ".$lln['RIJKNR']."</label><br />";
+                                            }
+                                            
+                                            echo "<label>Leerling Godsdienst: ".$lln['GODS']."</label><br /><br />";
+                                            foreach ($gegLln as $Gegeven){
+                                                echo "<label>Soort: ".$Gegeven['SOORT']."</label><br />";
+                                                echo "<label>Gegeven: ".$Gegeven['GEG']."</label><br />";
+                                                echo "<label>Beschrijving: ".$Gegeven['BESCHR']."</label><br /><br />";
+                                            }
+                                            foreach ($adresLln as $Adres_Leerling){
+                                                echo "<label>Soort: ".$Adres_Leerling['SOORT']."</label><br />";
+                                                echo "<label>Straat: ".$Adres_Leerling['STRAAT']."</label><br />";
+                                                echo "<label>Huisnummer: ".$Adres_Leerling['HUIS']."</label><br />";
+                                                if ($Adres_Leerling['BUS'] != ''){
+                                                    echo "<label>Busnr: ".$Adres_Leerling['BUS']."</label><br />";
+                                                }
+                                                echo "<label>Postcode: ".$Adres_Leerling['POST']."</label><br />";
+                                                echo "<label>Gemeente: ".$Adres_Leerling['PLAATS']."</label><br />";
+                                                echo "<label>Land: ".$Adres_Leerling['LAND']."</label><br />";
+                                                echo "<label>Beschrijving: ".$Adres_Leerling['BESCHR']."</label><br />";
+                                            }
+                                            
+                                        echo "</div>";
+                                    echo "</tr>";
                                     
                             }
                     }
                     
 
                 ?>
-                <tr>
-                    <td class='Inschrijvingsformulier_Td' >
-                        <button type="submit" name="Inschrijving_Opslaan">Opslaan</button>
-                    </td>
-                </tr>
             </table>
         </form>
     </div>
@@ -819,7 +846,13 @@
 <script type="text/javascript">
 <!--
 	function Open(id){
-	   document.getElementById(id).style.display = 'block';
+	   if (document.getElementById(id).style.display == 'block'){
+	       document.getElementById(id).style.display = 'none';
+	   }
+       else {
+            document.getElementById(id).style.display = 'block';
+       }
+	   
 	}
 -->
 </script>
