@@ -564,11 +564,13 @@ footer {
                     width: 3%}
                     
 #tabs_names_arrows_vorige   {
-                            float: left;   
+                            float: left;
+                            display: none;   
                             }
 
 #tabs_names_arrows_volgende {
-                            float: right;  
+                            float: right; 
+                            display:  block;
                             }
 
 .tabs_names_arrows:hover    {
@@ -592,6 +594,15 @@ footer {
         text-align: left;
         top: 30vh;
         width: 70%;}
+        
+#vragentab  {
+            display: block;}
+            
+#inschrijvingentab  {
+                    display: none;}
+
+#infotab    {
+            display: none;}
         
  .tabs_names    {
                 background-color: #7C849A;
