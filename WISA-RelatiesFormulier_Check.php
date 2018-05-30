@@ -10,6 +10,10 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
         $_SESSION['Leerling'] = $Persoon_1;
     }
+    if ($_POST['Persson_2_Zoeken'] == '' || $_POST['Persson_2_Zoeken'] == 'undefined'){
+        header("Location: WISA-Formulier.php?relaties");
+        exit();
+    }
     $Datum = date("Y-m-d_H-i");
 
     $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie_Zoeken']);
@@ -110,4 +114,26 @@ if (isset($_SESSION['Personen_Relaties'])){
         ++$i;
     }
 }
+
+if (isset($_POST['Leerling_Zoeken_btn'])){
+    $Leerling_Zoeken = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
+    if ($Leerling_Zoeken == '' || $Leerling_Zoeken == 'undefined'){
+        header("Location: WISA-Formulier.php?relaties");
+        exit();
+    }
+    $_SESSION['Leerling'] = $Leerling_Zoeken;
+    header("Location: WISA-Formulier.php?relaties");
+     
+}
+
+if (isset($_POST['Annuleer'])){
+    $_SESSION['Personen_Relaties'] = [];
+    $_SESSION['Leerling'] = '';
+    header ("Location: WISA-Formulier.php?relaties");
+}
+
+if (isset($_POST['VolgendeContact'])){
+    header("Location: WISA-Formulier.php?contact");
+}
+
 ?>
