@@ -22,21 +22,14 @@
         }
     ?>
     <!-- Input voor het selecteren van een logo -->
-    <div class="form_box_1">
-        <label class="form_lbl" for="Logo">Logo</label><br />
-        <div class="form_box_in">
-            <input class="form_picp" id="Logo" name="Logo" type="file"/> 
-            <label class="form_picpi" onclick="KlikKnop('Attest_Doc')" title="Attest selecteren (document)."></label>
-        </div>
-    </div>
+    <label for="Logo">Logo</label><br />
+    <input type="file" name="Logo" id="Logo"/><br />
     
     <!-- Input voor het toevoegen van voorwaarden -->
-    <div class="form_box_1">
-        <label class="form_lbl" for="Voorwaarde">Voorwaarden</label>
-        <div class="form_box_in">
-            <button class='form_pls' type="submit" id="Voorwaarde_toevoegen" name="Voorwaarde_toevoegen" title="Druk op de knop om de voorwaarde toe te voegen.">+</button>
-            <input class="form_in" type="text" id="Voorwaarde" name="Voorwaarde" title="Geef een voorwaarde in en druk op de knop."/>
-        </div>
+    <label for="Voorwaarde">Voorwaarden</label>
+    <div class="form_box_in">
+        <button class='form_pls' type="submit" id="Voorwaarde_toevoegen" name="Voorwaarde_toevoegen" title="Druk op de knop om de voorwaarde toe te voegen.">+</button>
+        <input class="form_in" type="text" id="Voorwaarde" name="Voorwaarde" title="Geef een voorwaarde in en druk op de knop."/>
     </div>
     
     <div id="Voorwaarden">
@@ -57,40 +50,29 @@
         ?>
     </div>
     
-    <div class="form_box_1">
-        <label class="form_lbl" >Handtekening eisen van:</label>
-        <div class="form_box_in">
-            <input type="checkbox" name="HandtekeningLln" id="HandtekeningLln"/>
-            <label class="form_lbl" for="HandtekeningLln">Handtekening leerling</label><br/>
-            
-            <input type="checkbox" name="HandtekeningOuder" id="HandtekeningOuder"/>
-            <label class="form_lbl" for="HandtekeningOuder">Handtekening ouder</label><br />
-            
-            <input type="checkbox" name="HandtekeningDirectie" id="HandtekeningDirectie"/>
-            <label class="form_lbl" for="HandtekeningDirectie">Handtekening directie</label><br />
-        </div>
+    <div>
+        <input type="checkbox" name="Printen" id="Printen"/>
+        <label for="Printen">Printen</label>
     </div>
     
-    <div class="form_box_1">
-        <label class="form_lbl" for="Plaats_Doc" title="Plaats op de schijf waar geüploadde documenten bewaard worden.">Pad waar documenten worden opgeslagen</label><br />
-        <div class="form_box_in">
-            <input class="form_in" type="text" name="Plaats_Docs" id="Plaats_Docs" title="vb: C:\Users\Admin\Documents\Inschrijvingen"/>
-        </div>
+    <div>
+        <input type="checkbox" name="Handtekening" id="Handtekening"/>
+        <label for="Handtekening">Handtekening</label>
     </div>
     
-    <div class="form_box_1">
-        <label class="form_lbl"for="Naam_Doc">Titel inschrijvingsfiche</label><br />
-        <div class="form_box_in">
-            <input class="form_in" type="text" name="Naam_Doc" id="Naam_Doc"/>
-        </div>
+    <div>
+        <label for="Plaats_Doc">Plaats waar documenten worden opgeslagen</label><br />
+        <input type="text" name="Plaats_Docs" id="Plaats_Docs"/>
     </div>
     
-    <div class="form_box_btn_border">
+    <div>
+        <label for="Naam_Doc">Naam PDF</label><br />
+        <input type="text" name="Naam_Doc" id="Naam_Doc"/>
     </div>
     
     <div class="form_box_btn">
         <!-- Knop om de vraag op te slaan -->
-        <button class="form_btn" id="Instellingen_opslaan" name="Instellingen_opslaan" title="Instellingen opslaan." type="submit">Instellingen opslaan</button>
+        <button class="form_btn" id="Instellingen_opslaan" name="Instellingen_opslaan" title="Instellingen opslaan." type="submit">Opslaan</button>
         <!-- Knop om te annuleren, alle -->
         <button class="form_ccl" id="Annuleren" name="Annuleren" title="Aanpassingen aan de instellingen verwijderen." type="submit">Annuleren</button>
     </div>

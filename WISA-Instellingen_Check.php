@@ -3,7 +3,6 @@ session_start();
 include "WISA-Connection.php";
 
 if (isset($_POST['Instellingen_opslaan'])){
-    $Logo = mysqli_real_escape_string($conn, $_POST['Logo']);
     $Plaats_Docs = mysqli_real_escape_string($conn, $_POST['Plaats_Docs']);
     $Printen = mysqli_real_escape_string($conn, $_POST['Printen']);
     $Handtekening = mysqli_real_escape_string($conn, $_POST['Handtekening']);
@@ -11,13 +10,17 @@ if (isset($_POST['Instellingen_opslaan'])){
     $sql = "SELECT * FROM tbl_instellingen";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        $sqlInstellingen = "UPDATE tbl_instellingen SET fld_instelling_logo=".$Logo.", fld_instelling_plaats_docs='".$Plaats_Docs."', fld_instelling_titel_doc='".$Naam_Doc."'";
+        $sqlInstellingen = "UPDATE tbl_instellingen SET fld_instelling_plaats_docs='".$Plaats_Docs."', fld_instelling_titel_doc='".$Naam_Doc."'";
     }
     else {
-        $sqlInstellingen = "INSERT INTO tbl_instellingen (fld_instelling_logo, fld_instelling_plaats_docs, fld_instelling_titel_doc)
-                            VALUES ('".$Logo."', '".$Plaats_Docs."', '".$Naam_Doc."')";
+        $sqlInstellingen = "INSERT INTO tbl_instellingen (fld_instelling_plaats_docs, fld_instelling_titel_doc)
+                            VALUES ('".$Plaats_Docs."', '".$Naam_Doc."')";
     }
-    echo $sqlInstellingen;
+    
+    if (mysqli_query($conn, $sqlInstellingen)){
+        
+    }
+    header("Location: WISA-Formulier.php?instelling");
 }
 
 if (isset($_POST['Voorwaarde_toevoegen'])){
