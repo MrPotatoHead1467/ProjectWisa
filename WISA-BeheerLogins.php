@@ -138,14 +138,10 @@ if (!isset($_SESSION['Beschrijving_G']))
         
         <div class="form_box_1">
             <label class="form_lbl" for="Gebruikersnaam">Gebruikersnaam</label>
-            <div class="form_box_in ">
+            <div class="form_box_in">
                 <input class="form_in" id="Gebruikersnaam" name="Gebruikersnaam" type="text" placeholder="Gebruikersnaam" value="<?php echo $_SESSION["Gebruikersnaam_G"]?>"/><br />
-            </div>
-        </div>
-        
-        <div class="form_box_1">
-            <label class="form_lbl" for="Wachtwoord">Wachtwoord</label>
-            <div class="form_box_in ">
+            </div> 
+            <div class="form_box_in">
                 <input class="form_in" id="Wachtwoord" name="Wachtwoord" type="text" placeholder="Wachtwoord" value="<?php echo $_SESSION['Wachtwoord_G']?>"/><br />
             </div>
         </div>
@@ -166,9 +162,10 @@ if (!isset($_SESSION['Beschrijving_G']))
             <button class="form_btn"  id="Login_Opslaan" name="Login_Opslaan" title="Login opslagen en formulier leegmaken voor de volgende persoon." type="submit">Login opslaan</button>
             <!-- Knop om te annuleren --> 
             <button class="form_ccl" id="Annuleer_G" name="Annuleer_G" type="submit">Annuleren</button>
+            
             <!-- Gebruiker verwijderen -->
-            <button class="form_next" id="Verwijderen" name="Verwijderen" title="Gebruiker verwijderen" type="submit">Verwijderen</button>
-            <label class="form_nexti" onclick="KlikKnop('Verwijderen')" title="Gebruiker verwijderen"></label>
+            <!--<button class="form_ccl" id="Verwijderen" name="Verwijderen"  onclick="KlikKnop('Verwijderen')" title="Gebruiker verwijderen" type="submit">Login verwijderen</button>
+            -->
         </div>
     </form>
 
