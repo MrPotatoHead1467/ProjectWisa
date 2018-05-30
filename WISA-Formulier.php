@@ -242,21 +242,58 @@
                     - voorwaarden geaccepteerd
                     - commentaar toevoegen
                     -->
+                    
+                    <?php
+	                   // VOORWAARDEN
+                        $voorwaardenlijst = array();
+                        $sqlVoorwaarden = "SELECT * FROM tbl_inschrijvingen_voorwaarden";
+                        $infoVoorwaarden = $conn->query($sqlVoorwaarden);
+                        if ($infoVoorwaarden->num_rows > 0)
+                            {
+                                $a = 0;
+                                
+                                while($row = $infoVoorwaarden->fetch_assoc())
+                                    {
+                                        $voorwaardeInhoud = ["fld_inschrijving_voorwaarde_beschrijving"];
+                                        $voorwaardeID = $row["fld_inschrijving_voorwaarde_id"];
+                                        $voorwaardeLink = $rowVoorwaarde["fld_inschrijving_voorwaarde_link"];
+                                        
+                                        $voorwaarde[$a] = array("INHOUD"=>$voorwaardeInhoud, "LINK"=>$voorwaardeLink, "ID"=>$voorwaardeCheck);
+                                        array_push($voorwaardenlijst, $voorwaarde[$a]);
+                                        ++$a;
+                                        
+                                    }
+                                $noMultiArray = array_map('serialize', $voorwaardenlijst);
+                                $unique_noMultiArray = array_unique($noMultiArray);
+                                $voorwaardenlijst = array_map('unserialize', $unique_noMultiArray); 
+                                //print_r($voorwaardenlijst);
+                                //echo "<br/>";
+                            }
+                        echo "<div class='form_box_1'>";
+                            echo "<div class='form_box_in'>";
+                        foreach ($voorwaardenlijst as $voorwaarde)
+                            {
+                                echo "<input type='checkbox' id='".$voorwaarde['ID']."'>";
+                                echo "<label class='form_lbl_w' for='".$voorwaarde['ID']."'>".$voorwaarde['INHOUD']."</label>";
+                            
+                            }
+                            echo "</div>";
+                        echo "</div>";
+                    ?>
+                    
+                    
+                    <!-- commentaar -->
                     <div class="form_box_1">
-                        <label class="form_lbl" for="Voornaam">Bestemming</label><br />
-                        
-                        <!-- naam -->
-                        <div class="form_box_in">
-                            <input autofocus="autofocus" class="form_in" id="Naam" maxlength="255" name="Naam" placeholder="Naam" required="True" type="text"/><br />
-                            </div>
+                        <label class="form_lbl_w" for="Comm_Inschr">Commentaar</label><br />
                         <textarea class="page_cover_area" id="Comm_Inschr" maxlength="511" name="Comm_Inschr" placeholder="Commentaar"></textarea>
-                        
-                        <!-- beschrijving -->
-                        
                     </div>
+                    
+                    <div class="form_box_btn_border">
+                    </div>
+                    
                     <div class="form_box_btn">
                         <!-- bestemming opslaan-->  
-                        <button class="form_btn"  id="Inschr_Opslaan" name="Inschr_Opslaan" title="Aanvraag inschrijving afronden en verzenden." type="submit">Verzenden</button>
+                        <button class="form_btn"  id="Inschr_Opslaan" name="Inschr_Opslaan" title="Aanvraag inschrijving afronden en verzenden." type="submit">Inschrijving verzenden</button>
                         <!-- bestemming annuleren --> 
                         <button class="form_ccl" id="Annuleer" name="Annuleer" onclick="SluitAfronding()" type="submit">Annuleren</button>
                     </div>
