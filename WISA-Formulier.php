@@ -58,14 +58,14 @@
         
     ?>
     
-    <div class="tabs_names_box_arrows">
+    <!--<div class="tabs_names_box_arrows">
         <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_arrow('prev')" title="Vorige tabblad">
             &#8249;
         </button>
         <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_arrow('next')" title="Volgende tabblad">
             &#8250;
         </button>
-    </div>
+    </div>-->
     <!-- namen voor tabbladen -->
     <?PHP
         if ($_SESSION['soort'] == "1")
@@ -81,7 +81,8 @@
             }
         elseif  ($_SESSION['soort'] == "2")
             {
-                echo '  <div class="tabs" id="vragentab">';
+                //echo '  <div class="tabs" id="vragentab">';
+                echo '  <div class="tabs">';
                 
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'beheervragen'"; echo ')">
                                 Beheer vragen
@@ -91,12 +92,12 @@
                                 Bestemmingen
                             </button>';
                         
-                echo '  </div>';
-                echo '  <div class="tabs" id="inschrijvingentab">';
+                //echo '  </div>';
+                //echo '  <div class="tabs" id="inschrijvingentab">';
                        
-                    echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedgekeurd'"; echo ')">
-                                Goedgekeurde inschrijvingen
-                            </button>';
+                    //echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedgekeurd'"; echo ')">
+                                //Goedgekeurde inschrijvingen
+                            //</button>';
                              
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'goedkeuren'"; echo ')">
                                 Inschrijvingen goedkeuren
@@ -104,8 +105,8 @@
                             
                     
                     
-                echo '  </div>';
-                echo '  <div class="tabs" id="infotab">';
+                //echo '  </div>';
+                //echo '  <div class="tabs" id="infotab">';
                 
                     echo '  <button class="tabs_names" onclick="tab_show_info(event, '; echo "'logins'"; echo ')">
                                 Beheer logins
