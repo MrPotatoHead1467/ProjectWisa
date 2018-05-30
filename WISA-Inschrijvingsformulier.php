@@ -5,7 +5,7 @@
 	<meta name="author" content="KSLeuven" />
     <link href="Wisa-Layout.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     
 	<title>Inschrijvingsformulier</title>
     
@@ -62,7 +62,7 @@ include "WISA-Connection.php";
                                     echo "<input class='form_bsd' id='".$row['fld_vraag_id']."_Bestand' multiple name='".$row['fld_vraag_id']."_Bestand[]' type='file'/>";
                                     echo "<label class='form_bsdi2' onclick='KlikKnop("; echo '"'.$row['fld_vraag_id'].'_Bestand"'; echo ")' title='Document selecteren voor: "; echo '"'.$row['fld_vraag_vraag'].'"'; echo "'></label>";
                                     // input lange tekst
-                                    echo "<div class='form_box_in'>";
+                                    echo "<div class='form_box_1'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
                                             {
                                                 echo "<textarea class='form_in1' id='".$row['fld_vraag_id']."' maxlength='511' name='".$row['fld_vraag_id']."' required='True'></textarea>";
@@ -120,11 +120,13 @@ include "WISA-Connection.php";
                                     echo "<div class='form_box_in'>";
                                         if ($row['fld_vraag_antwoord_verplicht'] == "1")
                                             {
-                                                echo "<input id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' required='True' type='checkbox'/>";
+                                                echo "<input id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='checkbox'/>";
+                                                echo "<label class='form_lbl' for='".$row['fld_vraag_id']."'>Ja</label>";
                                             }
                                         else 
                                             {
                                                 echo "<input id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' type='checkbox'/>";
+                                                echo "<label class='form_lbl' for='".$row['fld_vraag_id']."'>Ja</label>";
                                             }
                                     echo "</div>";
                                     }
@@ -175,7 +177,7 @@ include "WISA-Connection.php";
                                     $resultLijst = $conn->query($sqlLijst);
                                     if ($resultLijst->num_rows > 0)
                                         {
-                                            echo "<select class='form_slt' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."' multiple>";
+                                            echo "<select class='form_slt' id='".$row['fld_vraag_id']."' name='".$row['fld_vraag_id']."'>";
                                             while ($rowLijst = $resultLijst->fetch_assoc())
                                                 {
                                                     echo "<option value='".$rowLijst['fld_lijst_item']."'>".$rowLijst['fld_lijst_item']."</option>";
@@ -184,15 +186,15 @@ include "WISA-Connection.php";
                                             
                                         }
                                     
-                                    echo '<script type="text/javascript">
-                                        $("#'.$row["fld_vraag_id"].'").on("click", "option", function(){
-                                            var max = '.$row["fld_antwoord_aantal"].';
-                                            if ( max <= $(this).siblings(":selected").length ) {
-                                                alert("Only " + max + " selections allowed.");
-                                                $(this).removeAttr("selected");
-                                            }
-                                        });
-                                        </script>';
+                                    //echo '<script type="text/javascript">
+                                        //$("#'.$row["fld_vraag_id"].'").on("click", "option", function(){
+                                            //var max = '.$row["fld_antwoord_aantal"].';
+                                            //if ( max <= $(this).siblings(":selected").length ) {
+                                                //alert("Only " + max + " selections allowed.");
+                                                //$(this).removeAttr("selected");
+                                            //}
+                                        //});
+                                        //</script>';
                                 }
                             else 
                                 {
@@ -223,15 +225,15 @@ include "WISA-Connection.php";
         {
             while($rowLijst = $result->fetch_assoc())
                 {
-                    echo '<script type="text/javascript">
-                        $("#'.$rowLijst["fld_vraag_id"].'").on("click", "option", function(){
-                            var max = '.$rowLijst["fld_antwoord_aantal"].';
-                            if ( max <= $(this).siblings(":selected").length ) {
-                                alert("Only " + max + " selections allowed.");
-                                $(this).removeAttr("selected");
-                            }
-                        });
-                        </script>';
+                    //echo '<script type="text/javascript">
+                        //$("#'.$rowLijst["fld_vraag_id"].'").on("click", "option", function(){
+                            //var max = '.$rowLijst["fld_antwoord_aantal"].';
+                            //if ( max <= $(this).siblings(":selected").length ) {
+                                //alert("Only " + max + " selections allowed.");
+                                //$(this).removeAttr("selected");
+                            //}
+                        //});
+                        //</script>';
                 }
         }
     ?>
@@ -256,11 +258,11 @@ include "WISA-Connection.php";
                 document.getElementById("page_fullscreen-grey").style.display = "block";
             }
     
-        $('option').mousedown(function(e) {
-            e.preventDefault();
-            $(this).prop('selected', !$(this).prop('selected'));
-            return false;
-        });
+        //$('option').mousedown(function(e) {
+            //e.preventDefault();
+            //$(this).prop('selected', !$(this).prop('selected'));
+            //return false;
+        //});
     
     </script>
     
