@@ -23,5 +23,5 @@ if (isset($_POST['EID_Lezen'])){
     
 
 }
-header("Location: WISA-Formulier.php");
+header("Location: WISA-Formulier.php?personen");
 ?>

@@ -22,7 +22,8 @@
                 $Eerste_aanvraag = true;
                 $Eerste_afgewezen = true;
                 $Eerste_stand_by = true;
-                $_SESSION['schoolID'] = 4199;
+                $Eerste_goedgekeurd = true;
+                $_SESSION['schoolID'] = 2527;
                 $schoolID = $_SESSION['schoolID'];
                 $_SESSION['schoolNaam'] = 'Miniemeninstituut';
                 $schoolNaam = $_SESSION['schoolNaam'];
@@ -38,18 +39,17 @@
                     {
                         $schoolAdres = $schoolStraat.' '.$schoolHuisNR.' ('.$schoolBus.')';
                     }
-                $schoolPost = '4010';
-                $schoolPlaats = 'Somewhere Ville';
+                $schoolPost = '3000';
+                $schoolPlaats = 'Leuven';
                 
                 $schoolTel = '016030563';
                 $schoolFax = '022030564';
-                $schoolEmail = 'info@Minlipinou.be';
+                $schoolEmail = 'info@miniemeninstituut.be';
                 
                 $schoolGeg = array("ID"=>$schoolID, "NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
 
                 $sqlInschrijvingen = "SELECT * FROM tbl_inschrijvingen 
-                                      WHERE NOT fld_inschrijving_status_id_fk=2 
-                                      ORDER BY fld_inschrijving_status_id_fk";
+                                      ORDER BY fld_inschrijving_status_id_fk ASC";
                 $resultInschrijvingen = $conn->query($sqlInschrijvingen);
                     if ($resultInschrijvingen->num_rows > 0) 
                         {
@@ -66,6 +66,10 @@
                                     elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 4 and $Eerste_stand_by == true){
                                         echo "<p>Stand-by</p>";
                                         $Eerste_stand_by == false;
+                                    }
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 2 and $Eerste_goedgekeurd == true){
+                                        echo "<p>Goedgekeurd</p>";
+                                        $Eerste_goedgekeurd == false;
                                     }
                                     $llnID = $rowInschrijvingen['fld_persoon_id_fk'];
                                     $lln = array();
@@ -531,7 +535,7 @@
                                                             //echo "soort: ktekst";
                                                             $vraagType = 'ktekst';
                                                             
-                                                            $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln["ID"]."' AND fld_vraag_id_fk='".$vraagID."'";
+                                                            $sqlAntwoord = "SELECT * FROM tbl_antwoorden WHERE fld_persoon_id_fk='".$lln['ID']."' AND fld_vraag_id_fk='".$vraagID."'";
                                                             $infoAntwoord = $conn->query($sqlAntwoord);
                                                             if ($infoAntwoord->num_rows > 0)
                                                                 {
