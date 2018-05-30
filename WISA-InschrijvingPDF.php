@@ -28,9 +28,9 @@
     $_SESSION['schoolNaam'] = 'Miniemeninstituut';
     $schoolNaam = $_SESSION['schoolNaam'];
     
-    $schoolStraat = "Scholenstraat";
-    $schoolHuisNR = '123';
-    $schoolBus = 'b';
+    $schoolStraat = "Diestsestraat";
+    $schoolHuisNR = '163';
+    $schoolBus = '';
     if ($schoolBus == '')
         {
             $schoolAdres = $schoolStraat.' '.$schoolHuisNR;
@@ -39,12 +39,12 @@
         {
             $schoolAdres = $schoolStraat.' '.$schoolHuisNR.' ('.$schoolBus.')';
         }
-    $schoolPost = '4010';
-    $schoolPlaats = 'Somewhere Ville';
+    $schoolPost = '3000';
+    $schoolPlaats = 'Leuven';
     
-    $schoolTel = '016030563';
-    $schoolFax = '022030564';
-    $schoolEmail = 'info@Minlipinou.be';
+    $schoolTel = '016319000';
+    $schoolFax = '';
+    $schoolEmail = 'info@miniemeninstituut.be';
     
     $schoolGeg = array("ID"=>$schoolID, "NAAM"=>ucwords(strtolower($schoolNaam)), "ADRES"=>ucwords(strtolower($schoolAdres)), "POST"=>$schoolPost, "PLAATS"=>ucwords(strtolower($schoolPlaats)), "TEL"=>$schoolTel, "FAX"=>$schoolFax, "EMAIL"=>$schoolEmail);
     // titel doc: 
