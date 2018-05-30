@@ -46,10 +46,10 @@ if (isset($_POST['Relatie_opslaan'])){
                 $Bestand_Naam = $Bestand_Basename."_Relatie_".$Relatie_Id.".".$Soort_Bestand;
                 $Bestand_Locatie = $target_dir.$Bestand_Naam;
                 echo "Bestand_Locatie: ".$Bestand_Locatie."<br />";
-                /** Het bestand wordt geüpload */
+                /** Het bestand wordt geï¿½pload */
                 if ($Bestand['size'][$i] != 0){
                     if (move_uploaded_file($Bestand["tmp_name"][$i], $Bestand_Locatie)) {
-                        echo "Het bestand ". basename($Bestand["name"][$i]). " is geüpload.<br />";
+                        echo "Het bestand ". basename($Bestand["name"][$i]). " is geï¿½pload.<br />";
                         
                         $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) 
                                          VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
@@ -70,7 +70,7 @@ if (isset($_POST['Relatie_opslaan'])){
                         }
                     }
                     else {
-                        echo "Bestand niet geüpload";
+                        echo "Bestand niet geï¿½pload";
                     }
                 }
                 

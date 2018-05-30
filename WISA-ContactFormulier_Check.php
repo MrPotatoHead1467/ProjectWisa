@@ -469,4 +469,9 @@ if (isset($_SESSION['Mogelijke_Adressen']) && $_SESSION['Mogelijke_Adressen'] !=
         }
     }
 }
+
+if (isset($_POST['Volgende'])){
+    header("Location: WISA-FormulieR.php?loopbaan");
+    exit();
+}
 ?>
