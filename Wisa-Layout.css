@@ -408,7 +408,7 @@ footer {
 .page_fullscreen-grey   {
                         background-color: rgba(241,242,244,0.8);
                         color: #FAFAFA;
-                        display: block;
+                        display: none;
                         height:  100vh;
                         margin: 0;
                         padding: 0;

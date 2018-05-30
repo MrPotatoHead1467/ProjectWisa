@@ -213,4 +213,9 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
         }
     }
 }
+if (isset($_POST['VolgendeInsch'])){
+    $_SESSION['Inschrijving_einde'] = true;
+    header("Location: WISA-Formulier.php");
+    exit();
+}
 ?>

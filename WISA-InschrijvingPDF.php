@@ -602,7 +602,7 @@
                                         }
                                 }
                         }
-                    elseif ($row["fld_antwoord_type_j/n"] == 1)
+                    elseif ($row["fld_antwoord_type_jn"] == 1)
                         {
                             //echo "soort: j/n";
                             $vraagType = 'j/n';
@@ -740,6 +740,7 @@
             while($rowInstell = $infoInstell->fetch_assoc())
                 {
                     $titelDoc = $rowInstell['fld_instelling_titel_doc'];
+                    
                     $logoSchool = $rowInstell["fld_instelling_logo"];
                     $handtekeningDigitaal = $rowInstell["fld_instelling_digitaal_handtekening"];
                     
@@ -1470,6 +1471,6 @@
     
     
     // create PDF
-    $pdf -> OutPut(); // download: 'DagUur_Inschrijving-Leerling.pdf', 'D'
+    $pdf -> OutPut('D', $instellingGeg['DOC'].$lln['NAAM'].'.pdf'); // download: 'DagUur_Inschrijving-Leerling.pdf', 'D'
     
 ?>
