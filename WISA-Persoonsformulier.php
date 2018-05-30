@@ -173,16 +173,13 @@ if (!isset($_SESSION['Is_Leerling']))
     
     <!-- geboorte datum -->
     <div class="form_box_1">
-        <label for="GB_Datum_Onbekend">Geboortedatum onbekend</label>
-        <input id="GB_Datum_Onbekend" type="checkbox" onchange="display_gb_datum_onbekend()"/>
-        <div id="GB_Datum_Onbekend_Div">
-            <label>Gelieve als geboortedatum 01/01 van het geboortejaar in te geven</label>
-        </div>
-        <br />
         <label class="form_lbl" for="GB_Datum">Geboortedatum</label><br />
-        <div class="form_box_in">  
-            <input class="form_in" type="date" id="GB_Datum" name="GB_Datum" max="<?php echo $Datum; ?>" <?php echo "value='".$_SESSION['EID_GB_Datum']."'"; ?>/><br />
-        </div>
+        <div class="form_box_in">
+            <input id="GB_Datum_Onbekend" type="checkbox" onchange="display_gb_datum_onbekend()" title="Indien u uw geboortedatum niet kent."/>
+            <label class="form_lbl" for="GB_Datum_Onbekend" title="Indien u uw geboortedatum niet kent.">Geboortedatum onbekend</label><br />
+            <label class="form_lbl" id="GB_Datum_Onbekend_Div">(Gelieve als geboortedatum 01/01 van het geboortejaar in te geven.)</label>
+        </div> 
+        <input class="form_slt" type="date" id="GB_Datum" name="GB_Datum" max="<?php echo $Datum; ?>" <?php echo "value='".$_SESSION['EID_GB_Datum']."'"; ?>/><br />
     </div>
     
     <div id="Leerlingen">
@@ -193,8 +190,8 @@ if (!isset($_SESSION['Is_Leerling']))
             
             <!-- België? -->
             <div class="form_box_in">  
-                <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox"/>
-                <label class="form_lbl" for="GB_Plaats_Niet_Be">Geboorteplaas niet in Belgi&euml;</label>
+                <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox" title="Indien u niet in Belgi&euml; geboren bent."/>
+                <label class="form_lbl" for="GB_Plaats_Niet_Be" title="Indien u niet in Belgi&euml; geboren bent.">Geboorteplaas niet in Belgi&euml;</label>
             </div>
             
             <div class="form_zoek" id="GB_Plaats_Wel_Be">
@@ -225,8 +222,8 @@ if (!isset($_SESSION['Is_Leerling']))
             </datalist>
             <input id="GB_Plaats" name="GB_Plaats" type="hidden" <?php echo 'value="'.$_SESSION["GB_Plaats"].'"'; ?>/>
             
-            <div id="GB_Plaats_Niet_Be_Div">
-                <input type="text" id="GB_Plaats_Niet_Be_in" name="GB_Plaats_Niet_Be_in"/>
+            <div class="form_box_in" id="GB_Plaats_Niet_Be_Div">
+            <input class="form_in" type="text" id="GB_Plaats_Niet_Be_in" maxlength="255" name="GB_Plaats_Niet_Be_in" placeholder="Geboorteplaats"/>
             </div>
         </div>
         
@@ -282,7 +279,7 @@ if (!isset($_SESSION['Is_Leerling']))
             <!-- rijksregisternummer -->
             <div class="form_box_1" id="Div_Register_nr_2">
                 <div class="form_box_in ">
-                    <input class="form_in" id="Register_nr" name="Register_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
+                    <input class="form_in" id="Register_nr" maxlength="11" name="Register_nr" placeholder="Rijkregisternummer, zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['EID_Rijksregisternr']."'" ?> /><br />
                 </div>
             </div>
         
@@ -290,7 +287,7 @@ if (!isset($_SESSION['Is_Leerling']))
             <!-- bisnummer -->
             <div class="form_box_1" id="Div_Bis_nr_2">
                 <div class="form_box_in ">
-                    <input class="form_in" id="Bis_nr" name="Bis_nr" placeholder="Zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['Bisnr']."'" ?> />
+                    <input class="form_in" id="Bis_nr" maxlength="11" name="Bis_nr" placeholder="Bisnummer, zonder spaties of tekens ingeven." title="Vb: 99041254023" type="text" pattern=".{11}" <?php echo "value='".$_SESSION['Bisnr']."'" ?> />
                 </div>
             </div>
         
