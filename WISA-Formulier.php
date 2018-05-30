@@ -62,7 +62,7 @@
         <button class="tabs_names_arrows" id="tabs_names_arrows_vorige" onclick="tabs_arrow('prev')" title="Vorige tabblad">
             &#8249;
         </button>
-        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_arrow('next)" title="Volgende tabblad">
+        <button class="tabs_names_arrows" id="tabs_names_arrows_volgende" onclick="tabs_arrow('next')" title="Volgende tabblad">
             &#8250;
         </button>
     </div>
@@ -306,19 +306,21 @@
                 //window.location.href.replace("?" + inhoud;  )
             }
         
-        function tabs_arraow(way)
-            {
-                if (way == "prev")
-                    {
-                        document.getElementById("tabs_names_arrows_volgende").style.display = "none";
-                    }
-                else
-                    {
-                        document.getElementById("tabs_names_arrows_vorige").style.display = "block";
-                    }
-            }    
+        //function tabs_arrow(way)
+            //{
+                //if (way == "prev")
+                    //{
+                        //document.getElementById("tabs_names_arrows_volgende").style.display = "none";
+                        //document.getElementById("tabs_names_arrows_vorige").style.display = "block";                        
+                    //}
+                //else
+                    //{
+                        //document.getElementById("tabs_names_arrows_vorige").style.display = "none";
+                        //document.getElementById("tabs_names_arrows_volgende").style.display = "block";
+                    //}
+            //}    
         
-        function tabs_arro(way)
+        function tabs_arrow(way)
             {
                 var prev = document.getElementById("tabs_names_arrows_vorige");
                 var next = document.getElementById("tabs_names_arrows_volgende");
@@ -326,11 +328,13 @@
                 var vragentab = document.getElementById("vragentab");
                 var inschrijvingentab = document.getElementById("inschrijvingentab");
                 var infotab = document.getElementById("infotab");
-                
+                console.log("1");
                 if (way == "prev")
                     {
+                        console.log("2");
                         if (inschrijvingentab.style.display == "block")
                             {
+                                console.log("3");
                                 vragentab.style.display = "block";
                                 inschrijvingentab.style.display = "none";
                                 infotab.style.display = "none";
@@ -339,6 +343,7 @@
                             }
                         else if (infotab.style.display == "block")
                             {
+                                console.log("4");
                                 vragentab.style.display = "none";
                                 inschrijvingentab.style.display = "block";
                                 infotab.style.display = "none";
@@ -348,8 +353,10 @@
                     }
                 else if (way == "next")
                     {
+                        console.log(document.getElementById("vragentab").style.display);
                         if (vragentab.style.display == "block")
                             {
+                                console.log("6");
                                 vragentab.style.display = "none";
                                 inschrijvingentab.style.display = "block";
                                 infotab.style.display = "none";
@@ -358,6 +365,7 @@
                             }
                         else if (inschrijvingentab.style.display == "block")
                             {
+                                console.log("7");
                                 vragentab.style.display = "none";
                                 inschrijvingentab.style.display = "none";
                                 infotab.style.display = "block";

@@ -145,9 +145,9 @@ if (isset($_POST['Loopbaan_Opslaan'])){
     /** KLAS NOG TOE TE VOEGEN !!! */    
 }
 
-if (isset($_POST['Volgende']))
+if (isset($_POST['VolgendeInschrijving']))
         {
-            header("Location: WISA-Formulier.php?vragen");
+            header("Location: WISA-Formulier.php?inschrijving");
         }
 
 ?>
