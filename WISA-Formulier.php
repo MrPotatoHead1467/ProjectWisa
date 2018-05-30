@@ -236,6 +236,7 @@
                     <h3 class="page_cover-title">Inschrijving afronden</h3>
                 </div>
                 <div class="page_cover_info">
+                    <form action="WISA-Inschrijving_beeindigen.php" method="post">
                     <!--
                     - print
                     - handtekeningen als gevraagd in instellingen (lln, ouder, directie)
@@ -254,11 +255,11 @@
                                 
                                 while($row = $infoVoorwaarden->fetch_assoc())
                                     {
-                                        $voorwaardeInhoud = ["fld_inschrijving_voorwaarde_beschrijving"];
+                                        $voorwaardeInhoud = $row["fld_inschrijving_voorwaarde_beschrijving"];
                                         $voorwaardeID = $row["fld_inschrijving_voorwaarde_id"];
-                                        $voorwaardeLink = $rowVoorwaarde["fld_inschrijving_voorwaarde_link"];
+                                        $voorwaardeLink = $row["fld_inschrijving_voorwaarde_link"];
                                         
-                                        $voorwaarde[$a] = array("INHOUD"=>$voorwaardeInhoud, "LINK"=>$voorwaardeLink, "ID"=>$voorwaardeCheck);
+                                        $voorwaarde[$a] = array("INHOUD"=>$voorwaardeInhoud, "LINK"=>$voorwaardeLink, "ID"=>$voorwaardeID);
                                         array_push($voorwaardenlijst, $voorwaarde[$a]);
                                         ++$a;
                                         
@@ -270,11 +271,12 @@
                                 //echo "<br/>";
                             }
                         echo "<div class='form_box_1'>";
-                            echo "<div class='form_box_in'>";
+                            echo "<label class='form_lbl_w' for='voorwaarden'>Voorwaarden</label>";
+                            echo "<div class='form_box_in' id='voorwaarden'>";
                         foreach ($voorwaardenlijst as $voorwaarde)
                             {
                                 echo "<input type='checkbox' id='".$voorwaarde['ID']."'>";
-                                echo "<label class='form_lbl_w' for='".$voorwaarde['ID']."'>".$voorwaarde['INHOUD']."</label>";
+                                echo "<label class='form_lbl_w' for='".$voorwaarde['ID']."'>".$voorwaarde['INHOUD']."</label><br />";
                             
                             }
                             echo "</div>";
@@ -297,6 +299,7 @@
                         <!-- bestemming annuleren --> 
                         <button class="form_ccl" id="Annuleer" name="Annuleer" onclick="SluitAfronding()" type="submit">Annuleren</button>
                     </div>
+                    </form>
                 </div>
                     
             </div>
@@ -413,7 +416,9 @@
                     }
             }  
             
-            
+        function show_einde(){
+            document.getElementById("page_fullscreen-grey").style.display = "block";
+        }
             
     </script>
   
@@ -422,6 +427,9 @@
 
 
     <?PHP
+        if ($_SESSION['Inschrijving_einde'] == true){
+            echo '<script type="text/javascript">show_einde();</script>';
+        }
         include "WISA-Footer.php";
         
         $Formulier = $_SERVER['QUERY_STRING'];
