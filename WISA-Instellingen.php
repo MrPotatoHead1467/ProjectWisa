@@ -72,9 +72,9 @@
     </div>
     
     <div class="form_box_1">
-        <label class="form_lbl" for="Plaats_Doc">Plaats waar documenten worden opgeslagen</label><br />
+        <label class="form_lbl" for="Plaats_Doc" title="Plaats op de schijf waar geüploadde documenten bewaard worden.">Pad waar documenten worden opgeslagen</label><br />
         <div class="form_box_in">
-            <input class="form_in" type="text" name="Plaats_Docs" id="Plaats_Docs"/>
+            <input class="form_in" type="text" name="Plaats_Docs" id="Plaats_Docs" title="vb: C:\Users\Admin\Documents\Inschrijvingen"/>
         </div>
     </div>
     
