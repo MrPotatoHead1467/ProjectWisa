@@ -19,28 +19,6 @@
     <label class="form_bsdi" onclick="KlikKnop('Bestand_relatie')" title="Document selecteren."></label>
     
     <div class="form_box_zoek">
-    <?php 
-        echo '<div class="form_box_zoek">';
-            echo '<label class="form_lbl" for="Leerling_Zoeken_in">Leerling zoeken</label><br />';
-            echo '<button class="form_edit" id="Leerling_Zoeken_btn" name="Leerling_Zoeken_btn" type="submit">Gegevens invullen</button>';
-            echo '<div class="form_zoek">';
-                echo '<input class="form_in" id="Leerling_Zoeken_in" list="Leerling_Zoeken_List" name="Leerling_Zoeken_in" placeholder="..." />';
-                echo '<label class="form_editi" for="Leerling_Zoeken_btn" onclick="KlikKnop(&#39;Leerling_Zoeken_btn&#39;)" title="Bestaand Leerling opzoeken."></label>';
-            echo '</div>';
-            echo '<datalist class="form_slt" id="Leerling_Zoeken_List" >';
-            
-                $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_leerling=1";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)){
-                        echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].") '>";
-                    }
-                }
-            echo '</datalist>';
-            echo '<input id="Leerling_Zoeken" name="Leerling_Zoeken" type="hidden"/>';
-        echo '</div>';
-    
-    ?>
     </div>
     
     <div class="form_box_zoek_border">
@@ -53,24 +31,42 @@
     
     <!-- keuze leerling -->
     <div class="form_box_1">
-        
+        <label class='form_lbl' for="Leerling_Zoeken">Leerling</label><br />
         <?php 
             /** Als er een leerling is meegenomen uit persoonsformulier wordt zijn naam automatisch getoond */
-            if (isset($_SESSION['Leerling']) && $_SESSION['Leerling'] != ''){
+            if (isset($_SESSION['Leerling'])){
                 $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_id=".$_SESSION['Leerling'];
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()){
-                        echo "<div class='form_box_1'>";
-                            echo '<label class="form_lbl" for="Leerling_Zoeken">Leerling</label><br />';
-                            echo "<div class='form_box_in'>";
-                                echo "<input class='form_in' disabled='true' id='Leerling_Zoeken' name='Leerling_Zoeken' type='text' value='".$row['fld_persoon_naam']."'/>";
-                            echo "</div>";
+                        echo "<div class='form_box_in'>";
+                            echo "<input class='form_in' disabled='true' id='Leerling_Zoeken' name='Leerling_Zoeken' type='text' value='".$row['fld_persoon_naam']."'/>";
                         echo "</div>";
                     }
                 }
             }
-            
+            /** Als er geen leerling is meegenomen wordt er een zoekvak met keuzelijst tevoorschijn */
+            else {
+                echo '<div class="form_box_zoek">';
+                    echo '<label class="form_lbl" for="Leerling_Zoeken_in">Leerling zoeken</label><br />';
+                    echo '<button class="form_edit" id="Leerling_Zoeken_btn" name="Leerling_Zoeken_btn" type="submit">Gegevens invullen</button>';
+                    echo '<div class="form_zoek">';
+                        echo '<input class="form_in" id="Leerling_Zoeken_in" list="Leerling_Zoeken_List" name="Leerling_Zoeken_in" placeholder="..." />';
+                        echo '<label class="form_editi" for="Leerling_Zoeken_btn" onclick="KlikKnop(&#39;Leerling_Zoeken_btn&#39;)" title="Bestaand Leerling opzoeken."></label>';
+                    echo '</div>';
+                    echo '<datalist class="form_slt" id="Leerling_Zoeken_List" >';
+                    
+                        $sql = "SELECT * FROM tbl_personen WHERE fld_persoon_leerling=1";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<option id='".$row['fld_persoon_id']."' value='".$row['fld_persoon_naam']." (".$row['fld_persoon_gb_datum'].") '>";
+                            }
+                        }
+                echo '</datalist>';
+                echo '<input id="Leerling_Zoeken" name="Leerling_Zoeken" type="hidden"/>';
+            echo '</div>';
+            }
         ?>
     </div>
         

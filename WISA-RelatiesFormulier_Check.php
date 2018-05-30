@@ -10,10 +10,6 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
         $_SESSION['Leerling'] = $Persoon_1;
     }
-    if ($_POST['Persson_2_Zoeken'] == '' || $_POST['Persson_2_Zoeken'] == 'undefined'){
-        header("Location: WISA-Formulier.php?relaties");
-        exit();
-    }
     $Datum = date("Y-m-d_H-i");
 
     $Relatie = mysqli_real_escape_string($conn, $_POST['Relatie_Zoeken']);
@@ -46,10 +42,10 @@ if (isset($_POST['Relatie_opslaan'])){
                 $Bestand_Naam = $Bestand_Basename."_Relatie_".$Relatie_Id.".".$Soort_Bestand;
                 $Bestand_Locatie = $target_dir.$Bestand_Naam;
                 echo "Bestand_Locatie: ".$Bestand_Locatie."<br />";
-                /** Het bestand wordt geï¿½pload */
+                /** Het bestand wordt geüpload */
                 if ($Bestand['size'][$i] != 0){
                     if (move_uploaded_file($Bestand["tmp_name"][$i], $Bestand_Locatie)) {
-                        echo "Het bestand ". basename($Bestand["name"][$i]). " is geï¿½pload.<br />";
+                        echo "Het bestand ". basename($Bestand["name"][$i]). " is geüpload.<br />";
                         
                         $sqlBestanden = "INSERT INTO tbl_docs(fld_doc_naam, fld_doc_soort, fld_doc_plaats, fld_doc_datum) 
                                          VALUES ('".$Bestand_Naam."', '".$Soort_Bestand."', '".$Bestand_Locatie."', '".$Datum."')";
@@ -70,7 +66,7 @@ if (isset($_POST['Relatie_opslaan'])){
                         }
                     }
                     else {
-                        echo "Bestand niet geï¿½pload";
+                        echo "Bestand niet geüpload";
                     }
                 }
                 
@@ -115,25 +111,8 @@ if (isset($_SESSION['Personen_Relaties'])){
     }
 }
 
-if (isset($_POST['Leerling_Zoeken_btn'])){
-    $Leerling_Zoeken = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
-    if ($Leerling_Zoeken == '' || $Leerling_Zoeken == 'undefined'){
-        header("Location: WISA-Formulier.php?relaties");
-        exit();
-    }
-    $_SESSION['Leerling'] = $Leerling_Zoeken;
-    header("Location: WISA-Formulier.php?relaties");
-     
-}
-
-if (isset($_POST['Annuleer'])){
-    $_SESSION['Personen_Relaties'] = [];
-    $_SESSION['Leerling'] = '';
-    header ("Location: WISA-Formulier.php?relaties");
-}
-
 if (isset($_POST['VolgendeContact'])){
-    header("Location: WISA-Formulier.php?contact");
+    header("Location: WISA-FormulieR.php?contact");
+    exit();
 }
-
 ?>
