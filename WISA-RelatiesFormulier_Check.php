@@ -10,7 +10,7 @@ if (isset($_POST['Relatie_opslaan'])){
         $Persoon_1 = mysqli_real_escape_string($conn, $_POST['Leerling_Zoeken']);
         $_SESSION['Leerling'] = $Persoon_1;
     }
-    if ($_POST['Persson_2_Zoeken'] == '' || $_POST['Persson_2_Zoeken'] == 'undefined'){
+    if ($_POST['Persoon_2_Zoeken'] == '' || $_POST['Persoon_2_Zoeken'] == 'undefined'){
         header("Location: WISA-Formulier.php?relaties");
         exit();
     }
@@ -86,7 +86,7 @@ if (isset($_POST['Relatie_opslaan'])){
         else {
              $_SESSION['Personen_Relaties'] = array($Persoon_2 => $Relatie);
         }
-        header ("Location: WISA-Formulier.php?relaties");
+        //header ("Location: WISA-Formulier.php?relaties");
            
     }
     else {

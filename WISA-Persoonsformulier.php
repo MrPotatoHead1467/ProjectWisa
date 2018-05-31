@@ -191,7 +191,7 @@ if (!isset($_SESSION['Is_Leerling']))
             <!-- België? -->
             <div class="form_box_in">  
                 <input id="GB_Plaats_Niet_Be" name="GB_Plaats_Niet_Be" onclick="display_gb_plaats()" type="checkbox" title="Indien u niet in Belgi&euml; geboren bent."/>
-                <label class="form_lbl" for="GB_Plaats_Niet_Be" title="Indien u niet in Belgi&euml; geboren bent.">Geboorteplaas niet in Belgi&euml;</label>
+                <label class="form_lbl" for="GB_Plaats_Niet_Be" title="Indien u niet in Belgi&euml; geboren bent.">Geboorteplaats niet in Belgi&euml;</label>
             </div>
             
             <div class="form_zoek" id="GB_Plaats_Wel_Be">

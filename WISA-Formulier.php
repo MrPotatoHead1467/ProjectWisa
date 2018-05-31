@@ -229,7 +229,7 @@
         </div>    
     </div>
     
-    <div class="page_fullscreen-grey" id="page_fullscreen-grey">
+    <div class="page_fullscreen-grey" id="page_fullscreen-grey" style="display: none;">
         <div class="page_cover_mess">
             <div class="page_cover-space">
                 <div class="page_cover-titlebox">
@@ -443,7 +443,6 @@
         else
             {
                 $parameters = "'click', '".$Formulier."'";
-                echo "Parameters: ".$parameters;
                 echo "<script type='text/javascript'>";
                     echo "tab_show_info(".$parameters.")";
                 echo "</script>"; 

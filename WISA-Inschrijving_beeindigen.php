@@ -2,7 +2,6 @@
 session_start();
 include "WISA-Connection.php";
 if (isset($_POST['Inschr_Opslaan'])){
-    $_SESSION['Leerling'] = 22;
     $Datum = date('Y-m-d');
     $Uur = date('H:i:s');
     $Commentaar = mysqli_real_escape_string($conn, $_POST['Comm_Inschr']);
