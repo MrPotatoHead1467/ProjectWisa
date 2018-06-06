@@ -23,6 +23,7 @@
                 $Eerste_afgewezen = true;
                 $Eerste_stand_by = true;
                 $Eerste_goedgekeurd = true;
+                
                 $_SESSION['schoolID'] = 2527;
                 $schoolID = $_SESSION['schoolID'];
                 $_SESSION['schoolNaam'] = 'Miniemeninstituut';
@@ -55,22 +56,23 @@
                         {
                             while($rowInschrijvingen = $resultInschrijvingen->fetch_assoc())
                                 {
-                                    if ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 1 and $Eerste_aanvraag == true){
+                                    if ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 1 && $Eerste_aanvraag === true){
                                         echo "<label class='form_lbl'>Aanvragen</label><br />";
-                                        $Eerste_aanvraag == false;
+                                        $Eerste_aanvraag = false;
                                     }
-                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 3 and $Eerste_afgewezen == true){
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 3 && $Eerste_afgewezen === true){
                                         echo "<label class='form_lbl'>Afgewezen</label><br />";
-                                        $Eerste_afgewezen == false;
+                                        $Eerste_afgewezen = false;
                                     }
-                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 4 and $Eerste_stand_by == true){
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 4 && $Eerste_stand_by === true){
                                         echo "<label  class='form_lbl'>Stand-by</label><br />";
-                                        $Eerste_stand_by == false;
+                                        $Eerste_stand_by = false;
                                     }
-                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 2 and $Eerste_goedgekeurd == true){
+                                    elseif ($rowInschrijvingen['fld_inschrijving_status_id_fk'] == 2 && $Eerste_goedgekeurd === true){
                                         echo "<label class='form_lbl'>Goedgekeurd</label><br />";
-                                        $Eerste_goedgekeurd == false;
+                                        $Eerste_goedgekeurd = false;
                                     }
+                                    
                                     $llnID = $rowInschrijvingen['fld_persoon_id_fk'];
                                     $lln = array();
                                     $sqlZoekLln = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$llnID."'";
