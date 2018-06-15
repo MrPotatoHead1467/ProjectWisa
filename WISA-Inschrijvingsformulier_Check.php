@@ -204,8 +204,8 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
                               VALUES ('".$Persoon_Id."', '".$Vraag_ID."', '".$Antwoord."')";
                               
             if (mysqli_query($conn, $sqlAntwoorden)){
+                $_SESSION['Inschrijving_einde'] = true;
                 header("Location: WISA-Formulier.php?vragen");
-                exit();
             }
             else {
                 echo "Error: " . $sqlAntwoorden . "<br>" . mysqli_error($conn);
@@ -213,9 +213,5 @@ if(isset($_POST["Inschrijving_Opslaan"])) {
         }
     }
 }
-if (isset($_POST['VolgendeInsch'])){
-    $_SESSION['Inschrijving_einde'] = true;
-    header("Location: WISA-Formulier.php");
-    exit();
-}
+
 ?>

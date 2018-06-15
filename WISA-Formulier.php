@@ -430,6 +430,7 @@
         if ($_SESSION['Inschrijving_einde'] == true){
             echo '<script type="text/javascript">show_einde();</script>';
         }
+        
         include "WISA-Footer.php";
         
         $Formulier = $_SERVER['QUERY_STRING'];

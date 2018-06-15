@@ -86,7 +86,7 @@ if (isset($_POST['Relatie_opslaan'])){
         else {
              $_SESSION['Personen_Relaties'] = array($Persoon_2 => $Relatie);
         }
-        //header ("Location: WISA-Formulier.php?relaties");
+        header ("Location: WISA-Formulier.php?relaties");
            
     }
     else {

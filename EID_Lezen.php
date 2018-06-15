@@ -21,7 +21,6 @@ if (isset($_POST['EID_Lezen'])){
     $GB_Datum = $date->format('Y-m-d');
     $_SESSION['EID_GB_Datum'] = $GB_Datum;
     
-
 }
 header("Location: WISA-Formulier.php?personen");
 ?>

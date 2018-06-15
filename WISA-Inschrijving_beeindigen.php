@@ -22,8 +22,11 @@ if (isset($_POST['Inschr_Opslaan'])){
     else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-    
-
+}
+if (isset($_POST['Annuleer'])){
+    $_SESSION['Inschrijving_einde'] = false;
+    header("Location: WISA-Formulier.php");
+    exit();
 }
 
 ?>

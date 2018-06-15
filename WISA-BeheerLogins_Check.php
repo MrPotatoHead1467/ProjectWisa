@@ -15,6 +15,12 @@ if (isset($_POST['Login_Opslaan'])){
     
     $Gebruikersnaam = mysqli_real_escape_string($conn, $_POST['Gebruikersnaam']);
     $Wachtwoord = mysqli_real_escape_string($conn, $_POST['Wachtwoord']);
+    $Wachtwoord_2 = mysqli_real_escape_string($conn, $_POST['Wachtwoord_2']);
+    if ($Wachtwoord !== $Wachtwoord_2){
+        header("Location: WISA-Formulier.php?logins");
+        exit();
+    }
+    
     $Beschrijving = mysqli_real_escape_string($conn, $_POST['Beschrijving_G']);
     
     if ($_SESSION['Bestaande_Persoon'] == 0){
@@ -27,7 +33,7 @@ if (isset($_POST['Login_Opslaan'])){
                        fld_persoon_geslacht='".$Geslacht."', fld_persoon_register_nr='".$Register_nr."' 
                        WHERE fld_persoon_id='".$_SESSION['Bestaande_Persoon_Id']."'";
     }
-    echo $sqlPersoon;
+    
     ///**
     if (mysqli_query($conn, $sqlPersoon)){
         $Persoon_Id = mysqli_insert_id($conn);
@@ -56,6 +62,7 @@ if (isset($_POST['Login_Opslaan'])){
             $_SESSION['Wachtwoord_G'] = '';
             $_SESSION['Beschrijving_G'] = '';
             header("Location: WISA-Formulier.php?logins");
+            exit();
         }
         else {
             echo "Error: " . $sqlGebruiker . "<br>" . mysqli_error($conn);
@@ -71,6 +78,7 @@ if (isset($_POST['Login_Zoeken_btn'])){
     $Login_Zoeken = mysqli_real_escape_string($conn, $_POST['Login_Zoeken']);
     if ($Login_Zoeken == '' || $Login_Zoeken == 'undefined'){
         header("Location: WISA-Formulier.php?logins");
+        exit();
     }
     $sql = "SELECT * FROM tbl_gebruikers WHERE fld_gebruiker_id=".$Login_Zoeken;
     $result = mysqli_query($conn, $sql);
@@ -111,6 +119,7 @@ if (isset($_POST['Annuleer_G']))
         $_SESSION['Wachtwoord_G'] = '';
         $_SESSION['Beschrijving_G'] = '';
         header("Location: WISA-Formulier.php?logins");
+        exit();
     }  
 if (isset($_POST['Verwijderen']) && $_SESSION['Bestaande_Persoon_Id'] != ''){
     $sqlPersoon_Verwijderen = "DELETE FROM tbl_personen WHERE fld_persoon_id=".$_SESSION['Bestaande_Persoon_Id'];
@@ -129,6 +138,7 @@ if (isset($_POST['Verwijderen']) && $_SESSION['Bestaande_Persoon_Id'] != ''){
             $_SESSION['Wachtwoord_G'] = '';
             $_SESSION['Beschrijving_G'] = '';
             header("Location: WISA-Formulier.php?logins");
+            exit();
         }
         else {
             echo "Error: " . $sqlGebruiker_Verwijderen . "<br>" . mysqli_error($conn);

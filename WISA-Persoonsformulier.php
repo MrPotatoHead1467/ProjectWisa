@@ -347,6 +347,10 @@ if (!isset($_SESSION['Is_Leerling']))
     </div>
 </form>
 
+<form>
+
+</form>
+
 <script type="text/javascript">
     function KlikKnop(knop)
         {

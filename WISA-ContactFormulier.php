@@ -22,7 +22,7 @@
     <div>
         <form action="WISA-ContactFormulier_Check.php" method="post">
             <div class="form_box_zoek">
-                <label class="form_lbl" for="Contact_Zoeken_in">Persoons gegevens zoeken</label><br />
+                <label class="form_lbl" for="Contact_Zoeken_in">Persoonsgegevens zoeken</label><br />
                 <button class="form_edit" id="Contact_Zoeken_btn" name="Contact_Zoeken_btn" type="submit">Gegevens invullen</button>
                 <div class="form_zoek">
                     <input class="form_in" id="Contact_Zoeken_in" list="Contact_Zoeken_List" name="Contact_Zoeken_in" placeholder="..." 

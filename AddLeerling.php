@@ -348,9 +348,10 @@ if ($Naam == 'Goed'){
     }
     */
 }
+
 elseif ($Naam == 'Afgewezen'){
     $sql = "UPDATE tbl_inschrijvingen 
-            SET fld_inschrijving_status_id_fk=3 
+            SET fld_inschrijving_status_id_fk=3, fld_inschrijving_update_datum=".date('Y-m-d')." 
             WHERE fld_persoon_id_fk='".$Leerling_Id."'";
     if (mysqli_query($conn, $sql)){
         header('Location: WISA-Formulier.php?goedkeuren');
@@ -359,9 +360,10 @@ elseif ($Naam == 'Afgewezen'){
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
+
 elseif ($Naam == 'Stand-by'){
     $sql = "UPDATE tbl_inschrijvingen 
-            SET fld_inschrijving_status_id_fk=4 
+            SET fld_inschrijving_status_id_fk=4, fld_inschrijving_update_datum=".date('Y-m-d')."
             WHERE fld_persoon_id_fk='".$Leerling_Id."'";
     if (mysqli_query($conn, $sql)){
         header('Location: WISA-Formulier.php?goedkeuren');

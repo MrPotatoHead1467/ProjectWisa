@@ -142,7 +142,10 @@ if (!isset($_SESSION['Beschrijving_G']))
                 <input class="form_in" id="Gebruikersnaam" name="Gebruikersnaam" type="text" placeholder="Gebruikersnaam" value="<?php echo $_SESSION["Gebruikersnaam_G"]?>"/><br />
             </div> 
             <div class="form_box_in">
-                <input class="form_in" id="Wachtwoord" name="Wachtwoord" type="text" placeholder="Wachtwoord" value="<?php echo $_SESSION['Wachtwoord_G']?>"/><br />
+                <input class="form_in" id="Wachtwoord" name="Wachtwoord" type="password" placeholder="Wachtwoord" value="<?php echo $_SESSION['Wachtwoord_G']?>"/><br />
+            </div>
+            <div class="form_box_in">
+                <input class="form_in" id="Wachtwoord_2" name="Wachtwoord_2" type="password" placeholder="Geef je wachtwoord opnieuw in" value="<?php echo $_SESSION['Wachtwoord_G']?>"/><br />
             </div>
         </div>
         

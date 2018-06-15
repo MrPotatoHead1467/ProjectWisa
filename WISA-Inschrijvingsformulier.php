@@ -209,13 +209,10 @@ include "WISA-Connection.php";
         </div>
         
         <div class="form_box_btn">
-            <!-- inschrijving voltooien -->
+            <!-- Inschrijving voltooien -->
             <button type="submit" name="Inschrijving_Opslaan">Antwoorden opslaan</button>
             <!-- Knop om te annuleren --> 
             <button class="form_ccl" id="Annuleer" name="Annuleer" type="submit">Annuleren</button>
-            <!-- Volgende formulier -->
-            <button class="form_next"  id="VolgendeInsch" name="VolgendeInsch" title="Volgende formulier: Inschrijving afronden." type="submit">Volgende</button>
-            <label class="form_nexti" onclick="KlikKnop('VolgendeInsch')" title="Volgende formulier: Inschrijving afronden."></label>
         </div>
     </form>
     <?php 

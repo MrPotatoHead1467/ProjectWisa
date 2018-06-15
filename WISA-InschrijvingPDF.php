@@ -1,6 +1,6 @@
 
 <?php
-    //session_start();
+    session_start();
 
     require ("fpdf181/fpdf.php");
     include "WISA-Connection.php";
@@ -54,8 +54,7 @@
     
     
     // lln id 
-    $_SESSION['Leerling'] = 22;
-    $llnID = 22;
+    $llnID = $_SESSION['Leerling'];
     $lln = array();
     $sqlZoekLln = "SELECT * FROM tbl_personen WHERE fld_persoon_id='".$llnID."'";
     $infoLln = $conn->query($sqlZoekLln);
@@ -1315,7 +1314,7 @@
                     $pdf -> SetFont('Arial','B',10);
                     $pdf -> cell(10, 5, '', 0, 0);
                     $pdf -> cell(5, 5, $a, 0, 0);
-                    $pdf -> cell(175, 5, $vraag["VRAAG"], 0, 1);
+                    $pdf -> Multicell(175, 5, $vraag["VRAAG"], 0, 1);
                     $pdf -> SetFont('Arial','',10);
                     $pdf -> cell(15, 5, '', 0, 0);
                     $pdf -> MultiCell(175, 5, $vraag["ANTWOORDEN"][0], 0, 1);
@@ -1326,7 +1325,7 @@
                     $pdf -> SetFont('Arial','B',10);
                     $pdf -> cell(10, 5, '', 0, 0);
                     $pdf -> cell(5, 5, $a, 0, 0);
-                    $pdf -> cell(175, 5, $vraag['VRAAG'], 0, 1);
+                    $pdf -> Multicell(175, 5, $vraag['VRAAG'], 0, 1);
                     $pdf -> SetFont('Arial','',10);
                     
                     foreach ($vraag["ANTWOORDEN"] as $antwoord)
